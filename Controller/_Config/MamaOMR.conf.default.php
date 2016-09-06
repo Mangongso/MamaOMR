@@ -18,7 +18,7 @@ switch(SERVICE_MODE){
 }
 
 /*
- * Set Social key
+ * Set Social key for login
  */
 $SNS_key = array();
 switch(SERVICE_MODE){
@@ -30,4 +30,9 @@ switch(SERVICE_MODE){
 	default:
 		break;
 }	
+
+/*
+ * book search API
+ */
+define("BOOK_SEARCH_API_KEY","49769dcbb5d89eaf2d3c069ac7ca321e");
 ?>
