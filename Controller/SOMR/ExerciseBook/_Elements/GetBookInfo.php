@@ -31,7 +31,7 @@
 		$strCoverUrl = str_replace('type=m1','type=m5',$strCoverUrl);
 		$strCoverUrl = $strCoverUrl?$strCoverUrl:"/smart_omr/_images/default_cover.png";
 	*/
-		$strApiKey = "49769dcbb5d89eaf2d3c069ac7ca321e";
+		$strApiKey = BOOK_SEARCH_API_KEY;
 		$strIsbnUrl = "https://apis.daum.net/search/book?apikey=".$strApiKey."&q=".$strIsbnCode."&searchType=isbn&output=xml";
 		//get book info
 		$xmlstr = $objBook->get_xml_from_url($strIsbnUrl);
