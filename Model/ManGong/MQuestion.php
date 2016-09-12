@@ -113,7 +113,7 @@ class MQuestion extends Question{
 	 * @return integer 문제 개수
 	 */	
 	public function getQuestionCountInTest($intTestSeq=null,$arrTestsSeq=array(),$strTestsSeqGroup=null){
-		include("Model/Tests/SQL/MySQL/MQuestion/getQuestionCountInTest.php");
+		include("Model/ManGong/SQL/MySQL/MQuestion/getQuestionCountInTest.php");
 		$arrResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($arrResult[0]['question_count']);
 	}
@@ -126,7 +126,7 @@ class MQuestion extends Question{
 	 * @return array 문제정보
 	 */	
 	public function getQuestionExtendInfo($intTestsSeq,$intQuestionSeq){
-		include("Model/Tests/SQL/MySQL/MQuestion/getQuestionExtendInfo.php");
+		include("Model/ManGong/SQL/MySQL/MQuestion/getQuestionExtendInfo.php");
 		$arrResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($arrResult);		
 	}
@@ -138,7 +138,7 @@ class MQuestion extends Question{
 	 * @return array 문제 목록
 	 */	
 	public function getQuestionList($intTestsSeq){
-		include("Model/Tests/SQL/MySQL/MQuestion/getQuestionList.php");
+		include("Model/ManGong/SQL/MySQL/MQuestion/getQuestionList.php");
 		$arrResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($arrResult);		
 	}
@@ -212,7 +212,7 @@ class MQuestion extends Question{
 	 * @return boolean True 일 경우 비활성화 성공 false 일 경우 비활성화 오류
 	 */	
 	public function disableQuestionExample($intQuestionSeq){
-		include("Model/Tests/SQL/MySQL/MQuestion/disableQuestionExample.php");
+		include("Model/ManGong/SQL/MySQL/MQuestion/disableQuestionExample.php");
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($boolReturn);		
 	}
