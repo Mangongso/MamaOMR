@@ -17,7 +17,7 @@ require_once("Model/Core/DataManager/DataHandler.php");
 require_once("Model/Tests/Question.php");
 
 class MQuestion extends Question{
-	private $resQuestionDB;
+	public $resQuestionDB;
 	public $arrQuestion;
 	public $arrExampleStyle;
 	
