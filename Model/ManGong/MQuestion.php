@@ -1,14 +1,36 @@
 <?
+/**
+ * 문제 및 문제에 종속되는 보기를 등록, 수정, 삭제, 조회한단.
+ * 본 클레스틑 Test/Question 클레스를 확장한다.
+ *
+ * @package      	Mangong/MQuestion
+ * @subpackage   	Core/Util/Paging
+ * @subpackage   	Core/DataManager/DataHandler
+ * @property		private resource $resQuestionDB : DB 커넥션 리소스
+ * @property 		public array $arrQuestion : 배열형식의 문제
+ * @property 		public array $arrExampleStyle :배열형태의 보기형식
+ * @category     	Question
+ */
+
 require_once("Model/Core/Util/Paging.php");
 require_once("Model/Core/DataManager/DataHandler.php");
 require_once("Model/Tests/Question.php");
 
 class MQuestion extends Question{
+	public $resQuestionDB;
 	public $arrQuestion;
 	public $arrExampleStyle;
+	
+	/**
+	 * 생성자
+	 *
+	 * @param resource $resMangongDB 리소스 형태의 DB커넥션 
+	 * @return null 
+	 */	
 	public function __construct($resMangongDB=null){
 		$this->objPaging =  new Paging();
 		$this->resQuestionDB = $resMangongDB;
+		// arrExampleStyle 속성에 보기 유형 설정
 		$this->arrExampleStyle = array(
 				0=>array(1=>'1',2=>'2',3=>'3',4=>'4',5=>'5',6=>'6',7=>'7',8=>'8',9=>'9',10=>'10'),
 				1=>array(1=>'가',2=>'나',3=>'다',4=>'라',5=>'마',6=>'바',7=>'사',8=>'아',9=>'자',10=>'차'),
@@ -21,6 +43,13 @@ class MQuestion extends Question{
 				8=>array(1=>'㉮',2=>'㉯',3=>'㉰',4=>'㉱',5=>'㉲',6=>'㉳',7=>'㉴',8=>'㉵',9=>'㉶',10=>'㉷')
 				);
 	}
+	
+	/**
+	 * 문제 타입에 따른 보기 개수를 가져온다.
+	 *
+	 * @param integer $intQuestionType 문제 타입
+	 * @return integer 보기 개수
+	 */	
 	public function getExampleCountByQuestionType($intQuestionType){
 		switch($intQuestionType){
 			case(1):
@@ -54,8 +83,16 @@ class MQuestion extends Question{
 		}
 		return($intExampleCount);
 	}
+	
+	/**
+	 * 문제 상세 정보 조회.
+	 *
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @param integer $intTestsSeq 테스트 시퀀스
+	 * @param integer $intExampleNumberingStyle 보기 넘버링 타입
+	 * @return array 문제 상세정보를 답고 있는 배열
+	 */	
 	public function getQuestion($intQuestionSeq,$intTestsSeq=0,$intExampleNumberingStyle=0){
-		//get question (with jimoon)
 		include("Model/Tests/SQL/MySQL/Question/getQuestion.php");
 		$arrQuestionResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		$arrQuestionResult[0]['arr_question_tag'] = $this->getQuestionTag($intQuestionSeq);
@@ -66,30 +103,59 @@ class MQuestion extends Question{
 		}
 		return($arrQuestionResult);
 	}
+
+	/**
+	 * 테스트에 포함된 문제의 개수를 반환
+	 *
+	 * @param integer $intTestSeq 테스트 시퀀스
+	 * @param array $arrTestsSeq 테스트 시퀀스 (여러개의 테스트에 해당하는 문제의 개수를 구할때 사용)
+	 * @param string $strTestsSeqGroup 테스터 그룹 고유값
+	 * @return integer 문제 개수
+	 */	
 	public function getQuestionCountInTest($intTestSeq=null,$arrTestsSeq=array(),$strTestsSeqGroup=null){
-		if(count($arrTestsSeq)){
-			$strQuery = sprintf("select count(*) as question_count from test_question_list where test_seq in (".join(',',$arrTestsSeq).")");
-		}else if(!is_null($strTestsSeqGroup)){
-			$strQuery = sprintf("select count(*) as question_count from test_question_list where test_seq in (".$strTestsSeqGroup.")");
-		}else{
-			$strQuery = sprintf("select count(*) as question_count from test_question_list where test_seq=%d",$intTestSeq);
-		}
+		include("Model/ManGong/SQL/MySQL/MQuestion/getQuestionCountInTest.php");
 		$arrResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($arrResult[0]['question_count']);
 	}
+	
+	/**
+	 * 테스트에 포함된 문제의 부가 정보를 가져온다.
+	 *
+	 * @param integer $intTestSeq 테스트 시퀀스
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @return array 문제정보
+	 */	
 	public function getQuestionExtendInfo($intTestsSeq,$intQuestionSeq){
-		$strQuery = sprintf("select * from test_question_list where test_seq=%d and question_seq=%d",$intTestsSeq,$intQuestionSeq);
+		include("Model/ManGong/SQL/MySQL/MQuestion/getQuestionExtendInfo.php");
 		$arrResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($arrResult);		
 	}
-	public function getQuestionList($intTestsSeq,$intQuestionSeq){
-		$strQuery = sprintf("select * from test_question_list where test_seq=%d and question_seq=%d",$intTestsSeq,$intQuestionSeq);
+	
+	/**
+	 * 테스트에 포함된 문제목록을 가져온다.
+	 *
+	 * @param integer $intTestSeq 테스트 시퀀스
+	 * @return array 문제 목록
+	 */	
+	public function getQuestionList($intTestsSeq){
+		include("Model/ManGong/SQL/MySQL/MQuestion/getQuestionList.php");
 		$arrResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($arrResult);		
 	}
+	
+	/**
+	 * 문제에 대한 답이 정답 또는 오답여부 확인.
+	 *
+	 * @param integer $intQuestionSeq 테스트 시퀀스
+	 * @param integer $intQuestionType 테스트 타입
+	 * @param array $arrQuestionExample 테스트 보기
+	 * @param mixed $mixAnswer 테스터 입력 선택 정답
+	 * @return array 문제 목록 user_answer(테스터 입력 답안), question_answer(문제 정답), result(정,오답 여부)
+	 */	
 	public function checkAnswerCorrect($intQuestionSeq,$intQuestionType,$arrQuestionExample,$mixAnswer){
 		$arrReturn = array();
 		switch($intQuestionType){
+			// 객관식 문제의 정답 확인
 			case(1):
 			case(2):
 			case(3):
@@ -115,18 +181,13 @@ class MQuestion extends Question{
 						'result'=>$boolReturn
 						);
 				break;
+			// 주관식 문제의 정답 확인
 			case(5):
 			case(6):
 			case(7):
 			case(8):
 			case(9):
 				$boolReturn = $this->checkSubjectiveQuestionAnswer($arrQuestionExample,$mixAnswer);
-				/*
-				$arrReturn = array(
-						'user_answer'=>json_encode($mixAnswer,JSON_UNESCAPED_UNICODE),
-						'result'=>$boolReturn
-				);
-				*/
 				$arrReturn = array(
 						'user_answer'=>h_json_encode($mixAnswer),
 						'result'=>$boolReturn
@@ -143,13 +204,26 @@ class MQuestion extends Question{
 		}
 		return($arrReturn);
 	}
+	
+	/**
+	 * 문제의 보기를 비 활성화 시킨다.
+	 *
+	 * @param integer $intQuestionSeq 테스트 시퀀스
+	 * @return boolean True 일 경우 비활성화 성공 false 일 경우 비활성화 오류
+	 */	
 	public function disableQuestionExample($intQuestionSeq){
-		$strQuery = sprintf("update question_example set delete_flg=1 where question_seq=%d",$intQuestionSeq);
+		include("Model/ManGong/SQL/MySQL/MQuestion/disableQuestionExample.php");
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($boolReturn);		
 	}
-	/*
-	 * $boolMatchFlg 가 true 일 경우 공백을 포함한 완전 일치여부를 판단하며 false 일 경우 공잭을 제거한 단어의 일치성을 검사한다
+	
+	/**
+	 * 주관식 정답 확인.
+	 *
+	 * @param array $arrExamples 문제의 보기
+	 * @param array $arrUserAnswer 사용자 입력 답안
+	 * @param boolean $boolMatchFlg 주관신 답의 정답 확인 타입(true 일 경우 공백을 포함한 완전 일치여부를 판단하며 false 일 경우 공잭을 제거한 단어의 일치성을 검사한다)
+	 * @return boolean True 일 경우 정답 false 일 경우 오답
 	 */
 	public function checkSubjectiveQuestionAnswer($arrExamples,$arrUserAnswer,$boolMatchFlg=false){
 		foreach($arrExamples as $intKey=>$arrExample){
@@ -175,6 +249,22 @@ class MQuestion extends Question{
 		}
 		return(true);
 	}
+	
+	/**
+	 * 문제 저장하기.
+	 *
+	 * @param integer $intWriterSeq 문제의 보기
+	 * @param string $strContents 사용자 입력 답안
+	 * @param integer $intQuestionType 문제 타입
+	 * @param integer $intExampleType 보기 타입
+	 * @param string $strQuestionHint 문제 힌트
+	 * @param string $strQuestionCommentary 문제 코멘트
+	 * @param integer $intQuestionJimoonSeq 지문이 있는 문제의 경우 등록된 지문의 시퀀스
+	 * @param integer $intQuestionSeq 문제 시퀀스(시퀀스가 있으면 update 없으면 insert)
+	 * @param string $strTags 문제에 대한 유형테그
+	 * @param string $strFileName 문제에 첨부되는 파일명
+	 * @return boolean 문제 등록 성공여부 반환 true or false
+	 */
 	public function setQuestion($intWriterSeq,$strContents,$intQuestionType,$intExampleType,$strQuestionHint,$strQuestionCommentary,$intQuestionJimoonSeq=null,&$intQuestionSeq=null,$strTags=null,$strFileName=null){
 		include("Model/ManGong/SQL/MySQL/MQuestion/setQuestion.php");	
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
@@ -186,71 +276,146 @@ class MQuestion extends Question{
 		}
 		return($boolReturn);		
 	}
+	
+	/**
+	 * 문제 정보가 변경될 경우 히스토리를 남긴다.
+	 *
+	 * @param integer $intQuestionSeq 문제의 시퀀스
+	 * @return boolean 문제 히스토리 등록 성공여부 반환 true or false
+	 */	
 	public function setQuestionHistory($intQuestionSeq){
 		include("Model/ManGong/SQL/MySQL/MQuestion/setQuestionHistory.php");
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($boolReturn);
 	}
+	
+	/**
+	 * 문제 삭제.
+	 *
+	 * @param integer $intTestsSeq 테스트 시퀀스
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @param integer $intPublishedSeq 문제 발행 시퀀스
+	 * @return boolean 문제 히스토리 등록 성공여부 반환 true or false
+	 */	
 	public function deleteQuestion($intTestsSeq,$intQuestionSeq,$intPublishedSeq=null){
-		if(file_exists(ini_get('include_path')."Model/ManGong/SQL/MySQL/MQuestion/deleteQuestion.php")){
-			include("Model/ManGong/SQL/MySQL/MQuestion/deleteQuestion.php");
-		}else{
-			include("Model/TechQuiz/SQL/MySQL/MQuestion/deleteQuestion.php");
-		}		
+		include("Model/ManGong/SQL/MySQL/MQuestion/deleteQuestion.php");
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
-		if($intPublishedSeq){
-			$strQuery = sprintf("update user_answer set delete_flg=1 where test_seq=%d and published_seq=%d and question_seq=%d and delete_flg=0",$intTestsSeq,$intPublishedSeq,$intQuestionSeq);
-		}else{
-			$strQuery = sprintf("update user_answer set delete_flg=1 where test_seq=%d and question_seq=%d and delete_flg=0",$intTestsSeq,$intQuestionSeq);
+		if($boolReturn){
+			include("Model/TechQuiz/SQL/MySQL/MQuestion/deleteQuestion1.php");
+			$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		}
-		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($boolReturn);
 	}
+	
+	/**
+	 * 문제 유형테그 갱신.
+	 * Question 테이블에 컬럼 형식으로 들어가며 별도의 유형테그 테이블로 처리하도록 메소드 추가됨
+	 *
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @param mixed $mixQuestionTag 문제 유형 태그
+	 * @return boolean 문제 히스토리 등록 성공여부 반환 true or false
+	 */	
 	public function updateTagFromQuestion($intQuestoinSeq,$mixQuestionTag){
-		if(is_array($mixQuestionTag)){
-			$strQuery = sprintf("update question set tags='%s' where seq=%d",join(',',$mixQuestionTag),$intQuestoinSeq);
-		}else{
-			$strQuery = sprintf("update question set tags='%s' where seq=%d",$mixQuestionTag,$intQuestoinSeq);
-		}
+		include("Model/ManGong/SQL/MySQL/MQuestion/updateTagFromQuestion.php");
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($boolReturn);
 	}
+	
+	/**
+	 * 오답노트를 입력할 경우 등의 테스터에 의해 문제를 갱신.
+	 *
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @param string $strContents 문제
+	 * @return boolean 문제 히스토리 등록 성공여부 반환 true or false
+	 */	
 	public function updateQuestionByStudent($intQuestionSeq,$strContents){
-		$strQuery = sprintf("update question set contents='%s' where seq=%d",quote_smart(trim($strContents)),$intQuestionSeq);
+		include("Model/ManGong/SQL/MySQL/MQuestion/updateQuestionByStudent.php");
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($boolReturn);		
 	}
+	
+	/**
+	 * 오답노트를 입력할 경우 등의 테스터에 의해 문제의 보기를 갱신.
+	 *
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @param integer $intExampleSeq 보기 시퀀스
+	 * @param string $strContents 보기 내용
+	 * @return boolean 문제 히스토리 등록 성공여부 반환 true or false
+	 */	
 	public function updateQuestionExampleByStudent($intQuestionSeq,$intExampleSeq,$strContents){
-		$strQuery = sprintf("update question_example set contents='%s' where question_seq=%d and seq=%d",quote_smart(trim($strContents)),$intQuestionSeq,$intExampleSeq);
+		include("Model/ManGong/SQL/MySQL/MQuestion/updateQuestionExampleByStudent.php");
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($boolReturn);
 	}	
+	
+	/**
+	 * 문제의 노출 순서를 변경.
+	 *
+	 * @param integer $intTestsSeq 테스트 시퀀스
+	 * @param integer $intOrderNumber 추가되는 문제의 정렬 번호
+	 * @return boolean 문제 히스토리 등록 성공여부 반환 true or false
+	 */	
 	public function updateQuestionOrderNumber($intTestsSeq,$intOrderNumber){
-		$strQuery = sprintf("update test_question_list set order_number=order_number+1 where test_seq=%d and order_number>=%d",$intTestsSeq,$intQuestionSeq,$intQuestionNumber,$intQuestionScore,$intOrderNumber);
+		include("Model/ManGong/SQL/MySQL/MQuestion/updateQuestionOrderNumber.php");
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($boolReturn);		
 	}
+	
+	/**
+	 * 문제를 테스트에 할당한다.
+	 *
+	 * @param integer $intTestsSeq 테스트 시퀀스
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @param integer $intQuestionNumber 문제 번호
+	 * @param integer $intQuestionScore 문제 점수
+	 * @param integer $intOrderNumber 문제 정렬 순서
+	 * @return boolean 문제 히스토리 등록 성공여부 반환 true or false
+	 */	
 	public function setQuestionToTests($intTestsSeq,$intQuestionSeq,$intQuestionNumber,$intQuestionScore,$intOrderNumber=null){
-		$strQuery = sprintf("insert into test_question_list set test_seq=%d,question_seq=%d,question_number=%d,question_score=%d,order_number=%d",$intTestsSeq,$intQuestionSeq,$intQuestionNumber,$intQuestionScore,$intOrderNumber);
+		include("Model/ManGong/SQL/MySQL/MQuestion/setQuestionToTests.php");
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($boolReturn);
 	}
+	
+	/**
+	 * 문제에 할당된 테스트를 변경한다.
+	 *
+	 * @param integer $intTestsSeq 테스트 시퀀스
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @param integer $intQuestionNumber 문제 번호
+	 * @param integer $intQuestionScore 문제 점수
+	 * @param integer $intOrderNumber 문제 정렬 순서
+	 * @return boolean 문제 히스토리 등록 성공여부 반환 true or false
+	 */	
 	public function updateQuestionToTests($intTestsSeq,$intQuestionSeq, $intQuestionNumber, $intQuestionScore, $intOrderNumber){
-		$strQuery = sprintf("update test_question_list set question_number=%d,question_score=%d,order_number=%d where test_seq=%d and question_seq=%d",$intQuestionNumber,$intQuestionScore,$intOrderNumber,$intTestsSeq,$intQuestionSeq);
+		include("Model/ManGong/SQL/MySQL/MQuestion/updateQuestionToTests.php");
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($boolReturn);		
 	}
+	
+	/**
+	 * 문제 보기 시퀀스에 해당하는 보기를 구한다.
+	 *
+	 * @param integer $intExampleSeq 문제 보기 시퀀스
+	 * @return array question_example table 참조
+	 */	
 	public function getQuestionExampleByExampleSeq($intExampleSeq){
-		$strQuery = sprintf("select * from question_example where seq=%d",$intExampleSeq);
+		include("Model/ManGong/SQL/MySQL/MQuestion/getQuestionExampleByExampleSeq.php");
 		$arrResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($arrResult);
 	}
+	
+	/**
+	 * 문제 보기를 구한다.
+	 *
+	 * @param integer $intExampleNumberingStyle 문제 보기 타입(__construct 참조)
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @param integer $intExampleType 보기 형식 (1,2,3,4,11 객관식, 5,6,7,8,9 주관식, 10,20 추가예정 - 논술 등)
+	 * @param integer $intLimit 보기 개수
+	 * @return array 문제보기
+	 */	
 	public function getQuestionExample($intExampleNumberingStyle,$intQuestionSeq,$intExampleType=null,$intLimit=null){
-		if(file_exists(ini_get('include_path')."/Model/ManGong/SQL/MySQL/MQuestion/getQuestionExample.php")){
-			include("Model/ManGong/SQL/MySQL/MQuestion/getQuestionExample.php");
-		}else{
-			include("Model/TechQuiz/SQL/MySQL/MQuestion/getQuestionExample.php");
-		}		
+		include("Model/ManGong/SQL/MySQL/MQuestion/getQuestionExample.php");		
 		if($intExampleType){
 			$arrResult = array(
 					'type_1'=>$this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery)
@@ -266,6 +431,21 @@ class MQuestion extends Question{
 		}
 		return($arrResult);		
 	}
+	
+	/**
+	 * 문제에 해당하는 단일 보기를 등록한다.
+	 *
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @param string $strContents 보기 내용
+	 * @param integer $intAnswerFlg 정답 플래그
+	 * @param string $strExampleType 보기 형식
+	 * @param integer $intQuestionExampleSeq 보기 시퀀스
+	 * @param integer $intExampleNumber 보기 번호
+	 * @param string $strSubjectiveAnswer 주관식 정답
+	 * @param integer $intQuestionType 문제 타입
+	 * @param integer $intExampleSeq Insert 일 참조반환할 보기 시퀀스
+	 * @return boolean 문제 보기 등록 성공여부 반환 true or false
+	 */	
 	public function setQuestionExample($intQuestionSeq,$strContents,$intAnswerFlg=0,$strExampleType=null,$intQuestionExampleSeq=null,$intExampleNumber=null,$strSubjectiveAnswer=null,$intQuestionType=0,&$intExampleSeq=null){
 		if($intExampleNumber<=constant("QUESTION_TYPE_".$intQuestionType."_EXAMPLE_COUNT")){
 			$intDeleteFlg = 0;
@@ -279,62 +459,97 @@ class MQuestion extends Question{
 		}
 		return($boolReturn);		
 	}
+	
+	/**
+	 * 문제에 해당하는 전체 보기를 등록한다.
+	 * 최초 문제를 등록시 보기의 입력 값이 없는 상태로 보기가 등록될때 사용됨
+	 *
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @param string $strContents 보기 내용
+	 * @param integer $intAnswerFlg 정답 플레그
+	 * @param string $strExampleType 보기타입
+	 * @param integer $intQuestionExampleSeq 보기 시퀀스
+	 * @param integer $intExampleNumber 보기 번호
+	 * @return boolean 문제 보기 등록 성공여부 반환 true or false
+	 */	
 	public function setQuestionExampleAll($intQuestionSeq,$strContents,$intAnswerFlg=0,$strExampleType=null,$intQuestionExampleSeq=null,$intExampleNumber=null){
-		if(file_exists(ini_get('include_path')."Model/ManGong/SQL/MySQL/MQuestion/setQuestionExampleAll.php")){
-			include("Model/ManGong/SQL/MySQL/MQuestion/setQuestionExampleAll.php");
-		}else{
-			include("Model/TechQuiz/SQL/MySQL/MQuestion/setQuestionExampleAll.php");
-		}		
-		
+		include("Model/ManGong/SQL/MySQL/MQuestion/setQuestionExampleAll.php");	
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($boolReturn);		
 	}
+	
+	/**
+	 * 문제에 보기의 정답을 수정한다.
+	 *
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @param integer $intExampleNumber 보기 번호
+	 * @param integer $intExampleSeq 보기 시퀀스
+	 * @return boolean 문제 보기의 정답 수정 성공여부 반환 true or false
+	 */	
 	public function updateExampleAnswerFlg($intQuestionSeq,$intExampleNumber,$intExampleSeq=null){
-		//update answer flg 0 all
-		$strQuery = sprintf("update question_example set answer_flg=0 where question_seq=%d",$intQuestionSeq);
-		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
-		//update answer flg 1
-		if(!$intExampleSeq){
-			$strQuery = sprintf("update question_example set answer_flg=1 where question_seq=%d and example_number=%d",$intQuestionSeq,$intExampleNumber);
-		}else{
-			$strQuery = sprintf("update question_example set answer_flg=1 where question_seq=%d and seq=%d",$intQuestionSeq,$intExampleSeq);
-		}
-		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
+		include("Model/ManGong/SQL/MySQL/MQuestion/updateExampleAnswerFlg.php");
+		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery1);
+		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery2);
 		return($boolReturn);		
 	}
+	
+	/**
+	 * 특정 문제에 정답에 해당하는 보기를 구한다.
+	 *
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @return array 정답에 해당하는 보기 정보
+	 */	
 	public function getQuestionAnswerByQuestoinSeq($intQuestionSeq){
-		$strQuery = sprintf("SELECT * FROM question_example WHERE answer_flg=1 AND delete_flg=0 AND question_seq=%d",$intQuestionSeq);
+		include("Model/ManGong/SQL/MySQL/MQuestion/getQuestionAnswerByQuestoinSeq.php");
 		$arrResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($arrResult);		
 	}
+	
+	/**
+	 * 테스트에 포함된 전체 문제의 유형태그를 구한다.
+	 *
+	 * @param integer $intTestsSeq 테스트 시퀀스
+	 * @return array 스트에 포함된 전체 문제의 유형태그
+	 */	
 	public function getQuestionTagsToTestsSeq($intTestsSeq){
-		$strQuery = sprintf("SELECT * FROM question_tag 
-							where question_seq in (SELECT sq.question_seq 
-													FROM test_question_list sq,question q  
-													WHERE sq.question_seq = q.seq 
-													AND test_seq=%d 
-													AND q.delete_flg=0)",$intTestsSeq);
+		include("Model/ManGong/SQL/MySQL/MQuestion/getQuestionTagsToTestsSeq.php");
 		$arrResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($arrResult);		
 	}
+	
+	/**
+	 * 문제의 유형태그를 등록한다.
+	 *
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * @param string $strQuestionTag 문제 유형태그
+	 * @return boolean 문제의 유형태그를 등록 성공여부 반환 true or false
+	 */	
 	public function setQuestionTags($intQuestionSeq,$strQuestionTag){
-		$strQuery = sprintf("insert into question_tag set question_seq=%d,tag='%s',create_date=now()",$intQuestionSeq,$strQuestionTag);
+		include("Model/ManGong/SQL/MySQL/MQuestion/setQuestionTags.php");
 		$boolResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($boolResult);		
 	}
+	
+	/**
+	 * 문제의 유형태그를 삭제한다.
+	 *
+	 * @param integer $intTestsSeq 테스트 시퀀스
+	 * @param array $arrCompareTagResult 삭제한 유형태그
+	 * @return boolean 문제의 유형태그 삭제 성공여부 반환 true or false
+	 */	
 	public function deleteQuestionTags($intTestsSeq,$arrCompareTagResult=null){
-		$strQuery = sprintf("delete from question_tag 
-							where question_seq in (SELECT sq.question_seq 
-												FROM test_question_list sq,question q  
-												WHERE sq.question_seq = q.seq 
-												AND test_seq=%d 
-												AND q.delete_flg=0) ",$intTestsSeq);
-		if($arrCompareTagResult){
-			$strQuery .= " and tag in ('".join("','",$arrCompareTagResult)."')";
-		}
+		include("Model/ManGong/SQL/MySQL/MQuestion/deleteQuestionTags.php");
 		$boolResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($boolResult);		
 	}
+	
+	/**
+	 * 문제의 정보요소를 배열형태로 받아 수정한다.
+	 *
+	 * @param integer $intQuestonSeq 문제 시퀀스
+	 * @param array $arr_input 문제 정보 요소
+	 * @return boolean 문제의 정보요소 수정 성공여부 반환 true or false
+	 */	
 	public function setQuestionElement($intQuestonSeq,$arr_input=array()){
 		include("Model/ManGong/SQL/MySQL/MQuestion/setQuestionElement.php");
 		$boolResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
