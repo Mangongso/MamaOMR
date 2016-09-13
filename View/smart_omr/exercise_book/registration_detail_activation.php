@@ -10,14 +10,14 @@
 			<div class="content_header sub_content_header">
 			  <div class="content_header_area sub_content_header_test_top">
 			      <div class="col-xs-4 col-sm-5 col-md-5 col-lg-5 content_header_img">
-			        <a href="/smart_omr/exercise_book/detail.php?bs=<?=md5($arr_output['book_info'][0]['seq'])?>"><img src="<?=$arr_output['book_cover_img']?>" alt="<?=$arr_output['book_info'][0]['title']?>"/><p class="sr-only"><?=$arr_output['book_info'][0]['title']?></p></a>
+			        <a href="/smart_omr/exercise_book/detail.php?bs=<?=md5($arr_output['book_info'][0]['seq'])?>"><img src="<?=$arr_output['book_cover_img']?>" alt="<?=$arr_output['book_info'][0]['title']?>" class="content_cover_img"/><p class="sr-only"><?=$arr_output['book_info'][0]['title']?></p></a>
 			      </div>
 			      <div class="col-xs-8 col-sm-7 col-md-7 col-lg-7 content_body_list sub_content_body_list">
 			        <ul>
 			        	<li><h3><?=$arr_output['book_info'][0]['title']?></h3></li>
 			        	<li><span><i class="fa fa-bars" aria-hidden="true"></i> 문항 수</span><?=$arr_output['book_total_question_cnt']?> <small>문항</small></li>
 			        	<li><span><i class="fa fa-users" aria-hidden="true"></i> 참가자 수</span><?=$arr_output['book_join_count']?><small>명</small></li>
-			        	<li class="border-none"><span><i class="fa fa-line-chart" aria-hidden="true"></i> 평균점수</span><?=$arr_output['book_score_avarage']?><small>점</small></li>
+			        	<li><span><i class="fa fa-line-chart" aria-hidden="true"></i> 평균점수</span><?=$arr_output['book_score_avarage']?><small>점</small></li>
 			        	<!--li><span><i class="fa fa-history" aria-hidden="true"></i> 생성일</span>2016-12-25</li>
 			        	<li class="border-none"><span><i class="fa fa-user" aria-hidden="true"></i> 생성자</span>산이아범</li-->
 			        </ul>

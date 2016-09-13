@@ -10,6 +10,14 @@
         		<!--####################################################################################-->
 			<div class="row content_body content_small_body contents_registration_body">
 				<!------------------------------------------------------------->
+				<div class="info-header">
+				<span class="fa-stack fa-lg fa-3x">
+				  <i class="fa fa-circle fa-stack-2x"></i>
+				  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+				</span>
+				<br/>
+				<h3>궁금한 사항을 물어보세요!<br/><span>마마OMR에 궁금한 모든 사항을 보내주시면 신속한 답변드리겠습니다.</span></h3>
+				</div>
 				<div class="sub_contents_body_box">
 				<form name="frmMail" id="frmMail" onsubmit="return false;">
 				<!-----------------------cover-img-------------------------------------->

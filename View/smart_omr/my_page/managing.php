@@ -9,7 +9,11 @@ $tabSelected = 3;
 <!-- GNB -->
 	<!-- CONTENTS BODY -->
 	<div id="main">
-	<? include("../_common/elements/search.php"); ?>
+	<div class="sub_content_header">
+			<div class="content_header_area sub_content_header_test_top">
+			<? include("../_common/elements/search.php"); ?>
+			</div>
+		</div>
         <div class="container-fluid sub_container-fluid">
 			<!--####################################################################################-->
 			<div
