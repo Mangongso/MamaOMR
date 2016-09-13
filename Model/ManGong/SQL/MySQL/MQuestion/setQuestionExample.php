@@ -37,6 +37,4 @@ if(is_null($intQuestionExampleSeq)){
 	}
 	$strQuery .= sprintf(" modify_date=now() WHERE seq=%d ",$intQuestionExampleSeq);
 }
-//print_r($strQuery);
-//exit;
 ?>	
