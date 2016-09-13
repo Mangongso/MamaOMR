@@ -11,17 +11,17 @@ if(!$viewID){
 	question_seq="<?=$arrWrongAnswer['question_seq']?>">
 	<h4 class="uk-width-2-10 pull-left"><?=$arrWrongAnswer['order_number']?></h4>
 	<div
-		class="uk-width-8-10 btn-group uk-text-center ans_correct_<?=$arrWrongAnswer['question_type'];?>"
+		class="uk-width-8-10 btn-group text-right ans_correct_<?=$arrWrongAnswer['question_type'];?>"
 		data-toggle="buttons">
 						<? if(!$arrWrongAnswer['wrong_note_list_seq']){ ?>
-						<button type="button" class="uk-button btn-info"
+						<button type="button" class="pure-button pure-form_in"
 			data-modal-type="editor"
-			data-wrong-answer="<?=$arrWrongAnswer['seq'];?>">오답문제 입력</button>
+			data-wrong-answer="<?=$arrWrongAnswer['seq'];?>"><i class="fa fa-arrow-up" aria-hidden="true"></i> 오답문제 입력</button>
 						<? }else{ ?>
 						<div class="uk-float-left">등록 : <?=$arrWrongAnswer['wrong_note_date'];?></div>
 		<div class="uk-float-right">
 			<button type="button" data-modal-type="editor"
-				data-wrong-answer="<?=$arrWrongAnswer['seq'];?>">수정</button>
+				data-wrong-answer="<?=$arrWrongAnswer['seq'];?>"><i class="fa fa-undo" aria-hidden="true"></i> 수정</button>
 		</div>
 						<? } ?>
 					</div>
