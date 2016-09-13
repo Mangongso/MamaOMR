@@ -57,10 +57,10 @@
 				<i class="fa fa-barcode" aria-hidden="true"></i><i class="fa fa-barcode" aria-hidden="true"></i><i class="fa fa-barcode fa-flip-horizontal" aria-hidden="true"></i><br/>
 				ISBN CODE
 				</span>
-				<h2>ISBN 번호로 등록<span></span></h2>
-				<p>등록하시려는 ISBN번호를 확인하신 후 해당 ISBN번호를 입력하여 주십시오.<br/>
+				<h2>문제집 ISBN번호 등록<span></span></h2>
+				<!-- p>등록하시려는 ISBN번호를 확인하신 후 해당 ISBN번호를 입력하여 주십시오.<br/>
 					<span>ISBN번호는 문제집 뒷면의 바코드부분에 있습니다.</span>
-				</p>
+				</p-->
 				<!-----------------------cover-img-------------------------------------->
 				<div class="cover_img_title">
 				<!-- 
@@ -69,7 +69,6 @@
 				</div>
 				 -->
 				<div class="cover_img">
-					<span><i class="fa fa-arrow-down" aria-hidden="true"></i> 커버 이미지 </span><br>
 			        <img class="_d_cover_img" src="/smart_omr/_images/default_cover.png">
 			    </div>
 			    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 _d_book_info content_body_list sub_content_body_list" style="display:none;">
@@ -108,8 +107,8 @@
 				</div>
 				<div class="bt_set">
 				
-				<a href="#" class="btn col-xs-6 col-sm-6 col-md-6 col-lg-6 "><i class="fa fa-caret-right" aria-hidden="true"></i> ISBN 번호란?</a>
-				<!-- 
+				<!-- a href="#" class="btn col-xs-6 col-sm-6 col-md-6 col-lg-6 "><i class="fa fa-caret-right" aria-hidden="true"></i> ISBN 번호란?</a>
+				
 				<a class="btn col-xs-6 col-sm-6 col-md-6 col-lg-6" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-caret-right" aria-hidden="true"></i> 제목으로 등록</a>
 				 -->
 				
@@ -137,8 +136,10 @@
 				<div class="h_dot h_dot_li">
 				<div class="h_dot_box">
 				<ul>
+					<li>등록하시려는 문제집 ISBN번호를 확인하신 후 해당 ISBN번호를 입력하여 주십시오.</li>
+					<li>ISBN번호는 문제집 뒷면의 바코드부분에 있습니다.</li>
 					<li>ISBN 번호를 입력 후 등록 버튼을 클릭하시면 문제집 정보가 자동으로 등록됩니다.</li>
-					<li>ISBN을 모르실 경우 제목으로 등록하기를 클릭하시고 문제집 정보를 등록하여 주십시오.</li>
+					<!-- li>ISBN을 모르실 경우 제목으로 등록하기를 클릭하시고 문제집 정보를 등록하여 주십시오.</li-->
 				</ul>
 				</div>
 				</div>

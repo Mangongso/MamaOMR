@@ -1,7 +1,7 @@
 		<div class="content_header sub_content_header">
 			<div class="content_header_area">
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 content_header_img">
-					<div class="fit_target" style="height: 237px; width: 200px; margin: 0 auto; box-shadow: 0 1px 10px rgba(0, 0, 0, .7);">
+					<div class="fit_target" style="height: 237px; width: 200px; margin: 0 auto;">
 						<a href="/smart_omr/exercise_book/detail.php?bs=<?=md5($arrBookInfo['seq'])?>"><img class="fit_image" src="<?=$arr_output['book_cover_img']?>" alt="<?=$arrBookInfo['title']?>" />
 							<p class="sr-only">
 							<?=$arrBookInfo['title']?>
