@@ -33,7 +33,7 @@ $(document).ready(function(){
 							</h3></li>
 						<li><span><i class="fa fa-bars" aria-hidden="true"></i> 문항 수</span> <?=$arr_output['question_cnt']?> <small>문항</small></li>
 						<li><span><i class="fa fa-users" aria-hidden="true"></i> 참가자 수</span> <?=$arr_output['user_record'][0]['user_count']?><small>명</small></li>
-						<li class="border-none"><span><i class="fa fa-line-chart" aria-hidden="true"></i> 평균점수</span> <?=$arr_output['user_score_avarage']?><small>점</small></li>
+						<li><span><i class="fa fa-line-chart" aria-hidden="true"></i> 평균점수</span> <?=$arr_output['user_score_avarage']?><small>점</small></li>
 						<!--li><span><i class="fa fa-history" aria-hidden="true"></i> 생성일</span>2016-12-25</li>
 			        	<li class="border-none"><span><i class="fa fa-user" aria-hidden="true"></i> 생성자</span>산이아범</li-->
 					</ul>
@@ -50,7 +50,7 @@ $(document).ready(function(){
 				<input type="hidden" name="published_seq" value="<?=$arr_output['test_info'][0]['publish'][0]['seq']?>" />
 				
 				<div class="sub_contents_body_box">
-					<h4><?=$arr_output['test_info'][0]['subject']?></h4>
+					<h4 class="border-none"><?=$arr_output['test_info'][0]['subject']?></h4>
 				</div>
 				<div class="h_dot">
 					<div class="h_dot_box" style="top:0px;">
@@ -94,10 +94,10 @@ $(document).ready(function(){
 				</div>
 				<? } ?>
 				<!--------------------------->
-				<button type="button" onclick="objRegistration.submitQuestionAnswer();" class="btn btn-danger btn-lg btn-block submit_btn">답안지 전송 <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+				<button type="button" onclick="objRegistration.submitQuestionAnswer();" class="pure-button pure-form_in btn-block submit_btn">답안지 전송 <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 				<!--------------------------->
 				<div class="h_dot">
-				<div class="h_dot_box" style="top:0px;">정답을 모두 체크하셨다면 답안지 전송버튼을 클릭하여 주십시오.</div>
+				<div class="h_dot_box" style="top:15px;">정답을 모두 체크하셨다면 답안지 전송버튼을 클릭하여 주십시오.</div>
 				</div>
 				
 			</form>

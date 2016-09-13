@@ -21,7 +21,7 @@ $arrBookInfo = $arr_output['book_info'][0];
 				<!------------------------------------------------------------->
 				<? foreach($arr_output['book_test_list'] as $intKey=>$arrTest){ ?>
 				<div class="sub_contents_body_box">
-				<h4><?=$arrTest['subject']?><a class="uk-float-right uk-button uk-button-mini">오답노트</a></h4>
+				<h4><?=$arrTest['subject']?><a class="uk-float-right uk-button uk-button-mini">오답노트 <i class="fa fa-arrow-right" aria-hidden="true"></i></a></h4>
 				<ul>
 					<li class="col-lg-4"><span><i class="fa fa-bars" aria-hidden="true"></i> 문항 수</span><?=$arrTest['test_question_cnt']?> <small>문항</small></li>
 			        <li class="col-lg-4"><span><i class="fa fa-users" aria-hidden="true"></i> 참가자</span><?=$arrTest['test_record'][0]['user_count']?><small>명</small></li>
