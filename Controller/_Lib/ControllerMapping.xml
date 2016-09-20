@@ -92,6 +92,16 @@
 			<js></js>
 			<css></css>				
 		</controller>
+		<controller viewID="SOMR_WRONG_ANSWER_NOTE">
+			<controller-name>SOMR/MyPage/SomrWrongAnswerNote.php</controller-name>
+			<presentation-name></presentation-name>
+			<parameter></parameter>
+			<js>
+				<s1>/smart_omr/_js/wrong_answer_note.js</s1>
+				<s2>/smart_omr/ext_lib/valums-ajax-upload/ajaxupload.js</s2>
+			</js>
+			<css></css>				
+		</controller>
 		<controller viewID="SOMR_SAVE_WRONG_ANSWER">
 			<controller-name>SOMR/MyPage/SomrSetWrongAnswer.php</controller-name>
 			<presentation-name></presentation-name>
