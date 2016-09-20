@@ -32,7 +32,7 @@ $arrQuestionList = $objTest->getTestQuestionListWithExample($arrTestResult[0]['s
 
 //1. get book info isbn code
 $arrSearch = array();
-$arrSearch['seq'] = $arrTestResult[0]['publish'][0]['book_seq'];
+$arrSearch['seq'] = $intBookSeq = $arrTestResult[0]['publish'][0]['book_seq'];
 $arrBookInfo = $objBook->getBook($arrSearch);
 
 $arrTestListByBook = $objBook->getTestListByBook(md5($arrBookInfo[0]['seq']));
@@ -55,6 +55,46 @@ $arrUserAnswer = $objAnswer->getUserAnswer($arrUserRecord[0]['user_seq'],$arrTes
 $arrSearch = array('record_seq'=>$arrUserRecord[0]['seq']);
 $arrWrongNoteList = $objWrongNote->getWrongAnswerNoteFromTest($arrTestResult[0]['seq'],$arrUserRecord[0]['seq'],$arrUserRecord[0]['user_seq']);
 
+
+$arrWrongQuestionList = array();
+$arrQuestionAnswer = array();
+foreach($arrQuestionList as $intKey=>$arrResult){
+	
+	/* set quesiton answer */
+	foreach($arrResult['example']['type_1'] as $intSubKey=>$arrSubResult){
+		// set question answer
+		switch($arrResult['question_type']){
+			case(1):
+			case(2):
+			case(3):
+			case(4):
+			case(11):
+				//object answer
+				if($arrSubResult['answer_flg']==1){
+					//$arrQuestionAnswer[$arrResult['question_seq']] = $arrSubResult['seq'];
+					$mixAnswer = $arrSubResult['seq'];
+				}
+				break;
+			default:
+				// 1.subject answer
+				if(count($arrResult['example']['type_1'])==($intSubKey+1)){
+					$mixAnswer .= $arrSubResult['subjective_answer'];
+					//$arrQuestionAnswer[$arrResult['question_seq']] = $strSubjectAnswer;
+				}else{
+					$mixAnswer .= $arrSubResult['subjective_answer']."|";
+				}
+				break;
+		}
+	}
+	$arrQuestionAnswer[$arrResult['question_seq']] = $mixAnswer?$mixAnswer:'';
+	//set wrong question 
+	if(!$arrUserAnswer[$intKey]['result_flg']){
+		$arrWrongQuestionList[$arrResult['question_seq']] = $arrQuestionList[$intKey];
+	}
+}
+//echo "<pre>";var_dump($arrWrongQuestionList);echo "<pre>";
+//exit;
+
 /* make output */
 $arr_output['book_info'] = $arrBookInfo;
 $arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/default_cover.png";
@@ -68,7 +108,11 @@ $arr_output['user_score_avarage'] = $arrUserTotalRecord[0]['total_user_score']?r
 $arr_output['user_answer'] = $arrUserAnswer;
 $arr_output['str_test_seq'] = $strTestSeq;
 $arr_output['wrong_answer'] = $arrWrongNoteList;
-
+$arr_output['question_answer'] = $arrQuestionAnswer;
+$arr_output['wrong_questions'] = $arrWrongQuestionList;
+$arr_output['book_seq'] = $intBookSeq;
+//echo "<pre>";var_dump($arrQuestionList);echo "<pre>";
+//exit;
 /*
 echo "<pre style='margin-left:400px;'>";
 var_dump($strMemberSeq);

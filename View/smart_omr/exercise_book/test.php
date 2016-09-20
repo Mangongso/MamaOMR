@@ -101,10 +101,6 @@ $(document).ready(function(){
 				</div>
 				
 			</form>
-			<!-- comment -->
-			<div class="h_dot">
-				<div id="comment_div" comment_seq="<?=$arr_output['test_info'][0]['seq'];?>" bbs_seq="4"></div>
-			</div>
 				
 			</div>
 		<? include("../_common/include/foot_menu.php"); ?>

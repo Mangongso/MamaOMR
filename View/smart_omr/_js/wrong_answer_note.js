@@ -7,6 +7,11 @@ function WrongAnswerNote(){
 		if($('[data-wrong-answer]').length>0){
 			this.intiWrongAnswerModal();
 		}
+		if($('.user_answer_radio label').length){
+			$('.user_answer_radio label').on('click',function(){
+				objWAN.nextQuestion($(this));
+			});
+		}
 	}
 	this.intiWrongAnswerModal = function(){
 		$('[data-wrong-answer]').click(function(){
@@ -48,6 +53,8 @@ function WrongAnswerNote(){
 		 				$('#wrong_answer_note').load("../exercise_book/_elements/wrong_note_list.php",{t:$.url().param('t'),revision:$.url().param('revision')},function(){
 		 					UIkit.modal($("#modal-wa-editor")).hide();
 		 					objWAN.init();
+		 					objWAN.getWrongNoteTest($('.sub_content_top_menu .fa-refresh').attr('t'),$('.sub_content_top_menu .fa-refresh').attr('revision'));
+		 					
 		 				});		 				
 		 			}
 				}
@@ -73,8 +80,8 @@ function WrongAnswerNote(){
 			onComplete: function(file,response){
 				this.enable();
 				if(response.result){
-					$('#question_img').attr({'src':'../_images/image_viewer.php?k='+response.uploaded_key});
-					$('#question_img').data('img_mode','tmp');
+					$('#modal-wa-editor #question_img').attr({'src':'../_images/image_viewer.php?k='+response.uploaded_key});
+					$('#modal-wa-editor #question_img').data('img_mode','tmp');
 					$('#wrong_note_file_name').val(response.file_name);
 					$('#wrong_note_upload_key').val(response.uploaded_key);
 				}
@@ -104,5 +111,61 @@ function WrongAnswerNote(){
 				}
 			}
 		});		
-	}
+	};
+	this.nextQuestion = function(objQuestion){
+		var questionCnt = $('.quiz-question').length;
+		var selectQuestionIndex = $('.quiz-question:visible').index()-1;
+		var selectQuestion = $('.quiz-question:visible').attr('question_seq');
+		var selectAnswer = objQuestion.find('input').val();
+		///check answer result
+		if(typeof selectAnswer=='undefined'){
+			var arrAnswer = arrAnswerSeq[selectQuestion].split("|");
+			var arrSubSnswer;
+			
+			$('.quiz-question:visible').find('input[type=text]').each(function(index){
+				arrSubSnswer = arrAnswer[index].split(",");
+				if($.inArray($.trim($(this).val()).replace(/ /g, ''), arrSubSnswer)==-1){
+					selectAnswer = "answer_wrong";
+				}
+			});
+		}
+		selectAnswer = $.trim(selectAnswer).replace(/ /g, '');
+		//console.log(arrAnswerSeq[selectQuestion]+'||');
+		//console.log(selectAnswer);
+		if(selectAnswer=='' || typeof selectAnswer=='undefined'){
+			alert('답을 선택해주세요.^o^');
+			return false;
+		}else if(arrAnswerSeq[selectQuestion].indexOf(selectAnswer) != -1){
+			//resultMsg = recordViewFlg?'정답입니다!! (^0^)\n\n해설 : '+questionCommentary:'정답입니다!! (^0^)';
+			resultMsg = "정답입니다.";
+		}else{
+			//resultMsg = recordViewFlg?'아쉽네요! 다음번엔 맞추실 수 있을 거에요! (^_^)\n\n해설 : '+questionCommentary:'아쉽네요! 다음번엔 맞추실 수 있을 거에요! (^_^)';
+			resultMsg = "틀렸습니다.";
+		}
+		alert(resultMsg);
+		$('.quiz-question').css('display','none');
+		$('.quiz-question .ans_correct').removeClass('active');
+		if(questionCnt==(selectQuestionIndex+1)){
+			alert("마지막 문제 입니다. 처음부터 다시 시작합니다.");
+			$('.quiz-question').eq(0).css('display','block');
+		}else{
+			$('.quiz-question').eq(selectQuestionIndex+1).css('display','block');
+		}
+	};
+	this.getWrongNoteTest = function(t,revision){
+		$.ajax({
+			url: '/smart_omr/exercise_book/_elements/wrong_note_test.php',
+			data:{'t':t,'revision':revision},
+			type: 'POST',
+			dataType: 'html',
+			beforeSend:function(){
+			},
+			success: function(htmlResult){
+				$('#wrong_answer_test').html(htmlResult);
+				$('.user_answer_radio label').on('click',function(){
+					objWAN.nextQuestion($(this));
+				});
+			}
+		});		
+	};
 }
