@@ -43,13 +43,22 @@
 				  <li class="active" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('study_report');"><a href="javascript:void(0);"><i class="fa fa-bar-chart" aria-hidden="true"></i> 학습리포트</a></li>
 				  <li class="" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('answer_omr');"><a href="javascript:void(0);"><i class="fa fa-check" aria-hidden="true"></i> 입력답안</a></li>
 				  <li class="" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_note');"><a href="javascript:void(0);"><i class="fa fa-times" aria-hidden="true"></i> 오답노트</a></li>
+				  <li class="" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_test');">
+				  	<a href="javascript:void(0);">
+				  		<i class="fa fa-times" aria-hidden="true"></i> 오답문제풀이  <i onclick="objWAN.getWrongNoteTest('<?=$_GET['t']?>','<?=$_GET['revision']?>');" style="cursor: pointer;" class="fa fa-refresh" aria-hidden="true" t="<?=$_GET['t']?>" revision="<?=$_GET['revision']?>" ></i>
+				  	</a>
+				  </li>
+				  <li class="" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');">
+				  	<a href="javascript:void(0);">
+				  		<i class="fa fa-times" aria-hidden="true"></i> 댓글 <i onclick="objCommon.getComment($('#comment_div').attr('comment_seq'),$('#comment_div').attr('bbs_seq'));" style="cursor: pointer;" class="fa fa-refresh" aria-hidden="true" t="<?=$_GET['t']?>" revision="<?=$_GET['revision']?>" ></i>
+				  	</a>
+				  </li>
 				  
 				  <!-- 
 				  <li class="" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('question_community');"><a href="javascript:void(0);"><i class="fa fa-check" aria-hidden="true"></i> 문제커뮤니티</a></li>
 				   -->
 				</ul>
 				<!---------------------------------------->
-					<form>
 				<div class="h_dot">
 				<div class="h_dot_box test_score"><h2><?=$arr_output['record'][0]['user_score']?>/<?=$arr_output['record'][0]['total_score']?><small>점</small></h2></div>
 				</div>
@@ -135,6 +144,21 @@
 				<div id="wrong_answer_note" style="display:none;" class="sub_tabs">
 				<? include('../exercise_book/_elements/wrong_note_list.php');?>	
 				</div>
+				
+				<div id="wrong_answer_test" style="display:none;" class="sub_tabs">
+				<? include('../exercise_book/_elements/wrong_note_test.php');?>	
+				</div>
+				
+				<div id="comment" style="display:none;" class="sub_tabs">
+					<!-- comment -->
+					<div class="h_dot">
+						<div id="comment_div" comment_seq="<?=$arr_output['test_info'][0]['seq'];?>" bbs_seq="4"></div>
+					</div>
+				</div>
+				
+				
+				
+				
 				<!-- 
 				<div id="question_community" style="display:none;" class="sub_tabs">
 				<? foreach($arr_output['test_question_list'] as $intKey=>$arrQuestionInfo){ ?>
@@ -157,7 +181,6 @@
 				<a href="/smart_omr/exercise_book/list.php" class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt"><i class="fa fa-bars" aria-hidden="true"></i> 문제집목록 </a>
 				<div style="height: 60px;"></div>
 				<!--------------------------->
-				</form>
 				</div>        
 <? include("../_common/include/foot_menu.php"); ?>
 </div>

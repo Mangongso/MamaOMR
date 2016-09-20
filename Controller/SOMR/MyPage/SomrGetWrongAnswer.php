@@ -30,4 +30,5 @@ $arr_output['answer'] = $arrAnswer;
 $arr_output['wrong_note'] = $arrWrongNote;
 $arr_output['question'] = $arrQuestion;
 $arr_output['book_seq'] = $intBookSeq;
+$arr_output['test_seq'] = $arrAnswer[0]['test_seq'];
 ?>
