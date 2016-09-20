@@ -34,7 +34,8 @@ if(count($arrMember)>0 && count($arrAnswer)>0){
 	$intBookSeq = $objBook->getBookSeqFromTestSeq($arrAnswer[0]['test_seq']);
 	if(trim($strWrongNoteUploadKey)){
 		$arrFiles = array(array(
-				'source'=>"/tmp/".$strWrongNoteUploadKey,
+				//'source'=>"/tmp/".$strWrongNoteUploadKey,
+				'source'=>"C:/xampp/tmp/".$strWrongNoteUploadKey,
 				'target'=>QUESTION_FILE_DIR.DIRECTORY_SEPARATOR.$intBookSeq.DIRECTORY_SEPARATOR.$arrAnswer[0]['test_seq'].DIRECTORY_SEPARATOR.$arrAnswer[0]['question_seq'].DIRECTORY_SEPARATOR.$strWrongNoteFileName
 		));
 		$objFileHandler->FileCopy($arrFiles);

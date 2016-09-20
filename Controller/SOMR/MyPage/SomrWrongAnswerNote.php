@@ -13,8 +13,6 @@ require_once('Model/ManGong/WrongNote.php');
 $intWriterSeq = SMART_OMR_TEACHER_SEQ;
 $strMemberSeq = $_REQUEST['view']=='manager'?$_REQUEST['ms']:$_SESSION['smart_omr']['member_key'];//student seq
 $strTestSeq = $_REQUEST['t'];
-$intRevisionFlg = $_REQUEST['revision'];
-
 
 /* create object */
 $resMangongDB = new DB_manager('MAIN_SERVER');
@@ -42,19 +40,16 @@ $intQuestionCnt = $objQuestion->getQuestionCountInTest($arrTestResult[0]['seq'])
 //get book's record
 $arrUserTotalRecord = $objRecord->getTotalUserRecord($arrTestResult[0]['seq']);
 //$arrUserRecord = $objRecord->getLastRecord($strMemberSeq,$arrTestResult[0]['seq']);
-if($intRevisionFlg){
-	$arrUserRecord = $objRecord->getMemberRecords($strMemberSeq,$arrTestResult[0]['seq'],$intRevisionFlg);
-}else{
-	$arrUserRecord = $objRecord->getMemberRecords($strMemberSeq,$arrTestResult[0]['seq'],null,1);
-}
-$arrUserRecordByTass = $objRecord->getTestsRecordReportByTags($arrTestResult[0]['seq'],$arrUserRecord[0]['seq']);
-//get user answer
-$arrUserAnswer = $objAnswer->getUserAnswer($arrUserRecord[0]['user_seq'],$arrTestResult[0]['seq'],null,$arrUserRecord[0]['seq'],array(1,2,3,4,5,6,7,8,9,11));
+$arrUserRecord = $objRecord->getMemberRecords($strMemberSeq,$arrTestResult[0]['seq'],null,1);
 
 // get wrong note
 $arrSearch = array('record_seq'=>$arrUserRecord[0]['seq']);
-$arrWrongNoteList = $objWrongNote->getWrongAnswerNoteFromTest($arrTestResult[0]['seq'],$arrUserRecord[0]['seq'],$arrUserRecord[0]['user_seq']);
+$arrWrongNoteList = $objWrongNote->getWrongAnswerNoteFromTest($arrTestResult[0]['seq'],null,$arrUserRecord[0]['user_seq']);
 
+$arrWrongQuestonSeq = array();
+foreach($arrWrongNoteList as $intKey=>$arrResult){
+	array_push($arrWrongQuestonSeq,$arrResult['question_seq']);
+}
 
 $arrWrongQuestionList = array();
 $arrQuestionAnswer = array();
@@ -88,7 +83,7 @@ foreach($arrQuestionList as $intKey=>$arrResult){
 	}
 	$arrQuestionAnswer[$arrResult['question_seq']] = $mixAnswer?$mixAnswer:'';
 	//set wrong question 
-	if(!$arrUserAnswer[$intKey]['result_flg']){
+	if(in_array($arrResult['question_seq'],$arrWrongQuestonSeq)){
 		$arrWrongQuestionList[$arrResult['question_seq']] = $arrQuestionList[$intKey];
 	}
 }
@@ -102,15 +97,14 @@ $arr_output['test_info'] = $arrTestResult;
 $arr_output['test_question_list'] = $arrQuestionList;
 $arr_output['question_cnt'] = $intQuestionCnt;
 $arr_output['user_record'] = $arrUserTotalRecord;
-$arr_output['record'] = $arrUserRecord;
-$arr_output['record_tags'] = $arrUserRecordByTass;
 $arr_output['user_score_avarage'] = $arrUserTotalRecord[0]['total_user_score']?round($arrUserTotalRecord[0]['total_user_score']/$arrUserTotalRecord[0]['user_count'],1):0;
-$arr_output['user_answer'] = $arrUserAnswer;
 $arr_output['str_test_seq'] = $strTestSeq;
 $arr_output['wrong_answer'] = $arrWrongNoteList;
 $arr_output['question_answer'] = $arrQuestionAnswer;
 $arr_output['wrong_questions'] = $arrWrongQuestionList;
 $arr_output['book_seq'] = $intBookSeq;
+
+
 //echo "<pre>";var_dump($arrQuestionList);echo "<pre>";
 //exit;
 /*
