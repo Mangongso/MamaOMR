@@ -40,7 +40,7 @@
 <!-- bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="/smart_omr/_css/core/common.css">
+<link rel="stylesheet" href="/smart_omr/_css/core/main.css">
 
 <? if(trim($arr_output['controller_info']['css'])){ ?>
 <link href="<?=$arr_output['controller_info']['css'];?>?<?=mktime();?>" rel="stylesheet" type="text/css" />

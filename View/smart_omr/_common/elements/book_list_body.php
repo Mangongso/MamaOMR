@@ -14,7 +14,7 @@ if(!$viewID){
 							
 							<div class="col-xs-12 content_body_list">
 							<ul>
-					        	<li class="border-none"><h3><?=$arrBook['title']?></h3></li>
+					        	<li><h3><?=$arrBook['title']?></h3></li>
 					        	<li><span><i class="fa fa-bars" aria-hidden="true"></i> 문항 수</span><?=$arrBook['question_count']?> <small>문항</small></li>
 					        	<li><span><i class="fa fa-users" aria-hidden="true"></i> 참가자 수</span><?=$arrBook['total_record'][0]['user_count']?><small>명</small></li>
 					        	<li><span><i class="fa fa-line-chart" aria-hidden="true"></i> 평균점수</span><?=$arrBook['avarage_score']?><small>점</small></li>

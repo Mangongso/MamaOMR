@@ -8,6 +8,6 @@
 	</li>	
 	-->
 	<li class="<?=$tabSelected==3?'active':''?>">
-		<a href="./managing.php"><i class="fa fa-check" aria-hidden="true"></i> 나의 메니징</a>
+		<a href="./managing.php"><i class="fa fa-eye" aria-hidden="true"></i> 나의 매니징</a>
 	</li>
 </ul>
