@@ -70,4 +70,6 @@ switch (SERVICE_MODE) {
 		break;
 }
 define("BOOK_SEARCH_API_KEY","49769dcbb5d89eaf2d3c069ac7ca321e");
+define("TMP_DIR","/tmp/");
+//define("TMP_DIR","C:/xampp/tmp/");
 ?>

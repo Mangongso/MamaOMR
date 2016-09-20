@@ -453,7 +453,8 @@ class Test extends Tests{
 					Q.commentary,
 					Q.create_date,
 					Q.modify_date,
-					Q.tags
+					Q.tags,
+					Q.file_name
 				from
 					test_question_list SQ left outer join question as Q ON SQ.question_seq=Q.seq
 				where

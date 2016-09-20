@@ -238,6 +238,13 @@
 			<js></js>
 			<css></css>				
 		</controller>
+		<controller viewID="DELETE_SOMR_COMMENT">
+			<controller-name>/SOMR/Comment/deleteComment.php</controller-name>
+			<presentation-name></presentation-name>
+			<parameter></parameter>
+			<js></js>
+			<css></css>				
+		</controller>
 		<!-- MANAGER -->
 		<controller viewID="SOMR_REG_MANAGER">
 			<controller-name></controller-name>
