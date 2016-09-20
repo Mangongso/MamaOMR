@@ -1,5 +1,5 @@
 <?$viewID='GET_SOMR_COMMENT';?>
-<?include ("../../_connector/yellow.501.php");?>
+<?include ($_SERVER['DOCUMENT_ROOT']."/_connector/yellow.501.php");?>
 <div class="comment_title mb10 clearfix" style="padding-left: 0px;"><span class="glyphicon glyphicon-comment font_size18"></span> 댓글</div>
 
 <!-- <ul class="nav nav-tabs cleardfix">

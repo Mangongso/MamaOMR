@@ -88,10 +88,14 @@ class FileHandler{
 		$arrDirectory = explode(DIRECTORY_SEPARATOR,$strFilePath);
 		unset($arrDirectory[0]);
 		unset($arrDirectory[count($arrDirectory)]);
-		$strDirChecker = "";
+		$strDirChecker = ""; 
 		foreach($arrDirectory as $intKey=>$strDirName){
 			if(trim($strDirName) || $intKey==0){
-				$strDirChecker = $strDirChecker.DIRECTORY_SEPARATOR.$strDirName;
+				if($intKey==0 && preg_match ("/^windows/i",getenv("OS"))){
+					$strDirChecker = $strDirName;
+				}else{
+					$strDirChecker = $strDirChecker.DIRECTORY_SEPARATOR.$strDirName;
+				}
 				if(!file_exists($strDirChecker)){
 					$old = umask(0);
 					$boolReturn = mkdir($strDirChecker, 0777, true);

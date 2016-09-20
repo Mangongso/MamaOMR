@@ -254,7 +254,7 @@ function Common() {
 		$.ajax({
 			url : '/_connector/yellow.501.php',
 			data : {
-				'viewID' : 'DELETE_COMMENT',
+				'viewID' : 'DELETE_SOMR_COMMENT',
 				'comment_seq' : comment_seq,
 				'post_seq' : post_seq,
 				'bbs_seq' : bbs_seq
