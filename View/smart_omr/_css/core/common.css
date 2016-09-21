@@ -281,14 +281,21 @@ a:focus, a:hover {
     color: #999;
     font-size: 14px;
 }
-#foot_menu-tabs li a {
+#foot_menu-tabs li a,
+#foot_menu-tabs2 li a  {
 	font-size: 11px;
 }
+
 #foot_menu-tabs li a:hover,
 #foot_menu-tabs li a:focus,
 #foot_menu-tabs li a:active,
 #foot_menu-tabs li a:visited,
-#foot_menu-tabs li a:before {
+#foot_menu-tabs li a:before,
+#foot_menu-tabs2 li a:hover,
+#foot_menu-tabs2 li a:focus,
+#foot_menu-tabs2 li a:active,
+#foot_menu-tabs2 li a:visited,
+#foot_menu-tabs2 li a:before {
     text-decoration: none;
     background-color: transparent!important;
     background: transparent!important;
@@ -532,7 +539,7 @@ a:focus, a:hover {
 }
 
 .sub_container-fluid {
-	padding: 0px 10px 15px 10px;
+	padding: 0px 10px 20px 10px;
 }
 .mypage_container-fluid {
 	padding: 0px 10px 0px 10px;
@@ -828,6 +835,16 @@ a:focus, a:hover {
 .padding-0-10px {
 	padding: 0px 0px;
 }
+.uk-modal-header {
+    margin-bottom: 15px;
+    background: url(/smart_omr/_images/dot_bg.png);
+    background-color: #f1f1f1;
+    color: #333;
+    margin: -20px -20px 20px -20px;
+    padding: 20px;
+    font-weight: bold;
+}
+
 /* ///////////////////메뉴 탑에 고정///////////////////  
 .menu-link {
     position: absolute;
@@ -978,6 +995,7 @@ uikit padding remove
 .about_mama_header {
 	border-bottom: 1px solid #e1e1e1;
     margin-bottom: 20px;
+    overflow: hidden;
 }
 .about_mama_header h1 {
 	margin-top: 48px;
@@ -1090,6 +1108,22 @@ uikit padding remove
 .main_search {
 	
 }
+.wrong_answer button {
+	min-width: 125px;
+}
+.wrong_answer .date_posted {
+	font-size: 11px;
+    position: relative;
+    top: 15px;
+    color: #777;
+}
+.m-modal-bt-box {
+	overflow: hidden;
+    padding: 1px;
+    margin-top: -5px;
+    margin-bottom: -15px;
+}
+
 /*//////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////MEDIA///////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////*/
