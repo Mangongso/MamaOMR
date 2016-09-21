@@ -4,8 +4,6 @@ require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Book.php');
 require_once('Model/ManGong/Test.php');
 require_once('Model/ManGong/MQuestion.php');
-require_once("Model/ManGong/File.php");
-require_once("Model/ManGong/Tag.php");
 
 /* set variable */ 
 //$intWriterSeq = $_SESSION[$_COOKIE['member_token']]['member_seq'];

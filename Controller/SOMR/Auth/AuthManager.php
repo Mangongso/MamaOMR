@@ -1,6 +1,5 @@
 <?
 require_once("Model/Core/DBmanager/DBmanager.php");
-require_once('Model/ManGong/Auth.php');
 require_once('Model/ManGong/StudentMG.php');
 require_once('Model/Member/Member.php');
 
@@ -8,9 +7,6 @@ $strManagerSeq = $_SESSION['smart_omr']['member_key'];
 
 if(!$resMangongDB){
 	$resMangongDB = new DB_manager('MAIN_SERVER');
-}
-if(!$objAuth){
-	$objAuth = new Auth($resMangongDB);
 }
 if(!$objMember){
 	$objMember = new Member($resMangongDB);
@@ -21,7 +17,6 @@ if(!$objStudentMG){
 
 /* main process */
 // get manager request member 
-//$arrRequestMember = $objAuth->getMemberBySOMRManagerAuthKey($_GET['mat']);
 $arrRequestMember = $objStudentMG->getManagerStudentByAuthKey($_GET['mat']);
 $arrRequestMember = $objMember->getMemberByMemberSeq($arrRequestMember[0]['student_seq']);
 if(count($arrRequestMember) && ( md5($arrRequestMember[0]['member_seq'])!=$strManagerSeq ) ){
