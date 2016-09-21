@@ -1,7 +1,6 @@
 <?
 /* include package */
 require_once("Model/Core/DBmanager/DBmanager.php");
-require_once('Model/ManGong/Auth.php');
 require_once('Model/ManGong/Test.php');
 require_once('Model/ManGong/MQuestion.php');
 require_once('Model/ManGong/MAnswer.php');

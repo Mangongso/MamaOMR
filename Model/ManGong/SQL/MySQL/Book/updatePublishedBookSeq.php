@@ -4,5 +4,4 @@ $strQuery = sprintf("update test_published
 							$strBookSeq,
 							$intPublishedSeq
 				);
-//print_r($strQuery);
 ?>
