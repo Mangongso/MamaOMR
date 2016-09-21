@@ -14,10 +14,9 @@
 
 require_once("Model/Core/Util/Paging.php");
 require_once("Model/Core/DataManager/DataHandler.php");
-require_once("Model/Tests/Tests.php");
 require_once("Model/ManGong/MQuestion.php");
 
-class Test extends Tests{
+class Test{
 	public $objPaging;
 	public $resTestsDB;
 	public $objQuestion;
@@ -86,26 +85,6 @@ class Test extends Tests{
 		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		$intTestsSeq = $arrReturn[0]['seq'];
 		$arrReturn[0]['publish'] = $this->getTestsPublishInfo($intTestsSeq);
-		//check is my sruvey
-		if(!$passCheckTests && $GLOBALS['GLOBAL_APP_NAME'] != 'SMART_OMR'){
-			switch($_SESSION[$_COOKIE['member_token']]['member_type']){
-				case('T'):
-					if($arrReturn[0]['writer_seq'] != $_SESSION[$_COOKIE['member_token']]['member_seq'] && $arrReturn[0]['sub_master'] != $_SESSION[$_COOKIE['member_token']]['member_seq']){
-						header("HTTP/1.1 301 Moved Permanently");
-						header('location:/');
-						exit;
-					}
-				break;
-				case('S'):
-					$boolResult = $this->checkMyTests($intTestsSeq,$_SESSION[$_COOKIE['member_token']]['member_seq']);
-					if(!$boolResult){
-						header("HTTP/1.1 301 Moved Permanently");
-						header('location:/');
-						exit;
-					}
-				break;
-			}
-		}
 		return ($arrReturn);
 	}
 	
@@ -247,6 +226,20 @@ class Test extends Tests{
 		include("Model/ManGong/SQL/MySQL/Test/updateTestsPublish.php");
 		$boolReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($boolReturn);
+	}
+	
+	/**
+	 * 테스트 published 정보를 조회
+	 *
+	 * @param integer $intTestSeq 테스트 시쿼즈
+	 * @param integer $intPublishedType published 타입
+	 *
+	 * @return boolean 자신의 테스트 확인 true 또는 false
+	 */
+	public function getTestsPublishInfo($intTestsSeq,$intPublishedType=0){
+		include("Model/ManGong/SQL/MySQL/Test/getTestsPublishInfo.php");
+		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
+		return($arrReturn);
 	}
 	
 	/**
