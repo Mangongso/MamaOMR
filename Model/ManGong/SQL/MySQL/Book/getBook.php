@@ -13,5 +13,4 @@ if($arrPaging){
 		$strQuery .= sprintf(" limit %d,%d",$arrPaging['limit_start'],$arrPaging['limit_offset']);
 	}
 }
-//print_r($strQuery);exit;
 ?>
