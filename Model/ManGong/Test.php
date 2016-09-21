@@ -147,6 +147,34 @@ class Test{
 	}
 	
 	/**
+	 * 테스트 문제 조회
+	 *
+	 * @param integer $intTestSeq 테스트 시쿼즈
+	 * @param integer $intQuestionSeq 문제 시컨즈
+	 *
+	 * @return array test_question_list,question table 참조
+	 */
+	public function getTestsQuestion($intTestSeq,$intQuestionSeq){
+		include("Model/ManGong/SQL/MySQL/Test/getTestsQuestion.php");
+		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
+		return($arrReturn);
+	}
+	
+	/**
+	 * 테스트 문제 개수 조회
+	 *
+	 * @param integer $intTestSeq 테스트 시쿼즈
+	 * @param integer $intQuestionSeq 문제 시컨즈
+	 *
+	 * @return integer 테스트 문제 개수를 반환
+	 */
+	public function getTestsQuestionCount($intTestSeq){
+		include("Model/ManGong/SQL/MySQL/Test/getTestsQuestionCount.php");
+		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
+		return($arrReturn[0]['cnt']);
+	}
+	
+	/**
 	 * 테스트 문제 목록과 문제의 보기를 함께 조회
 	 *
 	 * @param integer $intTestSeq 테스트 시쿼즈

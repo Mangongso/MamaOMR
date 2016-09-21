@@ -283,6 +283,7 @@ class MQuestion{
 		if(!$intQuestionSeq){
 			$intQuestionSeq = mysql_insert_id($this->resQuestionDB->res_DB);
 		}
+		
 		if($boolReturn){
 			$boolReturn = $this->setQuestionHistory($intQuestionSeq);
 		}
@@ -313,7 +314,7 @@ class MQuestion{
 		include("Model/ManGong/SQL/MySQL/MQuestion/deleteQuestion.php");
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		if($boolReturn){
-			include("Model/TechQuiz/SQL/MySQL/MQuestion/deleteQuestion1.php");
+			include("Model/ManGong/SQL/MySQL/MQuestion/deleteQuestion1.php");
 			$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		}
 		return($boolReturn);
