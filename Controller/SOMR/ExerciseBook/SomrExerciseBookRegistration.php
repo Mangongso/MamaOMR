@@ -2,7 +2,6 @@
 /* include package */
 require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Test.php');
-require_once('Model/ManGong/Common.php');
 require_once('Model/Member/Member.php');
 
 /* set variable */ 
@@ -13,7 +12,6 @@ $strMemberType = $_SESSION[$_COOKIE['member_token']]['member_type'];
 /* create object */
 $resMangongDB = new DB_manager('MAIN_SERVER');
 $objTest = new Test($resMangongDB);
-$objCommon = new Common($resMangongDB);
 $objMember = new Member($resMangongDB);
 
 /*main process*/

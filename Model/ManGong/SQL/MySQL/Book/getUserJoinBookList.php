@@ -7,5 +7,4 @@ $strQuery = sprintf("SELECT bi.*,GROUP_CONCAT(ssp.test_seq) AS group_test_seq ,C
   AND sp.book_seq>0) ssp
   WHERE bi.seq=ssp.book_seq GROUP BY ssp.book_seq
 ",$strMemberSeq);
-// print_r($strQuery);exit;
 ?>

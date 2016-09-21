@@ -4,7 +4,6 @@ require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Book.php');
 require_once('Model/ManGong/Test.php');
 require_once('Model/ManGong/MQuestion.php');
-require_once('Model/ManGong/Teacher.php');
 
 /* set variable */ 
 $strISBNCode = $_REQUEST['ISBN'];
@@ -15,7 +14,6 @@ $resMangongDB = new DB_manager('MAIN_SERVER');
 $objBook = new Book($resMangongDB);
 $objTest = new Test($resMangongDB);
 $objQuestion = new MQuestion($resMangongDB);
-$objTeacher = new Teacher($resMangongDB);
 
 /*main process*/	
 //1. get book info isbn code
