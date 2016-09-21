@@ -1,11 +1,36 @@
 <?
-/* include package */
+/**
+ * @Controller 테스트 문제와 정답 설정 저장
+ *
+ * @subpackage   	Core/DBmanager/DBmanager
+ * @package      	Mangong/Tag
+ * @package      	Mangong/Test
+ * @package      	Mangong/MQuestion
+ */
 require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Test.php');
 require_once('Model/ManGong/MQuestion.php');
 require_once('Model/ManGong/Tag.php');
 
-/* set variable */ 
+/**
+ * Variable 세팅
+ * @var 	$intWriterSeq		마마OMR 마스터 선생님 시컨즈
+ * @var 	$intBookSeq		book 시컨즈 
+ * @var 	$intTestsSeq		테스트 시컨즈 
+ * @var 	$intPublishedSeq		published 시컨즈
+ * @var 	$intMemberSeq		유저시컨즈
+ * @var 	$arrQuestionSeq		문제 시컨즈 
+ * @var 	$arrOrderNo		문제 번호
+ * @var 	$arrQuestionScore		문제점수
+ * @var 	$arrQuestionType		문제타입
+ * @var 	$arrQuestionTags		문제 태그
+ * @var 	$arrAnswer		정답 정보
+ * @var 	$arrQuestion		문제 정보
+ * @var 	$arrExamples		보기 정보
+ * @var 	$arrQuestionHint		문제 힌트
+ * @var 	$arrQuestionCommentary		문제 설명
+ * @var 	$arrQuestionDetail		문제 상세 정보
+ */
 $intWriterSeq = SMART_OMR_TEACHER_SEQ;
 $intBookSeq = $_POST['book_seq'];
 $intTestsSeq = $_POST['test_seq'];
@@ -28,13 +53,21 @@ $arrQuestionDetail = $_POST['question_detail'];
 
 $arrAllTags = array();
 
-/* create object */
+/**
+ * Object 생성
+ * @property	resource 		$resMangongDB 	: DB 커넥션 리소스
+ * @property	object			$objTest  				: Test 객체
+ * @property	object 		$objQuestion 					: MQuestion 객체
+ * @property	object 		$objTag 					: Tag 객체
+ */
 $resMangongDB = new DB_manager('MAIN_SERVER');
 $objTest = new Test($resMangongDB);
 $objQuestion = new MQuestion($resMangongDB);
 $objTag = new Tag($resMangongDB);
 
-/*main process*/
+/**
+ * Main Process
+ */
 /* update question & update example */   
 if(count($arrQuestionSeq)>0){
 	//$boolResult = $objQuestion->deleteQuestionTags($intTestsSeq);//delete all question tags
@@ -145,7 +178,13 @@ if(count($arrQuestionSeq)>0){
 	}	
 }
 
-/* make output */
+/**
+ * View OutPut Data 세팅 
+ * OutPut Type Json
+ * 
+ * @property	boolean 		$boolResult 			: 테스트 문제 와 정답 설정 저장 성공 여부
+ * @property	string 			str_book_seq 		: 암호화 책 시컨즈
+ */
 $arrResult = array(
 		'boolResult'=>$boolResult,
 		'str_book_seq'=>md5($intBookSeq)

@@ -1,5 +1,14 @@
 <?
-/* include package */
+/**
+ * @Controller Book 상세 정보
+ *
+ * @subpackage   	Core/DBmanager/DBmanager
+ * @package      	Mangong/Book
+ * @package      	Mangong/Test
+ * @package      	Mangong/MQuestion
+ * @package      	Mangong/Record
+ * @package      	Mangong/Teacher
+ */
 require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Book.php');
 require_once('Model/ManGong/Test.php');
@@ -8,13 +17,25 @@ require_once('Model/ManGong/Record.php');
 require_once('Model/ManGong/Teacher.php');
 
 
-/* set variable */ 
-//$intWriterSeq = $_SESSION[$_COOKIE['member_token']]['member_seq'];
+/**
+ * Variable 세팅
+ * @var 	$intWriterSeq		유저 시컨즈
+ * @var 	$strBookSeq			암호화 book 시컨즈
+ */ 
 $intWriterSeq = SMART_OMR_TEACHER_SEQ;
 $strBookSeq = $_REQUEST['bs'];
 
 
-/* create object */
+/**
+ * Object 생성
+ * @property	resource 		$resMangongDB 	: DB 커넥션 리소스
+ * @property	object			$objBook  				: Book 객체
+ * @property	object 		$objTest 					: Test 객체
+ * @property	object 		$objQuestion 					: MQuestion 객체
+ * @property	object 		$objRecord 					: Record 객체
+ * @property	object 		$objTeacher 					: Teacher 객체
+ * 
+ */
 $resMangongDB = new DB_manager('MAIN_SERVER');
 $objBook = new Book($resMangongDB);
 $objTest = new Test($resMangongDB);
@@ -22,7 +43,9 @@ $objQuestion = new MQuestion($resMangongDB);
 $objRecord = new Record($resMangongDB);
 $objTeacher = new Teacher($resMangongDB);
 
-/*main process*/	
+/**
+ * Main Process
+ */	
 //1. get book info isbn code
 $arrSearch = array();
 $arrSearch['md5(seq)'] = $strBookSeq;
@@ -48,13 +71,24 @@ foreach ($arrTestListByBook as $key => $arrResult) {
 if(count($arrTestsSeq)){
 	//get book's question count 
 	$intBookQuestionCnt = $objQuestion->getQuestionCountInTest(null,$arrTestsSeq);
-	//$intTestJoinUserCount = $objTest->getTestsJoinUserTotalCount(null,$arrTestsSeq);
 	
 	//get book's record
 	$arrUserTotalRecord = $objRecord->getTotalUserRecord(null,$arrTestsSeq);
 }
 
-/* make output */
+/**
+ * View OutPut Data 세팅 
+ * OutPut Type Json
+ * 
+ * @property	array 			$arr_output['book_info']  					: book 정보
+ * @property	string 			$arr_output['book_cover_img'] 			: 커버 이미지 url
+ * @property	array 			$arr_output['book_test_list'] 				: 테스트 리스트 
+ * @property	integer 		$arr_output['book_total_question_cnt']	: 총문항수
+ * @property	array 			$arr_output['book_user_total_record'] 	: 총 성적
+ * @property	integer 		$arr_output['book_join_count']			: 참여자수
+ * @property	integer 		$arr_output['book_score_avarage']		: 평균점수
+ * 
+ */
 $arr_output['book_info'] = $arrBook;
 $arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/default_cover.png";
 $arr_output['book_test_list'] = $arrTestListByBook;
