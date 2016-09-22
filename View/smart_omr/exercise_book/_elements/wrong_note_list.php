@@ -18,7 +18,7 @@ if(!$viewID){
 			data-modal-type="editor"
 			data-wrong-answer="<?=$arrWrongAnswer['seq'];?>"><i class="fa fa-arrow-up" aria-hidden="true"></i> 오답문제 입력</button>
 						<? }else{ ?>
-						<div class="uk-float-left date_posted">Date/<?=$arrWrongAnswer['wrong_note_date'];?></div>
+						<div class="uk-float-left date_posted">등록/<?=$arrWrongAnswer['wrong_note_date'];?></div>
 		<div class="uk-float-right">
 			<button type="button" class="pure-button pure-form_in" data-modal-type="editor"
 				data-wrong-answer="<?=$arrWrongAnswer['seq'];?>"><i class="fa fa-undo" aria-hidden="true"></i> 수정</button>
