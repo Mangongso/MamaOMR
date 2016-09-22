@@ -86,7 +86,7 @@
 				<a href="/smart_omr/exercise_book/test.php?t=<?=$arr_output['str_test_seq']?>" class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt"><i class="fa fa-arrow-left" aria-hidden="true"></i> 다시 풀기 </a>
 				<a href="/smart_omr/exercise_book/list.php" class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt"><i class="fa fa-bars" aria-hidden="true"></i> 문제집목록 </a>
 				<div style="height: 60px;"></div>
-				<!--------------------------->
+				<!-- ######## -->
 				</div>        
 <? include("../_common/include/foot_menu.php"); ?>
 </div>

@@ -51,7 +51,7 @@ $tabSelected = 1;
 									<li><span><i class="fa fa-users" aria-hidden="true"></i> 전체평균</span><?=$arrBook['avarage_score']?>점<small>/<?=$arrBook['total_record'][0]['user_count']?>명참여</small></li>
 									<li><span><i class="fa fa-line-chart" aria-hidden="true"></i>
 											나의 점수</span><?=$arrBook['my_record'][0]['total_user_score']?><small>점</small></li>
-							
+							</ul>
 							</div>
 
 						</div>
@@ -63,6 +63,7 @@ $tabSelected = 1;
 			</div>
 		</div>
 <? include("../_common/include/foot_menu.php"); ?>
+</div>
 </div>
 </div>
 <? include("../_common/include/footer.php"); ?>

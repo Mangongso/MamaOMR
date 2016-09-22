@@ -101,10 +101,14 @@
 <!--######################################################################-->
 <? if(is_array($arr_output['controller_info']['js'])){ ?>
 <? foreach($arr_output['controller_info']['js'][0] as $intKey=>$arrResult){?>
+<? if(trim($arrResult)){?>
 <script type="text/javascript" src="<?=$arrResult;?>?<?=time();?>"></script>
-<? }?>
+<? } ?>
+<? } ?>
 <? }else{ ?>
+<? if(trim($arr_output['controller_info']['js'])){?>
 <script type="text/javascript" src="<?=$arr_output['controller_info']['js'];?>"></script>
+<? } ?>
 <? } ?>
 
 <!--###############################################################################-->
