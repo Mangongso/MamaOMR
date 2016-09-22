@@ -1,7 +1,10 @@
 <?php
-/* include package */
-require_once("Model/Core/Secure/InputFilter.php");
-
+/**
+ * import
+ *
+ * @param string $str_file : 쿼리문
+ * @return null
+ */
 function import($str_file){
 	$arr_file_explode = explode(".",$str_file);
 	$arr_file_explode[count($arr_file_explode)-1];
@@ -20,6 +23,15 @@ function import($str_file){
 		require_once(join("/",$arr_file_explode).".php");
 	}
 }
+
+/**
+ * Charset변경
+ *
+ * @param string $item : item
+ * @param string $key : key
+ * @param array $arrUserData : 유저 데이터
+ * @return null
+ */
 function changeCharset(&$item, $key, $arrUserData=null)
 {
 	if(!is_null($item)){
@@ -35,6 +47,13 @@ function changeCharset(&$item, $key, $arrUserData=null)
 		}
 	}
 }
+
+/**
+ * json 인코딩
+ *
+ * @param array $arr : 쿼리문
+ * @return array $arrReturn json인코딩된 결과를 반환
+ */
 function h_json_encode($arr)
 {
 	//convmap since 0x80 char codes so it takes all multibyte codes (above ASCII 127). So such characters are being "hidden" from normal json_encoding
@@ -44,6 +63,14 @@ function h_json_encode($arr)
 	$arrReturn = str_replace("\'", "'", mb_decode_numericentity(json_encode($arr), array (0x80, 0xffff, 0, 0xffff), 'UTF-8'));
 	return $arrReturn;
 }
+
+/**
+ * URL 생성
+ *
+ * @param array $arr_input : url 만들 정보
+ * @param string $str_glue : 구분 문자
+ * @return string : 생성된 URL 반환 또는 URL이 없으면 null 반환
+ */
 function make_uri($str_glue,$arr_input){
 	$arr_tmp = array();
 	if(is_array($arr_input)){
@@ -57,7 +84,19 @@ function make_uri($str_glue,$arr_input){
 		return(null);
 	}
 }
+
 if(!function_exists("iconv_substr")){
+	/**
+	 * character set 변환 
+	 * iconv_substr 함수가 존재 하지 않을때 
+	 *
+	 * @param string $string : 대상문자
+	 * @param integer $cut_start : cut 시작
+	 * @param integer $cut_length : cut 길이
+	 * @param string $encoding : 변환 인코딩
+	 * 
+	 * @return string $string_return[0] : 변환된 내용 반환
+	 */
 	function iconv_substr($string,$cut_start,$cut_length,$encoding){
 		$result = substr($string, $cut_start, $cut_length);
 		preg_match('/^([\x00-\x7e]|.{2})*/', $result, $string_return);
@@ -77,6 +116,12 @@ $agent['3'] = 'Opera';
 $agent['4'] = 'Mozilla';
 $agent['5'] = 'firefox';
 
+
+/**
+ * 브라우져 확인
+ * 접속하는 브라우져 종류 확인
+ * @return string $browser 브라우져명 반환
+ */
 function browser_check(){
 	$browser = Array();
 	$is_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
@@ -109,6 +154,13 @@ function browser_check(){
 	}
 	return $browser;
 }
+
+/**
+ * 컨트롤러 로그를 기록
+ *
+ * @param string $strLog : DB 조회 결과값
+ * @return null
+ */
 function ControllerLog($strLog){
 	$strLogfile = $_SERVER['DOCUMENT_ROOT']."/../Logs/ControllerLog.txt";
 	$resLogFile = fopen($strLogfile,"a+");
@@ -116,6 +168,13 @@ function ControllerLog($strLog){
 	fwrite($resLogFile, $strLog);
 	fclose($resLogFile);
 }
+
+/**
+ * XSSFilltering
+ *
+ * @param string $strString : 쿼리문
+ * @return boolean DB 커넥션 성공 여부 반환
+ */
 function XSSFilltering($strString){
 	if(trim($strString)){
 		$tags = array(); // 테그 목록
@@ -131,7 +190,14 @@ function XSSFilltering($strString){
 	}
 	return($strResult);
 }
-// Quote variable to make safe
+
+/**
+ * quote_smart MySql에 테이터 저장 및 수정시 특수문자처리
+ * Quote variable to make safe
+ * 
+ * @param string $value : 대상문자
+ * @return string $value : 특수문자 처리가된 문자를 반환
+ */
 function quote_smart($value)
 {
 	global $globalMysqliConn;// this value is in controller.php
@@ -150,6 +216,11 @@ function quote_smart($value)
     }
     return $value;
 }
+
+/**
+ * 접근 device 확인
+ * @return array $arrReturn : 접근 device 정보를 반환
+ */
 function checkDevice(){
 	$agent = $_SERVER['HTTP_USER_AGENT']; // Put browser name into local variable
 	if (preg_match("/iPad/", $agent)) { // Google Device using Android OS
@@ -217,7 +288,14 @@ function checkDevice(){
 	return($arrReturn);
 }
 
-//string limit
+/**
+ * 문자 자르기
+ * string limit
+ * 
+ * @param string $str : 문자
+ * @param integer $len : 길이
+ * @return string $str : 길이가 잘린 문자 반환
+ */
 function cut($str, $len){
 	if(mb_strlen($str,'UTF-8')>=$len) {
 		$str = mb_substr($str,0,$len,'utf8');
@@ -225,6 +303,15 @@ function cut($str, $len){
 	}
 	return $str;
 }
+
+/**
+ * 문자 치환
+ * 
+ * @param string $str : 문자
+ * @param string $changeStr : 문자
+ * @param integer $start : 시작
+ * @return integer $end : 끝
+ */
 function str_replace2( $str, $changeStr, $start, $end ){
 	while( $start < $end ){
 		$str[$start] = $changeStr;
@@ -232,11 +319,25 @@ function str_replace2( $str, $changeStr, $start, $end ){
 	}
 	return $str;
 }
+
+/**
+ * 파일 사이즈 제한 필터
+ *
+ * @param string $bytes : 제한 byte
+ * @return string 제한된 파일 사이즈를 반환
+ */
 function fileSizeFilter( $bytes ){
     $label = array( 'B', 'KB', 'MB', 'GB', 'TB', 'PB' );
     for( $i = 0; $bytes >= 1024 && $i < ( count( $label ) -1 ); $bytes /= 1024, $i++ );
     return( round( $bytes, 2 ) . " " . $label[$i] );
 }
+
+/**
+ * json 인코드2
+ *
+ * @param array $arr : 인코드 대상
+ * @return string utf 8 기반의 인코딩 데이터 반환
+ */
 function json_encode2($arr){
 	//convmap since 0x80 char codes so it takes all multibyte codes (above ASCII 127). So such characters are being "hidden" from normal json_encoding
 	array_walk_recursive($arr, function (&$item, $key) {

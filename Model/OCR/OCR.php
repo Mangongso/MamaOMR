@@ -2,6 +2,15 @@
 if(file_exists(ini_get('include_path')."/ExternalApps/tesseract-ocr-for-php")){
 	include_once('ExternalApps/tesseract-ocr-for-php/src/TesseractOCR.php');
 }
+/**
+ * OCR 
+ *
+ * @property		private	string 		$strApiKey : api 키
+ * @property		private 	string 		$strOCRType : ocr 타입
+ * @property		private	string 		$strOCRSpaceAPI :  ocr공간 API
+ * @property		private	integer 	$intOCRSpaceMaxFileSize : ocr공간 최대 사이즈
+ * @category     	OCR
+ */
 class OCR{
 	private $strApiKey = "b1e84bfdec88957";
 	private $strOCRType = "tesseract";
@@ -11,6 +20,14 @@ class OCR{
 		
 	}
 	public function __destruct(){}
+	
+	/**
+	 * convert
+	 *
+	 * @param 	string 		$strDocImageFile 	이미지파일
+	 * @param 	string 		$strLang 				언더
+	 * @return 	string		$strReturn		  : 변환 값을 반환
+	 */
 	public function convert($strDocImageFile,$strLang="kor"){
 		switch($this->strOCRType){
 			case('tesseract'):
@@ -24,12 +41,28 @@ class OCR{
 		}
 		return($strReturn);
 	}
+	
+	/**
+	 * convertByTesseract
+	 *
+	 * @param 	string 		$strDocImageFile 	이미지파일
+	 * @param 	string 		$strLang 				언더
+	 * @return 	string		$strReturn		  : 변환 값을 반환
+	 */
 	private function convertByTesseract($strDocImageFile,$strLang="kor"){
 		$objTesseractOCR = new TesseractOCR($strDocImageFile);
 		$objTesseractOCR->lang($strLang);
 		$strReturn = $objTesseractOCR->run();
 		return($strReturn);
 	}
+	
+	/**
+	 * convertByOCRSpace
+	 *
+	 * @param 	string 		$strDocImageFile 	이미지파일
+	 * @param 	string 		$strLang 				언더
+	 * @return 	string		$strReturn		  : 변환 값을 반환
+	 */
 	private function convertByOCRSpace($strDocImageFile,$strLang="kor"){
 		$strDocImageFile = "/home/zzz/zzz/2040581143_mCOVgM7Q_dd.jpg";
 		$strDocImageFileName = basename($strDocImageFile);
