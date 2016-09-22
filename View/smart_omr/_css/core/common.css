@@ -844,6 +844,23 @@ a:focus, a:hover {
     padding: 20px;
     font-weight: bold;
 }
+.comment_list ul {
+	float: left;
+    width: 100%;
+    border-top: 1px solid #e1e1e1;
+}
+.comment_list ul:first-child {
+	margin-top: -15px;
+    border-top: 1px solid #fff;
+}
+.comment_list ul small i {
+}
+.info-comment i {
+	font-size: 41px;
+    color: #e1e1e1;
+    margin-bottom: 5px;
+	
+}
 /* ///////////////////메뉴 탑에 고정///////////////////  
 .menu-link {
     position: absolute;
@@ -1011,6 +1028,7 @@ uikit padding remove
 }
 ._d_chk_input {
 	margin-bottom: -1px;
+	height: 50px;
 }
 .info-header {
 	margin-top: 10px;

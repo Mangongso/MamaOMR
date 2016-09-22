@@ -12,17 +12,16 @@
 				<h4 class="modal-title">
 					<i class="fa fa-th-list" aria-hidden="true"></i> ISBN 넘버란?
 				</h4>
-				<!-- h4 class="modal-title" id="myModalLabel"><i class="fa fa-th-list" aria-hidden="true"></i> ISBN 넘버란?</h4 -->
 			</div>
 			<div class="modal-body">
 				<!-- ################################################################### -->
 				<form>
 					<div class="form-group">
-						<label for="recipient-name" class="control-label" for="recipient-name">Recipient:</label>
+						<label class="control-label" for="recipient-name">Recipient:</label>
 						<input type="text" class="form-control" id="recipient-name" />
 					</div>
 					<div class="form-group">
-						<label for="message-text" class="control-label" for="message-text"">Message:</label>
+						<label class="control-label" for="message-text">Message:</label>
 						<textarea class="form-control" id="message-text"></textarea>
 					</div>
 				</form>
