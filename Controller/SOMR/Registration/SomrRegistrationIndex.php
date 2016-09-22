@@ -1,10 +1,25 @@
 <?
-/* include package */
+/**
+ * @Controller 메일 발송 
+ *
+ * @package      	Mangong/Tag
+ * @package      	Mangong/StudentMG
+ * @subpackage   	Core/DataManager/DataHandler
+ * @subpackage   	Core/Mail/MailHandler
+ * @property		private resource $resTagDB : DB 커넥션 리소스
+ * @category     	Tag
+ */
 require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Test.php');
-require_once('Model/Member/Member.php');
 
-/* set variable */ 
+/**
+ * Variable 세팅
+ * @var 	$strMemberSeq		md5암호화 유저 시컨즈
+ * @var 	$strSenderEmail		발송자 이메일
+ * @var 	$strReceiverEmail	수신자 이메일
+ * @var 	$strContents		메일내용
+ * @var 	$strMailType		메일 형식
+ */
 $intMemberSeq = $_SESSION[$_COOKIE['member_token']]['member_seq'];
 $strAuthKey = $_SESSION[$_COOKIE['member_token']]['auth_key'];
 $strMemberType = $_SESSION[$_COOKIE['member_token']]['member_type'];
@@ -12,7 +27,6 @@ $strMemberType = $_SESSION[$_COOKIE['member_token']]['member_type'];
 /* create object */
 $resMangongDB = new DB_manager('MAIN_SERVER');
 $objTest = new Test($resMangongDB);
-$objMember = new Member($resMangongDB);
 
 /*main process*/
 //1. get main header

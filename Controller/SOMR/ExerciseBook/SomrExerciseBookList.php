@@ -1,26 +1,51 @@
 <?
-/* include package */
+/**
+ * @Controller Book 목록 조회
+ *
+ * @subpackage   	Core/DBmanager/DBmanager
+ * @package      	Mangong/Book
+ * @package      	Mangong/MQuestion
+ * @package      	Mangong/Record
+ * @package      	Mangong/Teacher
+ */
 require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Book.php');
 require_once('Model/ManGong/MQuestion.php');
 require_once('Model/ManGong/Record.php');
 require_once('Model/ManGong/Teacher.php');
 
-/* set variable */ 
+/**
+ * Variable 세팅
+ * @var 	$intWriterSeq		md5암호화 유저 시컨즈
+ * @var 	$inSearchFlg		검색 flg
+ * @var 	$strSearchKey	검새 key
+ * @var 	$intCategorySeq		유형
+ * @var 	$intPage		페이지
+ */ 
 $intWriterSeq = SMART_OMR_TEACHER_SEQ;
 $inSearchFlg = $_REQUEST['search_flg'];
 $strSearchKey = $_REQUEST['search_key']?$_REQUEST['search_key']:'';
 $intCategorySeq = $_REQUEST['category_seq']?$_REQUEST['category_seq']:'';
 $intPage = $_REQUEST['page']?$_REQUEST['page']:1;
 
-/* create object */
+/**
+ * Object 생성
+ * @property	resource 		$resMangongDB 	: DB 커넥션 리소스
+ * @property	object			$objBook  				: Book 객체
+ * @property	object 		$objQuestion 					: MQuestion 객체
+ * @property	object 		$objRecord 					: Record 객체
+ * @property	object 		$objTeacher 					: Teacher 객체
+ * 
+ */
 $resMangongDB = new DB_manager('MAIN_SERVER');
 $objBook = new Book($resMangongDB);
 $objQuestion = new MQuestion($resMangongDB);
 $objRecord = new Record($resMangongDB);
 $objTeacher = new Teacher($resMangongDB);
 
-/*main process*/
+ /**
+ * Main Process
+ */
 $arrPaging = array('page'=>$intPage ,'result_number'=>8,'block_number'=>10,'param'=>null);
 if($strSearchKey!='' || $intCategorySeq!=''){
 	$arrSearch = array(
@@ -43,6 +68,11 @@ foreach($arrBooks as $intKey=>$arrBook){
 	$arrBooks[$intKey]['book_cover_img'] = $arrBook['cover_url']?$arrBook['cover_url']:"/smart_omr/_images/default_cover.png";
 }
 
-/* make output */
+/**
+ * View OutPut Data 세팅 
+ * OutPut Type Json
+ * 
+ * @property	array 		$arr_output['book_list'] 			: book 목록
+ */
 $arr_output['book_list'] = $arrBooks;
 ?>

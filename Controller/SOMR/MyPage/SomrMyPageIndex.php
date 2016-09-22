@@ -1,5 +1,14 @@
 <?
-/* include package */
+/**
+ * @Controller 마이페이지 출력 정보
+ *
+ * @subpackage   	Core/DBmanager/DBmanager
+ * @package      	Mangong/Book
+ * @package      	Mangong/MQuestion
+ * @package      	Mangong/Record
+ * @package      	Mangong/StudentMG
+ * @subpackage      	Member/Member
+ */
 require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Book.php');
 require_once('Model/ManGong/MQuestion.php');
@@ -7,11 +16,23 @@ require_once('Model/ManGong/Record.php');
 require_once('Model/ManGong/StudentMG.php');
 require_once('Model/Member/Member.php');
 
-/* set variable */ 
+/**
+ * Variable 세팅
+ * @var 	$intWriterSeq		마마OMR 마스터 시컨즈
+ * @var 	$strMemberSeq		암호화 유저 시컨즈 
+ */
 $intWriterSeq = SMART_OMR_TEACHER_SEQ;
 $strMemberSeq = $_SESSION['smart_omr']['member_key'];//student seq
 
-/* create object */
+/**
+ * Object 생성
+ * @property	resource 		$resMangongDB 	: DB 커넥션 리소스
+ * @property	object 		$objBook 					: Book 객체
+ * @property	object 		$objQuestion 					: MQuestion 객체
+ * @property	object			$objRecord  				: Record 객체
+ * @property	object 		$objStudentMG 					: StudentMG 객체
+ * @property	object 		$objMember 					: Member 객체
+ */
 $resMangongDB = new DB_manager('MAIN_SERVER');
 $objBook = new Book($resMangongDB);
 $objQuestion = new MQuestion($resMangongDB);
@@ -20,7 +41,10 @@ $objStudentMG = new StudentMG($resMangongDB);
 $objMember = new Member($resMangongDB);
 
 
-/*main process*/
+ /**
+ * Main Process
+ */
+
 include(CONTROLLER_NAME."/Auth/checkAuth.php");
 //check auth
 if($intAuthFlg!=AUTH_TRUE){
@@ -71,7 +95,13 @@ if(count($arrManagerStudentList)){
 	}
 }
 
-/* make output */
+/**
+ * View OutPut Data 세팅 
+ * OutPut Type array
+ * 
+ * @property	array 		$arr_output['book_list'] 					: 책 목록
+ * @property	array 		$arr_output['manager_student_list'] 		: 학습매니저 학생 목록
+ */
 $arr_output['book_list'] = $arrMyJoinBooks;
 $arr_output['manager_student_list'] = $arrManagerStudentList;
 ?>

@@ -2,7 +2,6 @@
 /* include package */
 require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Test.php');
-require_once('Model/Member/Member.php');
 
 /* set variable */ 
 $intMemberSeq = $_SESSION[$_COOKIE['member_token']]['member_seq'];
@@ -12,7 +11,6 @@ $strMemberType = $_SESSION[$_COOKIE['member_token']]['member_type'];
 /* create object */
 $resMangongDB = new DB_manager('MAIN_SERVER');
 $objTest = new Test($resMangongDB);
-$objMember = new Member($resMangongDB);
 
 /*main process*/
 //1. get main header
