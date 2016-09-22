@@ -5,6 +5,14 @@ use OpenOMR\PaperSheet\Field;
 use OpenOMR\PaperSheet\Mark;
 use OpenOMR\Reader\Reader;
 
+/**
+ * OMR
+ * 
+ * @property	private	resource 		$paper : PaperSheet 객체
+ * @property	private	string 			$fieldId : 필드 ID
+ * @property	private	array 			$arrMark : 마크
+ * @category    OMR
+ */
 class OMR{
 	private $paper;
 	private $fieldId=1;
@@ -15,11 +23,23 @@ class OMR{
 			'4'=>array(24,25,26,27,28),
 			'5'=>array(31,32,33,34,35)
 	);
+	
+	/**
+	 * 생성자
+	 * PaperSheet 객체 생성
+	 * initOMR 함수 호출
+	 */
 	public function __construct(){
 		$this->paper = new PaperSheet(38, 54);
 		$this->initOMR();
 	}
 	public function __destruct(){}
+	
+	/**
+	 * OMR 초기화 
+	 *
+	 * @return null
+	 */
 	public function initOMR(){
 		$fieldId = 0;
 		for($j=1;$j<5;$j++){
@@ -36,11 +56,25 @@ class OMR{
 			}
 		}
 	}
+	
+	/**
+	 * OMR 읽기
+	 *
+	 * @param string $strFileName : 파일명
+	 * @return array 파일을 읽은 결과를 반환
+	 */
 	public function readOMR($strFileName){
 		$boolResult = $this->resizeOMR($strFileName);
 		$reader = new Reader($strFileName, $this->paper, 4);
 		return($reader->getResults());		
 	}
+	
+	/**
+	 * OMR 리사이즈
+	 *
+	 * @param string $strFileName : 파일명
+	 * @return boolean 리사이즈 성공 여부를 반환 (true | false)
+	 */
 	private function resizeOMR($strFileName){
 		$resImage = imagecreatefromjpeg($strFileName);
 		$resImage = imagescale($resImage, 559,800);
@@ -48,6 +82,14 @@ class OMR{
 		$boolResult = imagedestroy($resImage);
 		return($boolResult);
 	}
+	
+	/**
+	 * 유저 정답 가져오기
+	 *
+	 * @param array $arrOMR : OMR
+	 * @param array $arrQuestion : 문제
+	 * @return array $arrUserAnswer : 유저 정답을 반환한다.
+	 */
 	public function getUserAnswer($arrOMR,$arrQuestion){
 		$arrUserAnswer = array();
 		foreach($arrOMR as $intKey=>$arrResult){

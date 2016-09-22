@@ -1,14 +1,10 @@
 <?
 /**
- * @Controller Book 테스트 결과 조회
+ * @Controller Book 저장
  *
  * @subpackage   	Core/DBmanager/DBmanager
  * @package      	Mangong/Book
- * @package      	Mangong/Test
- * @package      	Mangong/MQuestion
- * @package      	Mangong/Record
- * @package      	Mangong/MAnswer
- * @package      	Mangong/WrongNote
+ * @subpackage      	Member/Member
  */
 require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Book.php');
