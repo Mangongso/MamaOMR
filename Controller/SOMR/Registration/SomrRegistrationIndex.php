@@ -2,12 +2,8 @@
 /**
  * @Controller 메일 발송 
  *
- * @package      	Mangong/Tag
- * @package      	Mangong/StudentMG
- * @subpackage   	Core/DataManager/DataHandler
- * @subpackage   	Core/Mail/MailHandler
- * @property		private resource $resTagDB : DB 커넥션 리소스
- * @category     	Tag
+ * @subpackage   	Core/DBmanager/DBmanager
+ * @package      	Mangong/Test
  */
 require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Test.php');
@@ -24,11 +20,19 @@ $intMemberSeq = $_SESSION[$_COOKIE['member_token']]['member_seq'];
 $strAuthKey = $_SESSION[$_COOKIE['member_token']]['auth_key'];
 $strMemberType = $_SESSION[$_COOKIE['member_token']]['member_type'];
 
-/* create object */
+/**
+ * Object 생성
+ * @property	resource 		$resMangongDB 	: DB 커넥션 리소스
+ * @property	object			Member  				: Member 객체
+ * @property	object 		StudentMG 					: StudentMG 객체
+ */
 $resMangongDB = new DB_manager('MAIN_SERVER');
 $objTest = new Test($resMangongDB);
 
-/*main process*/
+ /**
+ * Main Process
+ */
+
 //1. get main header
 $intQueId = 1;//main header
 //$arrHeader = $objTest->getTestByQue($intQueId);
@@ -56,7 +60,13 @@ if($arrPaging){
 	}
 }
 
-/* make output */
+/**
+ * View OutPut Data 세팅 
+ * OutPut Type Json
+ * 
+ * @property	boolean 		$boolResult 			: 메일 발송 결과 성공 여부
+ * @property	string 			$strMessage 		: 발송 결과 메세지
+ */
 $arr_output['test_list'] = $arrTestListResult;
 $arr_output['category'] = $arrCategoryResult;
 $arr_output['category_name'] = $arrCategoryName;
