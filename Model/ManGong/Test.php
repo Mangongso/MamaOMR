@@ -118,21 +118,6 @@ class Test{
 	}
 	
 	/**
-	 * 테스트 문제 목록 과 유저 정답의 로그를 함께 조회.
-	 *
-	 * @param integer $intTestSeq 테스트 시쿼즈
-	 * @param integer $intUserSeq 유저 시컨즈
-	 * @param array $arrQuestionType 문제 유형
-	 *
-	 * @return array test_question_list,question,user_answer table 참조
-	 */
-	public function getTestQuestionListWithUserAnswerLog($intTestSeq,$intUserSeq,$arrQuestionType=array(1,2,3,4,5,6,7,8,9,11)){
-		include("Model/ManGong/SQL/MySQL/Test/getTestQuestionListWithUserAnswerLog.php");
-		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
-		return($arrReturn);
-	}
-	
-	/**
 	 * 테스트 문제 목록 조회
 	 *
 	 * @param integer $intTestSeq 테스트 시쿼즈
@@ -315,19 +300,5 @@ class Test{
 		return($boolReturn);
 	}
 	
-	/**
-	 * 자신의 테스트인지 확인
-	 *
-	 * @param integer $intTestSeq 테스트 시쿼즈
-	 * @param integer $intMemberSeq 유저 시컨즈
-	 *
-	 * @return boolean 자신의 테스트 확인 true 또는 false
-	 */
-	public function checkMyTests($intTestsSeq,$intMemberSeq){
-		include("Model/ManGong/SQL/MySQL/Test/checkMyTests.php");
-		$arrResult = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
-		$mixResult = count($arrResult)?true:false;
-		return($mixResult);
-	}
 }
 ?>
