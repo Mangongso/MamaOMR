@@ -1,54 +1,92 @@
 <?
+/**
+ * 오답노트 정보를 등록, 수정, 삭제, 조회한다.
+ *
+ * @package      	Mangong/Test
+ * @subpackage   	Core/Util/Paging
+ * @subpackage   	Core/DataManager/DataHandler
+ * @property		private resource $resWrongDB : DB 커넥션 리소스
+ * @property 		public object $objPaging : 페이징 객체
+ * @category     	Tests
+ */
 require_once("Model/Core/Util/Paging.php");
 require_once("Model/Core/DataManager/DataHandler.php");
 
 class WrongNote{
 	private $resWrongDB = null;
 	private $objPaging = null;
-	public function __construct($resProjectDB=null){
+	
+	/**
+	 * 생성자
+	 *
+	 * @param resource $resMangongDB 리소스 형태의 DB커넥션
+	 * @return null
+	 */
+	public function __construct($resMangongDB=null){
 		$this->objPaging =  new Paging();
-		$this->resWrongDB = $resProjectDB;
+		$this->resWrongDB = $resMangongDB;
 	}
 	public function __destruct(){}
 	
+	
+	/**
+	 * 오답노트 목록을 조회.
+	 *
+	 * @param integer $intUserSeq 유저 시컨즈
+	 * @param integer $intNoteSeq 오답노트 시쿼즈
+	 *
+	 * @return array wrong_note table 참조
+	 */
 	public function getWrongNote($intUserSeq,$intNoteSeq=null){
-		if($intNoteSeq){
-			$strQuery = sprintf("select * from wrong_note where user_seq=%d and seq=%d",$intUserSeq,$intNoteSeq);
-		}else{
-			$strQuery = sprintf("select * from wrong_note where user_seq=%d ",$intUserSeq);
-		}
+		include("Model/ManGong/SQL/MySQL/WrongNode/getWrongNote.php");
 		$arrResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
 		return($arrResult);		
 	}
+	
+	/**
+	 * 문제에 종속된 오답노트 조회.
+	 *
+	 * @param integer $strMemberSeq 유저 시컨즈
+	 * @param integer $intRecordSeq 성적 시쿼즈
+	 * @param integer $intTestSeq 테스트 시쿼즈
+	 * @param integer $intQuestionSeq 문제 시쿼즈
+	 *
+	 * @return array wrong_note,question table 참조
+	 */
 	public function getWrongNoteFromQuestion($strMemberSeq,$intRecordSeq,$intTestSeq,$intQuestionSeq){
 		include("Model/ManGong/SQL/MySQL/WrongNode/getWrongNoteFromQuestion.php");
 		$arrResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
 		return($arrResult);		
 	}
+	
+	/**
+	 * 오답노트 조회 개수
+	 *
+	 * @param integer $intUserSeq 유저 시컨즈
+	 * @param array $arrSearch 오답노트 검색 조건
+	 * @param mixed $mixTeacherSeq md5암호화 선생님 시컨즈 또는 integer 선생님 시컨즈
+	 * @param boolean $boolMD5 암호화된 $mixTeacherSeq인지 확인
+	 *
+	 * @return integer 오답노트 조회 개수를 반환
+	 */
 	public function getWrongNoteListCount($intUserSeq,$arrSearch,$mixTeacherSeq,$boolMD5){
-		//$strQuery = sprintf("select count(*) as cnt from wrong_note_list where delete_flg=0 and user_seq=%d",$intUserSeq);
-		$strQuery = sprintf("SELECT count(*) as cnt FROM wrong_note_list wn, test su WHERE wn.test_seq=su.seq AND wn.delete_flg=0 AND wn.user_seq=%d ",$intUserSeq);
-		if($mixTeacherSeq && $boolMD5){
-			$strQuery .= sprintf(" AND md5(su.writer_seq)='%s' ",$mixTeacherSeq);
-		}else if($mixTeacherSeq && !$boolMD5){
-			$strQuery .= sprintf(" AND su.writer_seq=%d ",$mixTeacherSeq);
-		}
-		if(count($arrSearch)>0){
-			$strQuery .= " AND (wn.note like '%".$arrSearch['note']."%' or su.subject like '%".$arrSearch['subject']."%') ";
-		}
+		include("Model/ManGong/SQL/MySQL/WrongNode/getWrongNoteListCount.php");
 		$arrResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
 		return($arrResult[0]['cnt']);		
 	}
-	public function getWrongAnswer($intUserSeq,$intNoteSeq){
-		$strQuery = sprintf("select * from wrong_note_list where user_seq=%d and seq=%d",$intUserSeq,$intNoteSeq);
-		$arrResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
-		return($arrResult);		
-	}
-	public function updateWrongNoteList($intNoteSeq,$intUserSeq,$strNote){
-		$strQuery = sprintf("update wrong_note_list set note='%s' where seq=%d and user_seq=%d",$strNote,$intNoteSeq,$intUserSeq);
-		$boolResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
-		return($boolResult);
-	}
+	
+	/**
+	 * 오답노트 조회 개수
+	 *
+	 * @param integer $intUserSeq 유저 시컨즈
+	 * @param array $arrSearch 오답노트 검색 조건 배열
+	 * @param array $arrOrder 순서 조건 배열
+	 * @param mixed $mixTeacherSeq md5암호화 선생님 시컨즈 또는 integer 선생님 시컨즈
+	 * @param boolean $boolMD5 암호화된 $mixTeacherSeq인지 확인
+	 * @param array $arrPaging 페이징 정보 배열
+	 *
+	 * @return array 오답노트 조회 결과를 반환
+	 */
 	public function getWrongNoteList($intUserSeq,$arrSearch,$arrOrder,$mixTeacherSeq=null,$boolMD5=false,&$arrPaging){
 		if(!is_null($arrPaging)){
 			$intTotalCount = $this->getWrongNoteListCount($intUserSeq,$arrSearch,$mixTeacherSeq,$boolMD5);
@@ -58,34 +96,37 @@ class WrongNote{
 					$arrPaging['result_number'],
 					$arrPaging['block_number'],
 					$arrPaging['param']
-			);
-		}		
-		//$strQuery = sprintf("select * from wrong_note_list where delete_flg=0 and user_seq=%d order by create_date desc ",$intUserSeq);
-		$strQuery = sprintf("SELECT *,wn.seq as wrong_note_list_seq FROM wrong_note_list wn, test su WHERE wn.test_seq=su.seq AND wn.delete_flg=0 AND wn.user_seq=%d AND su.delete_flg=0 ",$intUserSeq);
-		if($mixTeacherSeq && $boolMD5){
-			$strQuery .= sprintf(" AND md5(su.writer_seq)='%s' ",$mixTeacherSeq);
-		}else if($mixTeacherSeq && !$boolMD5){
-			$strQuery .= sprintf(" AND su.writer_seq=%d ",$mixTeacherSeq);
+					);
 		}
-		if(count($arrSearch)>0){
-			if(array_key_exists('note', $arrSearch)){
-				$strQuery .= " AND (wn.note like '%".$arrSearch['note']."%' or su.subject like '%".$arrSearch['subject']."%') ";
-			}
-			if(array_key_exists('record_seq', $arrSearch)){
-				$strQuery .= sprintf(" AND md5(wn.record_seq)='%s' ",$arrSearch['record_seq']);
-			}			
-		}
-		$strQuery .= sprintf(" order by wn.create_date desc ");
-		
-		if($arrPaging){
-			$strQuery .= sprintf(" limit %d,%d",$arrPaging['limit_start'],$arrPaging['limit_offset']);
-		}
-		echo $strQuery;
+		include("Model/ManGong/SQL/MySQL/WrongNode/getWrongNoteList.php");
+		$arrResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
+		return($arrResult);
+	}
+	
+	/**
+	 * 오답노트를 가져온다
+	 *
+	 * @param integer $intUserSeq 유저 시컨즈
+	 * @param integer $intNoteSeq 오답노트 시컨즈
+	 *
+	 * @return array 오답노트 결과를 반환
+	 */
+	public function getWrongAnswer($intUserSeq,$intNoteSeq){
+		include("Model/ManGong/SQL/MySQL/WrongNode/getWrongAnswer.php");
 		$arrResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
 		return($arrResult);		
 	}
+	
+	/**
+	 * 오답노트 저장
+	 *
+	 * @param integer $intUserSeq 유저 시컨즈
+	 * @param string $strNoteTitle 오답노트 검색 조건 배열
+	 *
+	 * @return boolean  오답노트 저장 성공여부 반화 ( treu | false )
+	 */
 	public function setWrongNote($intUserSeq,$strNoteTitle){
-		$strQuery = sprintf("insert into wrong_note (user_seq,note_title,create_date,last_update_date,delete_flg) values (%d,'%s',now(),now(),0)",$intUserSeq,quote_smart($strNoteTitle));
+		include("Model/ManGong/SQL/MySQL/WrongNode/setWrongNote.php");
 		$boolResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
 		if($boolResult){
 			$mixResult = mysql_insert_id($this->resWrongDB->res_DB);
@@ -94,6 +135,21 @@ class WrongNote{
 		}
 		return($mixResult);		
 	}
+	
+	/**
+	 * 오답노트 리스트  저장 
+	 *
+	 * @param integer $intMemberSeq 유저 시컨즈
+	 * @param integer $intNoteSeq 오답노트 시컨즈
+	 * @param integer $intRecordSeq 성적 시컨즈
+	 * @param integer $intTestSeq 테스트 시컨즈
+	 * @param integer $intQuestionSeq 문제 시컨즈
+	 * @param integer $intUserAnswer 유저 선택 답
+	 * @param string $strWrongNoteFileName 첨부파일 명
+	 * @param string $strQuestion 문제내용
+	 *
+	 * @return boolean 오답노트 리스트 성공여부 반화 ( treu | false )
+	 */
 	public function setWrongNoteQuestion($intNoteSeq,$intMemberSeq,$intRecordSeq,$intTestSeq,$intQuestionSeq,$intUserAnswer,$strWrongNoteFileName,$strQuestion){
 		$arrWrongNote = $this->getWrongNoteFromQuestion($intMemberSeq,$intRecordSeq,$intTestSeq,$intQuestionSeq);
 		if(count($arrWrongNote)>0){
@@ -104,75 +160,62 @@ class WrongNote{
 		$boolResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
 		return($boolResult);		
 	}	
+	
+	/**
+	 * 오답노트 삭제
+	 *
+	 * @param integer $intUserSeq 유저 시컨즈
+	 * @param integer $intWrongNoteSeq 오답노트 시컨즈
+	 *
+	 * @return boolean 오답노트 삭제 성공여부 반화 ( treu | false )
+	 */
 	public function deleteWrongNote($intUserSeq,$intWrongNoteSeq){
+		include("Model/ManGong/SQL/MySQL/WrongNode/deleteWrongNote.php");
 		$strQuery = sprintf("update wrong_note set delete_flg=1 where user_seq=%d and seq=%d",$intUserSeq,$intWrongNoteSeq);
 		$boolResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
 		return($boolResult);
 	}	
-	public function updateWrongNote($intUserSeq,$strNoteTitle,$intWrongNoteSeq){
-		$strQuery = sprintf("update wrong_note set note_title='%s' where user_seq=%d and seq=%d",$strNoteTitle,$intUserSeq,$intWrongNoteSeq);
-		$boolResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
-		return($boolResult);		
-	}
-	/*
-	 * $arrNoteList = array(array(`wrong_note_seq`, `user_seq`, `test_seq`, `record_seq`, `question_seq`, `user_answer`,`test_date`, `note`))
-	 * 
+	
+	/**
+	 * 오답노트 수정
+	 *
+	 * @param integer $intUserSeq 유저 시컨즈
+	 * @param integer $intWrongNoteSeq 오답노트 시컨즈
+	 * @param string $strNoteTitle 오답노트 제목
+	 *
+	 * @return boolean 오답노트 수정 성공여부 반화 ( treu | false )
 	 */
-	public function setWrongNoteList($intUserSeq,$intNoteSeq,$arrNoteList){
-		$arrValues = array();
-		foreach($arrNoteList as $intKey=>$arrResult){
-			$strDummyQuery = sprintf(
-					"(%d, %d, %d, %d, %d, %d, '%s', now(), '%s', '%s', 0)",
-					$intNoteSeq,
-					$intUserSeq,
-					$arrResult['test_seq'],
-					$arrResult['record_seq'],
-					$arrResult['question_seq'],	
-					$arrResult['question_order_no'],
-					$arrResult['user_answer'],
-					$arrResult['test_date'],
-					$arrResult['note']
-					);
-			array_push($arrValues,$strDummyQuery);
-		}
-		$strQuery = sprintf("INSERT INTO `wrong_note_list` (`wrong_note_seq`, `user_seq`, `test_seq`, `record_seq`, `question_seq`,`question_order_no`, `user_answer`, `create_date`, `test_date`, `note`, `delete_flg`) VALUES %s",join(",",$arrValues));
+	public function updateWrongNote($intUserSeq,$strNoteTitle,$intWrongNoteSeq){
+		include("Model/ManGong/SQL/MySQL/WrongNode/updateWrongNote.php");
 		$boolResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
 		return($boolResult);		
 	}
+	
+	/**
+	 * 오답노트와 유저선택 답을 테스트 시컨즈를 기준으로 조회
+	 *
+	 * @param integer $intTestSeq 테스트 시컨즈
+	 * @param integer $intRecordSeq 성적 시컨즈
+	 * @param string $intStudentSeq 유저 시컨즈
+	 *
+	 * @return array user_answer,wrong_note_list table 참조
+	 */
 	public function getWrongAnswerNoteFromTest($intTestSeq,$intRecordSeq=null,$intStudentSeq=null){
-		$strInnerQuery = sprintf(" SELECT * FROM user_answer WHERE delete_flg=0 AND test_seq=%d ",$intTestSeq);
-		if(!is_null($intRecordSeq)){
-			$strInnerQuery .= sprintf(" AND record_seq=%d ",$intRecordSeq);
-		}
-		if(!is_null($intStudentSeq)){
-			$strInnerQuery .= sprintf(" AND user_seq=%d ",$intStudentSeq);
-		}
-		$strQuery = sprintf("
-				SELECT r1.*,tql.order_number 
-				FROM ( SELECT ua.*,wn.seq AS wrong_note_list_seq,wn.create_date AS wrong_note_date,wn.file_name,wn.question AS question_contents
-					FROM (".$strInnerQuery." group by question_seq having result_flg=0) ua 
-					LEFT OUTER JOIN wrong_note_list wn ON ua.test_seq=wn.test_seq 
-					/*AND ua.record_seq=wn.record_seq */
-					AND ua.user_seq=wn.user_seq 
-					AND ua.question_seq=wn.question_seq 
-					) AS r1 
-					LEFT JOIN test_question_list tql ON r1.test_seq=tql.test_seq AND r1.question_seq=tql.question_seq
-					ORDER BY order_number
-				",$intTestSeq);
-		//print_r($strQuery);exit;
+		include("Model/ManGong/SQL/MySQL/WrongNode/getWrongAnswerNoteFromTest.php");
 		$arrResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
 		return($arrResult);						
 	}
-	public function moveListToOtherNote($intUserSeq,$arrNoteListSeq,$intToNoteSeq){
-		if(!is_array($arrNoteListSeq)){
-			$arrNoteListSeq = array($arrNoteListSeq);
-		}
-		$strQuery = sprintf("update wrong_note_list set wrong_note_seq=%d where user_seq=%d and seq in (%s)",$intToNoteSeq,$intUserSeq,join(",",$arrNoteListSeq));
-		$boolResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
-		return($boolResult);		
-	}
+	
+	/**
+	 * 오답노트 리스트 삭제
+	 *
+	 * @param integer $intUserSeq 유저 시컨즈
+	 * @param integer $intWrongNoteListSeq 오답노트 리스트 시컨즈
+	 *
+	 * @return boolean 오답노트 리스트 삭제 성공여부 반화 ( treu | false )
+	 */
 	public function deleteWrongNoteList($intUserSeq,$intWrongNoteListSeq){
-		$strQuery = sprintf("update wrong_note_list set delete_flg=1 where user_seq=%d and seq=%d",$intUserSeq,$intWrongNoteListSeq);
+		include("Model/ManGong/SQL/MySQL/WrongNode/deleteWrongNoteList.php");
 		$boolResult = $this->resWrongDB->DB_access($this->resWrongDB,$strQuery);
 		return($boolResult);		
 	}

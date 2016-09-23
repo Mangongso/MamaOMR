@@ -1,12 +1,33 @@
 <?php
+/**
+ * XMLmanager
+ *
+ * @property		string $dom_support : 다큐먼트 서포트
+ * @property		resource $res_XML : xml 객체
+ * @property		array $query : 쿼리
+ * @category     	XMLmanager
+ */
 class XMLmanager{
 	var $dom_support;
 	var $res_XML;
 	var $query = array();	
+	/**
+	 * 생성자
+	 *
+	 * @param 	string 		$str_XML_file xml파일명
+	 * @return 	null
+	 */
 	function __construct($str_XML_file){
 		$this->dom_support = version_compare(phpversion(),"5.0","<");
 		$this->res_XML = $this->XML_conn($str_XML_file);
 	}
+	
+	/**
+	 * xML 연결
+	 *
+	 * @param 	string 		$str_XML_file xml파일명
+	 * @return resource	$obj_xsdpath	  : DOMXPath 객체를 반환
+	 */
 	function XML_conn($str_XML_file){
 		if(file_exists(ini_get('include_path')."/".$str_XML_file)){
 			$str_XML_file = ini_get('include_path')."/".$str_XML_file;
@@ -23,6 +44,14 @@ class XMLmanager{
 		}
 		return($obj_xsdpath);	
 	}
+	
+	/**
+	 * xML 접근
+	 *
+	 * @param resource	 $obj_XML 	:	xml 객체
+	 * @param string		$expresion 	:	표현
+	 * @return array	$result 	:  xml 객체를 fetch 한 결과 array 를 반환
+	 */
 	function XML_access($obj_XML,$expresion){
 		if($this->dom_support){	// under 5.0
 			$result = xpath_eval($obj_XML->res_XML,$expresion);
@@ -32,6 +61,13 @@ class XMLmanager{
 		$result = $this->ResultFetchArray($result);
 		return($result);
 	}
+	
+	/**
+	 * ResultFetchArray 
+	 *
+	 * @param resource $res_XML 	
+	 * @return array	$arr_result	: xml fetch결과를 반환
+	 */
 	function ResultFetchArray($res_XML){
 		$arr_result = array();
 		if($this->dom_support){
@@ -46,6 +82,13 @@ class XMLmanager{
 		}
 		return($arr_result);
 	}
+	
+	/**
+	 * XML2array
+	 *
+	 * @param resource $res_XML 	
+	 * @return array	$arr_result	: xml fetch결과를 반환
+	 */
 	function XML2array($obj_XML){
 		$return = array();
 		if($this->dom_support){

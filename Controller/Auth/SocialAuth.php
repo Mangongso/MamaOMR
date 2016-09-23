@@ -1,13 +1,29 @@
 <?
+/**
+ * @Controller 소셜 로그인 인증
+ * @subpackage   	Core/DBmanager/DBmanager
+ * @subpackage   	Member/Member
+ */
 require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/Member/Member.php');
 
-//set variable check
-/* create object */
+/**
+ * Object 생성
+ * @property	resource 		$resMangongDB 	: DB 커넥션 리소스
+ * @property	object 		$objMember 		: Member 객체
+ */
 $resMangongDB = new DB_manager('MAIN_SERVER');
 $objMember = new Member($resMangongDB);
 
-/* main process */
+
+/**
+ * 소셜 로그인 타입에 따른 Variable 세팅
+ * ka : kakao , fa : facebook , na : naver
+ * @var 	$strMemberID 소셜 유저 아이디
+ * @var 	$strName 이름
+ * @var 	$intJoinType 소셜 타입
+ * @var 	$strEmail 이메일
+ * */
 switch($_REQUEST['social_login_type']){
 	case('ka'):
 		$strMemberID = 'ka'.$_REQUEST['auth_data']['id'];
@@ -19,9 +35,6 @@ switch($_REQUEST['social_login_type']){
 		$strName = $_REQUEST['fa_name'];
 		$strEmail = $_REQUEST['fa_email'];
 		$intJoinType = JOIN_FACEBOOK;
-		break;
-	case('tw'):
-		$strMemberID = 'tw'.$_REQUEST['auth_data']['id'];
 		break;
 	case('na'):
 		/* access token get user info */
@@ -50,6 +63,10 @@ switch($_REQUEST['social_login_type']){
 		break;
 }
 
+/**
+ * Main Process
+ * 
+ */
 $arrMember = $objMember->getMemberByMemberID($strMemberID);
 if(count($arrMember)){
 	$boolResult = true;
@@ -65,6 +82,9 @@ if(count($arrMember)){
 	);
 	$boolResult = $objMember->setMember($resMangongDB,$arr_input,$intMemberSeq);
 }
+/**
+ * SESSON에 로그인 정보를 담는다.
+ * */
 if($boolResult){
 	//login
 	$_SESSION['smart_omr'] = array(
@@ -76,7 +96,12 @@ if($boolResult){
 	);
 }
 
-/* make output */
+/**
+ * View OutPut Data 세팅 
+ * OutPut Type Json
+ * 
+ * @property	boolean 		$boolResult 			: 소셜 인증 결과 성공 여부
+ */
 $arrResult = array(
 		'result'=>$boolResult
 );

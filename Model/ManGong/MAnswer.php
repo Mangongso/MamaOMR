@@ -9,12 +9,10 @@
  * @property		private resource $resAnswerDB : DB 커넥션 리소스
  * @category     	Answer
  */
-
 require_once("Model/Core/Util/Paging.php");
 require_once("Model/Core/DataManager/DataHandler.php");
-require_once("Model/Tests/Answer.php");
 
-class MAnswer extends Answer{
+class MAnswer{
 	/**
 	 * 생성자
 	 *

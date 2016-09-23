@@ -117,14 +117,14 @@
 			<css></css>				
 		</controller>		
 		<controller viewID="SOMR_OCR">
-			<controller-name>/Files/OCR.php</controller-name>
+			<controller-name>Files/OCR.php</controller-name>
 			<presentation-name></presentation-name>
 			<parameter></parameter>
 			<js></js>
 			<css></css>				
 		</controller>	
 		<controller viewID="SOMR_UPLOAD_OMR">
-			<controller-name>/Files/OMR.php</controller-name>
+			<controller-name>Files/OMR.php</controller-name>
 			<presentation-name></presentation-name>
 			<parameter></parameter>
 			<js></js>
@@ -224,22 +224,43 @@
 			<js>/smart_omr/_js/registration.js</js>
 			<css></css>				
 		</controller>
+		<controller viewID="INSERT_SINGLE_QUESTION">
+			<controller-name>SOMR/ExerciseBook/insertSingleQuestion.php</controller-name>
+			<presentation-name></presentation-name>
+			<parameter></parameter>
+			<js></js>
+			<css></css>				
+		</controller>
+		<controller viewID="DELETE_SINGLE_QUESTION">
+			<controller-name>SOMR/ExerciseBook/deleteSingleQuestion.php</controller-name>
+			<presentation-name></presentation-name>
+			<parameter></parameter>
+			<js></js>
+			<css></css>				
+		</controller>	
+		<controller viewID="GET_SINGLE_QUESTION">
+			<controller-name>SOMR/ExerciseBook/getSingleQuestion.php</controller-name>
+			<presentation-name></presentation-name>
+			<parameter></parameter>
+			<js></js>
+			<css></css>				
+		</controller>
 		<controller viewID="SAVE_SOMR_COMMENT">
-			<controller-name>/SOMR/Comment/setComment.php</controller-name>
+			<controller-name>SOMR/Comment/setComment.php</controller-name>
 			<presentation-name></presentation-name>
 			<parameter></parameter>
 			<js></js>
 			<css></css>				
 		</controller>
 		<controller viewID="GET_SOMR_COMMENT">
-			<controller-name>/SOMR/Comment/getComment.php</controller-name>
+			<controller-name>SOMR/Comment/getComment.php</controller-name>
 			<presentation-name></presentation-name>
 			<parameter></parameter>
 			<js></js>
 			<css></css>				
 		</controller>
 		<controller viewID="DELETE_SOMR_COMMENT">
-			<controller-name>/SOMR/Comment/deleteComment.php</controller-name>
+			<controller-name>SOMR/Comment/deleteComment.php</controller-name>
 			<presentation-name></presentation-name>
 			<parameter></parameter>
 			<js></js>

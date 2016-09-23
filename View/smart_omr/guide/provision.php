@@ -1,7 +1,7 @@
 <? $viewID = "SOMR_PROVISION"; ?>
 <? include("../_common/include/header.php"); ?>
 <div id="layout">
-<!-- GNB START -->
+	<!-- GNB START -->
 <? include("../_common/include/GNB.php"); ?>
 <!-- GNB END -->
 	<!--######################################################################-->
