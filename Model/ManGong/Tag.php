@@ -36,7 +36,7 @@ class Tag{
 	 * @return boolean  태그 정보 저장 성공 여부 반환 true 또는 false
 	 */
 	public function setTag($strTagName,$intTagType=2,$intMemberSeq){
-		include("Model/Mangong/SQL/MySQL/Tag/setTag.php");
+		include("Model/ManGong/SQL/MySQL/Tag/setTag.php");
 		$boolResult = $this->resTagDB->DB_access($this->resTagDB,$strQuery);
 		return($boolResult);
 	}
@@ -50,7 +50,7 @@ class Tag{
 	 * @return boolean  테스트 태그 정보 저장 성공 여부 반환 true 또는 false
 	 */
 	public function setTestsTag($intTestsSeq,$strTag){
-		include("Model/Mangong/SQL/MySQL/Tag/setTestsTag.php");
+		include("Model/ManGong/SQL/MySQL/Tag/setTestsTag.php");
 		$boolReturn = $this->resTagDB->DB_access($this->resTagDB,$strQuery);
 		return($boolReturn);
 	}	
@@ -64,7 +64,7 @@ class Tag{
 	 * @return boolean  문제의 태그 정보 저장 성공 여부 반환 true 또는 false
 	 */
 	public function setQuestionTag($intQuestionSeq,$strTag){
-		include("Model/Mangong/SQL/MySQL/Tag/setQuestionTag.php");
+		include("Model/ManGong/SQL/MySQL/Tag/setQuestionTag.php");
 		$boolReturn = $this->resTagDB->DB_access($this->resTagDB,$strQuery);
 		return($boolReturn);
 	}	
@@ -78,7 +78,7 @@ class Tag{
 	 * @return boolean  문제의 태그 정보 삭제 성공 여부 반환 true 또는 false
 	 */
 	public function deleteQuestionTag($intQuestionSeq,$strTag=null){
-		include("Model/Mangong/SQL/MySQL/Tag/deleteQuestionTag.php");
+		include("Model/ManGong/SQL/MySQL/Tag/deleteQuestionTag.php");
 		$boolReturn = $this->resTagDB->DB_access($this->resTagDB,$strQuery);
 		return($boolReturn);
 	}	
