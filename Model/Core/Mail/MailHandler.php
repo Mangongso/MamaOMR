@@ -1,12 +1,41 @@
 <?
+/**
+ * 메일 핸들러
+ *
+ * @property		private resource $resMailDB : DB 커넥션 리소스
+ * @category     	MailHandler
+ * 
+ */
 class MailHandler{
 	private $resMailDB;
+	/**
+	 * 생성자
+	 *
+	 * @param resource $resMailDB 리소스 형태의 DB커넥션
+	 * @return null
+	 */
 	public function __construct($resMailDB=null){
 		if(!is_null($resMailDB)){
 			$this->resMailDB = $resMailDB;
 		}
 	}
 	public function __destruct(){}
+	
+	/**
+	 * 메일 발송 smtp
+	 *
+	 * @param string $strToMail 수신자이메일
+	 * @param string $strToName 수신자명
+	 * @param string $strSubject 제목
+	 * @param string $strMessage 내용
+	 * @param string $strFromMail 발신자이메일
+	 * @param string $strFromName 발신자명
+	 * @param string $strType 메일타입
+	 * @param string $strHost 호스트
+	 * @param integer $intPort 포트
+	 *
+	 * @return boolean 메일 발송 성공 여부. (false 또는 true)
+	 */
 	private function sendSmtp($strToMail,$strToName,$strSubject,$strMessage,$strFromMail,$strFromName,$strType="text/html",$strHost='localhost',$intPort=25){
 		$strSubject = "=?"."UTF-8"."?B?".base64_encode($strSubject)."?=";
 		$resFp = fsockopen($strHost, $intPort, $intErrNo, $strErrMessage,30);
@@ -42,6 +71,14 @@ class MailHandler{
 			return(false);
 		}
 	}
+	/**
+	 * 파일에서 메일 내용 생성
+	 *
+	 * @param string $strFile 파일
+	 * @param array $arrArgument :인수 
+	 *
+	 * @return string $strContents 생성된 내용 반환
+	 */
 	public function makeMailContentFromFile($strFile,$arrArgument){
 		if(file_exists($strFile)){
 			$strContents = join("",file($strFile));
@@ -52,6 +89,20 @@ class MailHandler{
 		}
 		return($strContents);
 	}
+	
+	/**
+	 * 메일 발송 smtp
+	 *
+	 * @param string $strToMail 수신자이메일
+	 * @param string $strToName 수신자명
+	 * @param string $strSubject 제목
+	 * @param string $strMessage 내용
+	 * @param string $strFromMail 발신자이메일
+	 * @param string $strFromName 발신자명
+	 * @param string $strEncoding 인코딩
+	 *
+	 * @return boolean 메일 발송 성공 여부. (false 또는 true)
+	 */
 	public function sendMail($strFromMail,$strFromName,$strToMail,$strToName,$strSubject,$strMessage,$strEncoding="UTF-8"){
 		$boorReturn = $this->sendSmtp($strToMail,$strToName,$strSubject,$strMessage,$strFromMail,$strFromName);
 		/*
@@ -60,6 +111,20 @@ class MailHandler{
 		*/
 		return($boorReturn);
 	}
+	
+	/**
+	 * 메일 발송 정보 생성
+	 *
+	 * @param string $strToMail 수신자이메일
+	 * @param string $strToName 수신자명
+	 * @param string $strSubject 제목
+	 * @param string $strContents 내용
+	 * @param string $strFromMail 발신자이메일
+	 * @param string $strFromName 발신자명
+	 * @param string $strEncoding 인코딩
+	 *
+	 * @return array $arrReturn 메일 발송 정보 생성 정보 반환
+	 */
 	private function makeMailInfo($strFromMail,$strFromName,$strToMail,$strToName,$strSubject,$strContents,$strEncoding="UTF-8"){
 		switch(strtoupper($strEncoding)){
 			default:
@@ -84,16 +149,16 @@ class MailHandler{
 		);
 		return($arrReturn);
 	}
+	
+	/**
+	 * 메일러를 위한 메일 정보를 DB 에 넣는다
+	 */
 	public function setMailToDB($strFromMail,$strFromName,$strToMail,$strToName,$strSubject,$strContents,$strEncoding="UTF-8"){
-		/*
-		 * 메일러를 위한 메일 정보를 DB 에 넣는다
-		 * $arrResult = $this->makeMailInfo($strFromMail,$strFromName,$strToMail,$strToName,$strSubject,$strContents,$strEncoding);
-		 * insert table $arrResult
-		 */
 	}
+	
+	/**
+	 * 메일 발송을 위한 DB 의 발송 메일 정보 가져오기
+	 */
 	public function getMailFromDB(){
-		/*
-		 * 메일 발송을 위한 DB 의 발송 메일 정보 가져오기
-		 */
 	}
 }

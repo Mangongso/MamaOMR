@@ -1,5 +1,19 @@
 <?php
+/**
+ * ImageHelper
+ * @category     	Paging
+ */
 class Paging{
+	/**
+	 * 페이징 가져오기
+	 *
+	 * @param	integer 		$int_total_result_number : 결과 번호
+	 * @param 	integer 		$int_page_number : 	페이지 번호
+	 * @param 	integer 		$int_result_number : 결과 번호
+	 * @param 	integer 		$int_block_number : 블럭 번호
+	 * @param 	array 			$arr_param : 파라미터
+	 * @return array	$arr_result 	페이징 결과를 반환
+	 */
 	function getPaging($int_total_result_number=null,$int_page_number=1,$int_result_number=20,$int_block_number=10,$arr_param){
 		$arr_result = array();
 		$arr_result[block_num] = $int_block_number;

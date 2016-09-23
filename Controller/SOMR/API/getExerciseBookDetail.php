@@ -1,24 +1,41 @@
 <?
-/* include package */
+/**
+ * @Controller ISBN 코드로 책정보를 가져오기
+ *
+ * @subpackage   	Core/DBmanager/DBmanager
+ * @package      	Mangong/Book
+ * @package      	Mangong/Test
+ * @package      	Mangong/MQuestion
+ */
 require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Book.php');
 require_once('Model/ManGong/Test.php');
 require_once('Model/ManGong/MQuestion.php');
-require_once('Model/ManGong/Teacher.php');
 
-/* set variable */ 
+/**
+ * Variable 세팅
+ * @var 	$strISBNCode	ISBN 코드
+ * @var 	$resultType		ISBN 결과 데이터 형식 (XML)		
+ */ 
 $strISBNCode = $_REQUEST['ISBN'];
 $resultType = $_REQUEST['result_type'];
 
-/* create object */
+/**
+ * Object 생성
+ * @property	resource 		$resMangongDB 	: DB 커넥션 리소스
+ * @property	object			Book  				: Book 객체
+ * @property	object 		Test 					: Test 객체
+ * @property	object 		MQuestion 			: MQuestion 객체
+ */
 $resMangongDB = new DB_manager('MAIN_SERVER');
 $objBook = new Book($resMangongDB);
 $objTest = new Test($resMangongDB);
 $objQuestion = new MQuestion($resMangongDB);
-$objTeacher = new Teacher($resMangongDB);
 
-/*main process*/	
-//1. get book info isbn code
+ /**
+ * Main Process
+ */
+	
 $arrSearch = array();
 $arrSearch['ISBN_CODE'] = $strISBNCode;
 $arrBook = $objBook->getBook($arrSearch);
@@ -60,14 +77,15 @@ foreach ($arrTestListByBook as $key => $arrResult) {
 	}
 	array_push($arrBookOutput['test_info'],$arrTestListByBookOutput);
 }
-/* make output */
+
+
+/**
+ * View OutPut Data 세팅 
+ * OutPut Type array 또는 json : $resultType 이 xml 이면 array로 출력
+ * 
+ * @property	array 		$arr_output['book_info'] 			: Book 정보
+ */
 $arr_output['book_info'] = $arrBookOutput;
-// $arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/default_cover.png";
-// print "<pre>";
-// print_r($arr_output);
-// print "</pre>";
-// exit;
-// echo json_encode($arr_output);
 
 if($resultType=="xml"){
 	function array_to_xml($array, &$xml_user_info) {

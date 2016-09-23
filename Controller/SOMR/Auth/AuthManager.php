@@ -1,16 +1,28 @@
 <?
+/**
+ * @Controller 학습매니져 인증
+ * @subpackage   	Core/DBmanager/DBmanager
+ * @package      	Mangong/StudentMG
+ * @subpackage   	Member/Member
+ */
 require_once("Model/Core/DBmanager/DBmanager.php");
-require_once('Model/ManGong/Auth.php');
 require_once('Model/ManGong/StudentMG.php');
 require_once('Model/Member/Member.php');
 
+/**
+ * Variable 세팅
+ * @var 	$strManagerSeq	 md5암호화된 매니져 시컨즈 
+ */
 $strManagerSeq = $_SESSION['smart_omr']['member_key'];
 
+/**
+ * Object 생성
+ * @property	resource 		$resMangongDB 	: DB 커넥션 리소스
+ * @property	object			Member  				: Member 객체
+ * @property	object 		StudentMG 					: StudentMG 객체
+ */
 if(!$resMangongDB){
 	$resMangongDB = new DB_manager('MAIN_SERVER');
-}
-if(!$objAuth){
-	$objAuth = new Auth($resMangongDB);
 }
 if(!$objMember){
 	$objMember = new Member($resMangongDB);
@@ -19,9 +31,9 @@ if(!$objStudentMG){
 	$objStudentMG = new StudentMG($resMangongDB);
 }
 
-/* main process */
-// get manager request member 
-//$arrRequestMember = $objAuth->getMemberBySOMRManagerAuthKey($_GET['mat']);
+ /**
+ * Main Process
+ */
 $arrRequestMember = $objStudentMG->getManagerStudentByAuthKey($_GET['mat']);
 $arrRequestMember = $objMember->getMemberByMemberSeq($arrRequestMember[0]['student_seq']);
 if(count($arrRequestMember) && ( md5($arrRequestMember[0]['member_seq'])!=$strManagerSeq ) ){
@@ -51,6 +63,14 @@ if(count($arrRequestMember) && ( md5($arrRequestMember[0]['member_seq'])!=$strMa
 	$boolManagerResult = false;
 	$manager_msg = '매니저 요청한 학생이 존재하지 않습니다.';
 }
+
+/**
+ * View OutPut Data 세팅 
+ * OutPut Type array
+ * 
+ * @property	boolean 		$arr_output['manager']['result'] 			: 인증 결과 성공 여부
+ * @property	string 			$arr_output['manager']['manager_msg'] : 결과 메세지
+ */
 $arr_output['manager']['result'] = $boolManagerResult;
 $arr_output['manager']['manager_msg'] = $manager_msg;
 ?>

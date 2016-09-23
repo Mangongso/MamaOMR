@@ -20,5 +20,4 @@ $strQuery = sprintf("INSERT INTO book_info
 							$intCategorySeq,
 							quote_smart(trim($strAuthor))
 				);
-//print_r($strQuery);exit;
 ?>

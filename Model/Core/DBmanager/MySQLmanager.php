@@ -1,6 +1,14 @@
 <?
-class DB_manager{
-	/*
+/**
+ * Mysql DB 매니져
+ * @property		resource $res_DB : DB 커넥션 리소스
+ * @property		string $str_selected_DB : 선택 DB
+ * @property		string $query : 쿼리문
+ * @property		string $strErrorLocation : 에러위치
+ * @category     	DB_MySQL_manager
+ */
+class DB_MySQL_manager{
+	/**
 	DB 연결시 DB_id 를 인자로 받아 해당 연결정보를 처리한다.
 	$arr_db_conn_info[database] 값이 있으면 $arr_db_conn_info[database] DB 를 선택한다.
 	*/
@@ -8,12 +16,28 @@ class DB_manager{
 	var $str_selected_DB = "";
 	var $query = array();
 	var $strErrorLocation = "";
+	
+	/**
+	 * 생성자
+	 * DB_conn함수를 통해 DB 커넥션을 맺음
+	 * utf8로 인코딩을 세팅함.
+	 * 
+	 * @param string $DB_id : DB ID
+	 * @return null
+	 */
 	function __construct($DB_id){
 		//$this->DB_conn($DB_id);
 		if($this->DB_conn($DB_id)){
 			$this->setEncoding("utf8");
 		}
 	}
+	
+	/**
+	 * DB 인코딩 세팅
+	 *
+	 * @param string $str_encoding : 인코딩
+	 * @return null
+	 */
 	function setEncoding($str_encoding){
 		$query = sprintf("set NAMES %s",$str_encoding);
 		$this->DB_access($this,$query);
@@ -23,6 +47,13 @@ class DB_manager{
 			// $this->DB_access($this,$strQuery);			
 		}	
 	}
+	
+	/**
+	 * DB 연결
+	 *
+	 * @param string $DB_id : DB link 정보
+	 * @return boolean DB 연결 성공 여부 반환
+	 */
 	function DB_conn($DB_id){
 		global $DB_info;
 		$arr_db_conn_info = array();
@@ -39,6 +70,15 @@ class DB_manager{
 		}
 		return(true);
 	}
+	
+	/**
+	 * DB 접속
+	 *
+	 * @param resource $DB_link : DB link 정보
+	 * @param string $query : 쿼리문
+	 * @param string $strArrayKey : key 정보
+	 * @return boolean DB 접속 성공 여부 반환
+	 */
 	function DB_access($DB_link,$query,$strArrayKey = false){
 		// mysql_select_db($DB_link->DB_name);
 		$result=mysql_query($query,$DB_link->res_DB);
@@ -71,6 +111,16 @@ class DB_manager{
 			}
 		}		
 	}
+	
+	/**
+	 * DB에서 가져온 DATA를 array로 가공해줌.
+	 *
+	 * @param resource $res_result : DB 조회 결과값
+	 * @param string $fetch_mode : 쿼리문
+	 * @param string $strArrayKey : key 정보
+	 *
+	 * @return boolean DB 커넥션 성공 여부 반환
+	 */
 	function ResultFetchArray($res_result,$fetch_mode = "ASSOC",$strArrayKey = false){
 		// fetch mode : ASSOC, NUM, BOTH
 		switch($fetch_mode){

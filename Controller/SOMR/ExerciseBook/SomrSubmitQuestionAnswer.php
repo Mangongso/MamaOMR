@@ -1,30 +1,53 @@
 <?
-/* include package */
+/**
+ * @Controller 테스트 정답 제출
+ *
+ * @subpackage   	Core/DBmanager/DBmanager
+ * @package      	Mangong/Test
+ * @package      	Mangong/MQuestion
+ * @package      	Mangong/Record
+ * @package      	Mangong/MAnswer
+ * @subpackage      	Member/Member
+ */
 require_once("Model/Core/DBmanager/DBmanager.php");
-require_once('Model/ManGong/Auth.php');
 require_once('Model/ManGong/Test.php');
 require_once('Model/ManGong/MQuestion.php');
 require_once('Model/ManGong/MAnswer.php');
-require_once('Model/ManGong/Student.php');
+require_once('Model/Member/Member.php');
 require_once('Model/ManGong/Record.php');
 
-/* set variable */ 
-$strMemberSeq = $_SESSION['smart_omr']['member_key'];//student seq
+/**
+ * Variable 세팅
+ * @var 	$strMemberSeq		암호화 유저 시컨즈
+ * @var 	$intTestSeq		테스트 시컨즈
+ * @var 	$arrUserAnswer	유저 선택 답
+ */
+$strMemberSeq = $_SESSION['smart_omr']['member_key'];//Member seq
 $intTestSeq = $_POST['test_seq'];
 $arrUserAnswer = $_POST['user_answer'];
 
-/* create object */
+/**
+ * Object 생성
+ * @property	resource 		$resMangongDB 	: DB 커넥션 리소스
+ * @property	object 		$objTest 					: Test 객체
+ * @property	object 		$objQuestion 					: MQuestion 객체
+ * @property	object 		$objRecord 					: Record 객체
+ * @property	object 		$objAnswer 					: MAnswer 객체
+ * @property	object 		$objMember 					: Member 객체
+ */
 $resMangongDB = new DB_manager('MAIN_SERVER');
 $objTest = new Test($resMangongDB);
 $objQuestion = new MQuestion($resMangongDB);
 $objAnswer = new MAnswer($resMangongDB);
-$objStudent = new Student($resMangongDB);
+$objMember = new Member($resMangongDB);
 $objRecord = new Record($resMangongDB);
 
-/*main process*/
+ /**
+ * Main Process
+ */
 
 //get member info
-$arrMemberInfo = $objStudent->getMemberByMemberSeq($strMemberSeq);
+$arrMemberInfo = $objMember->getMemberByMemberSeq($strMemberSeq);
 $intMemberSeq = $arrMemberInfo[0]['member_seq'];
 
 $arrTest = $objTest->getTests($intTestSeq,null,true);
@@ -65,12 +88,16 @@ if(count($arrTest)>0){
 		$boolResult = $objRecord->updateUserRecord($intMemberSeq,$intTestSeq,$arrUserAnswerTotal[0]['user_score'],$arrUserAnswerTotal[0]['right_count'],$arrUserAnswerTotal[0]['total_count']-$arrUserAnswerTotal[0]['right_count'],$testingTime,$arrTestsJoinUserInfo[0]['start_date'],$arrTestsJoinUserInfo[0]['end_date']);
 	}	
 }
-/* make output */
+/**
+ * View OutPut Data 세팅 
+ * OutPut Type Json
+ * 
+ * @property	boolean 		$boolResult 			: 테스트 정답 제출 결과 성공 여부
+ * @property	string 			md5($intTestSeq) 		: 암호화 테스트 시컨즈
+ */
 $arrResult = array(
 		'boolResult'=>$boolResult,
 		'str_test_seq'=>md5($intTestSeq),
-		'report_seq'=>$intReportSeq,
-		'bool_incorrect_test'=>$boolIncorrectTest
 );
 echo json_encode($arrResult);
 exit;

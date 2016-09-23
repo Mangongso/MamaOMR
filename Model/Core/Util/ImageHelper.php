@@ -1,5 +1,18 @@
 <?php
+/**
+ * ImageHelper
+ * @category     	ImageHelper
+ */
 class ImageHelper{
+	/**
+	 * 이미지 변환
+	 *
+	 * @param	integer 		$intWidth : 넓이 
+	 * @param 	integer 		$intHeight : 높이
+	 * @param 	string 		$strNewImage : 변경 이미지
+	 * @param 	string 		$strOrgImage : 원본 이미지
+	 * @return boolean	boolean	이미지 변환 성공 여부 반환
+	 */
 	function convertPic($intWidth, $intHeight, $strNewImage, $strOrgImage){
 		ini_set('memory_limit', '100M');   //  handle large images
 		copy($strOrgImage,$strNewImage);
