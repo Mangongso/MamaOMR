@@ -62,7 +62,7 @@
 					Copyright © LinkBack</p>
 			</div>
 		</div>
-</div>
+	</div>
 <? include("../_common/include/foot_menu.php"); ?>
 </div>
 <? include("../_common/include/footer.php"); ?>

@@ -65,24 +65,6 @@
 						<div id="comment_div" comment_seq="<?=$arr_output['test_info'][0]['seq'];?>" bbs_seq="4"></div>
 					</div>
 				</div>
-				<!-- 
-				<div id="question_community" style="display:none;" class="sub_tabs">
-				<? foreach($arr_output['test_question_list'] as $intKey=>$arrQuestionInfo){ ?>
-				<div class="uk-width-1-1 <?=$arr_output['user_answer'][$intKey]['result_flg']?'test_right_answer':'test_wrong_answer'?>" id="question_<?=$arrQuestionInfo['question_seq']?>" question_seq="<?=$arrQuestionInfo['question_seq']?>" >
-					<h4 class="uk-width-2-10 pull-left" style="top:0px;"><i class="fa fa-<?=$arr_output['user_answer'][$intKey]['result_flg']?'circle-o':'times'?>" aria-hidden="true"></i><br><?=$arrQuestionInfo['order_number']?></h4>
-					<div class="uk-width-8-10 btn-group ans_correct ans_correct_<?=$arrQuestionInfo['question_type'];?>" data-toggle="buttons">
-						<div><span>1111</span> <span>1111</span> <span>1111</span></div>
-					</div>
-					<div id="question_detail" class="question_community">
-						<form class="_d_question_form">
-							
-						</form>
-					</div>
-				</div>
-				<? } ?>
-				</div>
-				 -->
-				
 				<a href="/smart_omr/exercise_book/test.php?t=<?=$arr_output['str_test_seq']?>" class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt"><i class="fa fa-arrow-left" aria-hidden="true"></i> 다시 풀기 </a>
 				<a href="/smart_omr/exercise_book/list.php" class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt"><i class="fa fa-bars" aria-hidden="true"></i> 문제집목록 </a>
 				<div style="height: 60px;"></div>
@@ -90,28 +72,8 @@
 				</div>        
 <? include("../_common/include/foot_menu.php"); ?>
 </div>
-<!-- CONTENTS BODY -->
 </div>
-<!-- CONTENTS BODY -->
 <? include("../_common/modal/wrong_answer_editor.php"); ?>
 <? include("../_common/modal/wrong_answer_photo.php"); ?>
-
-<script>
-/*
-$('#modal-wa-photo').on({
-
-    'show.uk.modal': function(event, ui){
-    	//$(this).data(event);
-        console.log("Modal is visible.");
-    },
-
-    'hide.uk.modal': function(){
-        console.log("Element is not visible.");
-    }
-});
-*/
-</script>
-
-
 <? include("../_common/include/footer.php"); ?>
 <? include("../_common/include/bottom.php"); ?>
