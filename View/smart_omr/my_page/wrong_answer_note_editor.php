@@ -19,7 +19,7 @@ $strWrongNoteFileName = $arr_output['wrong_note'][0]['file_name']?$arr_output['w
 <? }else if($strWrongNoteFileName){ ?>
 <img id="question_img" src="../_images/question.php?b=<?=$arr_output['book_seq'];?>&t=<?=$arr_output['test_seq']?>&q=<?=$arr_output['question'][0]['seq']?>&f=<?=$strWrongNoteFileName;?>" data-img_mode="real"/>
 <? }else{?>
-<img id="question_img" src="../_images/default_cover.png" style="width:100%;height:250px;"/>
+<img id="question_img" src="../_images/default_wt_cover.png" style="width:100%;height:250px;"/>
 <? } ?>
 <p>
 <button id="btn_upload" type="button" href="/smart_omr/exercise_book/test.php?t=<?=$arr_output['str_test_seq']?>" class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt"><i class="fa fa-picture-o" aria-hidden="true"></i> 사진 등록</button>

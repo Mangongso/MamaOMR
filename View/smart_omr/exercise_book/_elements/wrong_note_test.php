@@ -25,13 +25,13 @@ exit; */
 				<? }else if($arrWrongQuestionDetail['file_name']){?>
 				<img id="question_img" src="../_images/question.php?b=<?=$arr_output['book_seq'];?>&t=<?=$arrWrongAnswer['test_seq']?>&q=<?=$arrWrongAnswer['question_seq']?>&f=<?=$arrWrongQuestionDetail['file_name']?>" data-img_mode="real" alt=" " />
 				<? }else{ ?>
-				<img id="question_img" src="../_images/default_cover.png" style="width:100%;height:250px;" alt=" " />
+				<img id="question_img" src="../_images/default_wt_cover.png" style="width:100%;height:250px;" alt=" " />
 				<? } ?>
 				
 				<? if(trim($arrWrongAnswer['question_contents'])!=''){ ?>
-				<div><?=$arrWrongAnswer['order_number']?>. <?=nl2br($arrWrongAnswer['question_contents'])?></div>
+				<div class="wn-q-answer"><?=$arrWrongAnswer['order_number']?>. <?=nl2br($arrWrongAnswer['question_contents'])?></div>
 				<? }else if(trim($arrWrongQuestionDetail['contents'])!=''){?>
-				<div><?=$arrWrongAnswer['order_number']?>. <?=nl2br($arrWrongQuestionDetail['contents'])?></div>
+				<div class="wn-q-answer"><?=$arrWrongAnswer['order_number']?>. <?=nl2br($arrWrongQuestionDetail['contents'])?></div>
 				<? }else{ ?>
 				<div class="h_dot">
 				<div class="h_dot_box test_score"><?=$arrWrongAnswer['order_number']?>. 등록된 내용이 없습니다.</div></div>
@@ -66,7 +66,8 @@ exit; */
 				<? $intIndex++; ?>
 				<? } ?>
 				<? }else{ ?>
-				<div>
+				<div class="h_dot">
+				<div class="h_dot_box test_score">
 					틀린 문제가 없습니다.
-				</div>
+				</div></div>
 				<? } ?>

@@ -40,7 +40,7 @@
 		<? } ?>	
 		<? }else{ ?>
 			<div class="h_dot_box info-box-ul info-comment"
-				style="padding: 20px 10px 20px 10px;">
+				style="padding: 20px 10px 20px 10px;margin-top: -25px;">
 				<i class="fa fa-info-circle fa-5x" aria-hidden="true"></i><br />
 				<p align="cneter">새 댓글이 없습니다</p>
 			</div>
