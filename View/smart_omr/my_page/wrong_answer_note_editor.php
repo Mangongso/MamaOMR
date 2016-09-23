@@ -19,17 +19,25 @@ $strWrongNoteFileName = $arr_output['wrong_note'][0]['file_name']?$arr_output['w
 <? }else if($strWrongNoteFileName){ ?>
 <img id="question_img" src="../_images/question.php?b=<?=$arr_output['book_seq'];?>&t=<?=$arr_output['test_seq']?>&q=<?=$arr_output['question'][0]['seq']?>&f=<?=$strWrongNoteFileName;?>" data-img_mode="real"/>
 <? }else{?>
-<img id="question_img" src="../_images/default_cover.png" style="width:100%;height:250px;"/>
+<img id="question_img" src="../_images/default_wt_cover.png" style="width:100%;height:250px;"/>
 <? } ?>
 <p>
-<button id="btn_upload" type="button">사진등록</button>
-<button id="btn_ocr" type="button">텍스트추출</button>
+<button id="btn_upload" type="button" href="/smart_omr/exercise_book/test.php?t=<?=$arr_output['str_test_seq']?>" class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt"><i class="fa fa-picture-o" aria-hidden="true"></i> 사진 등록</button>
+<button id="btn_ocr" type="button" href="/smart_omr/exercise_book/list.php" class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt"><i class="fa fa-random" aria-hidden="true"></i> 텍스트 추출</button>
 </p>
-<textarea name="question" id="question" style="width:100%;height:250px;"><?=trim($strWrongNoteContents)?></textarea>
-<p>
-<button type="submit">저장</button>
-<button type="button">닫기</button>
-</p>
+<div class="h_dot_box info-box-ul" style="padding: 25px 10px 5px 10px;">
+							<ul>
+								<li>오답 문제를 스마트 폰으로 촬영 하신 후 "사진 등록" 버튼을 클릭 하시고 오답 사진을 업로드 하여 주십시오.</li>
+								<li>사진은 최대한 밝고 외곡 없이 촬영하여 주십시오.</li>
+								<li>사진을 올리신 후 텍스트 추출 버튼을 클릭하시면 이미지 상의 문제가 텍스트화 됩니다.</li>
+								<li>저장 버튼을 클릭하시면 문제가 저장됩니다.</li>
+							</ul>
+						</div>
+<textarea name="question" id="question" style="width:100%;height:100px;padding: 20px;"><?=trim($strWrongNoteContents)?></textarea>
+<div class="m-modal-bt-box">
+<button id="btn_upload" type="submit" href="/smart_omr/exercise_book/test.php?t=<?=$arr_output['str_test_seq']?>" class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt"><i class="fa fa-check" aria-hidden="true"></i> 저장</button>
+<button id="btn_ocr" type="button" href="/smart_omr/exercise_book/list.php" class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt"><i class="fa fa-times" aria-hidden="true"></i> 닫기</button>
+</div>
 </form>
 <?php 
 // print "<pre>";

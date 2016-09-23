@@ -87,7 +87,7 @@
 							}
 						?>
 						<? foreach($arrQuestionInfo['example']['type_1'] as $intExampleKey=>$arrExample){ ?>
-						<label class="uk-width-<?=$intExampleWidth?>-10 btn btn-default <?=$arrExample['answer_flg']?'active':''?>" onclick="$('#answer_<?=$arrQuestionInfo['question_seq']?>_seq').val($('#example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>').val());">
+						<label class="uk-width-<?=$intExampleWidth?>-10 btn btn-default <?=$arrExample['answer_flg']?'active':''?>" onclick="$('#answer_<?=$arrQuestionInfo['question_seq']?>_seq').val($('#example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>').val());" for="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>">
 					    <input type="radio" value="<?=$arrExample['seq'];?>" id="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>" autocomplete="off"><?=$arrExample['example_number'];?>
 					  	</label>
 					  	<? } ?>
@@ -95,7 +95,7 @@
 					<div class="question_info">
 						<div class="uk-width-1-10 uk_pd_init pull-left"><button type="button" onclick="objRegistration.insertSingleQuestion(<?=$arrQuestionInfo['question_seq'];?>);" class="btn btn-default btn-sm uk-width-1-1" title="문제추가"><i class="fa fa-plus" aria-hidden="true"></i></button></div>
 					    <div class="uk-width-1-10 uk_pd_init pull-left" style="border-left: none;"><button type="button" onclick="objRegistration.deleteSingleQuestion(<?=$arrQuestionInfo['question_seq'];?>);" class="btn btn-default btn-sm uk-width-1-1" title="문제삭제"><i class="fa fa-minus" aria-hidden="true"></i></button></div>
-					    <div class="uk-width-8-10 answer_tag pull-left"><input type="text" class="form-control input-sm" name="question_tags[<?=$arrQuestionInfo['question_seq'];?>]" id="question_tags<?=$arrQuestionInfo['question_seq'];?>" placeholder="유형태그를 콤마(,)로 구분하여 입력하세요" value="<?=htmlentities($arrQuestionInfo['tags'],ENT_QUOTES,'UTF-8');?>"></div>
+					    <div class="uk-width-8-10 answer_tag pull-left"><label for="question_tags<?=$arrQuestionInfo['question_seq'];?>" class="sr-only">유형태그 입력</label><input type="text" class="form-control input-sm" name="question_tags[<?=$arrQuestionInfo['question_seq'];?>]" id="question_tags<?=$arrQuestionInfo['question_seq'];?>" placeholder="유형태그를 콤마(,)로 구분하여 입력하세요" value="<?=htmlentities($arrQuestionInfo['tags'],ENT_QUOTES,'UTF-8');?>"></div>
 					</div>
 				</div>
 				<? } ?>

@@ -19,7 +19,7 @@ $tabSelected = 3;
 			<div
 				class="row content_body content_my_page_body contents_registration_body">
 			<? include("./_elements/mypage_tab.php"); ?>
-			<? if(count($arr_output['manager_student_list'])){ ?>
+			<? if(count($arr_output['manager_student_list']) || 1){ ?>
 			<!-- 학습매니져로 등록된 학생 결과  -->
 				<div class="sub_contents_body_box text-left">
 					<h4>
@@ -29,13 +29,16 @@ $tabSelected = 3;
 					</h4>
 				</div>
 				<!--#################################-->
+			<? $arr_output['manager_student_list'] = array('aaa'=>122);?>
 			<? foreach($arr_output['manager_student_list'] as $intFirstKey=>$arrManagerStudent){ //foreach 1 ?>
 			<div class="sub_contents_body_box">
 					<h4 style="border-bottom: 0px;"><?=$arrManagerStudent['student_info'][0]['name']?></h4>
 				</div>
-			<? if(count($arrManagerStudent['join_book'])){ ?>
+			<? if(count($arrManagerStudent['join_book']) || 1){ ?>
 			
-			<? foreach($arrManagerStudent['join_book'] as $intKey=>$arrBook){ //foreach 2 ?>
+			<? $arrTemp = array('aaaa'=>111);?>
+			<? //foreach($arrManagerStudent['join_book'] as $intKey=>$arrBook){ //foreach 2 ?>
+			<? foreach($arrTemp as $intKey=>$arrBook){ //foreach 2 ?>
 			<? if($intKey%2==0){ ?>
 				<div class="my_page_box">
 			<? } ?>
@@ -81,7 +84,11 @@ $tabSelected = 3;
 				</div>
 			<? } ?>
 			<? } //foreach 1 ?>
-			<? }//if end ?>
+			<? }else{//if end ?>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+					<span>등록된 메니져가 없습니다.</span>
+				</div>
+			<? } ?>
 			</div>
 
 		</div>
