@@ -1,11 +1,10 @@
 <?
-/*
- * smart_omr auth 
+/**
+ * @ 로그인 여부를 확인 
  * */
 if($_SESSION['smart_omr']){
 	
 	$intAuthFlg = AUTH_TRUE;
-	$GLOBALS['GLOBAL_APP_NAME'] = 'SMART_OMR';
 	$intMemberSeq = $intMemberSeq?$intMemberSeq:SMART_OMR_TEACHER_SEQ;
 }
 ?>

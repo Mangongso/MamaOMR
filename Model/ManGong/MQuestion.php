@@ -14,9 +14,8 @@
 
 require_once("Model/Core/Util/Paging.php");
 require_once("Model/Core/DataManager/DataHandler.php");
-require_once("Model/Tests/Question.php");
 
-class MQuestion extends Question{
+class MQuestion{
 	public $resQuestionDB;
 	public $arrQuestion;
 	public $arrExampleStyle;
@@ -93,7 +92,7 @@ class MQuestion extends Question{
 	 * @return array 문제 상세정보를 답고 있는 배열
 	 */	
 	public function getQuestion($intQuestionSeq,$intTestsSeq=0,$intExampleNumberingStyle=0){
-		include("Model/Tests/SQL/MySQL/Question/getQuestion.php");
+		include("Model/ManGong/SQL/MySQL/MQuestion/getQuestion.php");
 		$arrQuestionResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		$arrQuestionResult[0]['arr_question_tag'] = $this->getQuestionTag($intQuestionSeq);
 		$arrQuestionResult[0]['arr_question_example'] = $this->getQuestionExample($intExampleNumberingStyle,$intQuestionSeq,$arrQuestionResult[0]['example_type']);
@@ -141,6 +140,19 @@ class MQuestion extends Question{
 		include("Model/ManGong/SQL/MySQL/MQuestion/getQuestionList.php");
 		$arrResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		return($arrResult);		
+	}
+	
+	/**
+	 * 문제 태그 조회
+	 *
+	 * @param integer $intQuestionSeq 문제 시퀀스
+	 * 
+	 * @return array question_tag table 참조
+	 */
+	public function getQuestionTag($intQuestionSeq){
+		include("Model/ManGong/SQL/MySQL/MQuestion/getQuestionTag.php");
+		$arrQuestoinTagResult = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
+		return ($arrQuestoinTagResult);
 	}
 	
 	/**
@@ -271,6 +283,7 @@ class MQuestion extends Question{
 		if(!$intQuestionSeq){
 			$intQuestionSeq = mysql_insert_id($this->resQuestionDB->res_DB);
 		}
+		
 		if($boolReturn){
 			$boolReturn = $this->setQuestionHistory($intQuestionSeq);
 		}
@@ -301,7 +314,7 @@ class MQuestion extends Question{
 		include("Model/ManGong/SQL/MySQL/MQuestion/deleteQuestion.php");
 		$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		if($boolReturn){
-			include("Model/TechQuiz/SQL/MySQL/MQuestion/deleteQuestion1.php");
+			include("Model/ManGong/SQL/MySQL/MQuestion/deleteQuestion1.php");
 			$boolReturn = $this->resQuestionDB->DB_access($this->resQuestionDB,$strQuery);
 		}
 		return($boolReturn);

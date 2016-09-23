@@ -1,12 +1,32 @@
 <?
-/* include package */
+/**
+ * @Controller 테스트 저장
+ *
+ * @subpackage   	Core/DBmanager/DBmanager
+ * @package      	Mangong/Book
+ * @package      	Mangong/Test
+ * @package      	Mangong/MQuestion
+ */
 require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Book.php');
 require_once('Model/ManGong/Test.php');
 require_once('Model/ManGong/MQuestion.php');
 
-/* set variable */ 
-//$intWriterSeq = $_SESSION[$_COOKIE['member_token']]['member_seq'];
+/**
+ * Variable 세팅
+ * @var 	$intMemberSeq		마마OMR 마스터 선생님 시컨즈
+ * @var 	$strTitle		테스트 제목
+ * @var 	$intQuestionType	문제 타입
+ * @var 	$strBookSeq		암호화 책 시컨즈
+ * @var 	$intExampleNumberingStyle		보기 번호 스타일
+ * @var 	$intTotalScore		총점
+ * @var 	$intQuestionCount		문제개수
+ * @var 	$intTestsType		테스트 형식
+ * @var 	$intTestsProgflg		테스트 진행 flg (1.일괄 2.개별)
+ * @var 	$intTestsPaperType		테스트 페이저 형시 (0:OMF 1:paper 2:auto)
+ * @var 	$intRepeatFlg		반복풀이 flg
+ * @var 	$intRecordViewFlg		성적 보여주기 flg
+ */
 $intMemberSeq = SMART_OMR_TEACHER_SEQ;
 $strTitle = trim($_REQUEST['subject']);
 $intQuestionType = $_REQUEST['question_type'];
@@ -17,17 +37,24 @@ $intQuestionCount = 5;
 $intTestsType = 1; //1.test 2.report
 $intTestsProgflg = 2; //1.일괄 2.개별
 $intTestsPaperType = 0; //0:OMF 1:paper 2:auto
-// $intRepeatFlg = $_POST['repeat_flg']; //0:no repeat 1:repeat
 $intRepeatFlg = 1;
 $intRecordViewFlg = 1; //0:hidden 1:visible
 
-/* create object */
+/**
+ * Object 생성
+ * @property	resource 		$resMangongDB 	: DB 커넥션 리소스
+ * @property	object			$objBook  				: Book 객체
+ * @property	object 		$objTest 					: Test 객체
+ * @property	object 		$objQuestion 					: MQuestion 객체
+ */
 $resMangongDB = new DB_manager('MAIN_SERVER');
 $objBook = new Book($resMangongDB);
 $objTest = new Test($resMangongDB);
 $objQuestion = new MQuestion($resMangongDB);
 
-/*main process*/	
+/**
+ * Main Process
+ */	
 include(CONTROLLER_NAME."/Auth/checkAuth.php");
 //check auth
 if($intAuthFlg!=AUTH_TRUE){
@@ -94,7 +121,14 @@ if($boolResult){
 	}
 }
 
-/* make output */
+/**
+ * View OutPut Data 세팅 
+ * OutPut Type Json
+ * 
+ * @property	boolean 		$boolResult 			: 테스트 저장 결과 성공 여부
+ * @property	integer 			test_seq 		: 테스트 시컨즈
+ * @property	integer 			$arrBookInfo[0]['seq'] 		: book 시컨즈
+ */
 $arr_output = array(
 	'book_seq'=>$arrBookInfo[0]['seq'],
 	'test_seq'=>$intTestsSeq,

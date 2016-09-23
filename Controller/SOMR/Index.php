@@ -1,23 +1,45 @@
 <?
-/* include package */
+/**
+ * @Controller 메인페이지 정보
+ *
+ * @subpackage   	Core/DBmanager/DBmanager
+ * @package      	Mangong/Book
+ * @package      	Mangong/MQuestion
+ * @package      	Mangong/Record
+ * @package      	Mangong/Teacher
+ */
 require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Book.php');
 require_once('Model/ManGong/MQuestion.php');
 require_once('Model/ManGong/Record.php');
 require_once('Model/ManGong/Teacher.php');
 
-/* set variable */ 
+/**
+ * Variable 세팅
+ * @var 	$intWriterSeq		마마omr 마스터 시컨즈
+ * @var 	$intPage		페이지 번호
+ */
 $intWriterSeq = SMART_OMR_TEACHER_SEQ;
 $intPage = $_REQUEST['page']?$_REQUEST['page']:1;
 
-/* create object */
+/**
+ * Object 생성
+ * @property	resource 		$resMangongDB 	: DB 커넥션 리소스
+ * @property	object			$objBook  				: Book 객체
+ * @property	object 		$objQuestion 					: MQuestion 객체
+ * @property	object 		$objRecord 					: Record 객체
+ * @property	object 		$objTeacher 					: Teacher 객체
+ */
 $resMangongDB = new DB_manager('MAIN_SERVER');
 $objBook = new Book($resMangongDB);
 $objQuestion = new MQuestion($resMangongDB);
 $objRecord = new Record($resMangongDB);
 $objTeacher = new Teacher($resMangongDB);
 
-/*main process*/
+ /**
+ * Main Process
+ */
+
 //1. get main header
 $arrQueId = array(
 	1=>array(25)//main header
@@ -55,7 +77,13 @@ if($_REQUEST['mat'] && $_SESSION['smart_omr']){
 	include($_SERVER['DOCUMENT_ROOT'].'/../Controller/SOMR/Auth/AuthManager.php');
 }
 
-/* make output */
+/**
+ * View OutPut Data 세팅 
+ * OutPut Type array
+ * 
+ * @property	array 		$arr_output['header'] 			: 헤더 책 정보
+ * @property	array		$arr_output['book_list'] 		: 책 목록
+ */
 $arr_output['header'] = $arrHeader;
 $arr_output['book_list'] = $arrBooks;
 ?>

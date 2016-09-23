@@ -1,4 +1,8 @@
 <?
+/**
+ * View 와 Controller를 Mapping 해줌
+ * @param string	$viewID 컨트롤러 구분
+ * */
 require_once(CONTROLLER_NAME."/_Config/MamaOMR.conf.php");
 if(empty($viewID)){
 	$viewID=$_POST['viewID']?$_POST['viewID']:$_GET['viewID'];
