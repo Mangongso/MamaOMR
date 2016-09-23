@@ -110,7 +110,8 @@ $(document).ready(function(){
 					?>
 					<? foreach($arrQuestionInfo['example']['type_1'] as $intExampleKey=>$arrExample){ ?>
 						<label class="uk-width-<?=$intExampleWidth?>-10 btn btn-default "
-							onclick="$('#user_answer_<?=$arrQuestionInfo['question_seq']?>').val($('#example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>').val());" for="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>">
+							onclick="$('#user_answer_<?=$arrQuestionInfo['question_seq']?>').val($('#example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>').val());"
+							for="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>">
 							<input type="radio" value="<?=$arrExample['seq'];?>"
 							id="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>"
 							autocomplete="off"> <?=$arrExample['example_number'];?> 
@@ -127,8 +128,8 @@ $(document).ready(function(){
 				</button>
 				<!-- ######## -->
 				<div class="h_dot">
-					<div class="h_dot_box" style="margin-bottom: 15px;">정답을 모두 체크하셨다면 답안지 전송버튼을
-						클릭하여 주십시오.</div>
+					<div class="h_dot_box" style="margin-bottom: 15px;">정답을 모두 체크하셨다면
+						답안지 전송버튼을 클릭하여 주십시오.</div>
 				</div>
 
 			</form>
