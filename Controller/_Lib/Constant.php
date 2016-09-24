@@ -1,4 +1,9 @@
 <?php
+/*
+ * 기본상수
+ */
+define("DR",$_SERVER["DOCUMENT_ROOT"]);
+
 /**
  * 로그인 확인 상수
  */
