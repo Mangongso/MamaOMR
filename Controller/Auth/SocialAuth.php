@@ -80,6 +80,9 @@ if(count($arrMember)){
 		'member_type'=>"S",
 		'join_type'=>$intJoinType
 	);
+	if($_REQUEST['admin_flg']){
+		$arr_input['admin_level'] = 100;
+	}
 	$boolResult = $objMember->setMember($resMangongDB,$arr_input,$intMemberSeq);
 }
 /**
