@@ -216,7 +216,7 @@ function install(){
 						}
 						location.href='adm_setting.php';
 					}else{
-						alert('설정에 문제 있습니다. 설정 내용을 다시한반 확인해 주세요.');
+						alert('설정에 문제 있습니다. 설정 내용을 다시한번 확인해 주세요.');
 						location.reload();
 					}
 				}
