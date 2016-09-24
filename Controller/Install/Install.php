@@ -2,11 +2,14 @@
 /**
  * Install 여부를 확인
  * 1. Controller/_Config/MamaOMR.conf.php 파일 존재 여부 확인
- * 2. SNS API Key 학인
- * 3. DB Conn check
+ * 2. sns key 체크
+ * 3. DB Conn check 및 테이블전재 확인 
+ * 4. 관리자 계정 등록 여부 확인 (admin_level=100)
+ * 
  * */
 $intConfStatus = 1;
 $intSnsStatus = 1;
+$intBookStatus = 1;
 $intDBStatus = 1;
 /**
  * 1. Controller/_Config/MamaOMR.conf.php 파일 존재 여부 확인
@@ -25,6 +28,10 @@ if(!file_exists(ini_get("include_path")."/Controller/_Config/MamaOMR.conf.php"))
 global $API_key;
 if( (!$API_key['naver']['client_id'] || $API_key['naver']['client_id']=="") && (!$API_key['facebook']['app_id'] || $API_key['facebook']['app_id']=="") && (!$API_key['kakao']['client_id'] || $API_key['kakao']['client_id']=="") ){
 	$intSnsStatus = 0;
+}
+
+if(!$API_key['book']['book_key'] || $API_key['book']['book_key']==""){
+	$intBookStatus = 0;
 }
 
 /**
@@ -51,6 +58,6 @@ if ($conn->connect_error || is_null($DB_info)) {
 	$intTableCnt = $result->num_rows;
 	//echo $intTableCnt;
 }
-$arr_output['status'] = array('conf'=>$intConfStatus,'sns'=>$intSnsStatus,'db'=>$intDBStatus);
+$arr_output['status'] = array('conf'=>$intConfStatus,'sns'=>$intSnsStatus,'book'=>$intBookStatus,'db'=>$intDBStatus);
 $arr_output['table_cnt'] = $intTableCnt;
 ?>

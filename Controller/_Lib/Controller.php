@@ -3,7 +3,7 @@
  * View 와 Controller를 Mapping 해줌
  * @param string	$viewID 컨트롤러 구분
  * */
-if( $viewID=="INSTALL" || $_REQUEST['viewID']=="CREATE_CONF" || $viewID=="INSTALL_ADM_SETTING" ){
+if( $viewID=="INSTALL" || $_REQUEST['viewID']=="CREATE_CONF" || $viewID=="INSTALL_ADM_SETTING" || $_REQUEST['viewID']=="CHK_INSTALL" ){
 }else{
 	if(($viewID!="SOCIAL_AUTH"&&$_REQUEST['admin_flg']!=1)){
 		include(CONTROLLER_NAME."/_Lib/ChkInstall.php");

@@ -21,6 +21,12 @@ if(!$_SESSION['mama_install']['install_complete'] || !$_SESSION['mama_install'][
 			header('Location: /smart_omr/install');
 			exit;
 		}
+		
+		if(!$API_key['book']['book_key'] || $API_key['book']['book_key']==""){
+			header('Location: /smart_omr/install');
+			exit;
+		}
+		
 		global $DB_info;
 		$servername = $DB_info ['MAIN_SERVER']['host'];
 		$username = $DB_info ['MAIN_SERVER']['user'];

@@ -2,7 +2,8 @@
 		/**
 		 * ISBN 
 		 * */
-		$strApiKey = BOOK_SEARCH_API_KEY;
+		global $API_key;
+		$strApiKey = $API_key ['book']['book_key'];
 		$strIsbnUrl = "https://apis.daum.net/search/book?apikey=".$strApiKey."&q=".$strIsbnCode."&searchType=isbn&output=xml";
 		//get book info
 		$xmlstr = $objBook->get_xml_from_url($strIsbnUrl);

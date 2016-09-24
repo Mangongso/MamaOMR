@@ -49,12 +49,8 @@ switch (SERVICE_MODE) {
 				'domain'=>'dev.mamaomr.hanbnc.com'
 		);
 		$API_key ['facebook'] = array (	'app_id' => '822982321170072');	
-		$API_key ['kakao'] = array (
-				'client_id' => 's6yf8ssuNGj8r5cMGUuL',
-				'client_secret' => 'bNvCazxoHZ',
-				'callback_url' => '/smart_omr/_common/elements/naver_auth_callback.php',
-				'domain'=>'dev.mamaomr.hanbnc.com'
-		);		
+		$API_key ['kakao'] = array ('client_id' => '644b0692348ccc4135363f85afa01b13');		
+		$API_key ['book'] = array ('book_key' => ' 49769dcbb5d89eaf2d3c069ac7ca321e');
 		break;
 	case ("STAGE") :
 		$API_key ['naver'] = array (
@@ -63,6 +59,9 @@ switch (SERVICE_MODE) {
 				'callback_url' => '/smart_omr/_common/elements/naver_auth_callback.php',
 				'domain'=>'dev.mamaomr.hanbnc.com'
 		);
+		$API_key ['facebook'] = array (	'app_id' => '822982321170072');	
+		$API_key ['kakao'] = array ('client_id' => '644b0692348ccc4135363f85afa01b13');		
+		$API_key ['book'] = array ('book_key' => ' 49769dcbb5d89eaf2d3c069ac7ca321e');
 		break;
 	default :
 		$API_key ['naver'] = array (
@@ -73,6 +72,7 @@ switch (SERVICE_MODE) {
 		);
 		$API_key ['facebook'] = array (	'app_id' => '822982321170072');	
 		$API_key ['kakao'] = array ('client_id' => '644b0692348ccc4135363f85afa01b13');		
+		$API_key ['book'] = array ('book_key' => '');
 		/*
 		$API_key ['naver'] = array (
 				'client_id' => '',
@@ -85,7 +85,7 @@ switch (SERVICE_MODE) {
 		*/
 		break;
 }
-define("BOOK_SEARCH_API_KEY","49769dcbb5d89eaf2d3c069ac7ca321e");
+//define("BOOK_SEARCH_API_KEY","BOOK_KEY");
 //define("TMP_DIR","/tmp/");
 define("TMP_DIR","C:/xampp/tmp/");
 ?>
