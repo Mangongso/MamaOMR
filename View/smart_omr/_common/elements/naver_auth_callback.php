@@ -8,18 +8,26 @@
 	function naverSignInCallback() {
 		// naver_id_login.getProfileData('프로필항목명');
 		// 프로필 항목은 개발가이드를 참고하시기 바랍니다.
+		if(opener.document.getElementById("admin_flg")){
+			var adminFlg = opener.document.getElementById("admin_flg").value;
+		}else{
+			var adminFlg = 0;
+		}
 		$.ajax({
 			url : '/_connector/yellow.501.php',
 			data:{
 				'viewID':'SOCIAL_AUTH',
 				'social_login_type':'na',
-				'access_token': naver_id_login.getAccessToken()
+				'access_token': naver_id_login.getAccessToken(),
+				'admin_flg': adminFlg
 				//'user_img_path': arr_sns_reply_user_info.user_img_path
 			},
 			type: 'POST',
 			dataType: 'json',
 			success: function(jsonResult){
-				if(jsonResult.result){
+				if(adminFlg==1){
+					window.opener.location.href="/";
+				}else{
 					window.opener.location.reload()
 				}
 				self.close();

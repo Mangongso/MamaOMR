@@ -93,7 +93,11 @@ foreach($arrQuestionList as $intKey=>$arrResult){
 		}
 	}
 }
-
+if($_SESSION['smart_omr']['level']>=100 || $_SESSION['smart_omr']['member_key']==$arr_output['test_info'][0]['writer_key']){
+	$boolEditble = true;
+}else{
+	$boolEditble = false;
+}
 /**
  * View OutPut Data 세팅 
  * OutPut Type Json
@@ -110,6 +114,7 @@ foreach($arrQuestionList as $intKey=>$arrResult){
  * 
  */
 $arr_output['book_info'] = $arrBookInfo;
+$arr_output['editble'] = $boolEditble;
 $arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/default_cover.png";
 $arr_output['test_info'] = $arrTestResult;
 $arr_output['test_total_score'] = $intTotalScore;
