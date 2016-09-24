@@ -191,6 +191,7 @@
 		<? } ?>
 	</div>
 </div>
+<br/><br/>
 <script>
 function install(){
 	if(confirm('설치를 시작 하시겠습니까?')){
