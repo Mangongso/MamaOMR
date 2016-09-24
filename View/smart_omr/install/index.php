@@ -1,45 +1,106 @@
+<? $viewID = "INSTALL";?>
 <? include("../_common/include/header.php"); ?>
-<!--####################################################################-->
-<!--######################### MAMA OMR INSTALL #########################-->
-<!--####################################################################-->
+<script>
+function createConf(){
+	$.ajax({
+		url: '/_connector/yellow.501.php',
+		data:{'viewID':'CREATE_CONF'},
+		type: 'POST',
+		dataType: 'json',
+		beforeSend:function(){
+		},
+		success: function(jsonResult){
+			if(jsonResult.result){
+				alert("conf 파일 생성 완료하였습니다. 가이드를 참고 하셔서 conf파일을 설정해 주세요.");
+				$('._d_btn_li').html('<button type="button" class="pure-button pure-form_in btn-lg btn-block install_bt" onclick="chkInstall();"><i class="fa fa-cog fa-spin"></i> Install</button>');
+				$('._d_label_conf').removeClass('label-warning');
+				$('._d_label_conf').addClass('label-success');
+			}else{
+				alert('conf 파일 생성에 실패 하였습니다. 계속되는 오류시 다운받으신 git프로젝트에서 문의 바랍니다.');
+			}
+		}
+	});
+};
+
+function chkInstall(){
+	$.ajax({
+		url: '/_connector/yellow.501.php',
+		data:{'viewID':'CHK_INSTALL'},
+		type: 'POST',
+		dataType: 'json',
+		beforeSend:function(){
+		},
+		success: function(jsonResult){
+			if(jsonResult.result){
+				alert("설정이 완료 되었습니다. 관리자를 설정해 주세요.");
+				location.href='adm_setting.php';
+			}else{
+				switch(jsonResult.err_code){
+					case(1):
+						alert('conf 파일이 존재 하지 않습니다. 다시 설정해 주셔야 합니다.');
+					break;
+					case(2):
+						alert('소셜 API Key 정보를 conf파일에 설정해 주셔야 합니다.');
+					break;
+					case(3):
+						alert('DB connect 정보를 conf파일에 설정해 주셔야 합니다.');
+					break;
+				}
+				location.reload();
+			}
+		}
+	});
+};
+</script>
 <div class="row">
-	<div class="col-md-3 install_body etc_login">
+	<div class="col-md-8 install_body etc_login">
 		<ul>
-			<li><img src="/smart_omr/_images/mama-omr-h-logo.png"
-				class="install_logo" /></li>
+			<li><img src="/smart_omr/_images/mama-omr-logo.png" class="install_logo" /></li>
 			<li>
-				<div class="h_dot_box info-box-ul install-info">
-					<ul>
-						<li>오답 문제를 스마트 폰으로 촬영 하신 후 "사진 등록" 버튼을 클릭 하시고 오답 사진을 업로드 하여 주십시오.</li>
-						<li>사진은 최대한 밝고 외곡 없이 촬영하여 주십시오.</li>
-						<li>사진을 올리신 후 텍스트 추출 버튼을 클릭하시면 이미지 상의 문제가 텍스트화 됩니다.</li>
-						<li>저장 버튼을 클릭하시면 문제가 저장됩니다.</li>
-					</ul>
+				<div class="col-md-12">
+					<div class="col-md-4">conf 파일 생성</div>
+					<div class="col-md-4"><a href="https://github.com/Mangongso/MamaOMR/wiki/Development-Document"  target="_blank">conf 파일 설정 가이드</a></div>
+					<? if(!$arr_output['status']['conf']){ ?>
+					<div class="col-md-4"><span class="label label-warning _d_label_conf">conf 파일 생성 필요</span></div>
+					<? }else{ ?>
+					<div class="col-md-4"><span class="label label-success _d_label_conf">conf 파일 생성 완료</span></div>
+					<? } ?>
 				</div>
 			</li>
-			<li><a href="javascript:void(0);" sns_type="facebook"
-				event_type="login" class="list-group-item login_facebook _d_sns_btn"><i
-					class="fa fa-facebook-official" aria-hidden="true"></i>페이스북 아이디로
-					로그인</a></li>
-			<li><a href="javascript:$('#naver_id_login_anchor').click();"
-				class="list-group-item login_naver"><span><img
-						src="/smart_omr/_images/naver_logo.png" /></span>네이버 아이디로 로그인</a></li>
-			<li><a href="javascript:loginWithKakao();"
-				class="list-group-item login_kakao"><span><img
-						src="/smart_omr/_images/kakao_logo.png" /></span>카카오톡 아이디로 로그인</a></li>
-			<li><input class="form-control input-lg" type="text"
-				placeholder="MySQL Host"></li>
-			<li><input class="form-control input-lg" type="text"
-				placeholder="MySQL User" style="margin-top: -1px;"></li>
-			<li><input class="form-control input-lg" type="text"
-				placeholder="MySQL Password" style="margin-top: -1px;"></li>
-			<li style="padding: 1px;"><button type="button"
-					class="pure-button pure-form_in btn-lg btn-block install_bt"
-					onclick="location.href='install.php'";>
-					<i class="fa fa-cog fa-spin"></i> Install
-				</button></li>
+			<li>
+				<div class="col-md-12">
+					<div class="col-md-4">SNS API Key 설정</div>
+					<div class="col-md-4"><a href="https://github.com/Mangongso/MamaOMR/wiki/Development-Document"  target="_blank">SNS API Key 설정 가이드</a></div>
+					<? if(!$arr_output['status']['sns']){ ?>
+					<div class="col-md-4"><span class="label label-warning _d_label_SNS">SNS API Key 필요</span></div>
+					<? }else{ ?>
+					<div class="col-md-4"><span class="label label-success _d_label_SNS">SNS API Key 완료</span></div>
+					<? } ?>
+				</div>
+			</li>
+			<li>
+				<div class="col-md-12">
+					<div class="col-md-4">DB 접속 정보 설정</div>
+					<div class="col-md-4"><a href="https://github.com/Mangongso/MamaOMR/wiki/Development-Document"  target="_blank">DB 접속 정보 설정 가이드</a></div>
+					<? if(!$arr_output['status']['db']){ ?>
+					<div class="col-md-4"><span class="label label-warning _d_label_db">DB 접속 정보 필요</span></div>
+					<? }else{ ?>
+					<div class="col-md-4"><span class="label label-success _d_label_db">DB 접속 정보 완료</span></div>
+					<? } ?>
+				</div>
+			</li>
+			<li style="padding: 1px;" class="_d_btn_li">
+				<? if($arr_output['status']['conf']==0){ ?>
+				<button type="button" class="pure-button pure-form_in btn-lg btn-block install_bt" onclick="createConf();"><i class="fa fa-cog fa-spin"></i> conf 파일 자동 생성</button>
+				<? }else if($arr_output['status']['sns']==0 || $arr_output['status']['db']==0 || $arr_output['table_cnt']==0 ){ ?>
+				<button type="button" class="pure-button pure-form_in btn-lg btn-block install_bt" onclick="chkInstall();"><i class="fa fa-cog fa-spin"></i> Install</button>
+				<? }else if( $arr_output['status']['conf'] && $arr_output['status']['sns'] && $arr_output['status']['db'] && $arr_output['table_cnt']>0 ){ ?>
+				<button type="button" class="pure-button pure-form_in btn-lg btn-block install_bt" onclick="location.href='adm_setting.php'"><i class="fa fa-cog fa-spin"></i> 관리자 설정가기</button>
+				<? } ?>
+			</li>
 		</ul>
 	</div>
 </div>
+
 <? include("../_common/include/footer.php"); ?>
 <? include("../_common/include/bottom.php"); ?>
