@@ -41,7 +41,7 @@
 		    Connector File 생성 - View/_connector/yellow.501.default.php 파일을 yellow.501.php 로 복사합니다.
 		  </li>	
 		  <li class="list-group-item">
-		  	<? if(strpos(ini_get('include_path'),dirname($_SERVER["DOCUMENT_ROOT"],1))!==false){?>
+		  	<? if(strpos(ini_get('include_path'),realpath($_SERVER["DOCUMENT_ROOT"]."/.."))!==false){?>
 		   <span class="label label-success">Pass</span>
 		   	<? }else{ ?>
 		   	<? $confFailCnt++; ?>
