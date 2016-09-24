@@ -1,7 +1,7 @@
 /***** face init end ******/
 window.fbAsyncInit = function() {
 	FB.init({
-		appId : '822982321170072',
+		appId : fa_client_id,
 		xfbml : true,
 		version : 'v2.7'
 	});
@@ -197,14 +197,19 @@ function snsLogin(sns_type,event_type){
 					'sns_type': sns_type,
 					'fa_id': arr_sns_reply_user_info.user_id,
 					'fa_email': arr_sns_reply_user_info.user_email,
-					'fa_name': arr_sns_reply_user_info.user_name
+					'fa_name': arr_sns_reply_user_info.user_name,
+					'admin_flg':$('#admin_flg').val()
 					//'user_img_path': arr_sns_reply_user_info.user_img_path
 				},
 				type: 'POST',
 				dataType: 'json',
 				success: function(jsonResult){
 					if(jsonResult.result){
-						location.reload();
+						if($('#admin_flg').val()){
+							location.href='/';
+						}else{
+							location.reload();
+						}
 					}else{
 						alert('인증오류');
 						objCommon.logOut();

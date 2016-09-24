@@ -24,7 +24,7 @@
 <? if(!$_SESSION['smart_omr']['member_key']){ ?>
 <!-- kakao -->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<?php  include($_SERVER["DOCUMENT_ROOT"]."/smart_omr/_common/elements/kakao_auth.php");?>
+<script src="/smart_omr/_js/ka_social.js"></script>
 <!-- facebook -->
 <script src="/smart_omr/_js/fa_social.js"></script>
 <!-- naver -->
