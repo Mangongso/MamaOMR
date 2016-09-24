@@ -42,6 +42,7 @@ if (($DB_info ['MAIN_SERVER'] ['host'] == "MAMA_OMR_DB_HOST" || ! trim ( $DB_inf
 if ($DB_info ['MAIN_SERVER'] ['host'] && $DB_info ['MAIN_SERVER'] ['database'] && $DB_info ['MAIN_SERVER'] ['user'] && $DB_info ['MAIN_SERVER'] ['pass']) {
 	if (phpversion () < 7) {
 		$conn = mysql_connect ( $DB_info ['MAIN_SERVER'] ['host'], $DB_info ['MAIN_SERVER'] ['user'], $DB_info ['MAIN_SERVER'] ['pass'], true );
+		$conn = mysql_select_db($DB_info['MAIN_SERVER']['database']);
 	} else {
 		try {
 			$conn = new PDO ( 'mysql:host=' . $DB_info ['MAIN_SERVER'] ['host'] . ';dbname=' . $DB_info ['MAIN_SERVER'] ['database'], $DB_info ['MAIN_SERVER'] ['user'], $DB_info ['MAIN_SERVER'] ['pass'] );
