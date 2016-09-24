@@ -5,11 +5,12 @@ if (count($arrConfFailCnt) > 0) {
 } else {
 	// DB Create QUERY 설정
 	include (CONTROLLER_NAME . "/Install/CreateTableQuery.php");
-	// Table 생성
-	foreach($arrTable as $strKey=>$strQuery){
-		// check installed
-		$arrResult = $resMangongDB->DB_access($resMangongDB, "show tables");
-		if(count($arrResult)==0){
+	
+	// check installed
+	$arrResult = $resMangongDB->DB_access($resMangongDB, "show tables");
+	if(count($arrResult)==0){
+		// Table 생성
+		foreach($arrTable as $strKey=>$strQuery){
 			//create table
 			if (!$resMangongDB->DB_access($resMangongDB, $strQuery)){
 				$boolResult = false;
@@ -18,10 +19,10 @@ if (count($arrConfFailCnt) > 0) {
 				$boolResult = true;
 			}
 			$flgInstalled = false;
-		}else{
-			$boolResult = true;
-			$flgInstalled = true;
-		}
+		}		
+	}else{
+		$boolResult = true;
+		$flgInstalled = true;
 	}
 }
 $arr_output = array('installed'=>$flgInstalled,'error_cnt'=>count($arrConfFailCnt),'error_no'=>join(',',$arrConfFailCnt),'result'=>$boolResult);
