@@ -43,48 +43,33 @@ $API_key = array ();
 switch (SERVICE_MODE) {
 	case ("PRODUCTION") :
 		$API_key ['naver'] = array (
-				'client_id' => '',
-				'client_secret' => '',
-				'callback_url' => '',
-				'domain'=>''
+				'client_id' => 'CLIENT_ID',
+				'client_secret' => 'CLIENT_SECRET',
+				'callback_url' => 'CALLBACK_URL',
+				'domain'=>'DOMAIN'
 		);
-		$API_key ['facebook'] = array (	'app_id' => '');	
-		$API_key ['kakao'] = array (
-				'client_id' => '',
-				'client_secret' => '',
-				'callback_url' => '',
-				'domain'=>''
-		);		
+		$API_key ['facebook'] = array (	'app_id' => 'APP_ID' );
+		$API_key ['kakao'] = array (	'client_id' => 'APP_ID' );
 		break;
 	case ("STAGE") :
 		$API_key ['naver'] = array (
-				'client_id' => '',
-				'client_secret' => '',
-				'callback_url' => '',
-				'domain'=>''
+				'client_id' => 'CLIENT_ID',
+				'client_secret' => 'CLIENT_SECRET',
+				'callback_url' => 'CALLBACK_URL',
+				'domain'=>'DOMAIN'
 		);
-		$API_key ['facebook'] = array (	'app_id' => '');	
-		$API_key ['kakao'] = array (
-				'client_id' => '',
-				'client_secret' => '',
-				'callback_url' => '',
-				'domain'=>''
-		);		
+		$API_key ['facebook'] = array (	'app_id' => 'APP_ID' );
+		$API_key ['kakao'] = array (	'client_id' => 'APP_ID' );	
 		break;
 	default :
 		$API_key ['naver'] = array (
-				'client_id' => '',
-				'client_secret' => '',
-				'callback_url' => '',
-				'domain'=>''
+				'client_id' => 'CLIENT_ID',
+				'client_secret' => 'CLIENT_SECRET',
+				'callback_url' => 'CALLBACK_URL',
+				'domain'=>'DOMAIN'
 		);
-		$API_key ['facebook'] = array (	'app_id' => '');	
-		$API_key ['kakao'] = array (
-				'client_id' => '',
-				'client_secret' => '',
-				'callback_url' => '',
-				'domain'=>''
-		);		
+		$API_key ['facebook'] = array (	'app_id' => 'APP_ID' );
+		$API_key ['kakao'] = array (	'client_id' => 'APP_ID' );	
 		break;
 }
 define("BOOK_SEARCH_API_KEY","49769dcbb5d89eaf2d3c069ac7ca321e");
