@@ -14,7 +14,7 @@ if (!file_exists ( $_SERVER ["DOCUMENT_ROOT"] . "/_connector/yellow.501.php" )) 
 	array_push($arrConfFailCnt,1);
 }
 // 2.Include path 확인
-if (strpos ( ini_get ( 'include_path' ), dirname ( $_SERVER ["DOCUMENT_ROOT"], 1 ) ) === false) {
+if (strpos ( ini_get ( 'include_path' ), realpath($_SERVER["DOCUMENT_ROOT"]."/..") ) === false) {
 	array_push($arrConfFailCnt,2);
 }
 // 3.Question upload directory 확인
@@ -26,7 +26,7 @@ if (!defined ( "OMR_FILE_DIR" ) || !trim ( OMR_FILE_DIR )) {
 	array_push($arrConfFailCnt,4);
 }
 // 5.Files directory 확인
-if (!file_exists ( dirname ( $_SERVER ["DOCUMENT_ROOT"], 1 ) . "/Files" ) || !substr ( sprintf ( "%o", fileperms ( dirname ( $_SERVER ["DOCUMENT_ROOT"], 1 ) . "/Files" ) ), - 4 ) == "0777") {
+if (!file_exists ( realpath($_SERVER["DOCUMENT_ROOT"]."/..") . "/Files" ) || !substr ( sprintf ( "%o", fileperms ( realpath($_SERVER["DOCUMENT_ROOT"]."/..") . "/Files" ) ), - 4 ) == "0777") {
 	array_push($arrConfFailCnt,5);
 }
 // 6.Config File 확인

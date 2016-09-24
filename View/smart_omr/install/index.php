@@ -41,13 +41,13 @@
 		    Connector File 생성 - View/_connector/yellow.501.default.php 파일을 yellow.501.php 로 복사합니다.
 		  </li>	
 		  <li class="list-group-item">
-		  	<? if(strpos(ini_get('include_path'),dirname($_SERVER["DOCUMENT_ROOT"],1))!==false){?>
+		  	<? if(strpos(ini_get('include_path'),realpath($_SERVER["DOCUMENT_ROOT"]."/.."))!==false){?>
 		   <span class="label label-success">Pass</span>
 		   	<? }else{ ?>
 		   	<? $confFailCnt++; ?>
 		   	<span class="label label-danger">Fail</span>
 		    <? } ?>
-		    yellow.501.php 파일에  ini_set("include_path",""); 를 설정 하세요. - <?=dirname($_SERVER["DOCUMENT_ROOT"],1);?>
+		    yellow.501.php 파일에  ini_set("include_path",""); 를 설정 하세요. - <?=realpath($_SERVER["DOCUMENT_ROOT"]."/..");?>
 		  </li>	
 		  <li class="list-group-item">
 		  	<? if(defined("QUESTION_FILE_DIR") && trim(QUESTION_FILE_DIR)){?>
@@ -56,7 +56,7 @@
 		   	<? $confFailCnt++; ?>
 		   	<span class="label label-danger">Fail</span>
 		    <? } ?>
-		    yellow.501.php 파일에  define("QUESTION_FILE_DIR",""); 를 설정 하세요. - <?=dirname($_SERVER["DOCUMENT_ROOT"],1);?>/Files/Questions
+		    yellow.501.php 파일에  define("QUESTION_FILE_DIR",""); 를 설정 하세요. - <?=realpath($_SERVER["DOCUMENT_ROOT"]."/..");?>/Files/Questions
 		  </li>	
 		  <li class="list-group-item">
 		  	<? if(defined("OMR_FILE_DIR") && trim(OMR_FILE_DIR)){?>
@@ -65,7 +65,7 @@
 		   	<? $confFailCnt++; ?>
 		   	<span class="label label-danger">Fail</span>
 		    <? } ?>
-		    yellow.501.php 파일에   define("OMR_FILE_DIR","");	 를 설정 하세요. - <?=dirname($_SERVER["DOCUMENT_ROOT"],1);?>/Files/OMR
+		    yellow.501.php 파일에   define("OMR_FILE_DIR","");	 를 설정 하세요. - <?=realpath($_SERVER["DOCUMENT_ROOT"]."/..");?>/Files/OMR
 		  </li>
 		  <li class="list-group-item">
 		  	<? if(file_exists(dirname($_SERVER["DOCUMENT_ROOT"],1)."/Files") && substr(sprintf("%o",fileperms(dirname($_SERVER["DOCUMENT_ROOT"],1)."/Files")),-4)=="0777" ){?>
@@ -74,7 +74,7 @@
 		   	<? $confFailCnt++; ?>
 		   	<span class="label label-danger">Fail</span>
 		    <? } ?>
-		   <?=dirname($_SERVER["DOCUMENT_ROOT"],1);?>/Files 디렉터리를 퍼미션은 777(rwxrwxrwx)로 생성하세요.
+		   <?=realpath($_SERVER["DOCUMENT_ROOT"]."/..");?>/Files 디렉터리를 퍼미션은 777(rwxrwxrwx)로 생성하세요.
 		  </li>			  
 		</ul>
 	</div>
