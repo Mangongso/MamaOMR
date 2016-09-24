@@ -72,9 +72,7 @@ switch (SERVICE_MODE) {
 				'domain'=>'dev.mamaomr.hanbnc.com'
 		);
 		$API_key ['facebook'] = array (	'app_id' => '822982321170072');	
-		$API_key ['kakao'] = array (
-				'client_id' => '644b0692348ccc4135363f85afa01b13',
-		);		
+		$API_key ['kakao'] = array ('client_id' => '644b0692348ccc4135363f85afa01b13');		
 		/*
 		$API_key ['naver'] = array (
 				'client_id' => '',
