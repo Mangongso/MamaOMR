@@ -54,5 +54,6 @@
 </div>
 <? include("../_common/include/foot_menu.php"); ?>
 	</div>
+	</div>
 <? include("../_common/include/footer.php"); ?>
 <? include("../_common/include/bottom.php"); ?>

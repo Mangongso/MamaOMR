@@ -14,5 +14,6 @@ $this->quary["insert_member_basic_info"] = "insert into member_basic_info set " 
 		"del_flg = '0',".
 		"confirm_flg = $arr_input[confirm_flg],".
 		"join_type = ".($arr_input['join_type']?$arr_input['join_type']:JOIN_HANBNC).",".
+		"admin_level = ".($arr_input['admin_level']?$arr_input['admin_level']:0).",".
 		"n_keyword = '".$arr_input['n_keyword']."'";
 ?>

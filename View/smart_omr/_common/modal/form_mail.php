@@ -17,11 +17,11 @@
 				<!-- ################################################################### -->
 				<form>
 					<div class="form-group">
-						<label for="recipient-name2" class="control-label" for="recipient-name2">Recipient:</label>
+						<label class="control-label" for="recipient-name2">Recipient:</label>
 						<input type="text" class="form-control" id="recipient-name2" />
 					</div>
 					<div class="form-group">
-						<label for="message-text2" class="control-label" for="message-text2">Message:</label>
+						<label class="control-label" for="message-text2">Message:</label>
 						<textarea class="form-control" id="message-text2"></textarea>
 					</div>
 				</form>

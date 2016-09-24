@@ -1,1 +1,10 @@
-@CHARSET "EUC-KR";
+@CHARSET "utf-8";
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto+Mono);
+@import url("https://googledrive.com/host/0BxmAw3HA4YGCfkljOGVJb3RMR200clRfUTVVdXlaRElPRTV3VGlNZVZ3ay1EYjdiZjJockk/notokr-regular.css"); 
+@import url("https://googledrive.com/host/0BxmAw3HA4YGCfndGUGZVNzBEbVdkZGg0M0R1OElFeXcteXFVNUFOYlQ4TUdNWHZVQlJHaXM/notokr-black.css"); 
+@import url("https://googledrive.com/host/0BxmAw3HA4YGCfnV0d3J5S21BSFdGUXctekQ1eHJoczF2OUcyTGZna3laMlg2MWR6cWoyV1E/notokr-bold.css"); 
+@import url("https://googledrive.com/host/0BxmAw3HA4YGCfnVVTFJoaHQ2R0xQNURCSmp0M1BrWVQ5SVFKN05uaTRabC1XeFRpUm51T2c/notokr-demilight.css"); 
+@import url("https://googledrive.com/host/0BxmAw3HA4YGCfk5lRk1WVjhQWVRHRldCVEw0TU1qMHhvNEdfM1E0cjZ1Z2ZHRDFfcWRVSDA/notokr-light.css"); 
+@import url("https://googledrive.com/host/0BxmAw3HA4YGCfmN1U19nTHpWVFd2NHA2dXJ4c0FvOEdVcF9mc3ZfcWNyZjRDZ2plMy12SzQ/notokr-medium.css"); 
+@import url("https://googledrive.com/host/0BxmAw3HA4YGCflRiaUxHOFVCcXVfWmpqeERVZ3AzcDAtM2FRV25XclJDRnVrTVVqamZJcEE/notokr-thin.css")
+@import 'https://fonts.googleapis.com/css?family=Roboto+Condensed';

@@ -1,10 +1,14 @@
 <?php
-if(!$viewID){
+if (! $viewID) {
 	$viewID = "SOMR_EXERCISE_BOOK_TEST_RESULT";
 	include ($_SERVER ["DOCUMENT_ROOT"] . "/_connector/yellow.501.php");
 }
 ?>
 <? foreach($arr_output['wrong_answer'] as $intKey=>$arrWrongAnswer){ ?>
+<!--###################################################################-->
+<!--######################### Wrong Note List #########################-->
+<!--###################################################################-->
+<!-- ######## -->
 <div
 	class="uk-width-1-1 wrong_answer <?=$arrWrongAnswer['result_flg']?'test_right_answer':'test_wrong_answer'?>"
 	id="question_<?=$arrWrongAnswer['question_seq']?>"
@@ -16,14 +20,20 @@ if(!$viewID){
 						<? if(!$arrWrongAnswer['wrong_note_list_seq']){ ?>
 						<button type="button" class="pure-button pure-form_in"
 			data-modal-type="editor"
-			data-wrong-answer="<?=$arrWrongAnswer['seq'];?>"><i class="fa fa-arrow-up" aria-hidden="true"></i> 오답문제 입력</button>
+			data-wrong-answer="<?=$arrWrongAnswer['seq'];?>">
+			<i class="fa fa-arrow-up" aria-hidden="true"></i> 오답문제 입력
+		</button>
 						<? }else{ ?>
-						<div class="uk-float-left date_posted">Date/<?=$arrWrongAnswer['wrong_note_date'];?></div>
+						<div class="uk-float-left date_posted">등록/<?=$arrWrongAnswer['wrong_note_date'];?></div>
 		<div class="uk-float-right">
-			<button type="button" class="pure-button pure-form_in" data-modal-type="editor"
-				data-wrong-answer="<?=$arrWrongAnswer['seq'];?>"><i class="fa fa-undo" aria-hidden="true"></i> 수정</button>
+			<button type="button" class="pure-button pure-form_in"
+				data-modal-type="editor"
+				data-wrong-answer="<?=$arrWrongAnswer['seq'];?>">
+				<i class="fa fa-undo" aria-hidden="true"></i> 수정
+			</button>
 		</div>
 						<? } ?>
 					</div>
 </div>
+<!-- ######## -->
 <? } ?>		

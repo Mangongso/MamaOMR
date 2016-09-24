@@ -18,8 +18,7 @@
 						class="fa fa-envelope fa-stack-1x fa-inverse"></i>
 					</span> <br />
 					<h3>
-						궁금한 사항을 물어보세요!<br />
-						<span>마마OMR에 궁금한 모든 사항을 보내주시면 신속한 답변드리겠습니다.</span>
+						궁금한 사항을 물어보세요!<br /> <span>마마OMR에 궁금한 모든 사항을 보내주시면 신속한 답변드리겠습니다.</span>
 					</h3>
 				</div>
 				<div class="sub_contents_body_box">

@@ -58,7 +58,8 @@ function Registration() {
 			success : function(jsonResult) {
 				if(jsonResult.boolResult){
 					halert('등록이 완료 되었습니다.');
-					location.href="/smart_omr/exercise_book/registration_detail.php?bs="+jsonResult.str_book_seq;
+					// location.href="/smart_omr/exercise_book/registration_detail.php?bs="+jsonResult.str_book_seq;
+					location.href="/smart_omr/exercise_book/detail.php?bs="+jsonResult.str_book_seq;
 				}else{
 					switch(jsonResult.err_code){
 					case(1):

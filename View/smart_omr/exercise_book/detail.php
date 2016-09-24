@@ -1,7 +1,8 @@
 <? $viewID = "SOMR_EXERCISE_BOOK_DETAIL"; ?>
 <? include("../_common/include/header.php"); ?>
 <?
-$arrBookInfo = $arr_output['book_info'][0];
+
+$arrBookInfo = $arr_output ['book_info'] [0];
 ?>
 <div id="layout">
 	<!-- GNB START -->
@@ -32,8 +33,7 @@ $arrBookInfo = $arr_output['book_info'][0];
 				<div class="sub_contents_body_box">
 					<h4 class="uk-clearfix">
 						<i class="fa fa-arrow-down" aria-hidden="true"></i> <?=$arrTest['subject']?><br
-							class="visible-xs" />
-						<span><a
+							class="visible-xs" /> <span><a
 							href="/smart_omr/_common/document/pdf/?t=<?=md5($arrTest['test_seq'])?>"
 							target="_blank"><i class="fa fa-arrow-down" aria-hidden="true"></i>
 								OMR 다운로드</a></span>
@@ -94,8 +94,8 @@ $arrBookInfo = $arr_output['book_info'][0];
 							<h4
 								style="text-align: center; margin-top: 10px; margin-bottom: 10px; border-bottom: 0px;">등록된
 								테스트가 없습니다.</h4>
-							아래의 OMR 등록 버튼을 클릭하신 후 답을 등록하여 주십시오.<br />
-							<i class="fa fa-arrow-down" aria-hidden="true"></i>
+							아래의 OMR 등록 버튼을 클릭하신 후 답을 등록하여 주십시오.<br /> <i
+								class="fa fa-arrow-down" aria-hidden="true"></i>
 						</div>
 					</div>
 					<div class="info-img">

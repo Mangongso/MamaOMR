@@ -4,6 +4,9 @@
 <!-- GNB START -->
 <? include("../_common/include/GNB.php"); ?>
 <!-- GNB END -->
+	<!--##############################################################################-->
+	<!--######################### Exercise book Registration #########################-->
+	<!--##############################################################################-->
 	<script>
     $(function(){
         var progressbar = $("#progressbar"),
@@ -40,9 +43,6 @@
             drop   = UIkit.uploadDrop($("#upload-drop"), settings);
     });
 </script>
-	<!--##############################################################################-->
-	<!--######################### Exercise book Registration #########################-->
-	<!--##############################################################################-->
 	<div id="main">
 		<div class="container-fluid sub_container-fluid">
 			<!--####################################################################################-->
@@ -59,9 +59,6 @@
 						<h2>
 							문제집 ISBN번호 등록<span></span>
 						</h2>
-						<!-- p>등록하시려는 ISBN번호를 확인하신 후 해당 ISBN번호를 입력하여 주십시오.<br/>
-					<span>ISBN번호는 문제집 뒷면의 바코드부분에 있습니다.</span>
-				</p-->
 						<!-- ##cover-img## -->
 						<div class="cover_img_title">
 							<div class="cover_img">
@@ -162,8 +159,6 @@
         
 <? include("../_common/include/foot_menu.php"); ?>
 </div>
-	<!-- CONTENTS BODY -->
 </div>
-<!-- CONTENTS BODY -->
 <? include("../_common/include/footer.php"); ?>
 <? include("../_common/include/bottom.php"); ?>
