@@ -1,4 +1,10 @@
 <?php
+/**
+ * ----------------------------------------
+ * This file copy to yellow.501.php
+ * ----------------------------------------
+ */
+
 /*
  * Set Iniclude Path - MamaOMR Install Directory 
  * ex)/home/MamaOMR
