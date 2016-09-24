@@ -11,7 +11,7 @@ if (PHP_MAJOR_VERSION >= 7) {
 }
 /* set session env */
 session_cache_limiter("private");
-
+/*
 if( $viewID=="INSTALL" || $_REQUEST['viewID']=="CREATE_CONF" || $viewID=="INSTALL_ADM_SETTING" ){
 }else{
 	if(($viewID!="SOCIAL_AUTH"&&$_REQUEST['admin_flg']!=1)){
@@ -19,6 +19,8 @@ if( $viewID=="INSTALL" || $_REQUEST['viewID']=="CREATE_CONF" || $viewID=="INSTAL
 	}
 	require_once(CONTROLLER_NAME."/_Config/MamaOMR.conf.php");
 }
+*/
+require_once(CONTROLLER_NAME."/_Config/MamaOMR.conf.php");
 if(empty($viewID)){
 	$viewID=$_POST['viewID']?$_POST['viewID']:$_GET['viewID'];
 }

@@ -36,7 +36,7 @@ class StudentMG{
 	 * @return boolean  학습매니져 수정 성공 여부 반환 (false|true)
 	 */
 	public function updateManagerStudent($intManagerSeq,$strStudentSeq,$strAuthKey){
-		include("Model/Mangong/SQL/MySQL/StudentMG/updateManagerStudent.php");
+		include("Model/ManGong/SQL/MySQL/StudentMG/updateManagerStudent.php");
 		$boolResult = $this->resStudentMGDB->DB_access($this->resStudentMGDB,$strQuery);
 		return($boolResult);		
 	}
@@ -50,7 +50,7 @@ class StudentMG{
 	 * @return array  user_table table 참조
 	 */
 	public function getManagerStudentList($strManagerSeq,$strStudentSeq=null){
-		include("Model/Mangong/SQL/MySQL/StudentMG/getManagerStudentList.php");
+		include("Model/ManGong/SQL/MySQL/StudentMG/getManagerStudentList.php");
 		$arrResult = $this->resStudentMGDB->DB_access($this->resStudentMGDB,$strQuery);
 		return($arrResult);		
 	}
@@ -63,7 +63,7 @@ class StudentMG{
 	 * @return array  student_manager table 참조
 	 */
 	public function getManagerStudentByAuthKey($strAuthKey){
-		include("Model/Mangong/SQL/MySQL/StudentMG/getManagerStudentByAuthKey.php");
+		include("Model/ManGong/SQL/MySQL/StudentMG/getManagerStudentByAuthKey.php");
 		$arrResult = $this->resStudentMGDB->DB_access($this->resStudentMGDB,$strQuery);
 		return($arrResult);		
 	}
@@ -77,7 +77,7 @@ class StudentMG{
 	 * @return boolean  학습매니져 저장 성공 여부 반환 (false|true)
 	 */
 	public function setManagerStudentAuthKey($intStudentSeq,$strAuthKey){
-		include("Model/Mangong/SQL/MySQL/StudentMG/setManagerStudentAuthKey.php");
+		include("Model/ManGong/SQL/MySQL/StudentMG/setManagerStudentAuthKey.php");
 		$boolResult = $this->resStudentMGDB->DB_access($this->resStudentMGDB,$strQuery);
 		return($boolResult);		
 	}
@@ -91,7 +91,7 @@ class StudentMG{
 	 * @return boolean  학습매니져 인증키 삭제 성공 여부 반환 (false|true)
 	 */
 	public function deleteManagerStudentAuthKey($strStudentSeq,$strAuthKey){
-		include("Model/Mangong/SQL/MySQL/StudentMG/deleteManagerStudentAuthKey.php");
+		include("Model/ManGong/SQL/MySQL/StudentMG/deleteManagerStudentAuthKey.php");
 		$boolResult = $this->resStudentMGDB->DB_access($this->resStudentMGDB,$strQuery);
 		return($boolResult);		
 	}

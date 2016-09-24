@@ -11,7 +11,7 @@
 			src="/smart_omr/_images/mama-omr-h-logo.png" alt="MamaOMR Home" /></a>
 <? if($_SESSION['smart_omr']['member_key']){ ?>
 <button class="uk-button uk-navbar-flip _d_logout">
-			<i class="fa fa-user" aria-hidden="true"></i>
+			<i class="fa fa-sign-out" aria-hidden="true"></i>
 		</button>
 <? }else{ ?>
 <button class="uk-button uk-navbar-flip"

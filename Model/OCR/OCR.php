@@ -12,7 +12,7 @@ if(file_exists(ini_get('include_path')."/ExternalApps/tesseract-ocr-for-php")){
  * @category     	OCR
  */
 class OCR{
-	private $strApiKey = "b1e84bfdec88957";
+	private $strApiKey = OCR_API_KEY;
 	private $strOCRType = OCR_TYPE;
 	private $strOCRSpaceAPI = "https://api.ocr.space/Parse/Image";
 	private $intOCRSpaceMaxFileSize = "1000"; // size is KB

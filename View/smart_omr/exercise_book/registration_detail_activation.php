@@ -108,6 +108,7 @@
 					}
 					?>
 						<? foreach($arrQuestionInfo['example']['type_1'] as $intExampleKey=>$arrExample){ ?>
+						<? if($arr_output['editble']){ ?>
 						<label
 									class="uk-width-<?=$intExampleWidth?>-10 btn btn-default <?=$arrExample['answer_flg']?'active':''?>"
 									onclick="$('#answer_<?=$arrQuestionInfo['question_seq']?>_seq').val($('#example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>').val());"
@@ -116,6 +117,16 @@
 									id="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>"
 									autocomplete="off"><?=$arrExample['example_number'];?>
 					  	</label>
+					  	<? }else{ ?>
+						<label disabled
+									class="uk-width-<?=$intExampleWidth?>-10 btn btn-default <?=$arrExample['answer_flg']?'active':''?>"
+									onclick="$('#answer_<?=$arrQuestionInfo['question_seq']?>_seq').val($('#example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>').val());"
+									for="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>">
+									<input type="hidden" value="<?=$arrExample['seq'];?>"
+									id="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>"
+									autocomplete="off" disabled><?=$arrExample['example_number'];?>
+					  	</label>					  	
+					  	<? } ?>
 					  	<? } ?>
 					</div>
 							<div class="question_info">

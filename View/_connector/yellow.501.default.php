@@ -33,7 +33,11 @@
   */
 $XML_mapping_file = "ControllerMapping.xml";
 /* 상수 설정 */
+if(strpos(ini_get('include_path'),dirname($_SERVER["DOCUMENT_ROOT"],1))!=false){
 include(CONTROLLER_NAME."/_Lib/Constant.php");
+}
 /* Include Controller */
+if($viewID){
 include(CONTROLLER_NAME."/_Lib/Controller.php");
+}
 ?>
