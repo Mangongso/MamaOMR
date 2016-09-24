@@ -41,7 +41,7 @@
 		    Connector File 생성 - View/_connector/yellow.501.default.php 파일을 yellow.501.php 로 복사합니다.
 		  </li>	
 		  <li class="list-group-item">
-		  	<? if(strpos(ini_get('include_path'),realpath($_SERVER["DOCUMENT_ROOT"]."/.."))!==false){?>
+		  	<? if(strpos(realpath(ini_get('include_path')),realpath($_SERVER["DOCUMENT_ROOT"]."/.."))!==false){?>
 		   <span class="label label-success">Pass</span>
 		   	<? }else{ ?>
 		   	<? $confFailCnt++; ?>
@@ -68,7 +68,7 @@
 		    yellow.501.php 파일에   define("OMR_FILE_DIR","");	 를 설정 하세요. - <?=realpath($_SERVER["DOCUMENT_ROOT"]."/..");?>/Files/OMR
 		  </li>
 		  <li class="list-group-item">
-		  	<? if(file_exists(dirname($_SERVER["DOCUMENT_ROOT"],1)."/Files") && substr(sprintf("%o",fileperms(dirname($_SERVER["DOCUMENT_ROOT"],1)."/Files")),-4)=="0777" ){?>
+		  	<? if(file_exists(realpath($_SERVER["DOCUMENT_ROOT"]."/..")."/Files") && substr(sprintf("%o",fileperms(realpath($_SERVER["DOCUMENT_ROOT"]."/..")."/Files")),-4)=="0777" ){?>
 		   <span class="label label-success">Pass</span>
 		   	<? }else{ ?>
 		   	<? $confFailCnt++; ?>
