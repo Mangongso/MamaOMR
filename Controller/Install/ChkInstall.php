@@ -14,7 +14,7 @@ if (!file_exists ( $_SERVER ["DOCUMENT_ROOT"] . "/_connector/yellow.501.php" )) 
 	array_push($arrConfFailCnt,1);
 }
 // 2.Include path 확인
-if(strpos(realpath(ini_get('include_path')),realpath($_SERVER["DOCUMENT_ROOT"]."/.."))!==false){
+if(strpos(realpath(ini_get('include_path')),realpath($_SERVER["DOCUMENT_ROOT"]."/.."))===false){
 	array_push($arrConfFailCnt,2);
 }
 // 3.Question upload directory 확인
