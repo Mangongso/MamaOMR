@@ -1,9 +1,5 @@
 <? $viewID = "SOMR_EXERCISE_BOOK_DETAIL"; ?>
 <? include("../_common/include/header.php"); ?>
-<?
-
-$arrBookInfo = $arr_output ['book_info'] [0];
-?>
 <div id="layout">
 	<!-- GNB START -->
 <? include("../_common/include/GNB.php"); ?>
@@ -34,7 +30,7 @@ $arrBookInfo = $arr_output ['book_info'] [0];
 					<h4 class="uk-clearfix">
 						<i class="fa fa-arrow-down" aria-hidden="true"></i> <?=$arrTest['subject']?><br
 							class="visible-xs" /> <span><a
-							href="/smart_omr/_common/document/pdf/?t=<?=md5($arrTest['test_seq'])?>"
+							href="../_images/omr/mama-omr-e<?=$arrTest['example_count']?>.png"
 							target="_blank"><i class="fa fa-arrow-down" aria-hidden="true"></i>
 								OMR 다운로드</a></span>
 					</h4>
