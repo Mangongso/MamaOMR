@@ -65,7 +65,7 @@ $(document).ready(function(){
 				<? foreach($arr_output['test_question_list'] as $intKey=>$arrQuestionInfo){ ?>
 				<div class="uk-width-1-1 question_div"
 					id="question_<?=$arrQuestionInfo['question_seq']?>"
-					question_seq="<?=$arrQuestionInfo['question_seq']?>">
+					data-question-seq="<?=$arrQuestionInfo['question_seq']?>">
 					<input type="hidden"
 						name="question_seq[<?=$arrQuestionInfo['question_seq']?>]"
 						id="question_seq_<?=$arrQuestionInfo['question_seq']?>"
@@ -83,7 +83,7 @@ $(document).ready(function(){
 						id="question_score_<?=$arrQuestionInfo['question_seq']?>"
 						value="<?=$arrQuestionInfo['question_score']?>"> <input
 						class="question_type" type="hidden"
-						question_seq="<?=$arrQuestionInfo['question_seq']?>"
+						data-question-seq="<?=$arrQuestionInfo['question_seq']?>"
 						name="question_type[<?=$arrQuestionInfo['question_seq']?>]"
 						id="question_type_<?=$arrQuestionInfo['question_seq']?>"
 						value="<?=$arrQuestionInfo['question_type']?>">
@@ -114,7 +114,7 @@ $(document).ready(function(){
 							for="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>">
 							<input type="radio" value="<?=$arrExample['seq'];?>"
 							id="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>"
-							autocomplete="off"> <?=$arrExample['example_number'];?> 
+							> <?=$arrExample['example_number'];?> 
 						</label>
 						<? } ?>
 					</div>

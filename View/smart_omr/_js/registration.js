@@ -193,7 +193,7 @@ function Registration() {
 			return false;
 		}
 		//get last question seq
-		intQuestionSeq = intQuestionSeq?intQuestionSeq:$('.question_div').eq(($('.question_div').length)-1).attr('question_seq');
+		intQuestionSeq = intQuestionSeq?intQuestionSeq:$('.question_div').eq(($('.question_div').length)-1).attr('data-question-seq');
 		//get first order_number for reset order number
 		var firstOrderNumber = $('.order_number').eq(0).val();
 		console.log('question::'+intQuestionSeq);
