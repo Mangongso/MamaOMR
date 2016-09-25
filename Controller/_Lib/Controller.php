@@ -3,6 +3,23 @@
  * View 와 Controller를 Mapping 해줌
  * @param string	$viewID 컨트롤러 구분
  * */
+session_start();
+if (PHP_MAJOR_VERSION >= 7) {
+	set_error_handler(function ($errno, $errstr) {
+		return strpos($errstr, 'Declaration of') === 0;
+	}, E_WARNING);
+}
+/* set session env */
+session_cache_limiter("private");
+/*
+if( $viewID=="INSTALL" || $_REQUEST['viewID']=="CREATE_CONF" || $viewID=="INSTALL_ADM_SETTING" ){
+}else{
+	if(($viewID!="SOCIAL_AUTH"&&$_REQUEST['admin_flg']!=1)){
+		include(CONTROLLER_NAME."/_Lib/ChkInstall.php");
+	}
+	require_once(CONTROLLER_NAME."/_Config/MamaOMR.conf.php");
+}
+*/
 require_once(CONTROLLER_NAME."/_Config/MamaOMR.conf.php");
 if(empty($viewID)){
 	$viewID=$_POST['viewID']?$_POST['viewID']:$_GET['viewID'];

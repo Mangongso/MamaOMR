@@ -1,4 +1,11 @@
-<? include($_SERVER["DOCUMENT_ROOT"]."/_connector/yellow.501.php"); ?>
+<? 
+if(!file_exists($_SERVER["DOCUMENT_ROOT"]."/_connector/yellow.501.php") || !file_exists($_SERVER["DOCUMENT_ROOT"]."/../Controller/_Config/MamaOMR.conf.php")){
+	header("location:./install/index.php");
+	exit;
+}else{
+	include($_SERVER["DOCUMENT_ROOT"]."/_connector/yellow.501.php"); 
+}
+?>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -120,9 +127,15 @@
 <!--######################### Naver API #########################-->
 <!--#############################################################-->
 <script>
+/* naver api key */
 naverClientID = "<?=$API_key['naver']['client_id']?>";
 naverCallBackURL = "<?=$API_key['naver']['callback_url']?>";
 naverDomain = "<?=$API_key['naver']['domain']?>";
+/* naver api key */
+ var ka_session_token = '<?=$_SESSION['smart_omr']['kakao_access_token']?$_SESSION['smart_omr']['kakao_access_token']:'undefined';?>';
+ var ka_client_id = '<?=$API_key['kakao']['client_id']?>';
+ /* facebook apii key */
+ var fa_client_id = '<?=$API_key['facebook']['app_id']?>';
 </script>
 </head>
 <body>

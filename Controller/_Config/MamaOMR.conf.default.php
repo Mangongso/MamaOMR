@@ -1,40 +1,56 @@
 <?php
-/* 
- * DB Connection Information 
- * SERVICE_MODE in the View/_connector/yellow.501.php
- * SERVICE_MODE : STAGE or PRODUCTION or Other(DEV)
+/**
+ * ----------------------------------------
+ * This file copy to MamaOMR.conf.php
+ * ----------------------------------------
  */
-$DB_info = array();
-switch(SERVICE_MODE){
-	case("STAGE"):
-		$DB_info['MAIN_SERVER'] = array('host'=>'localhost','user'=>'root','pass'=>'nothing','database'=>'mamaomr_stage');
-	break;
-	case("PRODUCTION"):
-		$DB_info['MAIN_SERVER'] = array('host'=>'localhost','user'=>'root','pass'=>'fkaofhrmdls','database'=>'mamaomr');
-	break;
-	default:
-		$DB_info['MAIN_SERVER'] = array('host'=>'localhost','user'=>'root','pass'=>'nothing','database'=>'mamaomr_dev');
-	break;
-}
 
-/*
- * Set Social key for login
+/**
+ * DB Connection Information
+ * MY_HOST : MySQL HOST ex)localhost,192.168.0.100
+ * MY_USER : MySQL User Name ex)gildong, john
+ * MY_PASSWORD : MySQL User Password
+ * MY_DATABASE : MySQL Database Name ex)mamaomr
  */
-$SNS_key = array();
-switch(SERVICE_MODE){
-	case("STAGE"):
-		$SNS_key['facebook'] = array('host'=>'localhost','user'=>'root','pass'=>'nothing','database'=>'mamaomr_stage');
-		break;
-	case("PRODUCTION"):
-		break;
-	default:
-		break;
-}	
+global $DB_info;
+$DB_info['MAIN_SERVER'] = array (
+		'host' => 'MAMA_OMR_DB_HOST',
+		'user' => 'MAMA_OMR_DB_USER',
+		'pass' => 'MAMA_OMR_DB_PASSWORD',
+		'database' => 'MAMA_OMR_DB_DATABASE' 
+);
+/**
+ * Set Social key
+ * Login MamaOMR With SNS
+ * doc - https://github.com/Mangongso/MamaOMR/wiki/%EC%84%A4%EC%B9%98%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0
+ */
+global $API_key;
+$API_key['naver'] = array (
+		'client_id' => 'CLIENT_ID',
+		'client_secret' => 'CLIENT_SECRET',
+		'callback_url' => $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/smart_omr/_common/elements/naver_auth_callback.php',
+		'domain'=>$_SERVER['HTTP_HOST']
+);
+$API_key['facebook'] = array (	'app_id' => 'APP_ID' );
+$API_key['kakao'] = array ('client_id' => 'CLIENT_ID' );
 
-/*
- * book search API
+/**
+ * Set book api key
+ * MamaOMR Book Search From Daum Book Search API
+ * doc - https://github.com/Mangongso/MamaOMR/wiki/%EC%84%A4%EC%B9%98%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0
  */
-define("BOOK_SEARCH_API_KEY","49769dcbb5d89eaf2d3c069ac7ca321e");
+define("BOOK_SEARCH_API_KEY","BOOK_SEARCH_API_KEY");
+
+/**
+ * File Upload Temp Directory
+ */
 define("TMP_DIR","/tmp/");
-//define("TMP_DIR","C:/xampp/tmp/");
+
+/**
+ * OCR Select
+ * MamaOMR Prepare 2 OMR one is tesseract the other is ocr.space API
+ * value : tesseract or ocr.space
+ */
+define("OCR_TYPE","ocr.space");
+define("OCR_API_KEY","OCR_API_KEY");
 ?>

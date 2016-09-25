@@ -80,6 +80,9 @@ if(count($arrMember)){
 		'member_type'=>"S",
 		'join_type'=>$intJoinType
 	);
+	if($_REQUEST['admin_flg']){
+		$arr_input['admin_level'] = 100;
+	}
 	$boolResult = $objMember->setMember($resMangongDB,$arr_input,$intMemberSeq);
 }
 /**
@@ -91,6 +94,7 @@ if($boolResult){
 		'member_key'=>md5($arrMember[0]['member_seq']),
 		'nickname'=>$arrMember[0]['nickname'],
 		'name'=>$arrMember[0]['name'],
+		'level'=>$arrMember[0]['admin_level'],
 		'member_type'=>$arrMember[0]['member_type'],
 		'kakao_access_token'=>$_REQUEST['access_token']
 	);

@@ -1,8 +1,23 @@
 <?xml version="1.0"?>
 <web-app> 
 	<controller-mapping>
-	
-			<!-- SMART_OMR -->
+			<!-- INSTALL -->
+		<controller viewID="INSTALL">
+			<controller-name>Install/Install.php</controller-name>
+			<presentation-name></presentation-name>
+			<parameter></parameter>
+			<js></js>
+			<css></css>				
+		</controller>			
+		<controller viewID="INSTALL_ADM_SETTING">
+			<controller-name>Install/InstallAdmSetting.php</controller-name>
+			<presentation-name></presentation-name>
+			<parameter></parameter>
+			<js></js>
+			<css></css>				
+		</controller>
+				
+		<!-- AUTH -->
 		<controller viewID="NAVER_AUTH_CALLBACK">
 			<controller-name></controller-name>
 			<presentation-name></presentation-name>
