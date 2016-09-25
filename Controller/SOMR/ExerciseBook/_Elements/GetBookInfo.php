@@ -3,9 +3,9 @@
 		 * ISBN 
 		 * */
 		$strApiKey = BOOK_SEARCH_API_KEY;
-		$strIsbnUrl = "https://apis.daum.net/search/book?apikey=".$strApiKey."&q=".$strIsbnCode."&searchType=isbn&output=xml";
+		$strIsbnUrl = $_SERVER['REQUEST_SCHEME']."://apis.daum.net/search/book?apikey=".$strApiKey."&q=".$strIsbnCode."&searchType=isbn&output=xml";
 		//get book info
-		$xmlstr = $objBook->get_xml_from_url($strIsbnUrl);
+		echo $xmlstr = $objBook->get_xml_from_url($strIsbnUrl);
 		$xmlobj = new SimpleXMLElement($xmlstr);
 		$xmlobj = json_decode(json_encode((array)$xmlobj), TRUE);
 		
