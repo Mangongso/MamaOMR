@@ -249,7 +249,7 @@ function Registration() {
 			success : function(resultHtml) {
 				$('#question_'+intBaseQuestionSeq).after(resultHtml);
 				//objRegistration.changeAnswerSelector($('#question_'+intAppendQuestionSeq+' #question_type_'+intAppendQuestionSeq));
-				//objRegistration.updateQuestionTotalInfo();
+				//objRegistration.updateQuestionTotalInfo();			
 				callBack.call();
 			}
 		});	
