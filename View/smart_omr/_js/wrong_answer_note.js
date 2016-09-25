@@ -89,13 +89,13 @@ function WrongAnswerNote(){
 		});		
 	};
 	this.runOrcImage = function(){
-		if(!$('#question_img').data('img_mode')){
+		if(!$('#modal-wa-editor #question_img').data('img_mode')){
 			halert("이미지를 업로드 하세요");
 			return(false);
 		}
 		var objDummy = new Image();
-		objDummy.src = $('#question_img').attr('src');
-		var strImgType = $('#question_img').data('img_mode');
+		objDummy.src = $('#modal-wa-editor #question_img').attr('src');
+		var strImgType = $('#modal-wa-editor #question_img').data('img_mode');
 		$.ajax({
 			url: '/_connector/yellow.501.php',
 			data:{'viewID':'SOMR_OCR','image':objDummy.src,'img_type':strImgType},

@@ -28,13 +28,13 @@ class OCR{
 	 * @param 	string 		$strLang 				언더
 	 * @return 	string		$strReturn		  : 변환 값을 반환
 	 */
-	public function convert($strDocImageFile,$strLang="kor"){
+	public function convert($strDocImageFile,$strDocImageUrl,$strLang="kor"){
 		switch($this->strOCRType){
 			case('tesseract'):
 				$strReturn = $this->convertByTesseract($strDocImageFile,$strLang);
 			break;
-			case('ocrspace'):
-				$strReturn = $this->convertByOCRSpace($strDocImageFile,$strLang);
+			case('ocr.space'):
+				$strReturn = $this->convertByOCRSpace($strDocImageFile,$strDocImageUrl,$strLang);
 			break;
 			default:
 			break;
@@ -63,10 +63,8 @@ class OCR{
 	 * @param 	string 		$strLang 				언더
 	 * @return 	string		$strReturn		  : 변환 값을 반환
 	 */
-	private function convertByOCRSpace($strDocImageFile,$strLang="kor"){
-		$strDocImageFile = "/home/zzz/zzz/2040581143_mCOVgM7Q_dd.jpg";
-		$strDocImageFileName = basename($strDocImageFile);
-		$strDocImageURL=QUESTION_IMAGE_URL.$strDocImageFileName;
+	public function convertByOCRSpace($strDocImageFile,$strDocImageUrl,$strLang="kor"){
+		// $strDocImageFileName = basename($strDocImageFile);
 		$intFileSize = filesize($strDocImageFile);
 		if($intFileSize>$intOCRSpaceMaxFileSize){
 			// convert image size by GD
@@ -78,12 +76,12 @@ class OCR{
 			$boolResult = $objImage->setImageResolution($intX,$intY);
 		}
 		$resCh = curl_init();
-		curl_setopt($resCh, CURLOPT_URL, $this->$strOCRSpaceAPI);
+		curl_setopt($resCh, CURLOPT_URL, $this->strOCRSpaceAPI);
 		curl_setopt($resCh, 
 					  CURLOPT_POSTFIELDS,
-					  sprintf("apikey=%s&isOverlayRequired=true&url=%s&language=%s",$this->$strApiKey,$strDocImageURL,$strLang)
+					  sprintf("apikey=%s&isOverlayRequired=true&url=%s&language=%s",$this->strApiKey,$strDocImageUrl,$strLang)
 					 );
-		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt ($resCh, CURLOPT_RETURNTRANSFER, 1);
 		$jsonResult = curl_exec($resCh);
 		curl_close ($resCh);
 		$objResult = json_decode($jsonResult);
