@@ -59,16 +59,24 @@
 </style>
 </head>
 <body>
+<!--###########################################################-->
+<!--######################### INSTALL #########################-->
+<!--###########################################################-->
+<!-- ########################## -->
 <div class="container install">
 	<div class="row">
 		<h1 class="text-center" style="text-align: center; border-bottom: 1px solid #666; padding-bottom: 20px; margin-bottom: 20px;">
 			<img src="/smart_omr/_images/mama-omr-h-logo.png" alt=" " style="height: 50px;"/>
 		</h1>
 	</div>
+	<!-- ########################## -->
+	<!-- ########################## -->
 	<div class="row">
 		<h4 class="pull-left"><i class="fa fa-refresh fa-spin" aria-hidden="true"></i> Connector File Setup </h4>
 		<small class="pull-right"><a href="https://github.com/Mangongso/MamaOMR/wiki/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A9%94%EB%89%B4%EC%96%BC" target="_blank"><i class="fa fa-arrow-right" aria-hidden="true"></i> 설치 가이드 바로 가기</a></small>
 	</div>
+	<!-- ########################## -->
+	<!-- ########################## -->
 	<div class="row">
 		<ul class="list-group">
 		  <li class="list-group-item">
@@ -119,10 +127,14 @@
 		  </li>			  
 		</ul>
 	</div>
+	<!-- ########################## -->
+	<!-- ########################## -->
 	<div class="row">
 		<h4 class="pull-left"><i class="fa fa-refresh fa-spin" aria-hidden="true"></i> Config File Setup</h4>
 		<small class="pull-right"><a href="https://github.com/Mangongso/MamaOMR/wiki/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A9%94%EB%89%B4%EC%96%BC" target="_blank"><i class="fa fa-arrow-right" aria-hidden="true"></i> 설치 가이드 바로 가기</a></small>
-	</div>		
+	</div>	
+	<!-- ########################## -->
+	<!-- ########################## -->	
 	<div class="row">
 		<ul class="list-group">  	
 		  <li class="list-group-item">
@@ -232,6 +244,7 @@
 		<button type="button" class="btn-block install_bt" onclick="install();"><i class="fa fa-cog fa-spin"></i> Install</button>
 		<? } ?>
 	</div>
+	<!-- ########################## -->
 </div>
 <br/><br/>
 <script>
