@@ -16,18 +16,67 @@
 <script src="/smart_omr/ext_lib/uikit/js/components/grid.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="https://use.fontawesome.com/f53dd43260.js"></script>
+<style>
+.install .list-group-item {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.install .row h4,
+.install .list-group-item span,
+.install button {
+	font-family: 'Roboto Condensed', sans-serif;
+}
+.install .row h4 {
+    font-weight: 700;
+}
+.install .row small {
+	position: relative;
+    top: 14px;
+    font-size: 11px;
+}
+.install .list-group-item {
+    border: 1px solid #f1f1f1;
+}
+.install .list-group-item span {
+    font-size: 13px;
+    margin-right: 5px;
+}
+.install .list-group-item {
+    font-size: 12px;
+    color: #777;
+}
+.install .help-block {
+	font-size: 13px;
+    color: #777;
+}
+.install button {
+	height: 50px;
+    border-radius: 0px;
+    font-size: 18px;
+}
+</style>
 </head>
 <body>
-<div class="container">
+<!--###########################################################-->
+<!--######################### INSTALL #########################-->
+<!--###########################################################-->
+<!-- ########################## -->
+<div class="container install">
 	<div class="row">
-		<h1 class="text-center">
-			<img src="/smart_omr/_images/mama-omr-logo.png" width="200" alt="MamaOMR Install Page"/>
+		<h1 class="text-center" style="text-align: center; border-bottom: 1px solid #666; padding-bottom: 20px; margin-bottom: 20px;">
+			<img src="/smart_omr/_images/mama-omr-h-logo.png" alt=" " style="height: 50px;"/>
 		</h1>
 	</div>
+	<!-- ########################## -->
+	<!-- ########################## -->
 	<div class="row">
-		<h4 class="pull-left">Connector File Setup </h4>
-		<small class="pull-right"><i class="fa fa-mortar-board" aria-hidden="true"></i> <a href="https://github.com/Mangongso/MamaOMR/wiki/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A9%94%EB%89%B4%EC%96%BC" target="_blank">설치 가이드 바로 가기</a></small>
+		<h4 class="pull-left"><i class="fa fa-refresh fa-spin" aria-hidden="true"></i> Connector File Setup </h4>
+		<small class="pull-right"><a href="https://github.com/Mangongso/MamaOMR/wiki/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A9%94%EB%89%B4%EC%96%BC" target="_blank"><i class="fa fa-arrow-right" aria-hidden="true"></i> 설치 가이드 바로 가기</a></small>
 	</div>
+	<!-- ########################## -->
+	<!-- ########################## -->
 	<div class="row">
 		<ul class="list-group">
 		  <li class="list-group-item">
@@ -78,10 +127,14 @@
 		  </li>			  
 		</ul>
 	</div>
+	<!-- ########################## -->
+	<!-- ########################## -->
 	<div class="row">
-		<h4 class="pull-left">Config File Setup</h4>
-		<small class="pull-right"><i class="fa fa-mortar-board" aria-hidden="true"></i> <a href="https://github.com/Mangongso/MamaOMR/wiki/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A9%94%EB%89%B4%EC%96%BC" target="_blank">설치 가이드 바로 가기</a></small>
-	</div>		
+		<h4 class="pull-left"><i class="fa fa-refresh fa-spin" aria-hidden="true"></i> Config File Setup</h4>
+		<small class="pull-right"><a href="https://github.com/Mangongso/MamaOMR/wiki/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A9%94%EB%89%B4%EC%96%BC" target="_blank"><i class="fa fa-arrow-right" aria-hidden="true"></i> 설치 가이드 바로 가기</a></small>
+	</div>	
+	<!-- ########################## -->
+	<!-- ########################## -->	
 	<div class="row">
 		<ul class="list-group">  	
 		  <li class="list-group-item">
@@ -186,11 +239,12 @@
 		<p class="help-block">모든 상태가 <span class="label label-success">Pass</span> 이어야 다음단계로 진행이 가능 합니다. Check Install 버튼을 클릭하여 상태를 확인 하세요.</p>
 		<br/>
 		<? if($confFailCnt>0){?>
-		<button type="button" class="pure-button pure-form_in btn-lg btn-block install_bt" onclick="document.location.reload();"><i class="uk-icon-check-circle"></i> Check Inistall</button>
+		<button type="button" class="btn-block install_bt" onclick="document.location.reload();"><i class="uk-icon-check-circle"></i> Check Inistall</button>
 		<? }else{ ?>
-		<button type="button" class="pure-button pure-form_in btn-lg btn-block install_bt" onclick="install();"><i class="fa fa-cog fa-spin"></i> Install</button>
+		<button type="button" class="btn-block install_bt" onclick="install();"><i class="fa fa-cog fa-spin"></i> Install</button>
 		<? } ?>
 	</div>
+	<!-- ########################## -->
 </div>
 <br/><br/>
 <script>
