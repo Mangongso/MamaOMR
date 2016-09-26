@@ -177,8 +177,8 @@ small screens.
     }
 
     .menu-link span {
-        position: relative;
-        display: block;
+        /*position: relative;
+        display: block;*/
     }
 
     .menu-link span,
