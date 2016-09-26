@@ -42,19 +42,19 @@
 			<ul class="nav nav-tabs sub_content_top_menu">
 				<li class="active"
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('study_report');"><a
-					href="javascript:void(0);" title="학습리포트"><i class="fa fa-bar-chart"
+					href="#" title="학습리포트"><i class="fa fa-bar-chart"
 						aria-hidden="true"></i> 학습리포트</a></li>
 				<li class=""
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('answer_omr');"><a
-					href="javascript:void(0);" title="입력답안"><i class="fa fa-check"
+					href="#" title="입력답안"><i class="fa fa-check"
 						aria-hidden="true"></i> 입력답안</a></li>
 				<li class=""
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_note');"><a
-					href="javascript:void(0);" title="오답노트"><i class="fa fa-times"
+					href="#" title="오답노트"><i class="fa fa-times"
 						aria-hidden="true"></i> 오답노트</a></li>
 				<li class=""
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_test');">
-					<a href="javascript:void(0);" title="오답문제풀이"> <i class="fa fa-undo"
+					<a href="#" title="오답문제풀이"> <i class="fa fa-undo"
 						aria-hidden="true"></i> 오답문제풀이 <small><i
 							onclick="objWAN.getWrongNoteTest('<?=$_GET['t']?>','<?=$_GET['revision']?>');"
 							style="cursor: pointer; color: #ccc;" class="fa fa-refresh"
@@ -64,7 +64,7 @@
 				</li>
 				<li class=""
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');">
-					<a href="javascript:void(0);" title="댓글"> <i
+					<a href="#" title="댓글"> <i
 						class="fa fa-comment fa-flip-horizontal" aria-hidden="true"></i>
 						댓글 <small><i
 							onclick="objCommon.getComment($('#comment_div').attr('comment_seq'),$('#comment_div').attr('bbs_seq'));"
@@ -146,7 +146,7 @@
 							for="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>">
 							<input type="radio" value="<?=$arrExample['seq'];?>"
 							id="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>"
-							autocomplete="off"><?=$arrExample['example_number'];?>
+							><?=$arrExample['example_number'];?>
 					  	</label>
 					  	<? } ?>
 					</div>
