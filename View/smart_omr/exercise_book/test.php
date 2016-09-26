@@ -4,16 +4,6 @@
 	<!-- GNB START -->
 <? include("../_common/include/GNB.php"); ?>
 <!-- GNB END -->
-<? if($arr_output['device']['mobile_flg'] && 0){ // 해당 기능 보류 ?>
-<script>
-$(document).ready(function(){
-	$('.ans_correct .btn-default').on('click',function(){
-		var questionEle = $(this).parents('.question_div');
-		objRegistration.animateBtn(questionEle);
-	});
-});
-</script>
-<? } ?>
 	<!--######################################################################-->
 	<!--######################### Exercise book TEST #########################-->
 	<!--######################################################################-->

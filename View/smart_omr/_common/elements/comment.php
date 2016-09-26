@@ -31,7 +31,7 @@
 				<li class="col-lg-2"><small><?=date('Y-m-d',$arrResutl['reg_date']);?> <? if(md5($arrResutl['reg_id'])==$arr_output['comment']['member_key']){ ?>
 						<a
 						onclick="objCommon.deleteComment(<?=$arr_output['comment']['post_seq']?>,<?=$arr_output['comment']['bbs_seq']?>,<?=$arrResutl['cmt_id']?>);"
-						href="javascript:void(0);" title="삭제"> <i class="fa fa-times"
+						href="#" title="삭제"> <i class="fa fa-times"
 							aria-hidden="true"></i><span class="sr-only">삭제<</span>
 					</a>
 					<? } ?></small></li>
