@@ -86,4 +86,9 @@ if($_REQUEST['mat'] && $_SESSION['smart_omr']){
  */
 $arr_output['header'] = $arrHeader;
 $arr_output['book_list'] = $arrBooks;
+
+if(!count($arr_output['book_list'])){
+	header('Location: /smart_omr/exercise_book/registration');
+	exit;
+}
 ?>
