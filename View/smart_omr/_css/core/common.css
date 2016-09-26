@@ -133,7 +133,7 @@ a:focus, a:hover {
   }
   
 .pure-menu-item.active{background:#222222; }
-#foot_menu-tabs .pure-menu-item.active, #foot_menu-tabs2 .pure-menu-item.active {background:transparent!important;}
+#foot_menu-tabs .pure-menu-item.active,.pure-menu-scrollable .pure-menu-item.active, #foot_menu-tabs2 .pure-menu-item.active {background:transparent!important;}
 .uk-offcanvas-bar {
 	/*background: #5a8770;*/
 }
@@ -1010,8 +1010,6 @@ uikit padding remove
 .install-info {
 	padding: 15px 0px 0px 0px;
 }
-
-
 /*//////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////MEDIA///////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////*/
