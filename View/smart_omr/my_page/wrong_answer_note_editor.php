@@ -57,7 +57,7 @@ $strWrongNoteFileName = $arr_output ['wrong_note'] [0] ['file_name'] ? $arr_outp
 			<i class="fa fa-check" aria-hidden="true"></i> 저장
 		</button>
 		<button id="btn_ocr" type="button"
-			class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt">
+			class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt uk-modal-close">
 			<i class="fa fa-times" aria-hidden="true"></i> 닫기
 		</button>
 	</div>

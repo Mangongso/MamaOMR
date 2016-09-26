@@ -64,7 +64,7 @@ ul {
 }
 .h-nav button i{
 position: relative;
-    top: -3px;
+    top: 0px;
     color: #fff;
   }
 .h-nav button:hover, .h-nav button:focus, .h-nav button:active {
@@ -133,7 +133,7 @@ a:focus, a:hover {
   }
   
 .pure-menu-item.active{background:#222222; }
-#foot_menu-tabs .pure-menu-item.active, #foot_menu-tabs2 .pure-menu-item.active {background:transparent!important;}
+#foot_menu-tabs .pure-menu-item.active,.pure-menu-scrollable .pure-menu-item.active, #foot_menu-tabs2 .pure-menu-item.active {background:transparent!important;}
 .uk-offcanvas-bar {
 	/*background: #5a8770;*/
 }
@@ -1010,8 +1010,6 @@ uikit padding remove
 .install-info {
 	padding: 15px 0px 0px 0px;
 }
-
-
 /*//////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////MEDIA///////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////*/
@@ -1040,6 +1038,7 @@ uikit padding remove
 	.my_page_box {border-top: 0px;overflow: visible;}
 	.sub_contents_body_box h4 span{float: inherit;display: inline-block;margin-top: 10px;}
 	.about_mama_header h1 {margin-top: 20px;margin-bottom: 20px;font-size: 25px;text-align: center;}
+	.h-nav img {height: 31px;top: 9px;}
 }
   
 @media all and (max-width: 480px) {
@@ -1062,6 +1061,7 @@ uikit padding remove
 	.my_page_box {border-top: 0px;overflow: visible;}
 	.sub_contents_body_box h4 span{float: inherit;display: inline-block;margin-top: 10px;}
 	.about_mama_header h1 {margin-top: 20px;margin-bottom: 20px;font-size: 25px;text-align: center;}
+	.h-nav img {height: 31px;top: 9px;}
 }
 
 
