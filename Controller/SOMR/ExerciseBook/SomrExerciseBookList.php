@@ -75,4 +75,9 @@ foreach($arrBooks as $intKey=>$arrBook){
  * @property	array 		$arr_output['book_list'] 			: book 목록
  */
 $arr_output['book_list'] = $arrBooks;
+
+if(!count($arr_output['book_list'])){
+	header('Location: /smart_omr/exercise_book/registration');
+	exit;
+}
 ?>
