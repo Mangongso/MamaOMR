@@ -294,6 +294,18 @@
 		    </a>		    
 		  </li>
 		  <li class="list-group-item">
+		  	<? if(exec("tesseract")!=""){?>
+		   <span class="label label-success">Pass</span>
+		   	<? }else{ ?>
+		   	<? $confFailCnt++; ?>
+		   	<span class="label label-danger">Fail</span>
+		    <? } ?>
+		    tesseract 가 설치 되어야 합니다.
+		    <a href="https://github.com/tesseract-ocr/tesseract" target="_blank">
+		    tesseract GitHub 바로가기
+		    </a>
+		  </li>					  			
+		  <li class="list-group-item">
 		  	<? if(file_exists($_SERVER["DOCUMENT_ROOT"]."/../ExternalApps/tesseract-ocr-for-php")){?>
 		   <span class="label label-success">Pass</span>
 		   	<? }else{ ?>
@@ -304,7 +316,7 @@
 		    <a href="https://github.com/Mangongso/tesseract-ocr-for-php" target="_blank">
 		    tesseract-ocr-for-php GitHub 바로가기
 		    </a>
-		  </li>			  
+		  </li>
 		 </ul>
 	<div class="row">
 	<!-- ########################## -->		
