@@ -14,7 +14,6 @@
               <? } ?>
             <? if($API_key ['kakao'] ['client_id'] != "CLIENT_ID" && trim ( $API_key ['kakao'] ['client_id'])){?>
             <a href="javascript:void(0);" onclick="loginWithKakao();" class="list-group-item login_kakao"><span><img src="/smart_omr/_images/kakao_logo.png" alt="Kakao Talk Logo" /></span>카카오톡 아이디로 로그인</a>
-            
         	 <? } ?>
         </div>
 	</div>
