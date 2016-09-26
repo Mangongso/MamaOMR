@@ -76,10 +76,20 @@ class OMR{
 	 * @return boolean 리사이즈 성공 여부를 반환 (true | false)
 	 */
 	private function resizeOMR($strFileName){
+		$resImageTaget = imagecreatetruecolor(559,800);
+		$resImageSource = imagecreatefromjpeg($strFileName);
+		$intW = imagesx($resImageSource);
+		$intH = imagesy($resImageSource);		
+		imagecopyresampled($resImageTaget, $resImageSource, 0, 0, 0, 0, 559, 800, $intW, $intH);
+		$boolResult = imagejpeg($resImageTaget,$strFileName);
+		$boolResult = imagedestroy($resImageSource);	
+		$boolResult = imagedestroy($resImageTaget);
+		/* PHP > v5.4
 		$resImage = imagecreatefromjpeg($strFileName);
 		$resImage = imagescale($resImage, 559,800);
 		$boolResult = imagejpeg($resImage,$strFileName);
 		$boolResult = imagedestroy($resImage);
+		*/
 		return($boolResult);
 	}
 	

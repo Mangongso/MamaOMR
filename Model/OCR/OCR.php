@@ -64,16 +64,49 @@ class OCR{
 	 * @return 	string		$strReturn		  : 변환 값을 반환
 	 */
 	public function convertByOCRSpace($strDocImageFile,$strDocImageUrl,$strLang="kor"){
-		// $strDocImageFileName = basename($strDocImageFile);
 		$intFileSize = filesize($strDocImageFile);
-		if($intFileSize>$intOCRSpaceMaxFileSize){
-			// convert image size by GD
+		$intFileSize = $intFileSize/1000;
+		if($intFileSize>$this->intOCRSpaceMaxFileSize){
+			/* convert image size by GD*/
+			$realRatio = $this->intOCRSpaceMaxFileSize/$intFileSize;
+			switch(exif_imagetype($strDocImageFile)){
+				case(IMAGETYPE_JPEG):
+					$resImageSource = imagecreatefromjpeg($strDocImageFile);
+					$intW = imagesx($resImageSource);
+					$intH = imagesy($resImageSource);
+					
+					$intX = floor($intW*$realRatio);
+					$intY = floor($intH*$realRatio);
+						
+					$resImageTaget = imagecreatetruecolor($intX,$intY);
+					imagecopyresampled($resImageTaget, $resImageSource, 0, 0, 0, 0, $intX, $intY, $intW, $intH);
+					$boolResult = imagejpeg($resImageTaget,$strDocImageFile);					
+				break;
+				case(IMAGETYPE_PNG):
+					$resImageSource = imagecreatefrompng($strDocImageFile);
+					$intW = imagesx($resImageSource);
+					$intH = imagesy($resImageSource);
+						
+					$intX = floor($intW*$realRatio);
+					$intY = floor($intH*$realRatio);
+					
+					$resImageTaget = imagecreatetruecolor($intX,$intY);
+					imagecopyresampled($resImageTaget, $resImageSource, 0, 0, 0, 0, $intX, $intY, $intW, $intH);
+					$boolResult = imagepng($resImageTaget,$strDocImageFile);					
+				break;
+			}
+
+			$boolResult = imagedestroy($resImageSource);
+			$boolResult = imagedestroy($resImageTaget);	
+			
+			/* ImageMagick
 			$realRatio = $intOCRSpaceMaxFileSize/$intFileSize;
 			$objImage=new Imagick($strDocImageFile);
 			$arrResolution=$objImage->getImageResolution();
 			$intX = floor(sqrt($arrResolution['x']^2*$realRatio));
 			$intY = floor(sqrt($arrResolution['y']^2*$realRatio));
 			$boolResult = $objImage->setImageResolution($intX,$intY);
+			*/
 		}
 		$resCh = curl_init();
 		curl_setopt($resCh, CURLOPT_URL, $this->strOCRSpaceAPI);
