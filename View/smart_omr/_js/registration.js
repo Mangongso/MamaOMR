@@ -176,6 +176,7 @@ function Registration() {
 				type : 'post', // 'get' or 'post', override for form's 'method'
 								// attribute
 				beforeSubmit : function() {
+					if(!$('.ans_correct .btn-default.active').length){return confirm('한문제도 선택되지 않앗습니다. 그대로 제출하시겠습니까?');}
 				},
 				success : function(jsonResult) {
 					if (jsonResult.boolResult) {
