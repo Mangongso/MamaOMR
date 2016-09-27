@@ -95,7 +95,7 @@
 						</div>
 					</div>
 					<div class="info-img">
-						<img src="/smart_omr/_images/info-basic.png" />
+						<img src="/smart_omr/_images/info-basic.png" alt=" " />
 					</div>
 				</div>
 				<div>
