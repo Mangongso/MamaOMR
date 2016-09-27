@@ -73,8 +73,8 @@
 			<css></css>				
 		</controller>
 		<controller viewID="SOMR_EXERCISE_BOOK_LIST_PAGING">
-			<controller-name>SOMR/ExerciseBook/SomrExerciseBookList.php</controller-name>
-			<presentation-name>viewID=SOMR_EXERCISE_BOOK_LIST_PAGING</presentation-name>
+			<controller-name>SOMR/ExerciseBook/SomrExerciseBookListPaging.php</controller-name>
+			<presentation-name></presentation-name>
 			<parameter></parameter>
 			<js></js>
 			<css></css>				
