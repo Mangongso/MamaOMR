@@ -66,7 +66,7 @@
 				<? foreach($arr_output['test_question_list'] as $intKey=>$arrQuestionInfo){ ?>
 				<div class="uk-width-1-1 question_div"
 							id="question_<?=$arrQuestionInfo['question_seq']?>"
-							question_seq="<?=$arrQuestionInfo['question_seq']?>">
+							data-question-seq="<?=$arrQuestionInfo['question_seq']?>">
 							<input type="hidden"
 								name="question_seq[<?=$arrQuestionInfo['question_seq']?>]"
 								id="question_seq_<?=$arrQuestionInfo['question_seq']?>"
@@ -84,7 +84,7 @@
 								id="question_score_<?=$arrQuestionInfo['question_seq']?>"
 								value="1<?//=$arrQuestionInfo['question_score']?>"> <input
 								class="question_type" type="hidden"
-								question_seq="<?=$arrQuestionInfo['question_seq']?>"
+								data-question-seq="<?=$arrQuestionInfo['question_seq']?>"
 								name="question_type[<?=$arrQuestionInfo['question_seq']?>]"
 								id="question_type_<?=$arrQuestionInfo['question_seq']?>"
 								value="<?=$arrQuestionInfo['question_type']?>">
@@ -108,32 +108,20 @@
 					}
 					?>
 						<? foreach($arrQuestionInfo['example']['type_1'] as $intExampleKey=>$arrExample){ ?>
-						<? if($arr_output['editble']){ ?>
 						<label
-									class="uk-width-<?=$intExampleWidth?>-10 btn btn-default <?=$arrExample['answer_flg']?'active':''?>"
+									class="uk-width-<?=$intExampleWidth?>-10 btn btn-default <?=$arrExample['answer_flg']?'active':''?> <?=$arr_output['editble']?'':'disabled'?>"
 									onclick="$('#answer_<?=$arrQuestionInfo['question_seq']?>_seq').val($('#example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>').val());"
 									for="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>">
 									<input type="radio" value="<?=$arrExample['seq'];?>"
-									id="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>"
-									autocomplete="off"><?=$arrExample['example_number'];?>
+									id="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>"><?=$arrExample['example_number'];?>
 					  	</label>
-					  	<? }else{ ?>
-						<label disabled
-									class="uk-width-<?=$intExampleWidth?>-10 btn btn-default <?=$arrExample['answer_flg']?'active':''?>"
-									onclick="$('#answer_<?=$arrQuestionInfo['question_seq']?>_seq').val($('#example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>').val());"
-									for="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>">
-									<input type="hidden" value="<?=$arrExample['seq'];?>"
-									id="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>"
-									autocomplete="off" disabled><?=$arrExample['example_number'];?>
-					  	</label>					  	
-					  	<? } ?>
 					  	<? } ?>
 					</div>
 							<div class="question_info">
 								<div class="uk-width-1-10 uk_pd_init pull-left">
 									<button type="button"
 										onclick="objRegistration.insertSingleQuestion(<?=$arrQuestionInfo['question_seq'];?>);"
-										class="btn btn-default btn-sm uk-width-1-1" title="문제추가">
+										class="btn btn-default btn-sm uk-width-1-1 <?=$arr_output['editble']?'':'disabled'?>" title="문제추가">
 										<i class="fa fa-plus" aria-hidden="true"></i>
 									</button>
 								</div>
@@ -141,7 +129,7 @@
 									style="border-left: none;">
 									<button type="button"
 										onclick="objRegistration.deleteSingleQuestion(<?=$arrQuestionInfo['question_seq'];?>);"
-										class="btn btn-default btn-sm uk-width-1-1" title="문제삭제">
+										class="btn btn-default btn-sm uk-width-1-1 <?=$arr_output['editble']?'':'disabled'?>"  title="문제삭제">
 										<i class="fa fa-minus" aria-hidden="true"></i>
 									</button>
 								</div>
@@ -162,14 +150,14 @@
 				 <? if($_GET['test_seq']){ ?>
 				<button type="button"
 							onclick="objRegistration.saveTestQuestionWithAnswer();"
-							class="pure-button pure-form_in btn-lg col-xs-12 col-sm-12 col-md-12 col-lg-12"
+							class="pure-button pure-form_in btn-lg col-xs-12 col-sm-12 col-md-12 col-lg-12 <?=$arr_output['editble']?'':'disabled'?>"
 							data-toggle="modal" data-target="#registration_test">
 							<i class="fa fa-check" aria-hidden="true"></i> 테스트 수정
 						</button>
 				<? }else{ ?>
 				<button type="button"
 							onclick="objRegistration.saveTestQuestionWithAnswer();"
-							class="pure-button pure-form_in btn-lg col-xs-12 col-sm-12 col-md-12 col-lg-12"
+							class="pure-button pure-form_in btn-lg col-xs-12 col-sm-12 col-md-12 col-lg-12 <?=$arr_output['editble']?'':'disabled'?>"
 							data-toggle="modal" data-target="#registration_test">
 							<i class="fa fa-check" aria-hidden="true"></i> OMR 등록
 						</button>
@@ -181,6 +169,7 @@
         
 <? include("../_common/include/foot_menu.php"); ?>
 </div>
+	</div>
 	</div>
 <? include("../_common/include/footer.php"); ?>
 <? include("../_common/include/bottom.php"); ?>

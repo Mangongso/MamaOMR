@@ -53,7 +53,7 @@ function WrongAnswerNote(){
 		 				$('#wrong_answer_note').load("../exercise_book/_elements/wrong_note_list.php",{t:$.url().param('t'),revision:$.url().param('revision')},function(){
 		 					UIkit.modal($("#modal-wa-editor")).hide();
 		 					objWAN.init();
-		 					objWAN.getWrongNoteTest($('.sub_content_top_menu .fa-refresh').attr('t'),$('.sub_content_top_menu .fa-refresh').attr('revision'));
+		 					objWAN.getWrongNoteTest($('.sub_content_top_menu .fa-refresh').attr('data-t'),$('.sub_content_top_menu .fa-refresh').attr('data-revision'));
 		 					
 		 				});		 				
 		 			}
@@ -80,8 +80,8 @@ function WrongAnswerNote(){
 			onComplete: function(file,response){
 				this.enable();
 				if(response.result){
-					$('#modal-wa-editor #question_img').attr({'src':'../_images/image_viewer.php?k='+response.uploaded_key});
-					$('#modal-wa-editor #question_img').data('img_mode','tmp');
+					$('#modal-wa-editor .question_img').attr({'src':'../_images/image_viewer.php?k='+response.uploaded_key});
+					$('#modal-wa-editor .question_img').data('img_mode','tmp');
 					$('#wrong_note_file_name').val(response.file_name);
 					$('#wrong_note_upload_key').val(response.uploaded_key);
 				}
@@ -89,13 +89,13 @@ function WrongAnswerNote(){
 		});		
 	};
 	this.runOrcImage = function(){
-		if(!$('#modal-wa-editor #question_img').data('img_mode')){
+		if(!$('#modal-wa-editor .question_img').data('img_mode')){
 			halert("이미지를 업로드 하세요");
 			return(false);
 		}
 		var objDummy = new Image();
-		objDummy.src = $('#modal-wa-editor #question_img').attr('src');
-		var strImgType = $('#modal-wa-editor #question_img').data('img_mode');
+		objDummy.src = $('#modal-wa-editor .question_img').attr('src');
+		var strImgType = $('#modal-wa-editor .question_img').data('img_mode');
 		$.ajax({
 			url: '/_connector/yellow.501.php',
 			data:{'viewID':'SOMR_OCR','image':objDummy.src,'img_type':strImgType},
@@ -115,7 +115,7 @@ function WrongAnswerNote(){
 	this.nextQuestion = function(objQuestion){
 		var questionCnt = $('.quiz-question').length;
 		var selectQuestionIndex = $('.quiz-question:visible').index()-1;
-		var selectQuestion = $('.quiz-question:visible').attr('question_seq');
+		var selectQuestion = $('.quiz-question:visible').attr('data-question-seq');
 		var selectAnswer = objQuestion.find('input').val();
 		///check answer result
 		if(typeof selectAnswer=='undefined'){
