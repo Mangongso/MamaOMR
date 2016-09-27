@@ -283,7 +283,7 @@ function Common() {
 			   responseType: 'json',
 				name: 'OMR',
 				onSubmit : function(file, ext){
-					if(ext.toLowerCase()!="jpg" && ext.toLowerCase()!="png"){
+					if(ext.toLowerCase()!="jpeg" && ext.toLowerCase()!="jpg" && ext.toLowerCase()!="png"){
 						alert("jpg 또는 png 파일만 업로드 가능합니다.");
 						return(false);
 					}
