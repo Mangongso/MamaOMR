@@ -76,7 +76,7 @@ foreach($arrBooks as $intKey=>$arrBook){
  */
 $arr_output['book_list'] = $arrBooks;
 
-if(!count($arr_output['book_list']) && $intPage==1){
+if(!count($arr_output['book_list']) && $viewID!="SOMR_EXERCISE_BOOK_LIST_PAGING"){
 	header('Location: /smart_omr/exercise_book/registration');
 	exit;
 }
