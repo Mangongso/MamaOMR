@@ -58,8 +58,8 @@
 						aria-hidden="true"></i> 오답문제풀이 <small><i
 							onclick="objWAN.getWrongNoteTest('<?=$_GET['t']?>','<?=$_GET['revision']?>');"
 							style="cursor: pointer; color: #ccc;" class="fa fa-refresh"
-							aria-hidden="true" t="<?=$_GET['t']?>"
-							revision="<?=$_GET['revision']?>"></i></small>
+							aria-hidden="true" data-t="<?=$_GET['t']?>"
+							data-revision="<?=$_GET['revision']?>"></i></small>
 				</a>
 				</li>
 				<li class=""
@@ -67,10 +67,10 @@
 					<a href="#" title="댓글"> <i
 						class="fa fa-comment fa-flip-horizontal" aria-hidden="true"></i>
 						댓글 <small><i
-							onclick="objCommon.getComment($('#comment_div').attr('comment_seq'),$('#comment_div').attr('bbs_seq'));"
+							onclick="objCommon.getComment($('#comment_div').attr('data-comment-seq'),$('#comment_div').attr('data-bbs-seq'));"
 							style="cursor: pointer; color: #ccc;" class="fa fa-refresh"
-							aria-hidden="true" t="<?=$_GET['t']?>"
-							revision="<?=$_GET['revision']?>"></i></small>
+							aria-hidden="true" data-t="<?=$_GET['t']?>"
+							data-revision="<?=$_GET['revision']?>"></i></small>
 				</a>
 				</li>
 			</ul>
@@ -90,8 +90,7 @@
 				<? foreach($arr_output['test_question_list'] as $intKey=>$arrQuestionInfo){ ?>
 				<div
 					class="uk-width-1-1 <?=$arr_output['user_answer'][$intKey]['result_flg']?'test_right_answer':'test_wrong_answer'?>"
-					id="question_<?=$arrQuestionInfo['question_seq']?>"
-					question_seq="<?=$arrQuestionInfo['question_seq']?>">
+					data-question-seq="<?=$arrQuestionInfo['question_seq']?>">
 					<h4 class="uk-width-2-10 pull-left">
 						<i
 							class="fa fa-<?=$arr_output['user_answer'][$intKey]['result_flg']?'circle-o':'times'?>"
@@ -115,11 +114,8 @@
 					?>
 						<? foreach($arrQuestionInfo['example']['type_1'] as $intExampleKey=>$arrExample){ ?>
 						<label
-							class="uk-width-<?=$intExampleWidth?>-10 btn btn-default <?=$arrExample['seq']==$arr_output['user_answer'][$intKey]['user_answer']?'active':'disabled'?>"
-							for="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>">
-							<input type="radio" value="<?=$arrExample['seq'];?>"
-							id="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>"
-							><?=$arrExample['example_number'];?>
+							class="uk-width-<?=$intExampleWidth?>-10 btn btn-default <?=$arrExample['seq']==$arr_output['user_answer'][$intKey]['user_answer']?'active':'disabled'?>">
+							<input type="radio" value="<?=$arrExample['seq'];?>" /><?=$arrExample['example_number'];?>
 					  	</label>
 					  	<? } ?>
 					</div>
@@ -171,13 +167,13 @@
 				<!-- comment -->
 				<div class="h_dot">
 					<div id="comment_div"
-						comment_seq="<?=$arr_output['test_info'][0]['seq'];?>" bbs_seq="4"></div>
+						data-comment-seq="<?=$arr_output['test_info'][0]['seq'];?>" data-bbs-seq="4"></div>
 				</div>
 			</div>
 			<!-- 
 				<div id="question_community" style="display:none;" class="sub_tabs">
 				<? foreach($arr_output['test_question_list'] as $intKey=>$arrQuestionInfo){ ?>#############
-				<div class="uk-width-1-1 <?=$arr_output['user_answer'][$intKey]['result_flg']?'test_right_answer':'test_wrong_answer'?>" id="question_<?=$arrQuestionInfo['question_seq']?>" question_seq="<?=$arrQuestionInfo['question_seq']?>" >
+				<div class="uk-width-1-1 <?=$arr_output['user_answer'][$intKey]['result_flg']?'test_right_answer':'test_wrong_answer'?>" id="question_<?=$arrQuestionInfo['question_seq']?>" data-question-seq="<?=$arrQuestionInfo['question_seq']?>" >
 					<h4 class="uk-width-2-10 pull-left" style="top:0px;"><i class="fa fa-<?=$arr_output['user_answer'][$intKey]['result_flg']?'circle-o':'times'?>" aria-hidden="true"></i><br><?=$arrQuestionInfo['order_number']?></h4>
 					<div class="uk-width-8-10 btn-group ans_correct ans_correct_<?=$arrQuestionInfo['question_type'];?>" data-toggle="buttons">
 						<div><span>1111</span> <span>1111</span> <span>1111</span></div>

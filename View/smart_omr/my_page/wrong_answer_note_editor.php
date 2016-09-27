@@ -20,15 +20,15 @@ $strWrongNoteFileName = $arr_output ['wrong_note'] [0] ['file_name'] ? $arr_outp
 		value="" /> <input type="hidden" name="wrong_note_upload_key"
 		id="wrong_note_upload_key" value="" />
 <? if($arr_output['wrong_note'][0]['file_name']){?>
-<img id="question_img"
+<img class="question_img"
 		src="../_images/question.php?b=<?=$arr_output['book_seq'];?>&t=<?=$arr_output['wrong_note'][0]['test_seq']?>&q=<?=$arr_output['wrong_note'][0]['question_seq']?>&f=<?=$arr_output['wrong_note'][0]['file_name'];?>"
 		data-img_mode="real" />
 <? }else if($strWrongNoteFileName){ ?>
-<img id="question_img"
+<img class="question_img"
 		src="../_images/question.php?b=<?=$arr_output['book_seq'];?>&t=<?=$arr_output['test_seq']?>&q=<?=$arr_output['question'][0]['seq']?>&f=<?=$strWrongNoteFileName;?>"
 		data-img_mode="real" />
 <? }else{?>
-<img id="question_img" src="../_images/default_wt_cover.png"
+<img class="question_img" src="../_images/default_wt_cover.png"
 		style="width: 100%; height: 250px;" data-img_mode=""/>
 <? } ?>
 <p>

@@ -52,8 +52,8 @@ function Common() {
 			});
 		}
 		//set comment div
-		if($('#comment_div[comment_seq]').length>0){
-			objCommon.getComment($('#comment_div').attr('comment_seq'),$('#comment_div').attr('bbs_seq'));
+		if($('#comment_div[data-comment-seq]').length>0){
+			objCommon.getComment($('#comment_div').attr('data-comment-seq'),$('#comment_div').attr('data-bbs-seq'));
 		}	
 		
 		// OMR upload
