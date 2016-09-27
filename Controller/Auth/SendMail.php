@@ -72,7 +72,7 @@ switch($strMailType){
 				$strMemo .= '</div>';
 				$strMemo .= '<h1 style="font-size: 15px; font-weight: bold; color: #333;">'.$arrMember[0]['name'].'님이 학습 매니저 등록을 요청 하였습니다!</h1>';
 				$strMemo .= '<p style="font-size: 12px; color: #666;">아래 링크를 클릭하시면 마마OMR에 로그인 하여 학생 학습 기록을 열람하실 수 있습니다.</p>';
-				$strMemo .= '<a href="#" target="_blank" title="마마OMR 로그인 하기">로그인 하기</a>';
+				$strMemo .= '<a href="'.$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/smart_omr/" target="_blank" title="로그인 하기">로그인 하기</a>';
 				$strMemo .= '<div style="text-align: center; border-top: 1px solid #e2e2e2; margin-top: 20px;">';
 				$strMemo .= '<p style="font-size: 9px; color: #bbb;">';
 				$strMemo .= 'Copyright © mamaomr All rights reserved. powered by ';
