@@ -68,10 +68,12 @@
 								class="col-xs-12 col-sm-12 col-md-12 col-lg-12 _d_book_info content_body_list sub_content_body_list"
 								style="display: none;">
 								<ul class="text-center">
-									<!-- li class="text-center"><h3 id="book_title"></h3></li-->
+									<li id="no_cover_img" style="display:none;"><span style="color:#ff0000">커버 이미지정보가 제공되지 않는 문제집입니다.</span></li>
+									<li><span><i class="fa fa-clipboard" aria-hidden="true"></i> 제목</span><span
+										style="width: auto;" id="book_title"></span></li>
 									<li><span><i class="fa fa-clipboard" aria-hidden="true"></i> 출판사</span><span
 										style="width: auto;" id="book_publisher"></span></li>
-									<li style="padding: 10px 0px 10px 0px;"><label for="category_seq" class="sr-only">카테고리 선택</label><select class="form-control input-sm _d_chk_input"
+									<li style="padding: 10px 0px 10px 0px;"><label for="category_seq" class="sr-only">카테고리 선택</label><select class="form-control input-sm _d_chk_input" placeholder="카테고리"
 										name="category_seq" id="category_seq">
 											<option value="">카테고리 선택</option>
 											<option value="32">초등</option>

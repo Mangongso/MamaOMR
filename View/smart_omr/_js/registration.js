@@ -97,6 +97,11 @@ function Registration() {
 					$('#'+strFrm+' ._d_btn_reg_isbn').on('click',function(){objRegistration.setBook(strFrm);});
 					$('#'+strFrm+' ._d_btn_chk_isbn').css('display','none');
 					$('#'+strFrm+' #isbn_code').attr('disabled',true);
+					if(jsonResult.cover_url == "/smart_omr/_images/default_cover.png"){
+						$('#'+strFrm+' #no_cover_img').css('display','block');
+					}else{
+						$('#'+strFrm+' #no_cover_img').css('display','none');
+					}
 					$('#'+strFrm+' ._d_cover_img').attr('src',jsonResult.cover_url);
 					$('#'+strFrm+' ._d_book_info').css('display','block');
 					$('#'+strFrm+' ._d_book_info #book_title').html(jsonResult.title);
