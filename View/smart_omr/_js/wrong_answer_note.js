@@ -71,7 +71,7 @@ function WrongAnswerNote(){
 		   responseType: 'json',
 			name: 'upload_files',
 			onSubmit : function(file, ext){
-				if(ext!="jpg" && ext!="png"){
+				if(ext.toLowerCase()!="jpeg" && ext.toLowerCase()!="jpg" && ext.toLowerCase()!="png"){
 					alert("jpg 또는 png 파일만 업로드 가능합니다.");
 					return(false);
 				}
