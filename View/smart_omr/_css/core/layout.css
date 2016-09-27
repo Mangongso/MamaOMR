@@ -151,3 +151,63 @@
     margin-bottom: -15px;
 }
 /**************************************************/
+/*//////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////MEDIA///////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////*/
+
+@media all and (max-width: 1180px) {
+	.content_body {padding: 0px 15px;}
+}
+      
+@media all and (max-width: 960px) {
+	.content_body {padding: 0px 15px;}
+	.info-header .col-lg-9 {text-align: center;}
+}
+
+@media all and (max-width: 780px) {
+	.h-nav {text-align: center;height: 50px;}
+	.copyright .row {text-align: center;}
+	.content_body {padding: 0px;}
+	.content_header_list, .sub_content_header .content_body_list {margin: 20px 0px 0px 0px;}
+	.sub_content_header_test_top .content_body_list  {margin: 0px;padding-left: 15px;}
+	.h_dot {padding: 0px 10px 20px 10px;}
+	.sub_content_top_menu {margin: 10px 0px 10px 0px;}
+	.study_report .uk-width-8-10 {padding: 20px 10px 20px 0px;}
+	.h_dot.h_dot_li {padding: 0px 0px 20px 0px;}
+	.padding-0-10px {padding: 0px 10px;}
+	.content_my_page_body {background-color: transparent;}
+	.my_page_box {border-top: 0px;overflow: visible;}
+	.sub_contents_body_box h4 span{float: inherit;display: inline-block;margin-top: 10px;}
+	.about_mama_header h1 {margin-top: 20px;margin-bottom: 20px;font-size: 25px;text-align: center;}
+	.h-nav img {height: 31px;top: 9px;}
+	.work_book_reg_bt i {position: relative;top: 3px;}
+}
+  
+@media all and (max-width: 480px) {
+	.h-nav {text-align: center;height: 50px;}
+	.copyright .row {text-align: center;}
+	.content_body {padding: 0px;}
+	.content_header_list, .sub_content_header .content_body_list  {margin: 20px 0px 0px 0px;}
+	.sub_content_header_test_top .content_body_list  {margin: 0px;padding-left: 15px;}
+	
+	.content_header_img img {width: 100%;}
+	.sub_content_header {padding: 10px;}
+	.content_body_list ul li {padding: 10px;}
+	.sub_content_body_list ul li {padding: 10px 0px;}
+	.h_dot {padding: 0px 10px 20px 10px;}
+	.sub_content_top_menu {margin: 10px 0px 10px 0px;}
+	.study_report .uk-width-8-10 {padding: 20px 10px 20px 0px;}
+	.h_dot.h_dot_li {padding: 0px 0px 20px 0px;}
+	.padding-0-10px {padding: 0px 10px;}
+	.content_my_page_body {background-color: transparent;}
+	.my_page_box {border-top: 0px;overflow: visible;}
+	.sub_contents_body_box h4 span{float: inherit;display: inline-block;margin-top: 10px;}
+	.about_mama_header h1 {margin-top: 20px;margin-bottom: 20px;font-size: 25px;text-align: center;}
+	.h-nav img {height: 31px;top: 9px;}
+	.work_book_reg_bt i {position: relative;top: 3px;}
+}
+
+
+/*//////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////MEDIA///////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////*/
