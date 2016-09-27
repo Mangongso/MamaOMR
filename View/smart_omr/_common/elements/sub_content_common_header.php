@@ -3,14 +3,14 @@
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 content_header_img">
 					<div class="fit_target" style="height: 237px; width: 200px; margin: 0 auto;">
 						<a href="/smart_omr/exercise_book/detail.php?bs=<?=md5($arrBookInfo['seq'])?>"><img class="fit_image" src="<?=$arr_output['book_cover_img']?>" alt="<?=$arrBookInfo['title']?>" />
-							<p class="sr-only">
-							<?=$arrBookInfo['title']?>
-							</p> </a>
+							<span class="sr-only">
+							<?=trim($arrBookInfo['title'])?$arrBookInfo['title']:$arr_output['book_info'][0]['title']?>
+							</span> </a>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 content_body_list sub_content_body_list">
 					<ul>
-						<li><h3><?=$arrBookInfo['title']?>&nbsp;</h3></li>
+						<li><h3><?=trim($arrBookInfo['title'])?$arrBookInfo['title']:$arr_output['book_info'][0]['title']?>&nbsp;</h3></li>
 						<li><span><i class="fa fa-ticket" aria-hidden="true"></i> 테스트 수</span> <?=count($arr_output['book_test_list'])?>
 						</li>
 						<li><span><i class="fa fa-bars" aria-hidden="true"></i> 문항 수</span> <?=$arr_output['book_total_question_cnt']?> <small>문항</small></li>
