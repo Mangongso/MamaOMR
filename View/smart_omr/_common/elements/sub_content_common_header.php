@@ -19,7 +19,7 @@
 						<li><span><i class="fa fa-history" aria-hidden="true"></i> 생성일</span> <?=substr($arrBookInfo['create_date'],0,10)?></li>
 						<!-- 
 			        	<li class="border-none"><span><i class="fa fa-user" aria-hidden="true"></i> 생성자</span><?=$arrBookInfo['writer_info'][0]['name']?></li>
-			        	 -->
+			        	 --> 
 					</ul>
 					<!--button type="button" data-toggle="modal" data-target="#registration_test" class="btn btn-danger col-lg-12 btn-lg btn-block content_header_list_bt"><i class="fa fa-check"aria-hidden="true"></i> 테스트 추가</button-->
 				</div>
