@@ -11,7 +11,7 @@ if(!file_exists($_SERVER["DOCUMENT_ROOT"]."/_connector/yellow.501.php") || !file
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="留뚭났�냼 �뒪留덊듃 OMR">
+<meta name="description" content="마마 OMR">
 <title>MAMA OMR</title>
 <link rel="shortcut icon" href="/_images/favicon/buygl_favicon.ico"
 	type="image/x-icon">
