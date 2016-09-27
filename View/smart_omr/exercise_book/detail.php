@@ -30,7 +30,7 @@
 					<h4 class="uk-clearfix">
 						<i class="fa fa-arrow-down" aria-hidden="true"></i> <?=$arrTest['subject']?><br
 							class="visible-xs" /> <span><a
-							href="../_images/omr/mama-omr-e<?=$arrTest['example_count']?>.png"
+							href="../_images/omr/mama-omr-e<?=$arrTest['example_count']?>.jpg"
 							target="_blank"><i class="fa fa-arrow-down" aria-hidden="true"></i>
 								OMR 다운로드</a></span>
 					</h4>
