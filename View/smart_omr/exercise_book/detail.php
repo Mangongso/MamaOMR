@@ -61,7 +61,7 @@
 						class="fa fa-check-square" aria-hidden="true"></i> 스마트 OMR</a> <a
 						href="javascript:halert('로그인이 필요합니다.');UIkit.offcanvas.show('#LOGIN');"
 						class="pure-button pure-form_in col-xs-12 col-sm-12 col-md-4 col-lg-4"><i
-						class="fa fa-file" aria-hidden="true"></i> OMR 출력</a> <a
+						class="fa fa-file" aria-hidden="true"></i> OMR 업로드</a> <a
 						href="javascript:halert('로그인이 필요합니다.');UIkit.offcanvas.show('#LOGIN');"
 						class="pure-button pure-form_in col-xs-12 col-sm-12 col-md-4 col-lg-4"><i
 						class="fa fa-undo" aria-hidden="true"></i> OMR수정</a>
