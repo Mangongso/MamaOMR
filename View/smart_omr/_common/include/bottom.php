@@ -40,7 +40,7 @@ $(document).ready(function(){
 <? if(count($arr_output['manager'])){ ?>
 alert('<?=$arr_output['manager']['manager_msg']?>');
 <? }else if(!$_SESSION['smart_omr'] && $_GET['mat']){ ?>
-alert('로그인 하시면 매니저로 등록됩니다.');
+alert('스마트한 학습매니져 마마OMR입니다.\n로그인 하시면 매니저로 등록됩니다.');
 UIkit.offcanvas.show('#LOGIN');
 <? } ?>
 });
