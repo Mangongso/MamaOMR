@@ -12,7 +12,7 @@ if (! $viewID) {
 <!--#############################################################################-->
 <!-- ################################################################# -->
 <div class="uk-width-1-1 question_div"
-	id="question_<?=$intQuestionSeq?>" question_seq="<?=$intQuestionSeq?>">
+	id="question_<?=$intQuestionSeq?>" data-question-seq="<?=$intQuestionSeq?>">
 	<input type="hidden" name="question_seq[<?=$intQuestionSeq?>]"
 		id="question_seq_<?=$intQuestionSeq?>" value="<?=$intQuestionSeq?>"
 		class="question_seq"> <input type="hidden"
@@ -28,7 +28,7 @@ if (! $viewID) {
 		id="question_score_<?=$intQuestionSeq?>"
 		value="1<?//=$arrQuestion['question_score']?>"> <input
 		class="question_type" type="hidden"
-		question_seq="<?=$intQuestionSeq?>"
+		data-question-seq="<?=$intQuestionSeq?>"
 		name="question_type[<?=$intQuestionSeq?>]"
 		id="question_type_<?=$intQuestionSeq?>"
 		value="<?=$arrQuestion['question_type']?>">

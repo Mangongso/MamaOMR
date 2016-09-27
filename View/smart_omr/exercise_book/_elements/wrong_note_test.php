@@ -17,17 +17,17 @@ console.log(arrAnswerSeq);
 				<? if(count($arr_output['wrong_answer'])){ ?>
 				<? foreach($arr_output['wrong_answer'] as $intKey=>$arrWrongAnswer){ ?>
 				<? $arrWrongQuestionDetail = $arr_output['wrong_questions'][$arrWrongAnswer['question_seq']];?>
-<div class="quiz-question"  question_seq="<?=$arrWrongAnswer['question_seq']?>" style="display:<?=$intIndex==0?'block':'none';?>">
+<div class="quiz-question"  data-question-seq="<?=$arrWrongAnswer['question_seq']?>" style="display:<?=$intIndex==0?'block':'none';?>">
 				<? if($arrWrongAnswer['file_name']){?>
-				<img id="question_img"
-		src="../_images/question.php?b=<?=$arr_output['book_seq'];?>&t=<?=$arrWrongAnswer['test_seq']?>&q=<?=$arrWrongAnswer['question_seq']?>&f=<?=$arrWrongAnswer['file_name']?>"
+				<img class="question_img"
+		src="<?=urlencode("../_images/question.php?b=".$arr_output['book_seq']."&t=".$arrWrongAnswer['test_seq']."&q=".$arrWrongAnswer['question_seq']."&f=".$arrWrongAnswer['file_name'])?>"
 		data-img_mode="real" alt=" " />
 				<? }else if($arrWrongQuestionDetail['file_name']){?>
-				<img id="question_img"
-		src="../_images/question.php?b=<?=$arr_output['book_seq'];?>&t=<?=$arrWrongAnswer['test_seq']?>&q=<?=$arrWrongAnswer['question_seq']?>&f=<?=$arrWrongQuestionDetail['file_name']?>"
+				<img class="question_img"
+		src="<?=urlencode("../_images/question.php?b=".$arr_output['book_seq']."&t=".$arrWrongAnswer['test_seq']."&q=".$arrWrongAnswer['question_seq']."&f=".$arrWrongQuestionDetail['file_name'])?>"
 		data-img_mode="real" alt=" " />
 				<? }else{ ?>
-				<img id="question_img" src="../_images/default_wt_cover.png"
+				<img class="question_img" src="../_images/default_wt_cover.png"
 		style="width: 100%; height: 250px;" alt=" " />
 				<? } ?>
 				
@@ -42,7 +42,7 @@ console.log(arrAnswerSeq);
 				<? } ?>
 				<div class="uk-width-1-1 user_answer_radio"
 		id="question_<?=$arrWrongAnswer['question_seq']?>"
-		question_seq="<?=$arrWrongAnswer['question_seq']?>">
+		data-question-seq="<?=$arrWrongAnswer['question_seq']?>">
 		<h4 class="uk-width-2-10 pull-left" style="padding-top: 6px;">
 					<?=$arrWrongAnswer['order_number']?>
 					</h4>
@@ -67,8 +67,7 @@ console.log(arrAnswerSeq);
 						<label class="uk-width-<?=$intExampleWidth?>-10 btn btn-default"
 				for="example_<?=$arrWrongAnswer['question_seq']?>_<?=$arrExample['seq'];?>">
 				<input type="radio" value="<?=$arrExample['seq'];?>"
-				id="example_<?=$arrWrongAnswer['question_seq']?>_<?=$arrExample['seq'];?>"
-				autocomplete="off"><?=$arrExample['example_number'];?>
+				id="example_<?=$arrWrongAnswer['question_seq']?>_<?=$arrExample['seq'];?>"><?=$arrExample['example_number'];?>
 					  	</label>
 					  	<? } ?>
 					</div>
