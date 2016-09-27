@@ -52,8 +52,8 @@ function Common() {
 			});
 		}
 		//set comment div
-		if($('#comment_div[data-comment-seq]').length>0){
-			objCommon.getComment($('#comment_div').attr('data-comment-seq'),$('#comment_div').attr('data-bbs-seq'));
+		if($('#comment_div[comment_seq]').length>0){
+			objCommon.getComment($('#comment_div').attr('comment_seq'),$('#comment_div').attr('bbs_seq'));
 		}	
 		
 		// OMR upload
@@ -283,7 +283,7 @@ function Common() {
 			   responseType: 'json',
 				name: 'OMR',
 				onSubmit : function(file, ext){
-					if(ext!="jpg" && ext!="png"){
+					if(ext.toLowerCase()!="jpeg" && ext.toLowerCase()!="jpg" && ext.toLowerCase()!="png"){
 						alert("jpg 또는 png 파일만 업로드 가능합니다.");
 						return(false);
 					}

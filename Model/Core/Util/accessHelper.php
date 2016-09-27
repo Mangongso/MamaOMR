@@ -1,7 +1,6 @@
 <?
 /**
- * 접근 helper
- *
+ * 회원의 접근 권한을 관리
  * @subpackage 	Core/DataManager/DataHandler
  * @property		public 	array 		$arrArrowedIp 	: 허용 IP
  * @category     	accessHelper

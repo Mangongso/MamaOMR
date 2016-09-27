@@ -20,11 +20,11 @@ console.log(arrAnswerSeq);
 <div class="quiz-question"  data-question-seq="<?=$arrWrongAnswer['question_seq']?>" style="display:<?=$intIndex==0?'block':'none';?>">
 				<? if($arrWrongAnswer['file_name']){?>
 				<img class="question_img"
-		src="<?=urlencode("../_images/question.php?b=".$arr_output['book_seq']."&t=".$arrWrongAnswer['test_seq']."&q=".$arrWrongAnswer['question_seq']."&f=".$arrWrongAnswer['file_name'])?>"
+		src="<?="../_images/question.php?b=".$arr_output['book_seq']."&t=".$arrWrongAnswer['test_seq']."&q=".$arrWrongAnswer['question_seq']."&f=".urlencode($arrWrongAnswer['file_name'])?>"
 		data-img_mode="real" alt=" " />
 				<? }else if($arrWrongQuestionDetail['file_name']){?>
 				<img class="question_img"
-		src="<?=urlencode("../_images/question.php?b=".$arr_output['book_seq']."&t=".$arrWrongAnswer['test_seq']."&q=".$arrWrongAnswer['question_seq']."&f=".$arrWrongQuestionDetail['file_name'])?>"
+		src="<?="../_images/question.php?b=".$arr_output['book_seq']."&t=".$arrWrongAnswer['test_seq']."&q=".$arrWrongAnswer['question_seq']."&f=".urlencode($arrWrongQuestionDetail['file_name'])?>"
 		data-img_mode="real" alt=" " />
 				<? }else{ ?>
 				<img class="question_img" src="../_images/default_wt_cover.png"

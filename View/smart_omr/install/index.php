@@ -318,10 +318,11 @@
 		    </a>
 		  </li>
 		 </ul>
-	<div class="row">
+	</div>
 	<!-- ########################## -->		
 	<div class="row">
 		<p class="help-block">모든 상태가 <span class="label label-success">Pass</span> 이어야 다음단계로 진행이 가능 합니다. Check Install 버튼을 클릭하여 상태를 확인 하세요.</p>
+		<p class="help-block">설치 실패시 기존 DB를 삭제하고 재설치 해주세요.</p>
 		<br/>
 		<? if($confFailCnt>0){?>
 		<button type="button" class="btn-block install_bt" onclick="document.location.reload();"><i class="uk-icon-check-circle"></i> Check Inistall</button>

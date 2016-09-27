@@ -29,8 +29,8 @@
 	<div class="container-fluid copyright">
 		<div class="row">
 			<small>Copyright © mamaomr All rights reserved. powered by MamaOMR</small>
-			<span class="pull-right hidden-xs">고객센터 | 02-900-4446 / <a
-				href="mailto:info@mamaomr.com" title="이메일 문의">info@mamaomr.com</a></span>
+			<span class="pull-right hidden-xs">고객센터 | 82-00-000-0000 / <a
+				href="mailto:your@email.com" title="이메일 문의">your@email.com</a></span>
 		</div>
 	</div>
 </div>
