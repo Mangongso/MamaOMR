@@ -318,7 +318,7 @@
 		    </a>
 		  </li>
 		 </ul>
-	<div class="row">
+	</div>
 	<!-- ########################## -->		
 	<div class="row">
 		<p class="help-block">모든 상태가 <span class="label label-success">Pass</span> 이어야 다음단계로 진행이 가능 합니다. Check Install 버튼을 클릭하여 상태를 확인 하세요.</p>
