@@ -4,7 +4,6 @@ if (! $viewID) {
 	include ($_SERVER ['DOCUMENT_ROOT'] . "/_connector/yellow.501.php");
 }
 ?>
-				<? if(count($arr_output['book_list'])){ ?>
 				<? foreach($arr_output['book_list'] as $intKey=>$arrBook){ ?>
 <div class="workbook_cover col-xs-12 col-sm-6 col-md-4 col-lg-3">
 	<div class="workbook_cover_box">
@@ -35,11 +34,3 @@ if (! $viewID) {
 	</div>
 </div>
 <? } ?>
-				<? }else{ ?>
-				<div class="row content_body" id="book_list_div">
-					<div class="workbook_cover col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<span>등록된 문제집이 없습니다. 마마OMR의 첫 문제집을 등록해 보세요~</span><br>
-						<button onclick="location.href='/smart_omr/exercise_book/registration'">문제집 등록하기</button>
-					</div>
-				</div>
-				<? } ?>

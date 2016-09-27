@@ -76,7 +76,7 @@ foreach($arrBooks as $intKey=>$arrBook){
  */
 $arr_output['book_list'] = $arrBooks;
 
-if(!count($arr_output['book_list'])){
+if(!count($arr_output['book_list']) && $intPage==1){
 	header('Location: /smart_omr/exercise_book/registration');
 	exit;
 }
