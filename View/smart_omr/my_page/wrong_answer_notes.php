@@ -35,14 +35,14 @@
 			<!-- ############### -->
 				<div class="sub_contents_test_body sub_contents_test_result">
 				<ul class="nav nav-tabs sub_content_top_menu">
-				  <li class="active" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_note');"><a href="javascript:void(0);"><i class="fa fa-times" aria-hidden="true"></i> 오답노트</a></li>
+				  <li class="active" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_note');"><a href="#"><i class="fa fa-times" aria-hidden="true"></i> 오답노트</a></li>
 				  <li class="" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_test');">
-				  	<a href="javascript:void(0);">
+				  	<a href="#">
 				  		<i class="fa fa-undo" aria-hidden="true"></i> 오답문제풀이 <small><i onclick="objWAN.getWrongNoteTest('<?=$_GET['t']?>','<?=$_GET['revision']?>');" style="cursor: pointer;color: #ccc;"" class="fa fa-refresh" aria-hidden="true" t="<?=$_GET['t']?>" revision="<?=$_GET['revision']?>" ></i></small>
 				  	</a>
 				  </li>
 				  <li class="" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');">
-				  	<a href="javascript:void(0);">
+				  	<a href="#">
 				  		<i class="fa fa-comment fa-flip-horizontal" aria-hidden="true"></i> 댓글 <small><i onclick="objCommon.getComment($('#comment_div').attr('comment_seq'),$('#comment_div').attr('bbs_seq'));" style="cursor: pointer;color: #ccc;"" class="fa fa-refresh" aria-hidden="true" t="<?=$_GET['t']?>" revision="<?=$_GET['revision']?>" ></i></small>
 				  	</a>
 				  </li>

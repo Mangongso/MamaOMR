@@ -41,20 +41,20 @@
 			<!-- ############### -->
 			<ul class="nav nav-tabs sub_content_top_menu">
 				<li class="active"
-					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('study_report');"><a
-					href="javascript:void(0);" title="학습리포트"><i class="fa fa-bar-chart"
-						aria-hidden="true"></i> 학습리포트</a></li>
-				<li class=""
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('answer_omr');"><a
-					href="javascript:void(0);" title="입력답안"><i class="fa fa-check"
+					href="#" title="입력답안"><i class="fa fa-check"
 						aria-hidden="true"></i> 입력답안</a></li>
 				<li class=""
+					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('study_report');"><a
+					href="#" title="학습리포트"><i class="fa fa-bar-chart"
+						aria-hidden="true"></i> 학습리포트</a></li>
+				<li class=""
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_note');"><a
-					href="javascript:void(0);" title="오답노트"><i class="fa fa-times"
+					href="#" title="오답노트"><i class="fa fa-times"
 						aria-hidden="true"></i> 오답노트</a></li>
 				<li class=""
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_test');">
-					<a href="javascript:void(0);" title="오답문제풀이"> <i class="fa fa-undo"
+					<a href="#" title="오답문제풀이"> <i class="fa fa-undo"
 						aria-hidden="true"></i> 오답문제풀이 <small><i
 							onclick="objWAN.getWrongNoteTest('<?=$_GET['t']?>','<?=$_GET['revision']?>');"
 							style="cursor: pointer; color: #ccc;" class="fa fa-refresh"
@@ -64,7 +64,7 @@
 				</li>
 				<li class=""
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');">
-					<a href="javascript:void(0);" title="댓글"> <i
+					<a href="#" title="댓글"> <i
 						class="fa fa-comment fa-flip-horizontal" aria-hidden="true"></i>
 						댓글 <small><i
 							onclick="objCommon.getComment($('#comment_div').attr('comment_seq'),$('#comment_div').attr('bbs_seq'));"
@@ -81,39 +81,12 @@
 					</h2>
 				</div>
 			</div>
-			<!--###########################################################-->
-			<!--#########################학습리포트############################-->
-			<!--###########################################################-->
-			<!-- ############### -->
-			<div class="study_report sub_tabs" id="study_report">
-				<!-- ############### -->
-				<? if(count($arr_output['record_tags'])){ ?>
-				<? foreach($arr_output['record_tags'] as $intKey=>$arrRecordTags){ ?>
-				<div class="uk-width-1-1">
-					<h4 class="uk-width-2-10 pull-left">
-						<span><?=$arrRecordTags['tag']?$arrRecordTags['tag']:'미지정'?></span><br /><?=$arrRecordTags['corect_cnt']?>/<?=$arrRecordTags['tag_cnt']?></h4>
-					<div class="uk-width-8-10 pull-right">
-						<div class="progress">
-							<div class="progress-bar progress-bar-info progress-bar-striped uk-width-1-1" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: <?=(int)$arrRecordTags['corect_percent']?>%">
-								<span class="sr-only"><?=(int)$arrRecordTags['corect_percent']?>% Complete</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<? } ?>
-				<? }else{ ?>
-				<div class="h_dot">
-					<div class="h_dot_box" style="top: 0px; border-top: 0px;">태그가 지정되어
-						있지 않습니다.</div>
-				</div>
-				<? } ?>
-				<!-- ############### -->
-			</div>
+			
 			<!--##########################################################-->
 			<!--#########################입력답안############################-->
 			<!--##########################################################-->
 			<!-- ############### -->
-			<div id="answer_omr" style="display: none;" class="sub_tabs">
+			<div id="answer_omr" class="sub_tabs">
 				<? foreach($arr_output['test_question_list'] as $intKey=>$arrQuestionInfo){ ?>
 				<div
 					class="uk-width-1-1 <?=$arr_output['user_answer'][$intKey]['result_flg']?'test_right_answer':'test_wrong_answer'?>"
@@ -146,13 +119,42 @@
 							for="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>">
 							<input type="radio" value="<?=$arrExample['seq'];?>"
 							id="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>"
-							autocomplete="off"><?=$arrExample['example_number'];?>
+							><?=$arrExample['example_number'];?>
 					  	</label>
 					  	<? } ?>
 					</div>
 				</div>
 				<? } ?>
 				</div>
+				
+			<!--###########################################################-->
+			<!--#########################학습리포트############################-->
+			<!--###########################################################-->
+			<!-- ############### -->
+			<div class="study_report sub_tabs" id="study_report" style="display: none;">
+				<!-- ############### -->
+				<? if(count($arr_output['record_tags'])){ ?>
+				<? foreach($arr_output['record_tags'] as $intKey=>$arrRecordTags){ ?>
+				<div class="uk-width-1-1">
+					<h4 class="uk-width-2-10 pull-left">
+						<span><?=$arrRecordTags['tag']?$arrRecordTags['tag']:'미지정'?></span><br /><?=$arrRecordTags['corect_cnt']?>/<?=$arrRecordTags['tag_cnt']?></h4>
+					<div class="uk-width-8-10 pull-right">
+						<div class="progress">
+							<div class="progress-bar progress-bar-info progress-bar-striped uk-width-1-1" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: <?=(int)$arrRecordTags['corect_percent']?>%">
+								<span class="sr-only"><?=(int)$arrRecordTags['corect_percent']?>% Complete</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<? } ?>
+				<? }else{ ?>
+				<div class="h_dot">
+					<div class="h_dot_box" style="top: 0px; border-top: 0px;">태그가 지정되어
+						있지 않습니다.</div>
+				</div>
+				<? } ?>
+				<!-- ############### -->
+			</div>
 			<!--##########################################################-->
 			<!--#########################오답노트############################-->
 			<!--##########################################################-->

@@ -28,10 +28,17 @@ $tabSelected = 3;
 				<div class="sub_contents_body_box text-left">
 					<h4>
 						<i class="fa fa-arrow-right" aria-hidden="true"></i> 마이 페이지 / 나의
-						매니징 <br class="visible-xs" /> <span>매니징 받고 있는 테스트 목록입니다.</span>
+						메니징 <br class="visible-xs" /> <span>메니징 받고 있는 테스트 목록입니다.</span>
 					</h4>
 				</div>
-			<? foreach($arr_output['book_list'] as $intKey=>$arrBook){ ?>
+			<? if(count($arr_output['manager_student_list'])){ ?>
+			<? foreach($arr_output['manager_student_list'] as $intFirstKey=>$arrManagerStudent){ //foreach 1 ?>
+				<div class="sub_contents_body_box">
+					<h4 style="border-bottom: 0px;"><?=$arrManagerStudent['student_info'][0]['name']?></h4>
+				</div>
+ 	
+ 			<? if(count($arrManagerStudent['join_book'])){ ?>
+ 			<? foreach($arrManagerStudent['join_book'] as $intKey=>$arrBook){ //foreach 2 ?>
 			<? if($intKey%2==0){ ?>
 				<div class="my_page_box">
 			<? } ?>
@@ -64,6 +71,21 @@ $tabSelected = 3;
 			<? if($intKey%2==1){ ?>
 			</div>
 			<? } ?>
+			<? } ?>
+			<? }else{ ?>
+				<div class="my_page_box">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+					<span>참여 목록이 없습니다. </span>
+				</div>
+				</div>
+			<? } ?>
+			<? } ?>
+			<? }else{ ?>
+				<div class="my_page_box">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+					<span>메니져를 신청한 학생이 없습니다.</span>
+				</div>
+				</div>
 			<? } ?>
 			</div>
 		</div>
