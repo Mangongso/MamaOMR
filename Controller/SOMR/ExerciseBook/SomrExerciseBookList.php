@@ -17,13 +17,13 @@ require_once('Model/ManGong/Teacher.php');
 /**
  * Variable 세팅
  * @var 	$intWriterSeq		md5암호화 유저 시컨즈
- * @var 	$inSearchFlg		검색 flg
+ * @var 	$intSearchFlg		검색 flg
  * @var 	$strSearchKey	검새 key
  * @var 	$intCategorySeq		유형
  * @var 	$intPage		페이지
  */ 
 $intWriterSeq = SMART_OMR_TEACHER_SEQ;
-$inSearchFlg = $_REQUEST['search_flg'];
+$intSearchFlg = $_REQUEST['search_flg'];
 $strSearchKey = $_REQUEST['search_key']?$_REQUEST['search_key']:'';
 $intCategorySeq = $_REQUEST['category_seq']?$_REQUEST['category_seq']:'';
 $intPage = $_REQUEST['page']?$_REQUEST['page']:1;
@@ -75,8 +75,9 @@ foreach($arrBooks as $intKey=>$arrBook){
  * @property	array 		$arr_output['book_list'] 			: book 목록
  */
 $arr_output['book_list'] = $arrBooks;
+$arr_output['search_flg'] = $intSearchFlg;
 
-if(!count($arr_output['book_list'])){
+if(!count($arr_output['book_list']) && $intSearchFlg!=1 ){
 	header('Location: /smart_omr/exercise_book/registration');
 	exit;
 }
