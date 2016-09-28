@@ -6,8 +6,8 @@ require_once("Model/Core/DataManager/DataHandler.php");
  * 본 클레스틑 Test/Answer 클레스를 확장한다.
  *
  * @package      	Mangong
- * @subpackage   	Core/Util/Paging
- * @subpackage   	Core/DataManager/DataHandler
+ * @subpackage   	Core\Util\Paging
+ * @subpackage   	Core\DataManager\DataHandler
  * @property		private resource $resAnswerDB : DB 커넥션 리소스
  * @category     	Answer
  */
