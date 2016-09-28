@@ -17,7 +17,7 @@
 						title="<?=$arr_output['book_info'][0]['title']?>"><img
 						src="<?=$arr_output['book_cover_img']?>"
 						alt="<?=$arr_output['book_info'][0]['title']?>" />
-						<p class="sr-only">해커스 톡 기초영어</p> </a>
+						<span class="sr-only"><?=$arr_output['book_info'][0]['title']?></span> </a>
 				</div>
 				<div
 					class="col-xs-8 col-sm-7 col-md-7 col-lg-7 content_body_list sub_content_body_list">
