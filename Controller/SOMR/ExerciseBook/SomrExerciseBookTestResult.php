@@ -159,7 +159,7 @@ foreach($arrQuestionList as $intKey=>$arrResult){
  * 
  */
 $arr_output['book_info'] = $arrBookInfo;
-$arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/default_cover.png";
+$arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/no_cover.png";
 $arr_output['test_info'] = $arrTestResult;
 $arr_output['test_question_list'] = $arrQuestionList;
 $arr_output['question_cnt'] = $intQuestionCnt;

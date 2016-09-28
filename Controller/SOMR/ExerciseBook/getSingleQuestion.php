@@ -15,7 +15,6 @@ require_once('Model/ManGong/MQuestion.php');
  * @var 	$intTestSeq	테스트 시컨즈
  * @var 	$intQuestionSeq		문제 시컨즈
  */  
-$intMemberSeq = $_SESSION[$_COOKIE['member_token']]['member_seq'];
 $intTestSeq = $_POST['test_seq'];
 $intQuestionSeq = $_POST['question_seq'];
 

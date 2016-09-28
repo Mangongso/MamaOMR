@@ -12,14 +12,14 @@ require_once('Model/ManGong/MQuestion.php');
 
 /**
  * Variable 세팅
- * @var 	$intMemberSeq	유저 시컨즈
+ * @var 	$intWriterSeq	마스터 시컨즈
  * @var 	$intTestSeq		테스트 시컨즈
  * @var 	$intOrderNumber		문제번호
  * @var 	$intQuestionScore		문제 점수
  * @var 	$intQuestionType		문제 타입
  * @var 	$intExampleType		예제 타입
  */  
-$intMemberSeq = $_SESSION[$_COOKIE['member_token']]['member_seq'];
+$intWriterSeq = SMART_OMR_TEACHER_SEQ;
 $intTestSeq = $_POST['test_seq'];
 $intOrderNumber = $_POST['order_number']+1;
 $intQuestionScore = $_POST['question_score'];
@@ -47,7 +47,7 @@ if($intAuthFlg!=AUTH_TRUE){
 	exit;
 }
 $intQuestionSeq = null;
-$boolResult = $objQuestion->setQuestion($intMemberSeq, '', $intQuestionType, $intExampleType, null, null, null,$intQuestionSeq);
+$boolResult = $objQuestion->setQuestion($intWriterSeq, '', $intQuestionType, $intExampleType, null, null, null,$intQuestionSeq);
 $boolResult = $objQuestion->setQuestionToTests($intTestSeq, $intQuestionSeq, $intQuestoinNumber ,$intQuestionScore,$intOrderNumber);
 $boolResult = $objQuestion->setQuestionExampleAll($intQuestionSeq,'',$intAnswerFlg=0,$intExampleType,null);
 

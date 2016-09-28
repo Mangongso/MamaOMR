@@ -144,9 +144,10 @@ function WrongAnswerNote(){
 		}
 		alert(resultMsg);
 		$('.quiz-question').css('display','none');
-		$('.quiz-question .ans_correct').removeClass('active');
+		$('.quiz-question .ans_correct label').removeClass('active');
 		if(questionCnt==(selectQuestionIndex+1)){
 			alert("마지막 문제 입니다. 처음부터 다시 시작합니다.");
+			$('.quiz-question').eq(0).css('display','block');
 			$('.quiz-question').eq(0).css('display','block');
 		}else{
 			$('.quiz-question').eq(selectQuestionIndex+1).css('display','block');

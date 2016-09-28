@@ -47,7 +47,7 @@ $arrBookInfo = $arr_output ['book_info'] [0];
 								<!--h2><a href="/smart_omr/"><img src="/smart_omr/_images/top_logo.png" class="foot_logo"/></a></h2-->
 								<div
 									class="pure-menu pure-menu-horizontal pure-menu-scrollable scrollable-menu">
-									<ul id="foot_menu-tabs" class="pure-menu-list">
+									<ul class="pure-menu-list foot_menu-tabs">
 					    	<? if(count($arrTest['my_record_list'])){?>
 					    	<? foreach($arrTest['my_record_list'] as $intSubKey=>$arrMyRecordList){ ?>
 					        <li class="pure-menu-item">
