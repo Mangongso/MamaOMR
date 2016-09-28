@@ -57,16 +57,14 @@
 									<i class="uk-icon-caret-right"></i> 오답노트
 								</a>
 							</li>
-							<li class="pure-menu-item">
-								<a href="javascript:void(0);" title="오답문제풀이" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_test');">
+							<lihref="javascript:void(0);"								<a href="javascript:void(0);" title="오답문제풀이" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_test');">
 									<i class="uk-icon-caret-right"></i> 오답문제풀이 
 									<small>
-										<i onclick="objWAN.getWrongNoteTest('<?=$_GET['t']?>','<?=$_GET['revision']?>');" style="cursor: pointer; color: #ccc;" class="fa fa-refresh" aria-hidden="true" data-t="<?=$_GET['t']?>" data-revision="<?=$_GET['revision']?>"></i>
+										<i onclick="objWAN.getWrongNoteTest('<?=$_GET['t']?>','<?=$arr_output['record'][0]['revision']?>');" style="cursor: pointer; color: #ccc;" class="fa fa-refresh" aria-hidden="true" data-t="<?=$_GET['t']?>" data-revision="<?=$arr_output['record'][0]['revision']?>"></i>
 									</small>
 								</a>
 							</li>
-							<li class="pure-menu-item">
-								<a href="javascript:void(0);" title="댓글" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');objCommon.getComment($('#comment_div').attr('data-comment-seq'),$('#comment_div').attr('data-bbs-seq'));">
+							<lihref="javascript:void(0);"								<a href="javascript:void(0);" title="댓글" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');objCommon.getComment($('#comment_div').attr('data-comment-seq'),$('#comment_div').attr('data-bbs-seq'));">
 									<i class="uk-icon-caret-right"></i> 댓글 
 								</a>
 							</li>
@@ -94,10 +92,10 @@
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_test');">
 					<a href="javascript:void(0);" title="오답문제풀이"> <i class="fa fa-undo"
 						aria-hidden="true"></i> 오답문제풀이 <small><i
-							onclick="objWAN.getWrongNoteTest('<?=$_GET['t']?>','<?=$_GET['revision']?>');"
+							onclick="objWAN.getWrongNoteTest('<?=$_GET['t']?>','<?=$arr_output['record'][0]['revision']?>');"
 							style="cursor: pointer; color: #ccc;" class="fa fa-refresh"
 							aria-hidden="true" data-t="<?=$_GET['t']?>"
-							data-revision="<?=$_GET['revision']?>"></i></small>
+							data-revision="<?=$arr_output['record'][0]['revision']?>"></i></small>
 				</a>
 				</li>
 				<? } ?>
