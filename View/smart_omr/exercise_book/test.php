@@ -43,7 +43,7 @@
 					value="<?=$arr_output['test_info'][0]['publish'][0]['seq']?>" />
 
 				<div class="sub_contents_body_box">
-					<h4 class="border-none"><?=$arr_output['test_info'][0]['subject']?></h4>
+					<h4 class="border-none" style="margin-left: 10px;"><?=$arr_output['test_info'][0]['subject']?></h4>
 				</div>
 				<div class="h_dot">
 					<div class="h_dot_box" style="top: 0px;">

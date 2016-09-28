@@ -342,8 +342,8 @@ a:focus, a:hover {
     border: 1px solid #fff;*/
 }
 .content_header_img {
-	 text-align: center;
-	 padding: 0px;
+    text-align: center;
+    padding: 20px 0px 0px 0px;
 }
 .content_header_img img {
 	/*
@@ -500,7 +500,7 @@ a:focus, a:hover {
    	text-decoration: none;
    }
 .sub_contents_body_box {
-    margin-top: 15px;
+    margin: 15px 0px 0px 0px;
 }
 
 .sub_contents_body_box a {
@@ -522,7 +522,7 @@ a:focus, a:hover {
     margin: 0px;
     color: #333;
     text-align: left;
-    border-bottom: 1px solid #e1e1e1;
+    /*border-bottom: 1px solid #e1e1e1;*/
 }
 .sub_contents_body_box h4 span{
 	font-size: 12px;
@@ -760,9 +760,6 @@ a:focus, a:hover {
     /*background-color: #fff;*/
     padding-bottom: 10px;
 }
-.my_page_box {
-}
-
 .my_page_box_in {
 	padding: 20px 0px 20px 0px;
     border-top: 1px solid #e1e1e1;
@@ -780,6 +777,12 @@ a:focus, a:hover {
 }
 #frmQuestion {
 	margin-bottom: 20px
+}
+.h_dot_box.info_box {
+	padding: 0px 20px 20px 20px;
+}
+.h_dot_box.info_box i {
+	font-size: 350%;
 }
 /* /////////////////////////////////////////  */
 /* ///////////////////모달///////////////////  */
@@ -900,7 +903,8 @@ uikit padding remove
 	        box-shadow: none;
 }
 .question_info button, .question_info input {
-	    border: 1px solid #FAF9F8;
+	 border: 0px;
+	box-shadow: none!important;
 }
 
 /*************************************************/
