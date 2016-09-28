@@ -4,7 +4,7 @@ require_once("Model/Core/DataManager/DataHandler.php");
 /**
  * 유저의 성적을 등록, 수정, 삭제, 조회한다
  *
- * @package      	Mangong/Record
+ * @package      	Mangong
  * @subpackage   	Core/Util/Paging
  * @subpackage   	Core/DataManager/DataHandler
  * @property		private resource $resRecordDB : DB 커넥션 리소스
