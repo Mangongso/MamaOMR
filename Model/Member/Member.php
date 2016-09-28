@@ -1,4 +1,6 @@
 <?php
+require_once("Model/Core/Util/Paging.php");
+require_once("Model/Core/DataManager/DataHandler.php");
 /**
  * 유저 정보를 등록, 수정, 삭제, 조회한다.
  *
@@ -9,8 +11,6 @@
  * @property 		public object $objPaging : 페이징 객체
  * @category     	Member
  */
-require_once("Model/Core/Util/Paging.php");
-require_once("Model/Core/DataManager/DataHandler.php");
 
 class Member{
 	private $objPaging;

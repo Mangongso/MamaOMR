@@ -1,4 +1,5 @@
 <?php
+require_once("Model/Core/XMLmanager/XMLmanager.php");
 /**
  * 컨트롤러 매핑
  *
@@ -8,7 +9,6 @@
  * @category     	MailHandler
  *
  */
-require_once("Model/Core/XMLmanager/XMLmanager.php");
 class ControllerMapping{
 	var $obj_XML;
 	var $arr_mapping_info;

@@ -1,4 +1,6 @@
 <?
+require_once("Model/Core/Util/Paging.php");
+require_once("Model/Core/DataManager/DataHandler.php");
 /**
  * 문제의 태그를 등록, 수정, 삭제, 조회한다.
  *
@@ -9,8 +11,6 @@
  * @category     	Tag
  */
 
-require_once("Model/Core/Util/Paging.php");
-require_once("Model/Core/DataManager/DataHandler.php");
 
 class Tag{
 	/**

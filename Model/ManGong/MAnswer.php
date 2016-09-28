@@ -1,4 +1,6 @@
 <?
+require_once("Model/Core/Util/Paging.php");
+require_once("Model/Core/DataManager/DataHandler.php");
 /**
  * 문제 및 문제에 종속되는 보기를 등록, 수정, 삭제, 조회한다.
  * 본 클레스틑 Test/Answer 클레스를 확장한다.
@@ -9,8 +11,6 @@
  * @property		private resource $resAnswerDB : DB 커넥션 리소스
  * @category     	Answer
  */
-require_once("Model/Core/Util/Paging.php");
-require_once("Model/Core/DataManager/DataHandler.php");
 
 class MAnswer{
 	/**

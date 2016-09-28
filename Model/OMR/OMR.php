@@ -6,7 +6,7 @@ use OpenOMR\PaperSheet\Mark;
 use OpenOMR\Reader\Reader;
 
 /**
- * OMR
+ * OMR 연결 Class
  * 
  * @property	private	resource 		$paper : PaperSheet 객체
  * @property	private	string 			$fieldId : 필드 ID

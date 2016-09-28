@@ -3,7 +3,7 @@ if(file_exists(ini_get('include_path')."/ExternalApps/tesseract-ocr-for-php")){
 	include_once('ExternalApps/tesseract-ocr-for-php/src/TesseractOCR.php');
 }
 /**
- * OCR 
+ * OCR 연결 Class
  *
  * @property		private	string 		$strApiKey : api 키
  * @property		private 	string 		$strOCRType : ocr 타입
