@@ -1,6 +1,7 @@
 <?
 if(is_array($mixMemberSeq)){
 	$strQuery = sprintf("select A.member_seq,
+md5(A.member_seq) as member_key,	
 A.member_id,
 A.email,
 A.email_display,
@@ -51,6 +52,7 @@ B.subject from member_basic_info A left outer join member_extend_info B on A.mem
 }else{
 	if(is_numeric($mixMemberSeq)){
 		$strQuery = sprintf("select A.member_seq,
+md5(A.member_seq) as member_key,	
 A.member_id,
 A.email,
 A.email_display,
@@ -100,6 +102,7 @@ B.school,
 B.subject from member_basic_info A left outer join member_extend_info B on A.member_seq = B.member_seq where A.member_seq=%d",$mixMemberSeq); 
 	}else{
 		$strQuery = sprintf("select A.member_seq,
+md5(A.member_seq) as member_key,	
 A.member_id,
 A.email,
 A.email_display,
