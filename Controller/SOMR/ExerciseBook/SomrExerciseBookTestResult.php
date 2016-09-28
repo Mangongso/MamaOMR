@@ -33,7 +33,7 @@ $strStudentKey = $_REQUEST['sk'];//student seq
 if($strStudentKey){
 	$strManagerKey = $_SESSION['smart_omr']['member_key'];//manager seq
 }else{
-	$strMMemberSeq = $_SESSION['smart_omr']['member_key'];//member seq
+	$strMemberSeq = $_SESSION['smart_omr']['member_key'];//member seq
 }
 $strTestSeq = $_REQUEST['t'];
 $intRevisionFlg = $_REQUEST['revision'];
@@ -63,12 +63,14 @@ $objMember = new Member($resMangongDB);
 /**
  * Main Process
  */	
-if(trim($strStudentKey) && !$objStudentMG->checkIsManager($strStudentKey, $strManagerKey)){
-	header("location:/");
-	exit;
-}else{
-	$strMemberSeq = $strStudentKey;
-	$arrStudentInfo = $objMember->getMemberByMemberSeq($strMemberSeq);
+if(trim($strStudentKey)){
+	if(!$objStudentMG->checkIsManager($strStudentKey, $strManagerKey)){
+		header("location:/");
+		exit;
+	}else{
+		$strMemberSeq = $strStudentKey;
+		$arrStudentInfo = $objMember->getMemberByMemberSeq($strMemberSeq);
+	}
 }
 //get sruvey info
 $arrTestResult = $objTest->getTests($strTestSeq,$intWriterSeq,true);
@@ -173,5 +175,5 @@ $arr_output['wrong_answer'] = $arrWrongNoteList;
 $arr_output['question_answer'] = $arrQuestionAnswer;
 $arr_output['wrong_questions'] = $arrWrongQuestionList;
 $arr_output['book_seq'] = $intBookSeq;
-$arr_output['student_info'] = $arrStudentInfo;
+$arr_output['student_info'] = $arrStudentInfo?$arrStudentInfo:false;
 ?>

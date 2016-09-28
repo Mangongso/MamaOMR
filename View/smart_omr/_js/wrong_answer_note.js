@@ -56,6 +56,8 @@ function WrongAnswerNote(){
 		 					objWAN.getWrongNoteTest($('.sub_content_top_menu .fa-refresh').attr('data-t'),$('.sub_content_top_menu .fa-refresh').attr('data-revision'));
 		 					
 		 				});		 				
+		 			}else{
+		 				halert("저장 오류 입니다.관리자에게 문의 하세요.");
 		 			}
 				}
 		    }; 		

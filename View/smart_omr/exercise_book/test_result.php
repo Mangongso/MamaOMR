@@ -89,6 +89,7 @@
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_note');"><a
 					href="javascript:void(0);" title="오답노트"><i class="fa fa-times"
 						aria-hidden="true"></i> 오답노트</a></li>
+				<? if(!$arr_output['student_info']){ ?>
 				<li class=""
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_test');">
 					<a href="javascript:void(0);" title="오답문제풀이"> <i class="fa fa-undo"
@@ -99,6 +100,7 @@
 							data-revision="<?=$_GET['revision']?>"></i></small>
 				</a>
 				</li>
+				<? } ?>
 				<li class=""
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');objCommon.getComment($('#comment_div').attr('data-comment-seq'),$('#comment_div').attr('data-bbs-seq'));">
 					<a href="javascript:void(0);" title="댓글"> <i class="fa fa-comment fa-flip-horizontal" aria-hidden="true"></i>댓글 </a>
@@ -109,7 +111,7 @@
 			<? if($arr_output['student_info']){ ?>
 			<div class="row">
 				<div class="col-xs-12">
-				<span class="pull-left"><i class="fa fa-mortar-board" aria-hidden="true"></i> <?=$arr_output['student_info'][0]['name'];?> 님<span class="hidden-xs">의 문제 풀이 결과 입니다.</span></span><span class="pull-right"><i class="fa fa-clock-o" aria-hidden="true"></i> <?=$arr_output['record'][0]['modify_date'];?></span>
+				<span class="pull-left"><span class="show-xs">&nbsp;&nbsp;</span><i class="fa fa-mortar-board" aria-hidden="true"></i> <?=$arr_output['student_info'][0]['name'];?> 님<span class="hidden-xs">의 문제 풀이 결과 입니다.</span></span><span class="pull-right"><i class="fa fa-clock-o" aria-hidden="true"></i> <?=$arr_output['record'][0]['modify_date'];?><span class="show-xs">&nbsp;&nbsp;</span></span>
 				</div>
 			</div>
 			<? } ?>
@@ -225,7 +227,7 @@
 				<? } ?>
 				</div>
 				 -->
-
+			<? if(!$arr_output['student_info']){ ?>
 			<a
 				href="/smart_omr/exercise_book/test.php?t=<?=$arr_output['str_test_seq']?>"
 				class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt"
@@ -233,6 +235,11 @@
 				풀기 </a> <a href="/smart_omr/exercise_book/list.php"
 				class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt"
 				title="문제집목록"><i class="fa fa-bars" aria-hidden="true"></i> 문제집목록 </a>
+			<? }else{ ?>
+			<a href="/smart_omr/my_page/my_managing_report_detail.php?bs=<?=$arr_output['book_info'][0]['book_key']?>&sk=<?=$_GET['sk']?>"
+				class="pure-button pure-form_in col-xs-12 col-sm-12 col-md-12 col-lg-12 btn-lg content_header_list_bt"
+				title="문제집목록"><i class="fa fa-bars" aria-hidden="true"></i> 테스트목록 </a>
+			<? } ?>
 			<div style="height: 60px;"></div>
 			<!-- ############### -->
 		</div>        
