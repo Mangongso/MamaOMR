@@ -11,6 +11,10 @@
 			<div class="pure-g">
 				<div class="pure-u-4-5">
 					<label class="sr-only" for="search_key">Search</label> <input
+						type="hidden" class="form-control input-lg search-input"
+						name="search_flg" id="search_flg" placeholder="검색여부 Flg"
+						value="1">
+						<input
 						type="text" class="form-control input-lg search-input"
 						name="search_key" id="search_key" placeholder="검색어를 입력하세요"
 						value="<?=$_POST['search_key']?>">

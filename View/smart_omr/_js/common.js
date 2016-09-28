@@ -154,7 +154,7 @@ function Common() {
 						$('#book_list_div').html(htmlResult);
 						objCommon.fitImages();
 					}else{
-						$('#book_list_div').html('<div class="workbook_cover col-xs-12 col-sm-12 col-md-12 col-lg-12"><span>조회 내역이 없습니다.</span></div>');
+						$('#book_list_div').html('<div class="h_dot_box info_box" style="top: 0px;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><br>검색된 정보가 없습니다.</div>');
 					}		 			
 					$('#loading').css('display','none');
 					$('#frmSearch #before_search_key').val($('#frmSearch #search_key').val());
