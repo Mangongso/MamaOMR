@@ -32,6 +32,11 @@ $tabSelected = 3;
 					</h4>
 				</div>
 			<? if(count($arr_output['manager_student_list'])){ ?>
+			<?php 
+			print "<pre>";
+			print_r($arr_output['manager_student_list']);
+			print "</pre>";
+			?>
 			<? foreach($arr_output['manager_student_list'] as $intFirstKey=>$arrManagerStudent){ //foreach 1 ?>
 				<div class="sub_contents_body_box">
 					<h4 style="border-bottom: 0px;"><?=$arrManagerStudent['student_info'][0]['name']?></h4>
@@ -47,7 +52,7 @@ $tabSelected = 3;
 							<div
 								class="col-xs-4 col-sm-5 col-md-5 col-lg-5 content_header_img">
 								<a
-									href="/smart_omr/my_page/my_edu_report_detail.php?bs=<?=md5($arrBook['seq']);?>"><img
+									href="/smart_omr/my_page/my_managing_report_detail.php?bs=<?=md5($arrBook['seq']);?>&sk=<?=$arrManagerStudent['student_info'][0]['member_key']?>"><img
 									src="<?=$arrBook['book_cover_img']?>"
 									alt="<?=$arrBook['title']?>" class="content_cover_img" />
 									<p class="sr-only"><?=$arrBook['title']?></p></a>
@@ -57,7 +62,7 @@ $tabSelected = 3;
 								<ul>
 									<li><h3>
 											<a
-												href="/smart_omr/my_page/my_edu_report_detail.php?bs=<?=md5($arrBook['seq']);?>"><?=$arrBook['title']?></a>
+												href="/smart_omr/my_page/my_managing_report_detail.php?bs=<?=md5($arrBook['seq']);?>&sk=<?=$arrManagerStudent['student_info'][0]['member_key']?>"><?=$arrBook['title']?></a>
 										</h3></li>
 									<li><span><i class="fa fa-ticket" aria-hidden="true"></i> 테스트</span><?=$arrBook['total_record'][0]['user_count']?>/<?=$arrBook['test_count']?> <small>(참여/총)</small></li>
 									<li><span><i class="fa fa-users" aria-hidden="true"></i> 전체평균</span><?=$arrBook['avarage_score']?>점<small>/<?=$arrBook['total_record'][0]['user_count']?>명참여</small></li>

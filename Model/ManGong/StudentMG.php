@@ -95,6 +95,18 @@ class StudentMG{
 		$boolResult = $this->resStudentMGDB->DB_access($this->resStudentMGDB,$strQuery);
 		return($boolResult);		
 	}
-	
+	/**
+	 * 학습매니져 여부 확인
+	 *
+	 * @param string $strStudentKey md5암호화 유저시컨즈
+	 * @param string $strManagerKey md5암호화 유저시컨즈
+	 *
+	 * @return boolean  학습매니져 여부 반환 (false 학습메니저 아님|true 학습메니저임)
+	 */	
+	public function checkIsManager($strStudentKey,$strManagerKey){
+		include("Model/ManGong/SQL/MySQL/StudentMG/checkIsManager.php");
+		$arrResult = $this->resStudentMGDB->DB_access($this->resStudentMGDB,$strQuery);
+		return($arrResult[0]['cnt']==1?true:false);		
+	}
 }
 ?>
