@@ -75,8 +75,8 @@ $tabSelected = 1;
 			</div>
 		</div>
 		<!-- ########################## -->
-<? include("../_common/include/foot_menu.php"); ?>
 </div>
+<? include("../_common/include/foot_menu.php"); ?>
 </div>
 <? include("../_common/include/footer.php"); ?>
 <? include("../_common/include/bottom.php"); ?>
