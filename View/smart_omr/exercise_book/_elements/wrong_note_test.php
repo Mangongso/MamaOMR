@@ -28,7 +28,7 @@ console.log(arrAnswerSeq);
 		data-img_mode="real" alt=" " />
 				<? }else{ ?>
 				<img class="question_img" src="../_images/default_wt_cover.png"
-		style="width: 100%; height: 250px;" alt=" " />
+		style="width: 100%;margin-bottom: -10px;" alt=" " />
 				<? } ?>
 				
 				<? if(trim($arrWrongAnswer['question_contents'])!=''){ ?>

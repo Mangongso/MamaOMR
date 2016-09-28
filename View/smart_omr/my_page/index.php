@@ -31,6 +31,7 @@ $tabSelected = 1;
 						테스트 <br class="visible-xs" /> <span>참여하신 테스트 목록입니다.</span>
 					</h4>
 				</div>
+			<? if(count($arr_output['book_list'])){ ?>
 			<? foreach($arr_output['book_list'] as $intKey=>$arrBook){ ?>
 			<? if($intKey%2==0){ ?>
 				<div class="my_page_box">
@@ -64,6 +65,12 @@ $tabSelected = 1;
 			<? if($intKey%2==1){ ?>
 			</div>
 			<? } ?>
+			<? } ?>
+			<? }else{ ?>
+				<div class="h_dot_box info_box" style="top: 0px;">
+					<i class="fa fa-exclamation-circle" aria-hidden="true"></i><br>
+					참여하신 테스트가  없습니다.
+				</div>
 			<? } ?>
 			</div>
 		</div>

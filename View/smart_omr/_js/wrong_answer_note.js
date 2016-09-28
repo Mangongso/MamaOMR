@@ -17,7 +17,17 @@ function WrongAnswerNote(){
 		$('[data-wrong-answer]').click(function(){
 			var strModalTarget = "#modal-wa-editor";
 			var strMOdalAjaxURL = "../my_page/wrong_answer_note_editor.php";	
-			$(strModalTarget+' .uk-modal-body').load(strMOdalAjaxURL,{answer_seq:$(this).data('wrong-answer')},function(){
+			if(typeof($(this).data('editble'))!="undefined"){
+				var strEditble = $(this).data('editble');
+			}else{
+				var strEditble = "";
+			}
+			if(typeof($(this).data('student-key'))!="undefined"){
+				var strStudentKey = $(this).data('student-key');
+			}else{
+				var strStudentKey = "";
+			}
+			$(strModalTarget+' .uk-modal-body').load(strMOdalAjaxURL,{answer_seq:$(this).data('wrong-answer'),editble:strEditble,student_key:strStudentKey},function(){
 		    	if($('#btn_upload').length>0){
 		    		objWAN.initUploadImage();
 		    	}
