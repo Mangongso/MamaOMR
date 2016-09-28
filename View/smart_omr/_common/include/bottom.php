@@ -1,4 +1,12 @@
 <!-- ############################################################### -->
+<!-- ######################### ajax loading ######################### -->
+<!-- ############################################################### -->
+<div id="loading" style="display:none; height: 100%; left: 0; opacity: 0.7; position: fixed; top: 0; width: 100%; z-index: 10000;FILTER: alpha(opacity=70);">
+<img id="loading-image" src="/smart_omr/_images/loading.gif" alt="Loading..." />
+</div>
+
+
+<!-- ############################################################### -->
 <!-- ######################### Modal LOGIN ######################### -->
 <!-- ############################################################### -->
 <?php  include($_SERVER["DOCUMENT_ROOT"]."/smart_omr/_common/elements/login.php");?>

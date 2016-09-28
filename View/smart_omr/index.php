@@ -85,9 +85,11 @@
 				</div>
 			</div>
 			<? } ?>
+			<!--  
 			<div id="loading" class="text-center">
 				<img src="/smart_omr/_images/loading.gif" alt="loading..." />
 			</div>
+			-->
 		</div>
 		<!-- Contents BODY END -->
 		<!--#########################################################################-->
