@@ -93,7 +93,7 @@ foreach($arrQuestionList as $intKey=>$arrResult){
 		}
 	}
 }
-if(!$mixTestSeq || $_SESSION['smart_omr']['level']>=100 || $_SESSION['smart_omr']['member_key']==$arr_output['test_info'][0]['writer_key']){
+if( !$mixTestSeq || $_SESSION['smart_omr']['level']>=100 || $_SESSION['smart_omr']['member_key']==md5($arrTestResult[0]['sub_master']) ){
 	$boolEditble = true;
 }else{
 	$boolEditble = false;

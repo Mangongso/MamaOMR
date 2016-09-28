@@ -11,10 +11,12 @@ require_once("Model/Core/DBmanager/DBmanager.php");
 require_once('Model/ManGong/Book.php');
 require_once('Model/ManGong/Test.php');
 require_once('Model/ManGong/MQuestion.php');
+require_once('Model/Member/Member.php');
 
 /**
  * Variable 세팅
- * @var 	$intMemberSeq		마마OMR 마스터 선생님 시컨즈
+ * @var 	$intMasterSeq		마마OMR 마스터 선생님 시컨즈
+ * @var 	$strMemberKey		md5암호화 유저 시컨즈
  * @var 	$strTitle		테스트 제목
  * @var 	$intQuestionType	문제 타입
  * @var 	$strBookSeq		암호화 책 시컨즈
@@ -27,7 +29,8 @@ require_once('Model/ManGong/MQuestion.php');
  * @var 	$intRepeatFlg		반복풀이 flg
  * @var 	$intRecordViewFlg		성적 보여주기 flg
  */
-$intMemberSeq = SMART_OMR_TEACHER_SEQ;
+$intMasterSeq = SMART_OMR_TEACHER_SEQ;
+$strMemberKey = $_SESSION['smart_omr']['member_key'];
 $strTitle = trim($_REQUEST['subject']);
 $intQuestionType = $_REQUEST['question_type'];
 $strBookSeq = $_REQUEST['book_md5_seq'];
@@ -51,6 +54,7 @@ $resMangongDB = new DB_manager('MAIN_SERVER');
 $objBook = new Book($resMangongDB);
 $objTest = new Test($resMangongDB);
 $objQuestion = new MQuestion($resMangongDB);
+$objMember = new Member($resMangongDB);
 
 /**
  * Main Process
@@ -77,7 +81,9 @@ $arrSearch = array();
 $arrSearch['md5(seq)'] = $strBookSeq;
 $arrBookInfo = $objBook->getBook($arrSearch);
 
-$boolResult = $objTest->setTests($intMemberSeq, $intTestsType, $strTitle, "", $intExampleNumberingStyle, $intTestsSeq);
+/* get membe info by member_key * */
+$arrMember = $objMember->getMemberByMemberSeq($strMemberKey);
+$boolResult = $objTest->setTests($arrMember[0]['member_seq'], $intTestsType, $strTitle, "", $intExampleNumberingStyle, $intTestsSeq,'',$intMasterSeq);
 if($boolResult){
 	//set survey published
 	if($intPublishSeq){
@@ -98,7 +104,7 @@ if($boolResult){
 		//set question
 		for($intQuestoinNumber;$intQuestoinNumber<=$intQuestionCount;$intQuestoinNumber++){
 			$intQuestionSeq = null;
-			$boolResult = $objQuestion->setQuestion($intMemberSeq, '', $intQuestionType, 1, null, null, null, $intQuestionSeq);
+			$boolResult = $objQuestion->setQuestion($intMasterSeq, '', $intQuestionType, 1, null, null, null, $intQuestionSeq);
 			if($boolResult){
 				if($intQuestoinNumber==$intQuestionCount && $questoin_score_rest){
 					$boolResult = $objQuestion->setQuestionToTests($intTestsSeq, $intQuestionSeq, $intQuestoinNumber ,$questoin_score+$questoin_score_rest,$intQuestoinNumber);
