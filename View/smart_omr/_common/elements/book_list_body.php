@@ -1,6 +1,6 @@
 <?
 if (! $viewID) {
-	$viewID = "SOMR_EXERCISE_BOOK_LIST";
+	$viewID = "SOMR_EXERCISE_BOOK_LIST_PAGING";
 	include ($_SERVER ['DOCUMENT_ROOT'] . "/_connector/yellow.501.php");
 }
 ?>

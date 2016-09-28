@@ -52,7 +52,7 @@ $tabSelected = 1;
 											<a
 												href="/smart_omr/my_page/my_edu_report_detail.php?bs=<?=md5($arrBook['seq']);?>"><?=$arrBook['title']?></a>
 										</h3></li>
-									<li><span><i class="fa fa-ticket" aria-hidden="true"></i> 테스트</span><?=$arrBook['test_join_cnt']?>/<?=$arrBook['test_count']?> <small>(참여/총)</small></li>
+									<li><span><i class="fa fa-ticket" aria-hidden="true"></i> 테스트</span><?=$arrBook['total_record'][0]['user_count']?>/<?=$arrBook['test_count']?> <small>(참여/총)</small></li>
 									<li><span><i class="fa fa-users" aria-hidden="true"></i> 전체평균</span><?=$arrBook['avarage_score']?>점<small>/<?=$arrBook['total_record'][0]['user_count']?>명참여</small></li>
 									<li><span><i class="fa fa-line-chart" aria-hidden="true"></i>
 											나의 점수</span><?=$arrBook['my_record'][0]['total_user_score']?><small>점</small></li>
@@ -69,7 +69,6 @@ $tabSelected = 1;
 		</div>
 		<!-- ########################## -->
 <? include("../_common/include/foot_menu.php"); ?>
-</div>
 </div>
 </div>
 <? include("../_common/include/footer.php"); ?>

@@ -68,7 +68,7 @@
 								class="col-xs-12 col-sm-12 col-md-12 col-lg-12 _d_book_info content_body_list sub_content_body_list"
 								style="display: none;">
 								<ul class="text-center">
-									<li id="no_cover_img" style="display:none;"><span style="color:#ff0000">커버 이미지정보가 제공되지 않는 문제집입니다.</span></li>
+									<li id="no_cover_img" style="display:none;color:#ff0000">커버 이미지정보가 제공되지 않는 문제집입니다.</li>
 									<li><span><i class="fa fa-clipboard" aria-hidden="true"></i> 제목</span><span
 										style="width: auto;" id="book_title"></span></li>
 									<li><span><i class="fa fa-clipboard" aria-hidden="true"></i> 출판사</span><span

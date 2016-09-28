@@ -96,7 +96,7 @@ if(count($arrTestsSeq)){
  * @property	integer 	$arr_output['book_score_avarage'] 		: 책 평균 점수
  */
 $arr_output['book_info'] = $arrBook;
-$arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/default_cover.png";
+$arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/no_cover.png";
 $arr_output['book_test_list'] = $arrTestListByBook;
 $arr_output['book_total_question_cnt'] = $intBookQuestionCnt;
 $arr_output['book_user_total_record'] = $arrUserTotalRecord;

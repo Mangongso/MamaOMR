@@ -20,6 +20,6 @@
 			$strCoverUrl = str_replace('%3A',':',$strCoverUrl);
 			$strCoverUrl = str_replace('%3F','?',$strCoverUrl);
 		}else{
-			$strCoverUrl = "/smart_omr/_images/default_cover.png";
+			$strCoverUrl = "/smart_omr/_images/no_cover.png";
 		}
 ?>
