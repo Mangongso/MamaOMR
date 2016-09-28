@@ -31,6 +31,7 @@ $strWrongNoteFileName = $arr_output ['wrong_note'] [0] ['file_name'] ? $arr_outp
 <img class="question_img" src="../_images/default_wt_cover.png"
 		style="width: 100%; height: 250px;" data-img_mode=""/>
 <? } ?>
+	<? if($arr_output['editble']){ ?>
 <p>
 		<button id="btn_upload" type="button"
 			class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt">
@@ -52,14 +53,25 @@ $strWrongNoteFileName = $arr_output ['wrong_note'] [0] ['file_name'] ? $arr_outp
 	<textarea name="question" id="question"
 		style="width: 100%; height: 100px; padding: 20px;"><?=trim($strWrongNoteContents)?></textarea>
 	<div class="m-modal-bt-box">
-		<button id="btn_upload" type="submit"
+		<button type="submit"
 			class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt">
 			<i class="fa fa-check" aria-hidden="true"></i> 저장
 		</button>
-		<button id="btn_ocr" type="button"
+		<button type="button"
 			class="pure-button pure-form_in col-xs-6 col-sm-6 col-md-6 col-lg-6 btn-lg content_header_list_bt uk-modal-close">
 			<i class="fa fa-times" aria-hidden="true"></i> 닫기
 		</button>
 	</div>
+	<? }else{ ?>
+	<div class="h_dot_box info-box-ul" style="padding: 20px;text-align:left;">
+	<?=nl2br(trim($strWrongNoteContents));?>
+	</div>
+	<div class="m-modal-bt-box">
+		<button type="button"
+			class="pure-button pure-form_in col-xs-12 col-sm-12 col-md-12 col-lg-12 btn-lg content_header_list_bt uk-modal-close">
+			<i class="fa fa-times" aria-hidden="true"></i> 닫기
+		</button>
+	</div>	
+	<? } ?>
 </form>
 <!-- ########################## -->

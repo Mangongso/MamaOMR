@@ -21,8 +21,9 @@ require_once('Model/ManGong/Book.php');
  * @var 	$intAnswerSeq	유저 정답 시컨즈
  */
 $intWriterSeq = SMART_OMR_TEACHER_SEQ;
-$strMemberSeq = $_SESSION['smart_omr']['member_key'];
+$strMemberSeq = $_POST['student_key']?$_POST['student_key']:$_SESSION['smart_omr']['member_key'];
 $intAnswerSeq = $_POST['answer_seq'];
+$strEditble = $_POST['editble'];
 
 /**
  * Object 생성
@@ -56,6 +57,7 @@ $intBookSeq = $objBook->getBookSeqFromTestSeq($arrAnswer[0]['test_seq']);
  * @property	integer 			$arr_output['book_seq'] 		: 책 시컨즈
  * @property	integer 			$arr_output['test_seq'] 		: 테스트 시컨즈
  */
+$arr_output['editble'] = ($strEditble=="no")?false:true;
 $arr_output['answer'] = $arrAnswer;
 $arr_output['wrong_note'] = $arrWrongNote;
 $arr_output['question'] = $arrQuestion;
