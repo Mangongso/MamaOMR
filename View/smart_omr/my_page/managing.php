@@ -32,11 +32,11 @@ $tabSelected = 3;
 					</h4>
 				</div>
 			<? if(count($arr_output['manager_student_list'])){ ?>
-			<?php 
-			print "<pre>";
-			print_r($arr_output['manager_student_list']);
-			print "</pre>";
-			?>
+			<?php
+				print "<pre>";
+				print_r ( $arr_output ['manager_student_list'] );
+				print "</pre>";
+				?>
 			<? foreach($arr_output['manager_student_list'] as $intFirstKey=>$arrManagerStudent){ //foreach 1 ?>
 				<div class="sub_contents_body_box">
 					<h4 style="border-bottom: 0px;"><?=$arrManagerStudent['student_info'][0]['name']?></h4>
@@ -78,18 +78,16 @@ $tabSelected = 3;
 			<? } ?>
 			<? } ?>
 			<? }else{ ?>
-				<div class="my_page_box">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-					<span>참여 목록이 없습니다. </span>
-				</div>
+				<div class="h_dot_box info_box" style="top: 0px;">
+					<i class="fa fa-exclamation-circle" aria-hidden="true"></i><br>
+					참여 목록이 없습니다.
 				</div>
 			<? } ?>
 			<? } ?>
 			<? }else{ ?>
-				<div class="my_page_box">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-					<span>메니져를 신청한 학생이 없습니다.</span>
-				</div>
+				<div class="h_dot_box info_box" style="top: 0px;">
+					<i class="fa fa-exclamation-circle" aria-hidden="true"></i><br>
+					메니져를 신청한 학생이 없습니다.
 				</div>
 			<? } ?>
 			</div>
