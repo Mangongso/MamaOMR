@@ -4,7 +4,7 @@ require_once("Model/Core/DataManager/DataHandler.php");
 /**
  * 오답노트 정보를 등록, 수정, 삭제, 조회한다.
  *
- * @package      	Mangong/Test
+ * @package      	Mangong
  * @subpackage   	Core/Util/Paging
  * @subpackage   	Core/DataManager/DataHandler
  * @property		private resource $resWrongDB : DB 커넥션 리소스

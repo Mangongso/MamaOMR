@@ -4,7 +4,7 @@ require_once("Model/Core/DataManager/DataHandler.php");
 /**
  * 학습매니져 등록, 수정, 삭제, 조회한다.
  *
- * @package      	Mangong/StudentMG
+ * @package      	Mangong
  * @subpackage   	Core/Util/Paging
  * @subpackage   	Core/DataManager/DataHandler
  * @property		private resource $resStudentMGDB : DB 커넥션 리소스

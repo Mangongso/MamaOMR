@@ -6,7 +6,7 @@ require_once("Model/Member/Member.php");
  * 마마 OMR 선생님 정보를 등록, 수정, 삭제, 조회한다.
  * 본 클레스틑 Member/Member 클레스를 확장한다.
  *
- * @package      	Mangong/Teacher
+ * @package      	Mangong
  * @subpackage   	Core/Util/Paging
  * @subpackage   	Core/DataManager/DataHandler
  * @property		private resource $resTeacherDB : DB 커넥션 리소스
