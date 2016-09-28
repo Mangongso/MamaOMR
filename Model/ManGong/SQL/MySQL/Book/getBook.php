@@ -1,6 +1,6 @@
 <?php
 include("Model/ManGong/SQL/MySQL/Common/commonWhereQuery.php");
-$strQuery = sprintf("select * from book_info where delete_flg=0 ");
+$strQuery = sprintf("select *,md5(seq) as book_key from book_info where delete_flg=0 ");
 if(count($arrSearch)){
 	$strQuery .= " and ".join(' and ',$arrWhereQuery);
 }
