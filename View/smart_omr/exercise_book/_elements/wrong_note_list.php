@@ -17,19 +17,37 @@ if (! $viewID) {
 		class="uk-width-8-10 btn-group text-right ans_correct_<?=$arrWrongAnswer['question_type'];?>"
 		data-toggle="buttons">
 						<? if(!$arrWrongAnswer['wrong_note_list_seq']){ ?>
-						<button type="button" class="pure-button pure-form_in"
+						<div class="uk-float-left date_posted">오답노트가 등록되지 않았습니다.</div>
+						<? if(!$arr_output['student_info']){ ?>
+														<button type="button" class="pure-button pure-form_in"
 			data-modal-type="editor"
 			data-wrong-answer="<?=$arrWrongAnswer['seq'];?>">
 			<i class="fa fa-arrow-up" aria-hidden="true"></i> 오답문제 입력
-		</button>
+		</button>		
+	
+						<? }else{ ?>
+												<button type="button" class="pure-button pure-form_in"
+			data-modal-type="editor"
+			data-wrong-answer="<?=$arrWrongAnswer['seq'];?>" disabled="disabled">
+			<i class="fa fa-eye" aria-hidden="true"></i> 오답문제 보기
+		</button>			
+						<? } ?>
 						<? }else{ ?>
 						<div class="uk-float-left date_posted">등록/<?=$arrWrongAnswer['wrong_note_date'];?></div>
 		<div class="uk-float-right">
+						<? if(!$arr_output['student_info']){ ?>
 			<button type="button" class="pure-button pure-form_in"
 				data-modal-type="editor"
 				data-wrong-answer="<?=$arrWrongAnswer['seq'];?>">
 				<i class="fa fa-undo" aria-hidden="true"></i> 수정
 			</button>
+						<? }else{ ?>
+			<button type="button" class="pure-button pure-form_in"
+				data-modal-type="editor"
+				data-wrong-answer="<?=$arrWrongAnswer['seq'];?>" data-editble="no" data-student-key="<?=$_GET['sk']?>">
+				<i class="fa fa-eye" aria-hidden="true"></i> 오답문제 보기
+			</button>						
+						<? } ?>
 		</div>
 						<? } ?>
 					</div>
