@@ -75,6 +75,13 @@
 				</li>
 			</ul>
 			<!-- ############### -->
+			<? if($arr_output['student_info']){ ?>
+			<div class="row">
+				<div class="col-xs-12">
+				<span class="pull-left"><i class="fa fa-mortar-board" aria-hidden="true"></i> <?=$arr_output['student_info'][0]['name'];?> 님<span class="hidden-xs">의 문제 풀이 결과 입니다.</span></span><span class="pull-right"><i class="fa fa-clock-o" aria-hidden="true"></i> <?=$arr_output['record'][0]['modify_date'];?></span>
+				</div>
+			</div>
+			<? } ?>
 			<div class="h_dot">
 				<div class="h_dot_box test_score">
 					<h2><?=$arr_output['record'][0]['user_score']?>/<?=$arr_output['record'][0]['total_score']?><small>점</small>

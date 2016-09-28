@@ -190,6 +190,13 @@
 			<js></js>
 			<css></css>				
 		</controller>
+		<controller viewID="SOMR_MY_PAGE_MY_MANAGING_REPORT_DETAIL">
+			<controller-name>SOMR/MyPage/SomrMyPageMyManaingReportDetail.php</controller-name>
+			<presentation-name></presentation-name>
+			<parameter></parameter>
+			<js></js>
+			<css></css>				
+		</controller>		
 		<controller viewID="SOMR_REGISTRATION_INDEX">
 			<controller-name>SOMR/Registration/SomrRegistrationIndex.php</controller-name>
 			<presentation-name></presentation-name>
