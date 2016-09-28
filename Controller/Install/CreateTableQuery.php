@@ -86,7 +86,7 @@ CREATE TABLE member_extend_info (
   test_flg INT(11) DEFAULT '0',
   academy VARCHAR(100) DEFAULT NULL,
   school VARCHAR(100) DEFAULT NULL,
-  SUBJECT VARCHAR(100) DEFAULT NULL,
+  subject VARCHAR(100) DEFAULT NULL,
   PRIMARY KEY (member_seq),
   KEY FKMEMBER_EXT8209 (member_seq),
   KEY fk_member_extend_info_member_basic_info1 (member_seq)
@@ -217,10 +217,10 @@ CREATE TABLE student_manager (
 $arrTable['tag'] = "
 CREATE TABLE tag (
   tag VARCHAR(20) NOT NULL,
-  TYPE TINYINT(4) NOT NULL COMMENT '1 : 테스트\n2 : 문제',
+  type TINYINT(4) NOT NULL COMMENT '1 : 테스트\n2 : 문제',
   member_seq BIGINT(20) NOT NULL,
   create_date DATETIME DEFAULT NULL,
-  PRIMARY KEY (tag,TYPE,member_seq)
+  PRIMARY KEY (tag,type,member_seq)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8
 		
 ";
@@ -242,8 +242,8 @@ CREATE TABLE test (
   seq BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
   writer_seq BIGINT(20) NOT NULL,
   sub_master BIGINT(20) NOT NULL,
-  TYPE INT(11) NOT NULL DEFAULT '0',
-  SUBJECT VARCHAR(100) DEFAULT NULL,
+  type INT(11) NOT NULL DEFAULT '0',
+  subject VARCHAR(100) DEFAULT NULL,
   contents TEXT,
   create_date DATETIME NOT NULL,
   modify_date DATETIME DEFAULT NULL,
@@ -282,7 +282,7 @@ CREATE TABLE test_published (
   state TINYINT(4) DEFAULT '0',
   delete_flg TINYINT(4) DEFAULT '0',
   test_seq BIGINT(19) UNSIGNED NOT NULL,
-  TIME TIME DEFAULT NULL,
+  time TIME DEFAULT NULL,
   category_seq INT(11) DEFAULT NULL,
   group_list_seq INT(11) DEFAULT '0',
   total_score INT(3) NOT NULL DEFAULT '100',

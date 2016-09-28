@@ -1,15 +1,5 @@
 <? $viewID = "SOMR_INDEX"; ?>
 <? include("./_common/include/header.php"); ?>
-<script>
-$(document).ready(function(){
-<? if(count($arr_output['manager'])){ ?>
-alert('<?=$arr_output['manager']['manager_msg']?>');
-<? }else if(!$_SESSION['smart_omr'] && $_GET['mat']){ ?>
-alert('로그인 하시면 매니저로 등록됩니다.');
-UIkit.offcanvas.show('#LOGIN');
-<? } ?>
-});
-</script>
 <!-- GNB -->
 <div id="layout">
 	<!--###############################################################-->
@@ -83,12 +73,23 @@ UIkit.offcanvas.show('#LOGIN');
 		<!--#########################################################################-->
 		<!-- Contents BODY START -->
 		<div class="container-fluid" style="padding: 0px;">
+			<? if(count($arr_output['book_list'])){ ?>
 			<div class="row content_body" id="book_list_div">
 			<? include("./_common/elements/book_list_body.php");?>
 			</div>
+			<? }else{ ?>
+			<div class="row content_body" id="book_list_div">
+				<div class="workbook_cover col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<span>등록된 문제집이 없습니다. 마마OMR의 첫 문제집을 등록해 보세요~</span><br>
+					<button onclick="location.href='/smart_omr/exercise_book/registration'">문제집 등록하기</button>
+				</div>
+			</div>
+			<? } ?>
+			<!--  
 			<div id="loading" class="text-center">
 				<img src="/smart_omr/_images/loading.gif" alt="loading..." />
 			</div>
+			-->
 		</div>
 		<!-- Contents BODY END -->
 		<!--#########################################################################-->

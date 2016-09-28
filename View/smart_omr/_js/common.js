@@ -1,9 +1,19 @@
 $(document).ready(function() {
 	objCommon = new Common();
 	objCommon.init();
+	$(document).ajaxStart(function() {
+		if(!$('#lodaing').is(":visible")){
+			objCommon.timeoutId = setTimeout(objCommon.openProgessBar,200);
+		}
+	});	
+	$( document ).ajaxComplete(function() {
+		window.clearTimeout(objCommon.timeoutId);
+		objCommon.loseProgessBar();
+	});	
 });
 
 function Common() {
+	this.timeoutId;
 	this.page = 2;
 	this.before_page = 1;
 	this.init = function() {
@@ -60,6 +70,13 @@ function Common() {
 		if($('[data-test-key]').length>0){
 			objCommon.initUploadOMR();
 		}
+	};
+	this.openProgessBar = function(){
+		$('#loading').show();
+		$('#loading-image').center();
+	};
+	this.loseProgessBar = function(){
+		$('#loading').hide();
 	};
 	this.displayTab = function(blockID){
 		$('.sub_tabs').css('display','none');
@@ -283,7 +300,7 @@ function Common() {
 			   responseType: 'json',
 				name: 'OMR',
 				onSubmit : function(file, ext){
-					if(ext!="jpg" && ext!="png"){
+					if(ext.toLowerCase()!="jpeg" && ext.toLowerCase()!="jpg" && ext.toLowerCase()!="png"){
 						alert("jpg 또는 png 파일만 업로드 가능합니다.");
 						return(false);
 					}
@@ -303,6 +320,19 @@ function Common() {
 	}
 }
 
+/* loading */
+jQuery.fn.center = function ()
+{
+    this.css("position","fixed");
+    this.css("top", ($(window).height() / 2) - (this.outerHeight() / 2));
+    this.css("left", ($(window).width() / 2) - (this.outerWidth() / 2));
+    this.css("z-index",10001);
+    return this;
+}
+$(window).resize(function(){
+   $('#loading-image').center();
+});
+/* loading end */
 
 function hconfirm(strMessage,fncTrueCallBack,fncFalseCallack){
 	if(confirm(strMessage)){

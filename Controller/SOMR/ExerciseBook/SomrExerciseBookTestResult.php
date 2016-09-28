@@ -11,12 +11,14 @@
  * @package      	Mangong/WrongNote
  */
 require_once("Model/Core/DBmanager/DBmanager.php");
+require_once('Model/Member/Member.php');
 require_once('Model/ManGong/Book.php');
 require_once('Model/ManGong/Test.php');
 require_once('Model/ManGong/MQuestion.php');
 require_once('Model/ManGong/Record.php');
 require_once('Model/ManGong/MAnswer.php');
 require_once('Model/ManGong/WrongNote.php');
+require_once('Model/ManGong/StudentMG.php');
 
 /**
  * Variable 세팅
@@ -27,7 +29,12 @@ require_once('Model/ManGong/WrongNote.php');
  */ 
 //$intWriterSeq = $_SESSION[$_COOKIE['member_token']]['member_seq'];
 $intWriterSeq = SMART_OMR_TEACHER_SEQ;
-$strMemberSeq = $_REQUEST['view']=='manager'?$_REQUEST['ms']:$_SESSION['smart_omr']['member_key'];//student seq
+$strStudentKey = $_REQUEST['sk'];//student seq
+if($strStudentKey){
+	$strManagerKey = $_SESSION['smart_omr']['member_key'];//manager seq
+}else{
+	$strMMemberSeq = $_SESSION['smart_omr']['member_key'];//member seq
+}
 $strTestSeq = $_REQUEST['t'];
 $intRevisionFlg = $_REQUEST['revision'];
 
@@ -50,10 +57,19 @@ $objQuestion = new MQuestion($resMangongDB);
 $objRecord = new Record($resMangongDB);
 $objAnswer = new MAnswer($resMangongDB);
 $objWrongNote = new WrongNote($resMangongDB);
+$objStudentMG = new StudentMG($resMangongDB);
+$objMember = new Member($resMangongDB);
 
 /**
  * Main Process
  */	
+if(trim($strStudentKey) && !$objStudentMG->checkIsManager($strStudentKey, $strManagerKey)){
+	header("location:/");
+	exit;
+}else{
+	$strMemberSeq = $strStudentKey;
+	$arrStudentInfo = $objMember->getMemberByMemberSeq($strMemberSeq);
+}
 //get sruvey info
 $arrTestResult = $objTest->getTests($strTestSeq,$intWriterSeq,true);
 $arrQuestionList = $objTest->getTestQuestionListWithExample($arrTestResult[0]['seq'],false,array(1,2,3,4,5,6,7,8,9,11),$arrTestResult[0]['example_numbering_style']);
@@ -143,7 +159,7 @@ foreach($arrQuestionList as $intKey=>$arrResult){
  * 
  */
 $arr_output['book_info'] = $arrBookInfo;
-$arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/default_cover.png";
+$arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/no_cover.png";
 $arr_output['test_info'] = $arrTestResult;
 $arr_output['test_question_list'] = $arrQuestionList;
 $arr_output['question_cnt'] = $intQuestionCnt;
@@ -157,4 +173,5 @@ $arr_output['wrong_answer'] = $arrWrongNoteList;
 $arr_output['question_answer'] = $arrQuestionAnswer;
 $arr_output['wrong_questions'] = $arrWrongQuestionList;
 $arr_output['book_seq'] = $intBookSeq;
+$arr_output['student_info'] = $arrStudentInfo;
 ?>

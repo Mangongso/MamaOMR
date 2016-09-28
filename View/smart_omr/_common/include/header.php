@@ -11,7 +11,7 @@ if(!file_exists($_SERVER["DOCUMENT_ROOT"]."/_connector/yellow.501.php") || !file
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="만공소 스마트 OMR">
+<meta name="description" content="마마 OMR">
 <title>MAMA OMR</title>
 <link rel="shortcut icon" href="/_images/favicon/buygl_favicon.ico"
 	type="image/x-icon">
@@ -90,8 +90,10 @@ if(!file_exists($_SERVER["DOCUMENT_ROOT"]."/_connector/yellow.501.php") || !file
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="/smart_omr/ext_lib/uikit/js/uikit.min.js"></script>
 <script src="/smart_omr/ext_lib/uikit/js/components/grid.min.js"></script>
+<!-- 
 <script src="/smart_omr/ext_lib/uikit/js/components/slideshow-fx.min.js"></script>
 <script src="/smart_omr/ext_lib/uikit/js/components/slideshow.min.js"></script>
+ -->
 <script src="/smart_omr/ext_lib/uikit/js/components/upload.min.js"></script>
 <script src="//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"></script>
 

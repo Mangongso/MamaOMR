@@ -55,7 +55,7 @@ foreach($arrHeader as $intKey=>$arrBook){
 	$arrHeader[$intKey]['total_record'] = $objRecord->getTotalUserRecord(null,null,$strTestSeqGroup);
 	$arrHeader[$intKey]['avarage_score'] = $arrHeader[$intKey]['total_record'][0]['user_count']?round($arrHeader[$intKey]['total_record'][0]['total_user_score']/$arrHeader[$intKey]['total_record'][0]['user_count'],1):0;
 	//$arrHeader[$intKey]['writer_info'] = $objTeacher->getTeacher($arrBook['sub_writer_seq']);
-	$arrHeader[$intKey]['book_cover_img'] = $arrBook['cover_url']?$arrBook['cover_url']:"/smart_omr/_images/default_cover.png";
+	$arrHeader[$intKey]['book_cover_img'] = $arrBook['cover_url']?$arrBook['cover_url']:"/smart_omr/_images/no_cover.png";
 	$arrHeader[$intKey]['book_test_list'] = $objBook->getTestListByBook(md5($arrBook['seq']));
 }
 
@@ -70,7 +70,7 @@ foreach($arrBooks as $intKey=>$arrBook){
 	$arrBooks[$intKey]['total_record'] = $objRecord->getTotalUserRecord(null,null,$strTestSeqGroup);
 	$arrBooks[$intKey]['avarage_score'] = $arrBooks[$intKey]['total_record'][0]['user_count']?round($arrBooks[$intKey]['total_record'][0]['total_user_score']/$arrBooks[$intKey]['total_record'][0]['user_count'],1):0;
 	$arrBooks[$intKey]['writer_info'] = $objTeacher->getTeacher($arrBook['sub_writer_seq']);
-	$arrBooks[$intKey]['book_cover_img'] = $arrBook['cover_url']?$arrBook['cover_url']:"/smart_omr/_images/default_cover.png";
+	$arrBooks[$intKey]['book_cover_img'] = $arrBook['cover_url']?$arrBook['cover_url']:"/smart_omr/_images/no_cover.png";
 }
 
 if($_REQUEST['mat'] && $_SESSION['smart_omr']){
@@ -86,4 +86,9 @@ if($_REQUEST['mat'] && $_SESSION['smart_omr']){
  */
 $arr_output['header'] = $arrHeader;
 $arr_output['book_list'] = $arrBooks;
+
+if(!count($arr_output['book_list'])){
+	header('Location: /smart_omr/exercise_book/registration');
+	exit;
+}
 ?>

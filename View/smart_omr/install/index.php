@@ -1,4 +1,3 @@
-
 <? $confFailCnt = 0;?>
 <!doctype html>
 <html lang="ko">
@@ -197,7 +196,12 @@
 		    <? }else{ ?>
 		    <span class="label label-success">Pass</span>
 		     <? } ?>
-		    MamaOMR.conf.php 파일의 $API_key에 SNS Auth Key 를 설정하세요. Kakao,Naver,Facebook 중 한곳은 입력하여야 합니다.
+		    MamaOMR.conf.php 파일의 $API_key에 SNS Auth Key 를 설정하세요. Kakao,Naver,Facebook 중 한곳은 입력하여야 합니다. - 
+		    SNS Auth API 바로가기 (
+		    <a href="https://developers.naver.com/docs/login/overview" target="_blank">네이버</a> |
+		    <a href="https://developers.kakao.com/docs/js-reference#kakao_auth" target="_blank">Kakao</a> | 
+		    <a href="https://developers.facebook.com/docs/facebook-login/web" target="_blank">Facebook</a>
+		    )		    
 		  </li>	
 		  <li class="list-group-item">
 		  	<? if(defined("BOOK_SEARCH_API_KEY") && trim(BOOK_SEARCH_API_KEY)!="BOOK_SEARCH_API_KEY" && trim(BOOK_SEARCH_API_KEY)!=""){?>
@@ -206,7 +210,10 @@
 		    <? $confFailCnt++; ?>
 		    <span class="label label-danger">Fail</span>
 		     <? } ?>
-		    MamaOMR.conf.php 파일의 define("BOOK_SEARCH_API_KEY","BOOK_SEARCH_API_KEY"); 에 도서검색 API key 를 설정하세요.
+		    MamaOMR.conf.php 파일의 define("BOOK_SEARCH_API_KEY","BOOK_SEARCH_API_KEY"); 에 도서검색 API key 를 설정하세요. -
+		    <a href="https://developers.daum.net/services/apis/search/book" target="_blank">
+		    다음 책 검색 API 바로가기
+		    </a>
 		  </li>
 		  <li class="list-group-item">
 		  	<? if(defined("TMP_DIR") && file_exists(TMP_DIR)){?>
@@ -233,10 +240,88 @@
 		    <? $confFailCnt++; ?>
 		    <span class="label label-danger">Fail</span>
 		     <? } ?>
-		    MamaOMR.conf.php 파일의 define("OCR_API_KEY","OCR_API_KEY"); 에 OCR API Key를 설정하세요. - <a href="https://ocr.space/OCRAPI" target="_blank">ocr.space</a> 발급 안내.
+		    MamaOMR.conf.php 파일의 define("OCR_API_KEY","OCR_API_KEY"); 에 OCR API Key를 설정하세요. - <a href="https://ocr.space/OCRAPI" target="_blank">ocr.space</a> API Key 발급 안내.
 		  </li>			   		  
 		</ul>
+	</div>
+	<!-- ########################## -->
+	<div class="row">
+		<h4 class="pull-left"><i class="fa fa-refresh fa-spin" aria-hidden="true"></i> Dependency Check</h4>
+		<small class="pull-right"><a href="https://github.com/Mangongso/MamaOMR/wiki/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A9%94%EB%89%B4%EC%96%BC" target="_blank"><i class="fa fa-arrow-right" aria-hidden="true"></i> 설치 가이드 바로 가기</a></small>
+	</div>
+	<div class="row">
+		<ul class="list-group">  	
+		  <li class="list-group-item">
+		  	<? if(PHP_VERSION_ID>=50404){?>
+		   <span class="label label-success">Pass</span>
+		   	<? }else{ ?>
+		   	<? $confFailCnt++; ?>
+		   	<span class="label label-danger">Fail</span>
+		    <? } ?>
+		    PHP Version은 5.4 이상이어야 합니다. - 현재버전 <?=phpversion()?>
+		  </li>
+		  <li class="list-group-item">
+		  	<?  if (extension_loaded('gd') && function_exists('gd_info')) {?>
+		   <span class="label label-success">Pass</span>
+		   	<? }else{ ?>
+		   	<? $confFailCnt++; ?>
+		   	<span class="label label-danger">Fail</span>
+		    <? } ?>
+		    MamaOMR 는 PHP GD Library v2.1.1 이 필요 합니다. - PHP GD Library 문서 보기
+		    (<a href="http://php.net/manual/kr/book.image.php" target="_blank">한글</a> | <a href="http://php.net/manualen/book.image.php" target="_blank">영문</a>)
+		  </li>		
+		  <li class="list-group-item">
+		  	<?  if (extension_loaded('libxml')) {?>
+		   <span class="label label-success">Pass</span>
+		   	<? }else{ ?>
+		   	<? $confFailCnt++; ?>
+		   	<span class="label label-danger">Fail</span>
+		    <? } ?>
+		    MamaOMR 는 PHP libxml v2.9.3 이 필요 합니다. - PHP GD Library 문서 보기
+		    (<a href="http://php.net/manual/kr/book.libxml.php" target="_blank">한글</a> | <a href="http://php.net/manual/en/book.libxml.php" target="_blank">영문</a>)
+		  </li>			    
+		  <li class="list-group-item">
+		  	<? if(file_exists($_SERVER["DOCUMENT_ROOT"]."/../ExternalApps/openomr")){?>
+		   <span class="label label-success">Pass</span>
+		   	<? }else{ ?>
+		   	<? $confFailCnt++; ?>
+		   	<span class="label label-danger">Fail</span>
+		    <? } ?>
+		    OpenOMR을 [MamaOMR 설치디렉터리]/ExternalApps/openomr 에 업로드 하세요.
+		    <a href="https://github.com/Mangongso/openomr/" target="_blank">
+		    OpenOMR GitHub 바로가기
+		    </a>		    
+		  </li>
+		  <li class="list-group-item">
+		  	<? if(exec("tesseract")!=""){?>
+		   <span class="label label-success">Pass</span>
+		   	<? }else{ ?>
+		   	<? $confFailCnt++; ?>
+		   	<span class="label label-danger">Fail</span>
+		    <? } ?>
+		    tesseract 가 설치 되어야 합니다.
+		    <a href="https://github.com/tesseract-ocr/tesseract" target="_blank">
+		    tesseract GitHub 바로가기
+		    </a>
+		  </li>					  			
+		  <li class="list-group-item">
+		  	<? if(file_exists($_SERVER["DOCUMENT_ROOT"]."/../ExternalApps/tesseract-ocr-for-php")){?>
+		   <span class="label label-success">Pass</span>
+		   	<? }else{ ?>
+		   	<? $confFailCnt++; ?>
+		   	<span class="label label-danger">Fail</span>
+		    <? } ?>
+		    tesseract-ocr-for-php를 [MamaOMR 설치디렉터리]/ExternalApps/tesseract-ocr-for-php 에 업로드 하세요.
+		    <a href="https://github.com/Mangongso/tesseract-ocr-for-php" target="_blank">
+		    tesseract-ocr-for-php GitHub 바로가기
+		    </a>
+		  </li>
+		 </ul>
+	</div>
+	<!-- ########################## -->		
+	<div class="row">
 		<p class="help-block">모든 상태가 <span class="label label-success">Pass</span> 이어야 다음단계로 진행이 가능 합니다. Check Install 버튼을 클릭하여 상태를 확인 하세요.</p>
+		<p class="help-block">설치 실패시 기존 DB를 삭제하고 재설치 해주세요.</p>
 		<br/>
 		<? if($confFailCnt>0){?>
 		<button type="button" class="btn-block install_bt" onclick="document.location.reload();"><i class="uk-icon-check-circle"></i> Check Inistall</button>

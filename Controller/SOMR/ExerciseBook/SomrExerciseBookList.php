@@ -65,7 +65,7 @@ foreach($arrBooks as $intKey=>$arrBook){
 	$arrBooks[$intKey]['total_record'] = $objRecord->getTotalUserRecord(null,null,$strTestSeqGroup);
 	$arrBooks[$intKey]['avarage_score'] = $arrBooks[$intKey]['total_record'][0]['user_count']?round($arrBooks[$intKey]['total_record'][0]['total_user_score']/$arrBooks[$intKey]['total_record'][0]['user_count'],1):0;
 	//$arrBooks[$intKey]['writer_info'] = $objTeacher->getTeacher($arrBook['sub_writer_seq']);
-	$arrBooks[$intKey]['book_cover_img'] = $arrBook['cover_url']?$arrBook['cover_url']:"/smart_omr/_images/default_cover.png";
+	$arrBooks[$intKey]['book_cover_img'] = $arrBook['cover_url']?$arrBook['cover_url']:"/smart_omr/_images/no_cover.png";
 }
 
 /**
@@ -75,4 +75,9 @@ foreach($arrBooks as $intKey=>$arrBook){
  * @property	array 		$arr_output['book_list'] 			: book 목록
  */
 $arr_output['book_list'] = $arrBooks;
+
+if(!count($arr_output['book_list'])){
+	header('Location: /smart_omr/exercise_book/registration');
+	exit;
+}
 ?>

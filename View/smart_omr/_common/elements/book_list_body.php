@@ -1,10 +1,9 @@
 <?
 if (! $viewID) {
-	$viewID = "SOMR_EXERCISE_BOOK_LIST";
+	$viewID = "SOMR_EXERCISE_BOOK_LIST_PAGING";
 	include ($_SERVER ['DOCUMENT_ROOT'] . "/_connector/yellow.501.php");
 }
 ?>
-				<? if(count($arr_output['book_list'])){ ?>
 				<? foreach($arr_output['book_list'] as $intKey=>$arrBook){ ?>
 <div class="workbook_cover col-xs-12 col-sm-6 col-md-4 col-lg-3">
 	<div class="workbook_cover_box">
@@ -35,4 +34,3 @@ if (! $viewID) {
 	</div>
 </div>
 <? } ?>
-				<? } ?>

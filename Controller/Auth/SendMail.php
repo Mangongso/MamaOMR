@@ -58,9 +58,33 @@ switch($strMailType){
 				$strTargetEmail = $strReceiverEmail;
 				$strTargetName = $strReceiverEmail;
 				$subject = '마마OMR 학습매니저요청메일 입니다.';
-				$strMemo = '안녕하세요~ 스마트한 학습매니저 마마OMR입니다. <br>'.$arrMember[0]['name'].'님이 <a href="http://www.mangongso.com/smart_omr/" target="_blank">마마OMR</a> 학습매니저로 요청을 하였습니다. <br>아래 링크를 클릭하시고 로그인해 주시면 학습매니저로 등록이 완료 됩니다.<br><br><a href="http://www.mangongso.com/smart_omr/?mat='.$strAuthKey.'">http://www.mangongso.com/smart_omr/?mat='.$strAuthKey.'</a><br><br>감사합니다.';
+
+				$strMemo = '<!doctype html>';
+				$strMemo .= '<html>';
+				$strMemo .= '<head>';
+				$strMemo .= '<meta charset="utf-8">';
+				$strMemo .= '<title>'.$arrMember[0]['name'].'님이 MamaOMR 학습매니저 등록을 요청 하셨습니다.</title>';
+				$strMemo .= '</head>';
+				$strMemo .= '<div style="padding: 20px;">';
+				$strMemo .= '<div style="text-align: center; border-bottom: 1px solid #e2e2e2; margin-bottom: 20px;">';
+				$strMemo .= '<a href="https://github.com/Mangongso/MamaOMR" title="MamaOMR Home"	target="_blank">';
+				$strMemo .= '<img src="https://github.com/Mangongso/MamaOMR/raw/ziman/Docs/Images/mamaomr.png?raw=true" alt="MamaOMR Home" style="height: 80px;" /></a>';
+				$strMemo .= '</div>';
+				$strMemo .= '<h1 style="font-size: 15px; font-weight: bold; color: #333;">'.$arrMember[0]['name'].'님이 학습 매니저 등록을 요청 하였습니다!</h1>';
+				$strMemo .= '<p style="font-size: 12px; color: #666;">아래 링크를 클릭하시면 마마OMR에 로그인 하여 학생 학습 기록을 열람하실 수 있습니다.</p>';
+				$strMemo .= '<a href="'.$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/smart_omr/?mat='.$strAuthKey.'" target="_blank" title="로그인 하기">로그인 하기</a>';
+				$strMemo .= '<div style="text-align: center; border-top: 1px solid #e2e2e2; margin-top: 20px;">';
+				$strMemo .= '<p style="font-size: 9px; color: #bbb;">';
+				$strMemo .= 'Copyright © mamaomr All rights reserved. powered by ';
+				$strMemo .= '<a href="https://github.com/Mangongso/MamaOMR" title="MamaOMR Home" target="_blank">MamaOMR</a>';
+				$strMemo .= '</p>';
+				$strMemo .= '</div>';
+				$strMemo .= '</div>';
+				$strMemo .= '<body>';
+				$strMemo .= '</body>';
+				$strMemo .= '</html>';
 				$boolResult = $objMailHandler->sendMail($strFromEmail,$strFromName,$strTargetEmail,$strTargetName,$subject,$strMemo);
-				$strMessage = '전송되었습니다. 학습매니저의 메일 확인 및 마마OMR 등록이 필요합니다.';
+				$strMessage = '전송되었습니다. 학습매니저가 메일 확인 후 로그인하면 학습매니저 등록이 완료 됩니다.';
 			}
 		}else{
 			$boolResult = false;

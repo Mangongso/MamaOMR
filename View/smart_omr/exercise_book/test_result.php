@@ -17,7 +17,7 @@
 						title="<?=$arr_output['book_info'][0]['title']?>"><img
 						src="<?=$arr_output['book_cover_img']?>"
 						alt="<?=$arr_output['book_info'][0]['title']?>" />
-						<p class="sr-only">해커스 톡 기초영어</p> </a>
+						<span class="sr-only"><?=$arr_output['book_info'][0]['title']?></span> </a>
 				</div>
 				<div
 					class="col-xs-8 col-sm-7 col-md-7 col-lg-7 content_body_list sub_content_body_list">
@@ -42,31 +42,34 @@
 					<div
 						class="pure-menu pure-menu-horizontal pure-menu-scrollable scrollable-menu  visible-xs mypage_menu">
 						<ul id="foot_menu-tabs2" class="pure-menu-list">
-							<li class="pure-menu-item"><a 
-					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('study_report');"><a
-					href="javascript:void(0);" title="학습리포트"><i
-						class="uk-icon-caret-right"></i> 학습리포트</a></li>
-							<li class="pure-menu-item"><a onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('answer_omr');"><a
-					href="javascript:void(0);" title="입력답안"><i
-						class="uk-icon-caret-right"></i> 입력답안</a></li>
-							<li class="pure-menu-item"><a onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_note');"><a
-					href="javascript:void(0);" title="오답노트"><i
-						class="uk-icon-caret-right"></i> 오답노트</a></li>
-							<li class="pure-menu-item"><a onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_test');">
-					<a href="javascript:void(0);" title="오답문제풀이"><i
-						class="uk-icon-caret-right"></i> 오답문제풀이 <small><i
-							onclick="objWAN.getWrongNoteTest('<?=$_GET['t']?>','<?=$_GET['revision']?>');"
-							style="cursor: pointer; color: #ccc;" class="fa fa-refresh"
-							aria-hidden="true" t="<?=$_GET['t']?>"
-							revision="<?=$_GET['revision']?>"></i></small></a></li>
-									<li class="pure-menu-item"><a onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');">
-					<a href="javascript:void(0);" title="댓글"><i
-						class="uk-icon-caret-right"></i> 
-						댓글 <small><i
-							onclick="objCommon.getComment($('#comment_div').attr('comment_seq'),$('#comment_div').attr('bbs_seq'));"
-							style="cursor: pointer; color: #ccc;" class="fa fa-refresh"
-							aria-hidden="true" t="<?=$_GET['t']?>"
-							revision="<?=$_GET['revision']?>"></i></a></li>
+							<li class="pure-menu-item">
+								<a href="javascript:void(0);" title="학습리포트" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('answer_omr');">
+									<i class="uk-icon-caret-right"></i> 학습리포트
+								</a>
+							</li>
+							<li class="pure-menu-item">
+								<a href="javascript:void(0);" title="입력답안" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('study_report');">
+									<i class="uk-icon-caret-right"></i> 입력답안
+								</a>
+							</li>
+							<li class="pure-menu-item">
+								<a href="javascript:void(0);" title="오답노트" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_note');">
+									<i class="uk-icon-caret-right"></i> 오답노트
+								</a>
+							</li>
+							<li class="pure-menu-item">
+								<a href="javascript:void(0);" title="오답문제풀이" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_test');">
+									<i class="uk-icon-caret-right"></i> 오답문제풀이 
+									<small>
+										<i onclick="objWAN.getWrongNoteTest('<?=$_GET['t']?>','<?=$_GET['revision']?>');" style="cursor: pointer; color: #ccc;" class="fa fa-refresh" aria-hidden="true" data-t="<?=$_GET['t']?>" data-revision="<?=$_GET['revision']?>"></i>
+									</small>
+								</a>
+							</li>
+							<li class="pure-menu-item">
+								<a href="javascript:void(0);" title="댓글" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');objCommon.getComment($('#comment_div').attr('data-comment-seq'),$('#comment_div').attr('data-bbs-seq'));">
+									<i class="uk-icon-caret-right"></i> 댓글 
+								</a>
+							</li>
 						</ul>
 					</div>
 			
@@ -75,13 +78,13 @@
 			<!-- ############### -->
 			<ul class="nav nav-tabs sub_content_top_menu hidden-xs"">
 				<li class="active"
-					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('study_report');"><a
-					href="javascript:void(0);" title="학습리포트"><i class="fa fa-bar-chart"
-						aria-hidden="true"></i> 학습리포트</a></li>
-				<li class=""
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('answer_omr');"><a
 					href="javascript:void(0);" title="입력답안"><i class="fa fa-check"
 						aria-hidden="true"></i> 입력답안</a></li>
+				<li class=""
+					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('study_report');"><a
+					href="javascript:void(0);" title="학습리포트"><i class="fa fa-bar-chart"
+						aria-hidden="true"></i> 학습리포트</a></li>
 				<li class=""
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_note');"><a
 					href="javascript:void(0);" title="오답노트"><i class="fa fa-times"
@@ -92,35 +95,77 @@
 						aria-hidden="true"></i> 오답문제풀이 <small><i
 							onclick="objWAN.getWrongNoteTest('<?=$_GET['t']?>','<?=$_GET['revision']?>');"
 							style="cursor: pointer; color: #ccc;" class="fa fa-refresh"
-							aria-hidden="true" t="<?=$_GET['t']?>"
-							revision="<?=$_GET['revision']?>"></i></small>
+							aria-hidden="true" data-t="<?=$_GET['t']?>"
+							data-revision="<?=$_GET['revision']?>"></i></small>
 				</a>
 				</li>
 				<li class=""
-					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');">
-					<a href="javascript:void(0);" title="댓글"> <i
-						class="fa fa-comment fa-flip-horizontal" aria-hidden="true"></i>
-						댓글 <small><i
-							onclick="objCommon.getComment($('#comment_div').attr('comment_seq'),$('#comment_div').attr('bbs_seq'));"
-							style="cursor: pointer; color: #ccc;" class="fa fa-refresh"
-							aria-hidden="true" t="<?=$_GET['t']?>"
-							revision="<?=$_GET['revision']?>"></i></small>
-				</a>
+					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');objCommon.getComment($('#comment_div').attr('data-comment-seq'),$('#comment_div').attr('data-bbs-seq'));">
+					<a href="javascript:void(0);" title="댓글"> <i class="fa fa-comment fa-flip-horizontal" aria-hidden="true"></i>댓글 </a>
 				</li>
 			</ul>
 
 			<!-- ############### -->
+			<? if($arr_output['student_info']){ ?>
+			<div class="row">
+				<div class="col-xs-12">
+				<span class="pull-left"><i class="fa fa-mortar-board" aria-hidden="true"></i> <?=$arr_output['student_info'][0]['name'];?> 님<span class="hidden-xs">의 문제 풀이 결과 입니다.</span></span><span class="pull-right"><i class="fa fa-clock-o" aria-hidden="true"></i> <?=$arr_output['record'][0]['modify_date'];?></span>
+				</div>
+			</div>
+			<? } ?>
 			<div class="h_dot">
 				<div class="h_dot_box test_score">
 					<h2><?=$arr_output['record'][0]['user_score']?>/<?=$arr_output['record'][0]['total_score']?><small>점</small>
 					</h2>
 				</div>
 			</div>
+			
+			<!--##########################################################-->
+			<!--#########################입력답안############################-->
+			<!--##########################################################-->
+			<!-- ############### -->
+			<div id="answer_omr" class="sub_tabs">
+				<? foreach($arr_output['test_question_list'] as $intKey=>$arrQuestionInfo){ ?>
+				<div
+					class="uk-width-1-1 <?=$arr_output['user_answer'][$intKey]['result_flg']?'test_right_answer':'test_wrong_answer'?>"
+					data-question-seq="<?=$arrQuestionInfo['question_seq']?>">
+					<h4 class="uk-width-2-10 pull-left">
+						<i
+							class="fa fa-<?=$arr_output['user_answer'][$intKey]['result_flg']?'circle-o':'times'?>"
+							aria-hidden="true"></i><br><?=$arrQuestionInfo['order_number']?></h4>
+					<div
+						class="uk-width-8-10 btn-group ans_correct ans_correct_<?=$arrQuestionInfo['question_type'];?>"
+						data-toggle="buttons">
+						<?
+					switch ($arrQuestionInfo ['question_type']) {
+						case (2) :
+							$intExampleWidth = 3;
+							break;
+						case (3) :
+						case (4) :
+							$intExampleWidth = 2;
+							break;
+						case (11) :
+							$intExampleWidth = 5;
+							break;
+					}
+					?>
+						<? foreach($arrQuestionInfo['example']['type_1'] as $intExampleKey=>$arrExample){ ?>
+						<label
+							class="uk-width-<?=$intExampleWidth?>-10 btn btn-default <?=$arrExample['seq']==$arr_output['user_answer'][$intKey]['user_answer']?'active':'disabled'?>">
+							<input type="radio" value="<?=$arrExample['seq'];?>" /><?=$arrExample['example_number'];?>
+					  	</label>
+					  	<? } ?>
+					</div>
+				</div>
+				<? } ?>
+				</div>
+				
 			<!--###########################################################-->
 			<!--#########################학습리포트############################-->
 			<!--###########################################################-->
 			<!-- ############### -->
-			<div class="study_report sub_tabs" id="study_report">
+			<div class="study_report sub_tabs" id="study_report" style="display: none;">
 				<!-- ############### -->
 				<? if(count($arr_output['record_tags'])){ ?>
 				<? foreach($arr_output['record_tags'] as $intKey=>$arrRecordTags){ ?>
@@ -145,50 +190,6 @@
 				<!-- ############### -->
 			</div>
 			<!--##########################################################-->
-			<!--#########################입력답안############################-->
-			<!--##########################################################-->
-			<!-- ############### -->
-			<div id="answer_omr" style="display: none;" class="sub_tabs">
-				<? foreach($arr_output['test_question_list'] as $intKey=>$arrQuestionInfo){ ?>
-				<div
-					class="uk-width-1-1 <?=$arr_output['user_answer'][$intKey]['result_flg']?'test_right_answer':'test_wrong_answer'?>"
-					id="question_<?=$arrQuestionInfo['question_seq']?>"
-					question_seq="<?=$arrQuestionInfo['question_seq']?>">
-					<h4 class="uk-width-2-10 pull-left">
-						<i
-							class="fa fa-<?=$arr_output['user_answer'][$intKey]['result_flg']?'circle-o':'times'?>"
-							aria-hidden="true"></i><br><?=$arrQuestionInfo['order_number']?></h4>
-					<div
-						class="uk-width-8-10 btn-group ans_correct ans_correct_<?=$arrQuestionInfo['question_type'];?>"
-						data-toggle="buttons">
-						<?
-					switch ($arrQuestionInfo ['question_type']) {
-						case (2) :
-							$intExampleWidth = 3;
-							break;
-						case (3) :
-						case (4) :
-							$intExampleWidth = 2;
-							break;
-						case (11) :
-							$intExampleWidth = 5;
-							break;
-					}
-					?>
-						<? foreach($arrQuestionInfo['example']['type_1'] as $intExampleKey=>$arrExample){ ?>
-						<label
-							class="uk-width-<?=$intExampleWidth?>-10 btn btn-default <?=$arrExample['seq']==$arr_output['user_answer'][$intKey]['user_answer']?'active':'disabled'?>"
-							for="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>">
-							<input type="radio" value="<?=$arrExample['seq'];?>"
-							id="example_<?=$arrQuestionInfo['question_seq']?>_<?=$arrExample['seq'];?>"
-							autocomplete="off"><?=$arrExample['example_number'];?>
-					  	</label>
-					  	<? } ?>
-					</div>
-				</div>
-				<? } ?>
-				</div>
-			<!--##########################################################-->
 			<!--#########################오답노트############################-->
 			<!--##########################################################-->
 			<!-- ############### -->
@@ -204,13 +205,13 @@
 				<!-- comment -->
 				<div class="h_dot">
 					<div id="comment_div"
-						comment_seq="<?=$arr_output['test_info'][0]['seq'];?>" bbs_seq="4"></div>
+						data-comment-seq="<?=$arr_output['test_info'][0]['seq'];?>" data-bbs-seq="4"></div>
 				</div>
 			</div>
 			<!-- 
 				<div id="question_community" style="display:none;" class="sub_tabs">
 				<? foreach($arr_output['test_question_list'] as $intKey=>$arrQuestionInfo){ ?>#############
-				<div class="uk-width-1-1 <?=$arr_output['user_answer'][$intKey]['result_flg']?'test_right_answer':'test_wrong_answer'?>" id="question_<?=$arrQuestionInfo['question_seq']?>" question_seq="<?=$arrQuestionInfo['question_seq']?>" >
+				<div class="uk-width-1-1 <?=$arr_output['user_answer'][$intKey]['result_flg']?'test_right_answer':'test_wrong_answer'?>" id="question_<?=$arrQuestionInfo['question_seq']?>" data-question-seq="<?=$arrQuestionInfo['question_seq']?>" >
 					<h4 class="uk-width-2-10 pull-left" style="top:0px;"><i class="fa fa-<?=$arr_output['user_answer'][$intKey]['result_flg']?'circle-o':'times'?>" aria-hidden="true"></i><br><?=$arrQuestionInfo['order_number']?></h4>
 					<div class="uk-width-8-10 btn-group ans_correct ans_correct_<?=$arrQuestionInfo['question_type'];?>" data-toggle="buttons">
 						<div><span>1111</span> <span>1111</span> <span>1111</span></div>

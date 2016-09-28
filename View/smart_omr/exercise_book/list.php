@@ -21,32 +21,32 @@
 		<!-- ################################################################# -->
 		<div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
 			<a
-				href="javascript:objCommon.frmReset();$('#frmSearch .search-bt').click();"
+				href="#" onclick="objCommon.frmReset();$('#frmSearch .search-bt').click();"
 				class="pure-menu-link pure-menu-heading">전체</a>
 			<ul class="pure-menu-list">
 				<li class="pure-menu-item"><a
-					href="javascript:$('#frmSearch #category_seq').val(32);$('#frmSearch .search-bt').click();"
+					href="#" onclick="$('#frmSearch #category_seq').val(32);$('#frmSearch .search-bt').click();"
 					class="pure-menu-link"><i class="uk-icon-caret-right"></i> 초등</a></li>
 				<li class="pure-menu-item"><a
-					href="javascript:$('#frmSearch #category_seq').val(33);$('#frmSearch .search-bt').click();"
+					href="#" onclick="$('#frmSearch #category_seq').val(33);$('#frmSearch .search-bt').click();"
 					class="pure-menu-link"><i class="uk-icon-caret-right"></i> 중등</a></li>
 				<li class="pure-menu-item"><a
-					href="javascript:$('#frmSearch #category_seq').val(34);$('#frmSearch .search-bt').click();"
+					href="#" onclick="$('#frmSearch #category_seq').val(34);$('#frmSearch .search-bt').click();"
 					class="pure-menu-link"><i class="uk-icon-caret-right"></i> 고등</a></li>
 				<li class="pure-menu-item"><a
-					href="javascript:$('#frmSearch #category_seq').val(35);$('#frmSearch .search-bt').click();"
+					href="#" onclick="$('#frmSearch #category_seq').val(35);$('#frmSearch .search-bt').click();"
 					class="pure-menu-link"><i class="uk-icon-caret-right"></i> 수능</a></li>
 				<li class="pure-menu-item"><a
-					href="javascript:$('#frmSearch #category_seq').val(36);$('#frmSearch .search-bt').click();"
+					href="#" onclick="$('#frmSearch #category_seq').val(36);$('#frmSearch .search-bt').click();"
 					class="pure-menu-link"><i class="uk-icon-caret-right"></i> 대학교제</a></li>
 				<li class="pure-menu-item"><a
-					href="javascript:$('#frmSearch #category_seq').val(37);$('#frmSearch .search-bt').click();"
+					href="#" onclick="$('#frmSearch #category_seq').val(37);$('#frmSearch .search-bt').click();"
 					class="pure-menu-link"><i class="uk-icon-caret-right"></i> 취업/수험서</a></li>
 				<li class="pure-menu-item"><a
-					href="javascript:$('#frmSearch #category_seq').val(38);$('#frmSearch .search-bt').click();"
+					href="#" onclick="$('#frmSearch #category_seq').val(38);$('#frmSearch .search-bt').click();"
 					class="pure-menu-link"><i class="uk-icon-caret-right"></i> 외국어</a></li>
 				<li class="pure-menu-item"><a
-					href="javascript:$('#frmSearch #category_seq').val(39);$('#frmSearch .search-bt').click();"
+					href="#" onclick="$('#frmSearch #category_seq').val(39);$('#frmSearch .search-bt').click();"
 					class="pure-menu-link"><i class="uk-icon-caret-right"></i> 기타</a></li>
 			</ul>
 		</div>
@@ -59,7 +59,8 @@
 			<? }else{ ?>
 			<div class="row content_body" id="book_list_div">
 				<div class="workbook_cover col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<span>조회된 내역이 없습니다.</span>
+					<span>등록된 문제집이 없습니다. 마마OMR의 첫 문제집을 등록해 보세요~</span><br>
+					<button onclick="location.href='/smart_omr/exercise_book/registration'">문제집 등록하기</button>
 				</div>
 			</div>
 			<? } ?>

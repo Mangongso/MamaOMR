@@ -11,8 +11,7 @@ if (! $viewID) {
 <!-- ######## -->
 <div
 	class="uk-width-1-1 wrong_answer <?=$arrWrongAnswer['result_flg']?'test_right_answer':'test_wrong_answer'?>"
-	id="question_<?=$arrWrongAnswer['question_seq']?>"
-	question_seq="<?=$arrWrongAnswer['question_seq']?>">
+	data-question-seq="<?=$arrWrongAnswer['question_seq']?>">
 	<h4 class="uk-width-2-10 pull-left"><?=$arrWrongAnswer['order_number']?></h4>
 	<div
 		class="uk-width-8-10 btn-group text-right ans_correct_<?=$arrWrongAnswer['question_type'];?>"

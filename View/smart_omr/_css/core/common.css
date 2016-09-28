@@ -133,7 +133,7 @@ a:focus, a:hover {
   }
   
 .pure-menu-item.active{background:#222222; }
-#foot_menu-tabs .pure-menu-item.active,.pure-menu-scrollable .pure-menu-item.active, #foot_menu-tabs2 .pure-menu-item.active {background:transparent!important;}
+.foot_menu-tabs .pure-menu-item.active,.pure-menu-scrollable .pure-menu-item.active, #foot_menu-tabs2 .pure-menu-item.active {background:transparent!important;}
 .uk-offcanvas-bar {
 	/*background: #5a8770;*/
 }
@@ -273,16 +273,16 @@ a:focus, a:hover {
     color: #999;
     font-size: 14px;
 }
-#foot_menu-tabs li a,
+.foot_menu-tabs li a,
 #foot_menu-tabs2 li a  {
 	font-size: 11px;
 }
 
-#foot_menu-tabs li a:hover,
-#foot_menu-tabs li a:focus,
-#foot_menu-tabs li a:active,
-#foot_menu-tabs li a:visited,
-#foot_menu-tabs li a:before,
+.foot_menu-tabs li a:hover,
+.foot_menu-tabs li a:focus,
+.foot_menu-tabs li a:active,
+.foot_menu-tabs li a:visited,
+.foot_menu-tabs li a:before,
 #foot_menu-tabs2 li a:hover,
 #foot_menu-tabs2 li a:focus,
 #foot_menu-tabs2 li a:active,

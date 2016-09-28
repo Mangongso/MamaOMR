@@ -66,6 +66,20 @@ foreach ($arrTestListByBook as $key => $arrResult) {
 	$arrTestListByBook[$key]['test_record'] = $objRecord->getTotalUserRecord($arrResult['test_seq']);
 	$arrTestRecord = $arrTestListByBook[$key]['test_record'][0];
 	$arrTestListByBook[$key]['score_avarage'] = $arrTestRecord['user_count']?round($arrTestRecord['total_user_score']/$arrTestRecord['user_count'],1):0;
+	switch($arrResult['question_type']){
+		case (11) :
+			$arrTestListByBook [$key] ['example_count'] = 2;
+			break;
+		case (2) :
+			$arrTestListByBook [$key] ['example_count'] = 3;
+			break;
+		case (3) :
+			$arrTestListByBook [$key] ['example_count'] = 4;
+			break;
+		case (4) :
+			$arrTestListByBook [$key] ['example_count'] = 5;
+			break;
+	}
 }
 
 if(count($arrTestsSeq)){
@@ -90,7 +104,7 @@ if(count($arrTestsSeq)){
  * 
  */
 $arr_output['book_info'] = $arrBook;
-$arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/default_cover.png";
+$arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/no_cover.png";
 $arr_output['book_test_list'] = $arrTestListByBook;
 //$arr_output['book_join_usre_count'] = $intTestJoinUserCount;
 $arr_output['book_total_question_cnt'] = $intBookQuestionCnt;

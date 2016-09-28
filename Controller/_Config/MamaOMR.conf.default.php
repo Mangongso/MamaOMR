@@ -44,7 +44,7 @@ define("BOOK_SEARCH_API_KEY","BOOK_SEARCH_API_KEY");
 /**
  * File Upload Temp Directory
  */
-define("TMP_DIR","/tmp/");
+define("TMP_DIR","/tmp");
 
 /**
  * OCR Select
