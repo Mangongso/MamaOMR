@@ -32,11 +32,6 @@ $tabSelected = 3;
 					</h4>
 				</div>
 			<? if(count($arr_output['manager_student_list'])){ ?>
-			<?php
-				print "<pre>";
-				print_r ( $arr_output ['manager_student_list'] );
-				print "</pre>";
-				?>
 			<? foreach($arr_output['manager_student_list'] as $intFirstKey=>$arrManagerStudent){ //foreach 1 ?>
 				<div class="sub_contents_body_box">
 					<h4 style="border-bottom: 0px;"><?=$arrManagerStudent['student_info'][0]['name']?></h4>
