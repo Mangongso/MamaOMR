@@ -152,10 +152,13 @@
 }
 /**************************************************/
 .mypage_menu ul {
-	padding: 0px 10px 5px 10px;
+	padding: 3px 10px 5px 10px;
 }
 .mypage_menu ul li {
 	margin-right: 10px;
+}
+.mypage_menu ul li a {
+	font-size: 12px!important;
 }
 /*//////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////MEDIA///////////////////////////////*/
