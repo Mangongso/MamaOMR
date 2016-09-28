@@ -1,4 +1,6 @@
 <?
+require_once("Model/Core/Util/Paging.php");
+require_once("Model/Core/DataManager/DataHandler.php");
 /**
  * 유저의 성적을 등록, 수정, 삭제, 조회한다
  *
@@ -10,8 +12,6 @@
  * @category     	Record
  */
 
-require_once("Model/Core/Util/Paging.php");
-require_once("Model/Core/DataManager/DataHandler.php");
 
 class Record{
 	private $resRecordDB = null;

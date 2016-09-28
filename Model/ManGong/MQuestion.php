@@ -1,4 +1,6 @@
 <?
+require_once("Model/Core/Util/Paging.php");
+require_once("Model/Core/DataManager/DataHandler.php");
 /**
  * 문제 및 문제에 종속되는 보기를 등록, 수정, 삭제, 조회한단.
  * 본 클레스틑 Test/Question 클레스를 확장한다.
@@ -11,10 +13,6 @@
  * @property 		public array $arrExampleStyle :배열형태의 보기형식
  * @category     	Question
  */
-
-require_once("Model/Core/Util/Paging.php");
-require_once("Model/Core/DataManager/DataHandler.php");
-
 class MQuestion{
 	public $resQuestionDB;
 	public $arrQuestion;
