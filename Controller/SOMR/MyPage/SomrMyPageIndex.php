@@ -68,7 +68,7 @@ foreach($arrMyJoinBooks as $intKey=>$arrBook){
 	$arrMyJoinBooks[$intKey]['total_record'] = $objRecord->getTotalUserRecord(null,null,$strTestSeqGroup);
 	$arrMyJoinBooks[$intKey]['my_record'] = $objRecord->getTotalUserRecord(null,null,$strTestSeqGroup,$strMemberSeq);
 	$arrMyJoinBooks[$intKey]['avarage_score'] = $arrMyJoinBooks[$intKey]['total_record'][0]['user_count']?round($arrMyJoinBooks[$intKey]['total_record'][0]['total_user_score']/$arrMyJoinBooks[$intKey]['total_record'][0]['user_count'],1):0;
-	$arrMyJoinBooks[$intKey]['book_cover_img'] = $arrBook['cover_url']?$arrBook['cover_url']:"/smart_omr/_images/default_cover.png";
+	$arrMyJoinBooks[$intKey]['book_cover_img'] = $arrBook['cover_url']?$arrBook['cover_url']:"/smart_omr/_images/no_cover.png";
 }
 
 //get manager_student 
@@ -88,7 +88,7 @@ if(count($arrManagerStudentList)){
 			$arrJoinBooks[$intSubKey]['total_record'] = $objRecord->getTotalUserRecord(null,null,$strTestSeqGroup);
 			$arrJoinBooks[$intSubKey]['my_record'] = $objRecord->getTotalUserRecord(null,null,$strTestSeqGroup,$strStudentSeq);
 			$arrJoinBooks[$intSubKey]['avarage_score'] = $arrJoinBooks[$intSubKey]['total_record'][0]['user_count']?round($arrJoinBooks[$intSubKey]['total_record'][0]['total_user_score']/$arrJoinBooks[$intSubKey]['total_record'][0]['user_count'],1):0;
-			$arrJoinBooks[$intSubKey]['book_cover_img'] = $arrBook['cover_url']?$arrBook['cover_url']:"/smart_omr/_images/default_cover.png";
+			$arrJoinBooks[$intSubKey]['book_cover_img'] = $arrBook['cover_url']?$arrBook['cover_url']:"/smart_omr/_images/no_cover.png";
 		}
 		$arrManagerStudentList[$intKey]['join_book'] = $arrJoinBooks;
 		$arrManagerStudentList[$intKey]['student_info'] = $objMember->getMemberByMemberSeq($strStudentSeq);

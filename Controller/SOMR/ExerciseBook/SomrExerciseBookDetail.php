@@ -104,7 +104,7 @@ if(count($arrTestsSeq)){
  * 
  */
 $arr_output['book_info'] = $arrBook;
-$arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/default_cover.png";
+$arr_output['book_cover_img'] = $arr_output['book_info'][0]['cover_url']?$arr_output['book_info'][0]['cover_url']:"/smart_omr/_images/no_cover.png";
 $arr_output['book_test_list'] = $arrTestListByBook;
 //$arr_output['book_join_usre_count'] = $intTestJoinUserCount;
 $arr_output['book_total_question_cnt'] = $intBookQuestionCnt;
