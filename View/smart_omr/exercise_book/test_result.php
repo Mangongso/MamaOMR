@@ -43,22 +43,22 @@
 						class="pure-menu pure-menu-horizontal pure-menu-scrollable scrollable-menu  visible-xs mypage_menu">
 						<ul id="foot_menu-tabs2" class="pure-menu-list">
 							<li class="pure-menu-item">
-								<a href="javascript:void(0);" title="입력답안" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('answer_omr');">
+								<a href="#" title="입력답안" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('answer_omr');">
 									<i class="uk-icon-caret-right"></i> 입력답안
 								</a>
 							</li>
 							<li class="pure-menu-item">
-								<a href="javascript:void(0);" title="학습리포트" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('study_report');">
+								<a href="#" title="학습리포트" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('study_report');">
 									<i class="uk-icon-caret-right"></i> 학습리포트
 								</a>
 							</li>
 							<li class="pure-menu-item">
-								<a href="javascript:void(0);" title="오답노트" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_note');">
+								<a href="#" title="오답노트" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_note');">
 									<i class="uk-icon-caret-right"></i> 오답노트
 								</a>
 							</li>
 							<li class="pure-menu-item">
-								<a href="javascript:void(0);" title="오답문제풀이" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_test');">
+								<a href="#" title="오답문제풀이" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('wrong_answer_test');">
 									<i class="uk-icon-caret-right"></i> 오답문제풀이 
 									<small>
 										<i onclick="objWAN.getWrongNoteTest('<?=$_GET['t']?>','<?=$arr_output['record'][0]['revision']?>');" style="cursor: pointer; color: #ccc;" class="fa fa-refresh" aria-hidden="true" data-t="<?=$_GET['t']?>" data-revision="<?=$arr_output['record'][0]['revision']?>"></i>
@@ -66,7 +66,7 @@
 								</a>
 							</li>
 							<li class="pure-menu-item">
-								<a href="javascript:void(0);" title="댓글" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');objCommon.getComment($('#comment_div').attr('data-comment-seq'),$('#comment_div').attr('data-bbs-seq'));">
+								<a href="#" title="댓글" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');objCommon.getComment($('#comment_div').attr('data-comment-seq'),$('#comment_div').attr('data-bbs-seq'));">
 									<i class="uk-icon-caret-right"></i> 댓글 
 								</a>
 							</li>
