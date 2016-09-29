@@ -291,19 +291,7 @@
 		    <a href="https://github.com/Mangongso/openomr/" target="_blank">
 		    OpenOMR GitHub 바로가기
 		    </a>		    
-		  </li>
-		  <li class="list-group-item">
-		  	<? if(exec("tesseract")!=""){?>
-		   <span class="label label-success">Pass</span>
-		   	<? }else{ ?>
-		   	<? $confFailCnt++; ?>
-		   	<span class="label label-danger">Fail</span>
-		    <? } ?>
-		    tesseract 가 설치 되어야 합니다.
-		    <a href="https://github.com/tesseract-ocr/tesseract" target="_blank">
-		    tesseract GitHub 바로가기
-		    </a>
-		  </li>					  			
+		  </li>				  			
 		  <li class="list-group-item">
 		  	<? if(file_exists($_SERVER["DOCUMENT_ROOT"]."/../ExternalApps/tesseract-ocr-for-php")){?>
 		   <span class="label label-success">Pass</span>
@@ -321,6 +309,11 @@
 	<!-- ########################## -->		
 	<div class="row">
 		<p class="help-block">모든 상태가 <span class="label label-success">Pass</span> 이어야 다음단계로 진행이 가능 합니다. Check Install 버튼을 클릭하여 상태를 확인 하세요.</p>
+		<p class="help-block">Tesseract OCR을 사용할 경우 Tesseract가 설치 되어야 합니다.
+		    <a href="https://github.com/tesseract-ocr/tesseract" target="_blank">
+		    tesseract GitHub 바로가기
+		    </a>
+		</p>
 		<p class="help-block">설치 실패시 기존 DB를 삭제하고 재설치 해주세요.</p>
 		<br/>
 		<? if($confFailCnt>0){?>
