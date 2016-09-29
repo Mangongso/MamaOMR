@@ -287,7 +287,7 @@
 		   	<? $confFailCnt++; ?>
 		   	<span class="label label-danger">Fail</span>
 		    <? } ?>
-		    OpenOMR을 [MamaOMR 설치디렉터리]/ExternalApps/openomr 에 업로드 하세요.
+		    OpenOMR을 [MamaOMR 설치디렉터리]/ExternalApps/openomr 에 설치 하세요. (php composer.phar install)
 		    <a href="https://github.com/Mangongso/openomr/" target="_blank">
 		    OpenOMR GitHub 바로가기
 		    </a>		    

@@ -292,7 +292,7 @@ function Common() {
 		$('[data-test-key]').each(function(){
 			var eleBtn = $(this);
 			new AjaxUpload(eleBtn, {
-				action: '/_connector/yellow.501', 
+				action: '/_connector/yellow.501.php', 
 			    data: {
 			        'viewID': 'SOMR_UPLOAD_OMR',
 			        'test_key': eleBtn.data('test-key')
