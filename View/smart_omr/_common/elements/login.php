@@ -6,7 +6,7 @@
     <div class="uk-offcanvas-bar uk-offcanvas-bar-flip">
 		<div class="list-group etc_login">
             <? if($API_key ['facebook'] ['app_id'] != "APP_ID" && trim ( $API_key ['facebook'] ['app_id'])){?>
-            <a href="#" class="list-group-item login_facebook _d_sns_btn"><i class="fa fa-facebook-official" aria-hidden="true"></i>페이스북 아이디로 로그인</a>
+            <a href="#" class="list-group-item login_facebook _d_sns_btn" data-event-type="login" data-sns-type="facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i>페이스북 아이디로 로그인</a>
               <? } ?>
 			  <? if($API_key ['naver'] ['client_id'] != "CLIENT_ID" && trim ( $API_key ['naver'] ['client_id'] )){ ?>
             <a href="#" onclick="$('#naver_id_login_anchor').click();" class="list-group-item login_naver"><span><img src="/smart_omr/_images/naver_logo.png" alt="Naver Logo" /></span>네이버 아이디로 로그인</a>

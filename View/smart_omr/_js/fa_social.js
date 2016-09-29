@@ -77,7 +77,7 @@ window.fbAsyncInit = function() {
 var arr_sns_reply_user_info;
 var arrSnsInfo = {};
 $(document).ready(function(){
-	if($('._d_sns_btn').length)$('._d_sns_btn').click(function(){checkSnsLogin($(this).attr('sns_type'),$(this).attr('event_type'),$(this));});
+	if($('._d_sns_btn').length)$('._d_sns_btn').click(function(){checkSnsLogin($(this).attr('data-sns-type'),$(this).attr('data-event-type'),$(this));});
 	/*
 	var strParmeter = ((window.location.href.split("?"))[1]);
 	var arrRequest;
