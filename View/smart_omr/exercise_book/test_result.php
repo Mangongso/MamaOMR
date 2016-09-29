@@ -67,7 +67,7 @@
 							</li>
 							<li class="pure-menu-item">
 								<a href="javascript:void(0);" title="댓글" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('comment');objCommon.getComment($('#comment_div').attr('data-comment-seq'),$('#comment_div').attr('data-bbs-seq'));">
-									<i class="uk-icon-caret-right"></i> &nbsp;댓글 
+									<i class="uk-icon-caret-right"></i> 댓글 
 								</a>
 							</li>
 						</ul>
@@ -76,7 +76,7 @@
 			<!-- XS menu END-->
 		<div class="sub_contents_test_body sub_contents_test_result">
 			<!-- ############### -->
-			<ul class="nav nav-tabs sub_content_top_menu hidden-xs"">
+			<ul class="nav nav-tabs sub_content_top_menu hidden-xs">
 				<li class="active"
 					onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('answer_omr');"><a
 					href="javascript:void(0);" title="입력답안"><i class="fa fa-check"
