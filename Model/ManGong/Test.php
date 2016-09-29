@@ -2,6 +2,7 @@
 require_once("Model/Core/Util/Paging.php");
 require_once("Model/Core/DataManager/DataHandler.php");
 require_once("Model/ManGong/MQuestion.php");
+require_once("Model/Tests/Tests.php");
 /**
  * 테스트 정보를 등록, 수정, 삭제, 조회한다.
  * 본 클레스틑 Tests/Tests 클레스를 확장한다.
@@ -16,7 +17,7 @@ require_once("Model/ManGong/MQuestion.php");
  */
 
 
-class Test{
+class Test extends Tests{
 	public $objPaging;
 	public $resTestsDB;
 	public $objQuestion;
