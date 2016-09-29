@@ -17,7 +17,7 @@ if (! $viewID) {
 		class="uk-width-8-10 btn-group text-right ans_correct_<?=$arrWrongAnswer['question_type'];?>"
 		data-toggle="buttons">
 						<? if(!$arrWrongAnswer['wrong_note_list_seq']){ ?>
-						<div class="uk-float-left date_posted">오답노트가 등록되지 않았습니다.</div>
+						<div class="uk-float-left date_posted">오답문제가 없습니다.</div>
 						<? if(!$arr_output['student_info']){ ?>
 														<button type="button" class="pure-button pure-form_in"
 			data-modal-type="editor"
