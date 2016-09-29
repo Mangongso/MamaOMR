@@ -57,15 +57,19 @@
 			<? include("../_common/elements/book_list_body.php");?>
 			</div>
 			<? }else if(!count($arr_output['book_list']) && $arr_output['search_flg']==1){ ?>
-			<div class="h_dot_box info_box" style="top: 0px;">
-			<i class="fa fa-exclamation-circle" aria-hidden="true"></i><br>
-			검색된 정보가 없습니다.
+			<div class="row content_body" id="book_list_div">
+				<div class="h_dot_box info_box" style="top: 0px;">
+				<i class="fa fa-exclamation-circle" aria-hidden="true"></i><br>
+				검색된 정보가 없습니다.
+				</div>
 			</div>
 			<? }else{ ?>
-			<div class="h_dot_box info_box" style="top: 0px;">
-				<i class="fa fa-exclamation-circle" aria-hidden="true"></i><br> 
-				<span>등록된 문제집이 없습니다. 마마OMR의 첫 문제집을 등록해 보세요~</span><br><br>
-				<button type="button" class="btn btn-primary btn-md search-bt" onclick="location.href='/smart_omr/exercise_book/registration'">문제집 등록하기</button>
+			<div class="row content_body" id="book_list_div">
+				<div class="h_dot_box info_box" style="top: 0px;">
+					<i class="fa fa-exclamation-circle" aria-hidden="true"></i><br> 
+					<span>등록된 문제집이 없습니다. 마마OMR의 첫 문제집을 등록해 보세요~</span><br><br>
+					<button type="button" class="btn btn-primary btn-md search-bt" onclick="location.href='/smart_omr/exercise_book/registration'">문제집 등록하기</button>
+				</div>
 			</div>
 			<? } ?>
 			<div id="loading" class="text-center" style="display: none;">
