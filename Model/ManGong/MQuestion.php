@@ -1,6 +1,7 @@
 <?
 require_once("Model/Core/Util/Paging.php");
 require_once("Model/Core/DataManager/DataHandler.php");
+require_once("Model/Tests/Question.php");
 /**
  * 문제 및 문제에 종속되는 보기를 등록, 수정, 삭제, 조회한단.
  * 본 클레스틑 Test/Question 클레스를 확장한다.
@@ -11,9 +12,9 @@ require_once("Model/Core/DataManager/DataHandler.php");
  * @property		private resource $resQuestionDB : DB 커넥션 리소스
  * @property 		public array $arrQuestion : 배열형식의 문제
  * @property 		public array $arrExampleStyle :배열형태의 보기형식
- * @category     	Question
+ * @category     	MQuestion
  */
-class MQuestion{
+class MQuestion extends Question{
 	public $resQuestionDB;
 	public $arrQuestion;
 	public $arrExampleStyle;

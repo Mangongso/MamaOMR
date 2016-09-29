@@ -1,6 +1,7 @@
 <?
 require_once("Model/Core/Util/Paging.php");
 require_once("Model/Core/DataManager/DataHandler.php");
+require_once("Model/Tests/Answer.php");
 /**
  * 문제 및 문제에 종속되는 보기를 등록, 수정, 삭제, 조회한다.
  * 본 클레스틑 Test/Answer 클레스를 확장한다.
@@ -12,7 +13,7 @@ require_once("Model/Core/DataManager/DataHandler.php");
  * @category     	Answer
  */
 
-class MAnswer{
+class MAnswer extends Answer{
 	/**
 	 * 생성자
 	 *
@@ -23,6 +24,7 @@ class MAnswer{
 		$this->objPaging =  new Paging();
 		$this->resAnswerDB = $resMangongDB;
 	}
+	
 	/**
 	 * 답안 제출 시 유저의 답을 저장
 	 *
