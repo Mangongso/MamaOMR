@@ -1,17 +1,50 @@
 <?
 require_once("Model/Core/Util/Paging.php");
 require_once("Model/Core/DataManager/DataHandler.php");
-//require_once("Model/Member/Member.php");
 
+/**
+ * 테스트 정보를 등록, 수정, 삭제, 조회한다.
+ *
+ * @package      	Tests
+ * @subpackage   	Core/Util/Paging
+ * @subpackage   	Core/DataManager/DataHandler
+ * @property		private resource $resTestsDB : DB 커넥션 리소스
+ * @property 		public object $objPaging : 페이징 객체
+ * @category     	Tests
+ */
 class Tests{
 	public $resTestsDB = null;
 	public $objPaging = null;
+	
+	/**
+	 * 생성자
+	 *
+	 * @param resource $resTestsDB 리소스 형태의 DB커넥션
+	 * @return null
+	 */
 	public function __construct($resTestsDB=null){
 		$this->objPaging =  new Paging();
-		//$this->objMember =  new Member($resTestsDB);
 		$this->resTestsDB = $resTestsDB;
 	}
+	
+	/**
+	 * 소멸자
+	 */
 	public function __destruct(){}
+	
+	/**
+	 * 테스트를 등록한다.
+	 *
+	 * @param integer $intWriterSeq 테스트 등록 유저 시컨즈
+	 * @param integer $intTestsType 테스트 타입
+	 * @param string $strSubject 테스트 제목
+	 * @param string $strContents 테스트 내용
+	 * @param string $intExampleNumberingStyle 예제 넘버림 스타일
+	 * @param string &$intTestsSeq 저장된 테스트의 시컨즈 번호를 담는 변수
+	 * @param string $strTags 태그
+	 *
+	 * @return mix 테스트 저장 성공 여부. (false 또는 true) 또는 저장된 테스트의 시컨즈 번호를 반환
+	 */
 	public function setTests($intWriterSeq,$intTestsType,$strSubject,$strContents,$intExampleNumberingStyle,&$intTestsSeq=null,$strTags=''){
 		include("Model/Tests/SQL/MySQL/Tests/setTests.php");
 		$boolReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
@@ -26,28 +59,54 @@ class Tests{
 		}
 		return($mixReturn);		
 	}
+	
+	/**
+	 * 테스트 목록을 조회.
+	 *
+	 * @param integer $intTestsSeq 테스트 시컨즈
+	 * @param integer $intWriterSeq 테스트 등록 유저 시컨즈
+	 *
+	 * @return array test ,test_published table 참조
+	 */
 	public function getTests($intTestsSeq,$intWriterSeq=null){
-		if(!$intWriterSeq){
-			$strQuery = sprintf("select * from test where seq=%d",$intTestsSeq);
-		}else{
-			$strQuery = sprintf("select * from test where seq=%d and writer_seq=%d",$intTestsSeq,$intWriterSeq);
-		}
+		include("Model/Tests/SQL/MySQL/Tests/getTests.php");
 		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		$arrReturn[0]['publish'] = $this->getTestsPublishInfo($intTestsSeq);
 		return($arrReturn);
 	}
+	
+	/**
+	 * 테스트 목록을 퍼블리시 시컨즈를 기준으로 조회
+	 *
+	 * @param integer $intPublishedSeq 테스트 퍼블리시 시컨즈
+	 *
+	 * @return array test ,test_published table 참조
+	 */
 	public function getTestsByPublishedSeq($intPublishedSeq){
-		// $strQuery = sprintf("select * from test where seq in (select test_seq from test_published where seq=%d)",$intPublishedSeq);
-		$strQuery = sprintf("select s.*,sp.seq as publish_seq,sp.start_date,sp.finish_date,unix_timestamp(sp.start_date) as start_time,unix_timestamp(sp.finish_date) as finish_time from test_published as sp join test as s on sp.test_seq=s.seq where sp.seq=%d",$intPublishedSeq);
+		include("Model/Tests/SQL/MySQL/Tests/getTestsByPublishedSeq.php");
 		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		$arrReturn[0]['publish'] = $this->getTestsPublishInfo($arrReturn[0]['seq']);
 		return($arrReturn);		
 	}
+	
+	/**
+	 * 테스트 목록을 조회
+	 *
+	 * @return array test table 참조
+	 */
 	public function getTestss(){
-		$strQuery = "select * from test";
+		include("Model/Tests/SQL/MySQL/Tests/getTestss.php");
 		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($arrReturn);
 	}	
+	
+	/**
+	 * 테스트 검색 쿼리문
+	 *
+	 * @param array $arrSearch 검색 조건 배열
+	 *
+	 * @return string 테스트검색 쿼리문 반환
+	 */
 	public function getSurverSearchQuery($arrSearch){
 		$arrWhere = array();
 		if(count($arrSearch)>0){
@@ -66,18 +125,31 @@ class Tests{
 		}
 		return($strQuery);
 	}
+	
+	/**
+	 * 테스트 목록을 퍼블리시 시컨즈를 기준으로 조회한 count
+	 *
+	 * @param integer $arrSearch 테스트 퍼블리시 시컨즈
+	 * @param boolean $boolNullDateShowFlg null 보여주기 flg
+	 *
+	 * @return integer 테스트 목록을 퍼블리시 시컨즈를 기준으로 조회한 count를 반환
+	 */
 	public function getTestsFromPublishedCount($arrSearch=array(),$boolNullDateShowFlg=true){
-		$strQuery = "select count(*) as cnt from test_published as sp left join test as s on sp.test_seq=s.seq where s.delete_flg=0 and sp.delete_flg=0";
-		if(!$boolNullDateShowFlg){
-			$strQuery = $strQuery." and (start_date!='0000-00-00 00:00:00' and finish_date!='0000-00-00 00:00:00')";
-		}
-		$strWhere = $this->getSurverSearchQuery($arrSearch);
-		if(trim($strWhere)){
-			$strQuery .= " and (".$strWhere.")";
-		}
+		include("Model/Tests/SQL/MySQL/Tests/getTestsFromPublishedCount.php");
 		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($arrReturn[0]['cnt']);		
 	}
+	
+	/**
+	 * 테스트를 퍼블리시 시컨즈를 기준으로 조회
+	 *
+	 * @param array $arrSearch 검색 조건 배열
+	 * @param array $arrOrder order 배열
+	 * @param array $arrPaging 페이징 정보 배열
+	 * @param boolean $boolNullDateShowFlg null 보여주기 flg
+	 *
+	 * @return array test ,test_published table 참조
+	 */
 	public function getTestssFromPublished($arrSearch=array(),$arrOrder=array('type'=>'sp.start_date','sort'=>'DESC'),&$arrPaging=null,$boolNullDateShowFlg=true){
 		if(!is_null($arrPaging)){
 			$intTotalCount = $this->getTestsFromPublishedCount($arrSearch,$boolNullDateShowFlg);
@@ -89,53 +161,103 @@ class Tests{
 					$arrPaging['param']
 			);
 		}		
-		$strQuery = "select sp.seq as published_seq,start_date,finish_date,state,unix_timestamp(sp.start_date) as start_time,unix_timestamp(sp.finish_date) as finish_time,s.* from test_published as sp left join test as s on sp.test_seq=s.seq  where s.delete_flg=0 and sp.delete_flg=0";
-		if(!$boolNullDateShowFlg){
-			$strQuery = $strQuery." and (start_date!='0000-00-00 00:00:00' and finish_date!='0000-00-00 00:00:00')";
-		}		
-		$strWhere = $this->getSurverSearchQuery($arrSearch);
-		if(trim($strWhere)){
-			$strQuery .= " and (".$strWhere.")";
-		}
-		$strQuery .= " order by ".$arrOrder['type']." ".$arrOrder['sort'].",s.seq DESC";
-		if($arrPaging){
-			$strQuery .= sprintf(" limit %d,%d",$arrPaging['limit_start'],$arrPaging['limit_offset']);
-		}	
+		include("Model/Tests/SQL/MySQL/Tests/getTestssFromPublished.php");
 		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($arrReturn);
 	}	
+	
+	/**
+	 * 테스트 진행중인 목록 조회
+	 *
+	 * @return array test ,test_published table 참조
+	 */
 	public function getTestsIngList(){
-		$strQuery = "select sp.seq as published_seq,start_date,finish_date,state,UNIX_TIMESTAMP(start_date) as start_time,UNIX_TIMESTAMP(finish_date) as finish_time,s.* from test_published as sp left join test as s on sp.test_seq=s.seq where sp.start_date<=now() and sp.finish_date>=now() order by sp.start_date DESC,s.seq DESC";
+		include("Model/Tests/SQL/MySQL/Tests/getTestsIngList.php");
 		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($arrReturn);		
 	} 
+	
+	/**
+	 * 테스트 퍼블리시 목록 조회
+	 *
+	 * @param integer $intTestsSeq 테스트 시컨즈
+	 * @param integer $intPublishedType 테스트 퍼블리시 형식
+	 *
+	 * @return array test ,test_published table 참조
+	 */
 	public function getTestsPublishInfo($intTestsSeq,$intPublishedType=0){
-		$strQuery = sprintf("select *,UNIX_TIMESTAMP(start_date) as start_unix_time,UNIX_TIMESTAMP(finish_date) as finish_unix_time from test_published where test_seq=%d and published_type=%d and delete_flg=0 order by start_date",$intTestsSeq,$intPublishedType);
+		include("Model/Tests/SQL/MySQL/Tests/getTestsPublishInfo.php");
 		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($arrReturn);
 	}
+	
+	/**
+	 * 테스트 퍼블리시 삭제
+	 *
+	 * @param integer $intTestsSeq 테스트 시컨즈
+	 * @param integer $intPublishedSeq 테스트 퍼블리시 시컨즈
+	 *
+	 * @return boolean 테스트 퍼블리시 삭제 성공 여부 반환
+	 */
 	public function deleteTestsPublish($intTestsSeq,$intPublishSeq){
-		$strQuery = sprintf("update test_published set delete_flg=1 where test_seq=%d and seq=%d and published_type=0",$intTestsSeq,$intPublishSeq);
+		include("Model/Tests/SQL/MySQL/Tests/deleteTestsPublish.php");
 		$boolReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($boolReturn);		
 	}
+	
+	/**
+	 * 테스트 삭제
+	 *
+	 * @param integer $intTestsSeq 테스트 시컨즈
+	 *
+	 * @return boolean 테스트 삭제 성공 여부 반환
+	 */
  	public function deleteTests($intTestsSeq){
 		include("Model/Tests/SQL/MySQL/Tests/deleteTests.php");
 		$boolReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($boolReturn);
 	}
+	
+	/**
+	 * 테스트 상태 수정
+	 *
+	 * @param integer $intTestsSeq 테스트 시컨즈
+	 * @param integer $intSruveyStatus 테스트 상태
+	 *
+	 * @return boolean 테스트 상태 수정 성공 여부 반환
+	 */
 	public function updateTestsStatus($intTestsSeq,$intSruveyStatus){
 		include("Model/Tests/SQL/MySQL/Tests/updateTestsStatus.php");
 		$arrTests = $this->getTests($intTestsSeq);
 		return($boolReturn);
 	}
+	
+	/**
+	 * 테스트 published 저장
+	 *
+	 * @param integer $intTestSeq 테스트 시쿼즈
+	 * @param integer $intPublishSeq 저장된 테스트 published 시컨즈를 담는 변수
+	 * @param string $strStartDate 테스트 시작일시
+	 * @param string $strFinishDate 테스트 종료일시
+	 * @param integer $intPublishType 형식 
+	 *
+	 * @return boolean  테스트 published 저장 성공여부 반환 true 또는 false
+	 */
 	public function updateTestsPublish($intTestsSeq,$intPublishSeq,$strStartDate,$strFinishDate,$intPublishType=0){
-		$strQuery = sprintf("update test_published set start_date='%s',finish_date='%s',published_type=%d where test_seq=%d and seq=%d",$strStartDate,$strFinishDate,$intTestsSeq,$intPublishSeq,$intPublishType);
+		include("Model/Tests/SQL/MySQL/Tests/updateTestsPublish.php");
 		$boolReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($boolReturn);		
 	}
+
+	/**
+	 * 테스트 퍼블리시 기본 확인
+	 *
+	 * @param integer $intTestsSeq 테스트 시컨즈
+	 *
+	 * @return boolean 테스트 퍼블리시 기본 여부 확인 반환
+	 */
 	public function checkDefaultTestsPublished($intTestsSeq){
-		$strQuery = sprintf("select count(*) as cnt from test_published where test_seq=%d and published_type=1",$intTestsSeq);
+		include("Model/Tests/SQL/MySQL/Tests/checkDefaultTestsPublished.php");
 		$arrResult = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		if($arrResult[0]['cnt']>0){
 			return(true);
@@ -143,28 +265,51 @@ class Tests{
 			return(false);
 		}
 	}
+
+	/**
+	 * 테스트 퍼블리시 기본 목록을 조회
+	 *
+	 * @param integer $intTestsSeq 테스트 시컨즈
+	 *
+	 * @return array test_published table 참조
+	 */
 	public function getDefaultTestsPublished($intTestsSeq){
-		$strQuery = sprintf("select * from test_published where test_seq=%d and published_type=1",$intTestsSeq);
+		include("Model/Tests/SQL/MySQL/Tests/getDefaultTestsPublished.php");
 		$arrResult = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($arrResult);
 	}	
+
+	/**
+	 * 테스트 퍼블리시 저장
+	 *
+	 * @param integer $intTestsSeq 테스트 시컨즈
+	 * @param string $strStartDate 시작일
+	 * @param string $strFinishDate 마지막날
+	 * @param integer $intPublishType 테스트 퍼블리시 형식
+	 *
+	 * @return boolean 테스트 퍼블리시 저장 성공 여부 반환
+	 */
 	public function publishTests($intTestsSeq,$strStartDate,$strFinishDate,$intPublishType=0){
-		$strQuery = sprintf("insert into test_published (test_seq,start_date,finish_date,state,delete_flg,published_date,published_type) values (%d,'%s','%s',0,0,now(),%d)",$intTestsSeq,$strStartDate,$strFinishDate,$intPublishType);
+		include("Model/Tests/SQL/MySQL/Tests/publishTests.php");
 		$boolReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($boolReturn);		
 	}
+
+	/**
+	 * 테스트 태그 저장
+	 *
+	 * @param integer $intTestsSeq 테스트 퍼블리시 시컨즈
+	 * @param integer $arrTags 테스트 태그 배열
+	 * @param integer $boolDeleteFlg 삭제 flg
+	 *
+	 * @return boolean 테스트 태그 저장 성공 여부 반환
+	 */
 	public function setTestsTags($intTestsSeq,$arrTags,$boolDeleteFlg = false){
 		if($boolDeleteFlg){
 			$boolResult = $this->deleteTestsTag($intTestsSeq);
 		}
 		if(is_array($arrTags) && count($arrTags)>0){
-			$arrValues = array();
-			foreach($arrTags as $intKey=>$strTags){
-				if(trim($strTags)){
-					array_push($arrValues,sprintf("(%d,'%s',now())",$intTestsSeq,$strTags));
-				}
-			}
-			$strQuery = "insert into test_tags (test_seq,tag,create_date) values ".join(',',$arrValues);
+			include("Model/Tests/SQL/MySQL/Tests/setTestsTags.php");
 			$boolReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 			return($boolReturn);
 		}else{
@@ -172,34 +317,73 @@ class Tests{
 		}
 		return($boolReturn);
 	}	
+
+	/**
+	 * 테스트 태그 목록 조회 
+	 *
+	 * @param integer $intTestsSeq 테스트 시컨즈
+	 *
+	 * @return array test_tags table 참조
+	 */
 	public function getTestsTags($intTestsSeq){
-		$strQuery = sprintf("select * from test_tags where test_seq=%d",$intTestsSeq);
+		include("Model/Tests/SQL/MySQL/Tests/getTestsTags.php");
 		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($arrReturn);	
 	}	
+
+	/**
+	 * 테스트 태그 삭제
+	 *
+	 * @param integer $intPublishedSeq 테스트 퍼블리시 시컨즈
+	 *
+	 * @return boolean 테스트 태그 삭제 성공 여부 반환
+	 */
 	public function deleteTestsTag($intTestsSeq,$intTagSeq=null){
-		if($intTagSeq){
-			$strQuery = sprintf("delete from test_tags where test_seq=%d and seq",$intTagSeq);
-		}else{
-			$strQuery = sprintf("delete from test_tags where test_seq=%d",$intTestsSeq);
-		}
+		include("Model/Tests/SQL/MySQL/Tests/deleteTestsTag.php");
 		$boolReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($boolReturn);
 	}	
+
+	/**
+	 * 테스트 참여 유저 저장
+	 *
+	 * @param integer $intTestsSeq 테스트 시컨즈
+	 * @param integer $intUserGroupSeq 우저 그룹 시컨즈
+	 * @param integer $intUserSeq 유저 시컨즈
+	 * @param integer $strStartDate 시작일
+	 * @param integer $strEndDate 마지막날 
+	 *
+	 * @return boolean 테스트 참여유저 정보 저장 성공 여부 반환
+	 */
 	//set testEntry by user group
 	public function setTestsEntry($intTestsSeq,$intUserGroupSeq=null,$intUserSeq,$strStartDate,$strEndDate){
-		$strQuery = sprintf("INSERT INTO test_join_user (test_seq, user_group_seq, user_seq, start_date, end_date, test_user_status_flg, delete_flg) 
-					  				VALUES (%d, %d, %d, '%s', '%s', default, default)",$intTestsSeq,$intUserGroupSeq,$intUserSeq,$strStartDate,$strEndDate);
-		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
-		return($arrReturn);	
+		include("Model/Tests/SQL/MySQL/Tests/setTestsEntry.php");
+		$boolResult = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
+		return($boolResult);	
 	}
+
+	/**
+	 * 테스트 참여 유저 삭제
+	 *
+	 * @param integer $intTestsJoinUserSeq 테스트참여유 시컨즈
+	 *
+	 * @return boolean 테스트 참여 유저 삭제 성공 여부 반환
+	 */
 	public function deleteTestsEntry($intTestsJoinUserSeq){
-		$strQuery = sprintf("UPDATE test_join_user set delete_flg=1 where seq=%d",$intTestsJoinUserSeq);
-		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
-		return($arrReturn);
+		include("Model/Tests/SQL/MySQL/Tests/deleteTestsEntry.php");
+		$boolResult = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
+		return($boolResult);
 	}	
+
+	/**
+	 * 테스트 문제 목록을 조회
+	 *
+	 * @param integer $intPublishedSeq 테스트 퍼블리시 시컨즈
+	 *
+	 * @return array question ,test_question_list table 참조
+	 */
 	public function getTestsQuestionList($intTestsSeq){
-		$strQuery = sprintf("select SQ.test_seq,SQ.question_seq,Q.writer_seq, Q.contents, Q.question_type, Q.example_type, Q.create_date, Q.modify_date from test_question_list SQ left outer join question as Q ON SQ.question_seq=Q.seq where SQ.test_seq=%d",$intTestsSeq);
+		include("Model/Tests/SQL/MySQL/Tests/getTestsQuestionList.php");
 		$arrReturn = $this->resTestsDB->DB_access($this->resTestsDB,$strQuery);
 		return($arrReturn);		
 	}
