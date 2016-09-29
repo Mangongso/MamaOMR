@@ -1,9 +1,12 @@
 <?
+require_once("Model/Core/Util/Paging.php");
+require_once("Model/Core/DataManager/DataHandler.php");
+require_once("Model/ManGong/MQuestion.php");
 /**
  * 테스트 정보를 등록, 수정, 삭제, 조회한다.
  * 본 클레스틑 Tests/Tests 클레스를 확장한다.
  *
- * @package      	Mangong/Test
+ * @package      	Mangong
  * @subpackage   	Core/Util/Paging
  * @subpackage   	Core/DataManager/DataHandler
  * @property		private resource $resTestsDB : DB 커넥션 리소스
@@ -12,9 +15,6 @@
  * @category     	Tests
  */
 
-require_once("Model/Core/Util/Paging.php");
-require_once("Model/Core/DataManager/DataHandler.php");
-require_once("Model/ManGong/MQuestion.php");
 
 class Test{
 	public $objPaging;

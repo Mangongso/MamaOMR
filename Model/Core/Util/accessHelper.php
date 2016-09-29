@@ -1,4 +1,5 @@
 <?
+require_once("Model/Core/DataManager/DataHandler.php");
 /**
  * 회원의 접근 권한을 관리
  * @subpackage 	Core/DataManager/DataHandler
@@ -6,8 +7,6 @@
  * @category     	accessHelper
  *
  */
-require_once("Model/Core/DataManager/DataHandler.php");
-
 class accessHelper{
 	public $arrArrowedIp;
 	public function __construct(){}

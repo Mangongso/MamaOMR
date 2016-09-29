@@ -778,6 +778,9 @@ a:focus, a:hover {
 #frmQuestion {
 	margin-bottom: 20px
 }
+.info_box {
+	margin-bottom: 15px;
+}
 .h_dot_box.info_box {
 	padding: 0px 20px 20px 20px;
 }

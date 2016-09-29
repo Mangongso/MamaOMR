@@ -1,17 +1,17 @@
 <?
+require_once("Model/Core/Util/Paging.php");
+require_once("Model/Core/DataManager/DataHandler.php");
+
 /**
  * 문제집을 등록, 수정, 삭제, 조회하고 문제집에 종속되는 테스트를 조회한다. 
  *
- * @package      	Mangong/Book
+ * @package      	Mangong
  * @subpackage   	Core/Util/Paging
  * @subpackage   	Core/DataManager/DataHandler
  * @property		private resource $resBookDB : DB 커넥션 리소스
  * @property 		public object $objPaging : 페이징 객체
  * @category     	Book
  */
-
-require_once("Model/Core/Util/Paging.php");
-require_once("Model/Core/DataManager/DataHandler.php");
 
 class Book{
 	public $objPaging;
