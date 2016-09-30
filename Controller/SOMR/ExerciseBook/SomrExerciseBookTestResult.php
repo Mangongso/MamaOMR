@@ -63,6 +63,8 @@ $objMember = new Member($resMangongDB);
 /**
  * Main Process
  */	
+include(CONTROLLER_NAME."/Auth/checkAuth.php");
+
 if(trim($strStudentKey)){
 	if(!$objStudentMG->checkIsManager($strStudentKey, $strManagerKey)){
 		header("location:/");
