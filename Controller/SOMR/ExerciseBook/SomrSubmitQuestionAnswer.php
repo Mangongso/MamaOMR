@@ -45,7 +45,15 @@ $objRecord = new Record($resMangongDB);
  /**
  * Main Process
  */
-
+$intAuthRedirectFlg = 0;
+include(CONTROLLER_NAME."/Auth/checkAuth.php");
+if($intAuthFlg == AUTH_FALSE){
+	$arrResult = array(
+			'boolResult'=>false
+	);
+	echo json_encode($arrResult);
+	exit;
+}
 //get member info
 $arrMemberInfo = $objMember->getMemberByMemberSeq($strMemberSeq);
 $intMemberSeq = $arrMemberInfo[0]['member_seq'];

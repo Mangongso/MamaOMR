@@ -68,6 +68,16 @@ $objTag = new Tag($resMangongDB);
 /**
  * Main Process
  */
+$intAuthRedirectFlg = 0;
+include(CONTROLLER_NAME."/Auth/checkAuth.php");
+if($intAuthFlg == AUTH_FALSE){
+	$arrResult = array(
+			'boolResult'=>false
+	);
+	echo json_encode($arrResult);
+	exit;
+}
+
 /* update question & update example */   
 if(count($arrQuestionSeq)>0){
 	//$boolResult = $objQuestion->deleteQuestionTags($intTestsSeq);//delete all question tags

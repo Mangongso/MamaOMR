@@ -59,11 +59,14 @@ $objMember = new Member($resMangongDB);
 /**
  * Main Process
  */	
+$intAuthRedirectFlg = 0;
 include(CONTROLLER_NAME."/Auth/checkAuth.php");
-//check auth
-if($intAuthFlg!=AUTH_TRUE){
-	header("HTTP/1.1 301 Moved Permanently");
-	header('location:/');
+if($intAuthFlg == AUTH_FALSE){
+	$arrResult = array(
+			'boolResult'=>false,
+			'error_msg'=>'로그인 후 사용가능합니다.'
+	);
+	echo json_encode($arrResult);
 	exit;
 }
 

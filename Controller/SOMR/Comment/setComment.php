@@ -35,24 +35,24 @@ $objMember = new Member($resMangongDB);
 /**
  * Main Process
  */
+$intAuthRedirectFlg = 0;
 include(CONTROLLER_NAME."/Auth/checkAuth.php");
-//check auth
-if($intAuthFlg!=AUTH_TRUE){
-	header("HTTP/1.1 301 Moved Permanently");
-	header('location:/');
-	exit;
-}
-//get member info 
-$arrMember = $objMember->getMemberByMemberSeq($_SESSION['smart_omr']['member_key']);
 
-$arr_input = array(
-		'cmt_name'=>$strName,
-		'reg_id'=>$arrMember[0]['member_seq'],
-		'comment'=>$strComment,
-		'post_seq'=>$intPostSeq,
-		'bbs_seq'=>$intBBSSeq
-);
-$boolResult = $objComment->setPostComment($resMangongDB,$arr_input);
+if($intAuthFlg == AUTH_TRUE){
+	//get member info 
+	$arrMember = $objMember->getMemberByMemberSeq($_SESSION['smart_omr']['member_key']);
+	
+	$arr_input = array(
+			'cmt_name'=>$strName,
+			'reg_id'=>$arrMember[0]['member_seq'],
+			'comment'=>$strComment,
+			'post_seq'=>$intPostSeq,
+			'bbs_seq'=>$intBBSSeq
+	);
+	$boolResult = $objComment->setPostComment($resMangongDB,$arr_input);
+}else{
+	$boolResult = false;
+}
 
 /**
  * View OutPut Data 세팅 

@@ -47,12 +47,6 @@ $objRecord = new Record($resMangongDB);
  */
 	
 include(CONTROLLER_NAME."/Auth/checkAuth.php");
-//check auth
-if($intAuthFlg!=AUTH_TRUE){
-	header("HTTP/1.1 301 Moved Permanently");
-	header('location:/smart_omr');
-	exit;
-}
 //1. get book info isbn code
 $arrSearch = array();
 if(is_numeric($mixBookSeq)){

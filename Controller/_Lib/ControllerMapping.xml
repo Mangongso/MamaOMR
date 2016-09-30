@@ -297,7 +297,7 @@
 		</controller>
 		<!-- MANAGER -->
 		<controller viewID="SOMR_REG_MANAGER">
-			<controller-name></controller-name>
+			<controller-name>Auth/checkAuth.php</controller-name>
 			<presentation-name></presentation-name>
 			<parameter></parameter>
 			<js>/smart_omr/_js/registration.js</js>

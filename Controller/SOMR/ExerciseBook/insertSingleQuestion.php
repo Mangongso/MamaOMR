@@ -39,17 +39,23 @@ $objQuestion = new MQuestion($resMangongDB);
 /**
  * Main Process
  */
+$intAuthRedirectFlg = 0;
 include(CONTROLLER_NAME."/Auth/checkAuth.php");
-//check auth
-if($intAuthFlg!=AUTH_TRUE){
-	header("HTTP/1.1 301 Moved Permanently");
-	header('location:/');
-	exit;
+
+if($intAuthFlg == AUTH_TRUE){
+	//check test sub_master
+	$arrTestResult = $objTest->getTests($intTestSeq);
+	if( count($arrTestResult) && (md5($arrTestResult[0]['sub_master'])==$_SESSION['smart_omr']['member_key']) ){
+		$intQuestionSeq = null;
+		$boolResult = $objQuestion->setQuestion($intWriterSeq, '', $intQuestionType, $intExampleType, null, null, null,$intQuestionSeq);
+		$boolResult = $objQuestion->setQuestionToTests($intTestSeq, $intQuestionSeq, $intQuestoinNumber ,$intQuestionScore,$intOrderNumber);
+		$boolResult = $objQuestion->setQuestionExampleAll($intQuestionSeq,'',$intAnswerFlg=0,$intExampleType,null);
+	}else{
+		$boolResult = false;
+	}
+}else{
+	$boolResult = false;
 }
-$intQuestionSeq = null;
-$boolResult = $objQuestion->setQuestion($intWriterSeq, '', $intQuestionType, $intExampleType, null, null, null,$intQuestionSeq);
-$boolResult = $objQuestion->setQuestionToTests($intTestSeq, $intQuestionSeq, $intQuestoinNumber ,$intQuestionScore,$intOrderNumber);
-$boolResult = $objQuestion->setQuestionExampleAll($intQuestionSeq,'',$intAnswerFlg=0,$intExampleType,null);
 
 /**
  * View OutPut Data 세팅

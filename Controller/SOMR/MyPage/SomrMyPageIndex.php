@@ -46,12 +46,6 @@ $objMember = new Member($resMangongDB);
  */
 
 include(CONTROLLER_NAME."/Auth/checkAuth.php");
-//check auth
-if($intAuthFlg!=AUTH_TRUE){
-	header("HTTP/1.1 301 Moved Permanently");
-	header('location:/smart_omr');
-	exit;
-}
 
 $arrMyJoinBooks = $objBook->getUserJoinBookList($strMemberSeq);
 // print "<pre style='margin-left:300px;'>";
