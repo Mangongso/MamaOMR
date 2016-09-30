@@ -39,9 +39,8 @@
 		<!-- Exercise book header END -->
 			<!-- ############### -->
 			<!-- XS menu START -->
-					<div
-						class="pure-menu pure-menu-horizontal pure-menu-scrollable scrollable-menu  visible-xs mypage_menu">
-						<ul id="foot_menu-tabs2" class="pure-menu-list">
+					<div class="pure-menu pure-menu-horizontal pure-menu-scrollable scrollable-menu  visible-xs mypage_menu">
+						<ul class="pure-menu-list">
 							<li class="pure-menu-item">
 								<a href="#" title="입력답안" onclick="$('.sub_content_top_menu li').attr('class','');$(this).attr('class','active');objCommon.displayTab('answer_omr');">
 									<i class="uk-icon-caret-right"></i> 입력답안
