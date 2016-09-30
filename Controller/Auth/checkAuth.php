@@ -6,5 +6,13 @@ if($_SESSION['smart_omr']){
 	
 	$intAuthFlg = AUTH_TRUE;
 	//$intMemberSeq = $intMemberSeq?$intMemberSeq:SMART_OMR_TEACHER_SEQ;
+}else{
+	if($intAuthFlg!=AUTH_TRUE && $intAuthRedirectFlg!=0){
+		header("HTTP/1.1 301 Moved Permanently");
+		header('location:/');
+		exit;
+	}else{
+		$intAuthFlg = AUTH_FALSE;
+	}
 }
 ?>

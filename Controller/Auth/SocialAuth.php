@@ -89,6 +89,8 @@ if(count($arrMember)){
  * SESSON에 로그인 정보를 담는다.
  * */
 if($boolResult){
+	//$_SESSION 초기화
+	$_SESSION = array();
 	//login
 	$_SESSION['smart_omr'] = array(
 		'member_key'=>md5($arrMember[0]['member_seq']),

@@ -43,6 +43,7 @@ $objRecord = new Record($resMangongDB);
 /**
  * Main Process
  */	
+include(CONTROLLER_NAME."/Auth/checkAuth.php");
 //get sruvey info
 $arrTestResult = $objTest->getTests($strTestSeq,$intWriterSeq,true);
 $arrQuestionList = $objTest->getTestQuestionListWithExample($arrTestResult[0]['seq'],false,array(1,2,3,4,5,6,7,8,9,11),$arrTestResult[0]['example_numbering_style']);

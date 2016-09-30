@@ -29,12 +29,26 @@ $objComment = new PostComment();
  /**
  * Main Process
  */
-$arr_input = array(
-		'cmt_id'=>$intCommentSeq,
-		'post_seq'=>$intPostSeq,
-		'bbs_seq'=>$intBBSSeq
-);
-$boolResult = $objComment->deletePostComment($resMangongDB,$arr_input);
+//check mycomment 
+$intAuthRedirectFlg = 0; 
+include(CONTROLLER_NAME."/Auth/checkAuth.php");
+
+if($intAuthFlg == AUTH_TRUE){
+	$arr_input = array(
+			'cmt_id'=>$intCommentSeq,
+			'post_seq'=>$intPostSeq,
+			'bbs_seq'=>$intBBSSeq
+	);
+	//check my cmt
+	$arrComment = $objComment->getPostComment($resMangongDB,$arr_input);
+	if( count($arrComment) && (md5($arrComment[0]['reg_id'])==$_SESSION['smart_omr']['member_key']) ){
+		$boolResult = $objComment->deletePostComment($resMangongDB,$arr_input);
+	}else{
+		$boolResult = false;
+	}
+}else{
+	$boolResult = false;
+}
 
 /**
  * View OutPut Data 세팅 

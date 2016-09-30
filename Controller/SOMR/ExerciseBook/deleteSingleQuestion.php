@@ -31,13 +31,21 @@ $objQuestion = new MQuestion($resMangongDB);
 /**
  * Main Process
  */
+$intAuthRedirectFlg = 0;
 include(CONTROLLER_NAME."/Auth/checkAuth.php");
-if($intAuthFlg!=AUTH_TRUE){
-	header("HTTP/1.1 301 Moved Permanently");
-	header('location:/');
-	exit;
+
+if($intAuthFlg == AUTH_TRUE){
+	//check test sub_master 
+	$arrTestResult = $objTest->getTests($intTestSeq);
+	if( count($arrTestResult) && (md5($arrTestResult[0]['sub_master'])==$_SESSION['smart_omr']['member_key']) ){
+		$boolResult = $objQuestion->deleteQuestion($intTestSeq, $intQuestionSeq);
+	}else{
+		$boolResult = false;
+	}
+}else{
+	$boolResult = false;
 }
-$boolResult = $objQuestion->deleteQuestion($intTestSeq, $intQuestionSeq);
+
 
 /**
  * View OutPut Data 세팅 

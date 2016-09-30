@@ -32,13 +32,6 @@ $objQuestion = new MQuestion($resMangongDB);
  * Main Process
  */
 include(CONTROLLER_NAME."/Auth/checkAuth.php");
-//check auth
-if($intAuthFlg!=AUTH_TRUE){
-	header("HTTP/1.1 301 Moved Permanently");
-	header('location:/');
-	exit;
-}
-
 $arrTestResult = $objTest->getTests($intTestSeq);
 
 //get select question

@@ -39,10 +39,13 @@ $objMember = new Member($resMangongDB);
 /**
  * Main Process
  */	
+$intAuthRedirectFlg = 0;
 include(CONTROLLER_NAME."/Auth/checkAuth.php");
-//check auth
-if($intAuthFlg!=AUTH_TRUE){
-	echo json_encode(array('err_msg'=>'로그인이 필요합니다.','err_code'=>1));
+if($intAuthFlg == AUTH_FALSE){
+	$arrResult = array(
+			'boolResult'=>false
+	);
+	echo json_encode($arrResult);
 	exit;
 }
 
