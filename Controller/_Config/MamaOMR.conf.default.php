@@ -50,6 +50,7 @@ define("TMP_DIR","/tmp");
  * OCR Select
  * MamaOMR Prepare 2 OMR one is tesseract the other is ocr.space API
  * value : tesseract or ocr.space
+ * tesseract 를 사용할 경우 tesseract 가 설치 되어 있어야 합니다. - https://github.com/tesseract-ocr/tesseract
  */
 define("OCR_TYPE","ocr.space");
 define("OCR_API_KEY","OCR_API_KEY");
