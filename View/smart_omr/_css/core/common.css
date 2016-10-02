@@ -131,12 +131,12 @@ a:focus, a:hover {
 #menu .pure-menu ul li {
     border-bottom: 1px solid #2b2b2b;
   }
-  
 .pure-menu-item.active{background:#222222; }
 .foot_menu-tabs .pure-menu-item.active,.pure-menu-scrollable .pure-menu-item.active, #foot_menu-tabs2 .pure-menu-item.active {background:transparent!important;}
 .uk-offcanvas-bar {
 	/*background: #5a8770;*/
 }
+.visible-xs .pure-menu-item.active{color:#2196f3 !important;}
 
 #LOGIN .form-group {
 	margin-bottom: 1px;
