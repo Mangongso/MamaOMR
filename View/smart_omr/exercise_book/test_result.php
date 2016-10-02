@@ -41,7 +41,7 @@
 			<!-- XS menu START -->
 					<div class="pure-menu pure-menu-horizontal pure-menu-scrollable scrollable-menu  visible-xs mypage_menu">
 						<ul class="pure-menu-list">
-							<li class="pure-menu-item" onclick="objCommon.displayTab('answer_omr');">
+							<li class="pure-menu-item active" onclick="objCommon.displayTab('answer_omr');">
 									<i class="uk-icon-caret-right"></i> 입력답안
 							</li>
 							<li class="pure-menu-item" onclick="objCommon.displayTab('study_report');">
