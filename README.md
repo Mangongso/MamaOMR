@@ -46,3 +46,7 @@ You can get the following main advantages with using MamaOMR, the learning analy
 * [Development Guide](Development-Document)
 * <a href="http://mamaomr.hanbnc.com/docs/api" target="_blank">Application API</a>
 * [REST API](Rest-API)
+
+## Copyright and license
+
+Code and documentation copyright 2016 the Mangongso Team. Code released under the MIT license. Docs released under Creative Commons.
