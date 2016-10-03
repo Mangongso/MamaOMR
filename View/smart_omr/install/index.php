@@ -124,6 +124,24 @@
 		    <? } ?>
 		   <?=realpath($_SERVER["DOCUMENT_ROOT"]."/..");?>/Files 디렉터리를 퍼미션은 777(rwxrwxrwx)로 생성하세요.
 		  </li>			  
+		  <li class="list-group-item">
+		  	<? if(file_exists(realpath($_SERVER["DOCUMENT_ROOT"]."/..")."/Files/Questions") && substr(sprintf("%o",fileperms(realpath($_SERVER["DOCUMENT_ROOT"]."/..")."/Files/Questions")),-4)=="0777" ){?>
+		   <span class="label label-success">Pass</span>
+		   	<? }else{ ?>
+		   	<? $confFailCnt++; ?>
+		   	<span class="label label-danger">Fail</span>
+		    <? } ?>
+		   <?=realpath($_SERVER["DOCUMENT_ROOT"]."/..");?>/Files/Questions 디렉터리를 퍼미션은 777(rwxrwxrwx)로 생성하세요.
+		  </li>
+		  <li class="list-group-item">
+		  	<? if(file_exists(realpath($_SERVER["DOCUMENT_ROOT"]."/..")."/Files/OMR") && substr(sprintf("%o",fileperms(realpath($_SERVER["DOCUMENT_ROOT"]."/..")."/Files/OMR")),-4)=="0777" ){?>
+		   <span class="label label-success">Pass</span>
+		   	<? }else{ ?>
+		   	<? $confFailCnt++; ?>
+		   	<span class="label label-danger">Fail</span>
+		    <? } ?>
+		   <?=realpath($_SERVER["DOCUMENT_ROOT"]."/..");?>/Files/OMR 디렉터리를 퍼미션은 777(rwxrwxrwx)로 생성하세요.
+		  </li>
 		</ul>
 	</div>
 	<!-- ########################## -->
