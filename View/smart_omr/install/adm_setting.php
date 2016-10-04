@@ -19,7 +19,7 @@
 				</div>
 			</li>
 			<? if($arr_output['$API_key']['facebook']['app_id']!=''){ ?>
-			<li><a href="#" class="list-group-item login_facebook" onclick="checkSnsLogin('facebook','login');" ><i class="fa fa-facebook-official" aria-hidden="true"></i>페이스북 아이디로 로그인</a></li>
+			<li><a href="#" class="list-group-item login_facebook _d_sns_btn" data-event-type="login" data-sns-type="facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i>페이스북 아이디로 로그인</a></li>
 			<? }?>
 			<? if($arr_output['$API_key']['naver']['client_id']!=''){ ?>
 			<li>
