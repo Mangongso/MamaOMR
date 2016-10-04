@@ -25,7 +25,7 @@ $objTest = new Test($resMangongDB);
  /**
  * Main Process
  */
-include(CONTROLLER_NAME."/Auth/checkAuth.php");
+//include(CONTROLLER_NAME."/Auth/checkAuth.php");
 //1. get main header
 $intQueId = 1;//main header
 //$arrHeader = $objTest->getTestByQue($intQueId);

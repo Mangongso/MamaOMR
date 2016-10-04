@@ -35,11 +35,15 @@
 <script src="/smart_omr/_js/ka_social.js"></script>
 <!-- facebook -->
 <script src="/smart_omr/_js/fa_social.js"></script>
+
+<? if( ($API_key['naver']['client_id']!="CLIENT_ID" && trim($API_key['naver']['client_id'])) ) { ?>
 <!-- naver -->
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"
 	charset="utf-8"></script>
 <script src="/smart_omr/_js/na_social.js"></script>
+<? } ?>
+
 <? } ?>
 
 
