@@ -36,9 +36,11 @@
 				<li class="pure-menu-item"><a
 					href="#" onclick="$('#frmSearch #category_seq').val(35);$('#frmSearch .search-bt').click();"
 					class="pure-menu-link"><i class="uk-icon-caret-right"></i> 수능</a></li>
+				<!-- 
 				<li class="pure-menu-item"><a
 					href="#" onclick="$('#frmSearch #category_seq').val(36);$('#frmSearch .search-bt').click();"
-					class="pure-menu-link"><i class="uk-icon-caret-right"></i> 대학교제</a></li>
+					class="pure-menu-link"><i class="uk-icon-caret-right"></i> 대학교재</a></li>
+				 -->
 				<li class="pure-menu-item"><a
 					href="#" onclick="$('#frmSearch #category_seq').val(37);$('#frmSearch .search-bt').click();"
 					class="pure-menu-link"><i class="uk-icon-caret-right"></i> 취업/수험서</a></li>
