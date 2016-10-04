@@ -50,7 +50,7 @@
                 <? }else{ ?>
                 <li
 				class="pure-menu-item <?=$viewID=="SOMR_EXERCISE_BOOK_REGISTRATION"?'active':''?>"><a
-				href="javascript:halert('로그인이 필요합니다.');UIkit.offcanvas.show('#LOGIN');"
+				href="javascript:halert('로그인이 필요합니다.');$('#menuLink').click();UIkit.offcanvas.show('#LOGIN');"
 				class="pure-menu-link" title="문제집 등록"><i class="fa fa-plus"
 					aria-hidden="true" title=""></i>문제집 등록</a></li>
                 <? } ?>
@@ -75,7 +75,7 @@
 				title="마이 페이지"><i class="fa fa-user" aria-hidden="true"></i>마이 페이지</a></li>
                 <? }else{ ?>
                 <li class="pure-menu-item"><a
-				href="javascript:halert('로그인이 필요합니다.');UIkit.offcanvas.show('#LOGIN');"
+				href="javascript:halert('로그인이 필요합니다.');$('#menuLink').click();UIkit.offcanvas.show('#LOGIN');"
 				class="pure-menu-link" title="마이 페이지"><i class="fa fa-user"
 					aria-hidden="true"></i>마이 페이지</a></li>
                 <? } ?>
