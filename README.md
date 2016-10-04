@@ -16,6 +16,25 @@ You can get the following main advantages with using MamaOMR, the learning analy
  
 <b>Third, you can overcome your weakness very effectively through smart wrong answer notes and recommended questions by wrong-answered question intelligence.</b> Your wrong answer notes are automatically stored and classified on the basis of analysis tags. And you can access the notes with any digital device at any time. MamaOMR intelligently analyzes and classifies the wrong answers of all the students and recommend you optimized questions which you are most likely to answer wrong in the future.
 
+## Quick Guide
+
+<p align="center">
+<img src="https://github.com/Mangongso/Docs/blob/gh-pages/images/mamaOMR_img_intro_en.png?raw=true?raw=true" align="center"/>
+</p>
+
+## Demo Site
+[http://mamaomr.hanbnc.com](http://mamaomr.hanbnc.com/)
+
+You can test after login with your SNS account
+
+## MamaOMR movie on Youtube
+
+[One minute introduce](https://youtu.be/lFkpcSV7C0w)
+
+[MamaOMR Demo movie - Mobile](https://youtu.be/8WhAiRH__QA)
+
+[MamaOMR Deme movie - Desktop](https://youtu.be/s6QPzFahH4E)
+
 ## MamaOMR's main functions
 * Questionnaire book management by ISBN code
 * Smart OMR which makes you easily digitalize answering results, analysis tags, right answers
@@ -25,6 +44,18 @@ You can get the following main advantages with using MamaOMR, the learning analy
 * Auto text extraction from mobile captured questions by OCR
 * Parental monitoring feature of learning performance
 * Provisioning REST API for 3rd-party applications
+
+## Install Dependency
+* **Platform** : Linux, PHP5.4+(with GD v2.1.1+,xmllib v2.9.3+), MySQL5+
+* **API** : Naver(Kakao,Facebook) Auth API Key,Daum Book Search API Key
+* **External Library(Apps)**: [OpenOMR - GNU2](https://github.com/henricavalcante/openomr), [tesseract ocr for php - Apache License V2](https://github.com/Mangongso/tesseract-ocr-for-php), [Tesseract - Apache License V2](https://github.com/tesseract-ocr/tesseract)
+* **UI Library** : [UIkit 2.26.1 - MIT Lecense](http://getuikit.com), [Bootstrap v3.3.2 - MIT Lecense](http://getbootstrap.com), [Pure v0.6.0 - MIT Lecense](http://purecss.io/)
+* **Javascript Library** : [jQuery v1.12.4 - MIT Lecense](http://www.jquery.org)
+
+### External Library Detail
+* **OpenOMR** : OMR reader
+* **tesseract ocr for php** : Tesseract OCR PHP library
+* **Tesseract** : grap text from incorrect question photo (you can change ocr.space REST API)
 
 ## Platform Design Document
 * <a href="https://goo.gl/xBQRc0" target="_blank">Requirement Analysis</a>
