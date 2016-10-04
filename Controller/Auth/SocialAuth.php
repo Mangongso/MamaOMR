@@ -84,6 +84,7 @@ if(count($arrMember)){
 		$arr_input['admin_level'] = 100;
 	}
 	$boolResult = $objMember->setMember($resMangongDB,$arr_input,$intMemberSeq);
+	$arrMember = $objMember->getMemberByMemberID($strMemberID);
 }
 /**
  * SESSON에 로그인 정보를 담는다.
