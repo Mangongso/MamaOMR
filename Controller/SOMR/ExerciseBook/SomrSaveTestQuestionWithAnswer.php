@@ -35,7 +35,7 @@ $intWriterSeq = SMART_OMR_TEACHER_SEQ;
 $intBookSeq = $_POST['book_seq'];
 $intTestsSeq = $_POST['test_seq'];
 $intPublishedSeq = $_POST['published_seq'];
-$intMemberSeq = $_SESSION[$_COOKIE['member_token']]['member_seq'];
+$intMemberSeq = SMART_OMR_TEACHER_SEQ;
 
 $arrQuestionSeq = $_POST['question_seq'];
 $arrOrderNo = $_POST['order_number'];
