@@ -18,16 +18,16 @@
 					</ul>
 				</div>
 			</li>
-			<? if($arr_output['$API_key']['facebook']['app_id']!=''){ ?>
+			<? if(($API_key['facebook']['app_id']!="APP_ID" && trim($API_key['facebook']['app_id']))){ ?>
 			<li><a href="#" class="list-group-item login_facebook _d_sns_btn" data-event-type="login" data-sns-type="facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i>페이스북 아이디로 로그인</a></li>
 			<? }?>
-			<? if($arr_output['$API_key']['naver']['client_id']!=''){ ?>
+			<? if(($API_key['naver']['client_id']!="CLIENT_ID" && trim($API_key['naver']['client_id']))){ ?>
 			<li>
 			<a href="#" onclick="$('#naver_id_login_anchor').click();" class="list-group-item login_naver"><span><img src="/smart_omr/_images/naver_logo.png" /></span>네이버 아이디로 로그인</a>
 			<div id="naver_id_login" style="position:absolute;top:-1000px;"></div>
 			</li>
 			<? } ?>
-			<? if($arr_output['$API_key']['kakao']['client_id']!=''){ ?>
+			<? if(($API_key['kakao']['client_id']!="CLIENT_ID" && trim($API_key['kakao']['client_id']))){ ?>
 			<li><a href="#" onclick="loginWithKakao();" class="list-group-item login_kakao"><span><img src="/smart_omr/_images/kakao_logo.png" /></span>카카오톡 아이디로 로그인</a></li>
 			<? } ?>
 		</ul>
