@@ -80,7 +80,7 @@
 											<option value="33">중등</option>
 											<option value="34">고등</option>
 											<option value="35">수능</option>
-											<option value="36">대학교재</option>
+											<!-- option value="36">대학교재</option -->
 											<option value="37">취업/수험서</option>
 											<option value="38">외국어</option>
 											<option value="39">기타</option>

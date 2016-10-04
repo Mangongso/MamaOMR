@@ -28,7 +28,7 @@ $tabSelected = 3;
 				<div class="sub_contents_body_box text-left">
 					<h4>
 						<i class="fa fa-arrow-right" aria-hidden="true"></i> 마이 페이지 / 나의
-						메니징 <br class="visible-xs" /> <span>메니징 받고 있는 테스트 목록입니다.</span>
+						메니징 <br class="visible-xs" /> <span>메니징 하고 있는 학생과 테스트 목록입니다.</span>
 					</h4>
 				</div>
 			<? if(count($arr_output['manager_student_list'])){ ?>
